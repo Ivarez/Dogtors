@@ -1,0 +1,6 @@
+/workspaces/Dogtors/src/main/java/com/veterinaria/dogtors/DogtorsApplication.java
+/workspaces/Dogtors/src/main/java/com/veterinaria/dogtors/controller/MascotaController.java
+/workspaces/Dogtors/src/main/java/com/veterinaria/dogtors/entities/Mascota.java
+/workspaces/Dogtors/src/main/java/com/veterinaria/dogtors/repository/MascotaRepository.java
+/workspaces/Dogtors/src/main/java/com/veterinaria/dogtors/service/MascotaService.java
+/workspaces/Dogtors/src/main/java/com/veterinaria/dogtors/service/MascotaServiceImpl.java
