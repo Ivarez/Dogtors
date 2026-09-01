@@ -1,0 +1,1284 @@
+Hola a todos, bienvenidos a este
+minicurso de Bootstrap donde la idea es
+que conozcamos los principales
+componentes que trae hacer framework de
+diseño. Básicamente hay dos frameworks
+muy importantes de diseño. Tenemos
+Tailwin y tenemos Bootstrap. Para la
+clase vamos a conocer Bootstrap, dado
+que me parece que ofrece muchas más
+utilidades para que sus páginas queden
+bonitas en menor tiempo. Entonces, para
+empezar vamos a ir a Google y vamos a
+buscar Boostrap porque les quiero
+mostrar una cosa muy importante.
+Entonces, cuando ustedes van a Bootstrap
+y van a leer los documentos, les va a
+aparecer toda la documentación de
+aparecer toda la documentación de Bootstrap.
+Aquí va a aparecer la versión y aquí es
+donde quiero que tengan cuidado qué
+versión de boosters vamos a usar. La
+idea es que usemos la versión CCO, pero
+digamos que ustedes llegan y buscan
+digamos que ustedes llegan y buscan Bootstrap
+modal, algo que hay en Bootstrap, y
+simplemente se meten al primer link.
+Noten que, por ejemplo, aquí estoy
+usando, aunque no debería cambiar mucho,
+la versión 4 de Bootstrap en vez de la
+cinco. Entonces, ¿qué tengo que hacer?
+Ir aquí ingresar alguna de estas dos,
+Bootstrap 5.0 o 5.3. Y ahora sí estaría
+con la versión más morna de Bootstrap o
+por lo menos con la que yo estoy usando.
+Se voy a trabajar todo con Bootstrap 4,
+pues siempre me meto a la documentación
+de Bootstrap 4 en vez de Bootstrap 5
+para que nada cambie.
+¿Por qué usamos Bootstrap o cuál va a
+ser su utilidad? Vas a tener tres puntos
+principales. Uno va a ayudar muchísimo a
+que nuestras páginas se vuelvan
+responsive. Acuérdese que hacer una
+página responsive es que se vea bien en
+todo tipo de pantallas. Segundo, nos va
+a ayudar con componentes que son
+bastante difíciles de hacer a mano,
+componentes que van a evitar tanto
+JavaScript como CSS bastante largo,
+Bootrap los tiene implementados.
+Tercero, nos va a servir como un
+facilitador de clases. Entonces, en vez
+de tener que estar creando todo el
+tiempo la clase flex y align items y
+todo ese tema y margin top de tanto
+porcentaje, Boostrap ya nos va a ofrecer
+un montón de clases que simplemente las
+vamos a usar en nuestro HTML, más nunca
+las vamos a tener que programar,
+digamos, en nuestro CSS. Entonces, vamos
+a empezar. Ahorita mismo tengo este
+documento vacío con un HTML que no tiene
+nada más. Por aquí les voy a subir una
+carpeta con diferentes imágenes y la
+idea es crear una tienda de joyas
+bastante sencilla con Bootstrap para que
+veamos cómo nos facilita la página y
+cómo va a quedar bastante bonita. Para
+eso, antes de empezar, quiero que
+miremos una cosa importante. Vamos a
+meter un H1 que diga hola mundo.
+Entonces ahí tenemos nuestro H1 y vamos
+a comenzar a importar Bootstrap a
+nuestro programa. Entonces vamos a ir
+por acá y vemos que nos dice descargar.
+En descargar nos dice que tenemos que
+hacer lo siguiente para que Boostra
+funcione. Lo primero es copiar este link
+y pegarlo como una hoja de estilos.
+Lo segundo es copiar este otro y
+copiarlo como un script. Acuérdense que
+los scripts normalmente los agregamos
+hacia el final de nuestro programa.
+Volvemos y vemos que nuestro Hello Word
+ha cambiado bastante. ¿Por qué ocurrió
+este cambio de look? Entonces,
+básicamente, Boostrap en su fondo es
+solo un CSS muy muy grande con muchas
+clases, con muchos estilos, con muchos
+media queries para facilitar el
+responsive y todo eso se aplica apenas
+yo comienzo a importar bootster.
+Entonces, pensemos que, por ejemplo, el
+navegador cuando yo creo un H1 normal,
+él llega y le pone, no sé, un tamaño de
+20 píxeles de alto. Cuando yo importo
+Bootstrap, Bootstrap por dentro en algún
+lado debe tener algo que diga como no,
+los H1 no son de 20 píxeles, sino son de
+25 y debe cambiar el tipo de letra y por
+eso me la puso así. Esas CSS, todo eso
+se puede descargar por aquí. De haber
+algún lugar donde diga como descargar
+CSS o descargar todos los compilables. Y
+así era como se instalaba antes. Uno
+llegaba, instalaba todos esos o
+descargaba todos esos CSS y simplemente
+los movía acá y los iba usando. Pero
+bueno, ya con esto es posible usarlo de
+manera más sencilla. Comencemos a usar
+Bootstrap. Entonces, básicamente, yo no
+quiero que ustedes aprendan todas las
+clases, todos los estilos que tiene
+Boostrap, porque es bastante difícil y
+complicado. Igual uno se va
+acostumbrando lentamente, pero lo que
+vamos a hacer la mayoría del tiempo es
+copiar y pegar el código que está en la
+documentación y modificarlo para que nos
+sirva a nosotros. Nuestra tienda
+inicialmente va a tener una barra de
+navegación. Vamos a ver que nos dice
+navegación. Vamos a ver que nos dice Boostrap
+Boostrap navegación.
+Vamos a buscar Boostrapbar y vamos a
+buscar la versión 5.0.
+Entonces, por acá poquito de contexto
+sobre las napos
+ejemplos de NPAR. Me ofrece este de acá,
+estos de acá, por aquí algo con los
+logos, por aquí me ofrece otros.
+Y yo puedo ir buscando ir entendiendo
+lentamente qué significa cada una de las
+clases. Por ejemplo, vamos a este
+primero. A ver, el que está por acá
+arriba. Esto que dice disable, ¿dónde
+está? Entonces, por aquí. Entonces,
+disable, ¿cómo hago para que un link
+aparezca así en modo disable? Entonces,
+booster me dice únicamente usted tiene
+que llegar y añadir la clase disable.
+Entonces, nuevamente, que es Boostrap es
+un conjunto de clases muy muy grande y
+si yo quiero hacer algo, simplemente voy
+a añadirle la clase de Bootstrap.
+Entonces, veamos qué otras cosas. Por
+aquí hay algo que dice collapse na bar
+collapse. Todavía no sé qué es, pero voy
+achicar la barra y vamos a ver un tema
+por acá. Miren que cuando yo achiqué
+bastante la barra, ya la barra
+desapareció y ahora me aparece en esta
+manera. Esto sería bastante difícil de
+hacer con CSS o bueno, pues uno tendría
+que saber mucho de CSS, JavaScript para
+poder crear, digamos, toda esta cosa que
+está ya realizada. Pero ya Bustra me lo
+regala. Bustra lo que me dice es, mire,
+usted use estas clases de por acá y eso
+se va a colapsar y agrandar de manera
+automática. Entonces, ¿qué vamos a
+hacer? Vamos a copiar y pegar y vamos a
+ir modificando para tenerlo de nuestra
+tienda. Entonces, vamos a copiar nuestro
+código y vamos a pegarlo.
+Vamos a ir a nuestra página y vemos que
+ya tenemos justamente
+nuestra barra de navegación. Tenemos una
+barra bastante sencilla con un home
+link, dropdown, una barra de búsqueda y
+todo eso lo tenemos acá. Ahora solo
+tenemos que modificarlo para adecuarlo a
+nuestro contexto. Entonces, comencemos a
+modificarlo. Por ejemplo, aquí viene una
+clase que se llama Navar Brand. Aquí
+adentro según Bootstrap debería ir, por
+ejemplo, no sé, el logo de nuestra eh
+marca o el nombre. En este caso, yo
+quiero tener ahí texto, sino una imagen.
+Entonces, simplemente modifiquémoslo.
+Vamos a hacer aquí que nos genere el
+código automáticamente y vamos a ir
+modificándolo. Entonces, quiero que se
+que dentro esté el logo 3 y vamos a
+ponerle un tamaño de 60 por 60. Y esto
+de aquí que me generó lo voy a eliminar,
+no lo necesito. Entonces si algo no lo
+conozco, simplemente lo voy a modificar.
+Y vemos que ahí ya tenemos el código de
+nuestra imagen. Y aquí ya se ve algo más
+relacionado a nuestra página. Sigamos.
+Si seguimos bajando debajo de nuestro
+logo, vemos que por aquí hay un botón,
+un spam y por aquí más código. ¿Qué es
+eso? Entonces, si ven, pues uno puede
+imaginarse, o sea, si no conozca bien
+esto, que aquí hay algo de colapsar, de
+que la barra se expanda, se achique y
+eso es justamente lo que estamos
+probando ahorita. Noten que únicamente
+con tener ese código de ahí, cuando ya
+mi barra de navegación es bastante
+pequeña para que que los iconos,
+pequeña para que que los iconos, Boostrap
+de manera responsive me lo cambia por
+este botón de acá que me muestra los
+ítem de esta manera. Nuevamente esto es
+bastante difícil de hacer con CSS,
+JavaScript, excepto que usted sea un
+experto, pero ya Boostrap hace todo por
+usted. Entonces toda esta parte de acá
+no la vamos a tocar. Eso vemos que ya
+Boostrap lo hace bastante bien. Solo
+vamos a seguir. Ahora la idea va a ser
+modificar todos estos links para que
+tengan información asociadas a nuestra
+página. Entonces, por ejemplo, podemos
+buscar donde dice el link, que sería en
+esta parte, y modificarlo. Entonces,
+aquí pongamos sobre nosotros, guardamos
+y ya podemos ir modificando fácilmente
+todo lo que nos regaló Bootstrap. Por
+aquí en vez de drop down podemos poner,
+no sé, tienda.
+Y vemos que cuando hago clic en tienda
+me aparecen estas tres acciones. Esas
+son las que están por acá. Está bien.
+son las que están por acá. Está bien. Modifiquémoslas.
+Y por acá pongamos, no sé, Black Friday.
+Guardamos y vemos que ya todo está según
+lo que nosotros queremos. Y si bien es
+bastante fácil entender el código de
+Bootstrap. Por ejemplo, que yo quiero
+esta línea aquí en el dropdown. ¿Qué
+hace Bootstrap? dice, usted tiene que
+tener una clase que se llama Dropdown
+Divider y esa es la que le genera esa
+línea de acá, pero es bastante intuitivo
+como ir comparando el código derecha
+izquierda e ir entendiendo lo que hay
+que hacer. ¿Qué quiero un nuevo ítem?
+Tengo que tener algo que tenga la clase
+dropdown item y así modifiquemos este
+último que es el de por acá, el de
+disable y no sé, pongamos algo que
+va a estar desactivado momentáneamente.
+Comprar online. Y vemos que no me deja
+hacer click. ¿Qué es lo que no me
+permite hacer clic? ¿Qué es lo que tiene
+diferente este a todos los demás?
+Decían, justamente es esta clase
+disable. Si la quito, ya me permite
+hacer clic. Entonces, si quiero que
+cualquier cosa sea disable, simplemente
+le tengo que poner esa clase de manera
+le tengo que poner esa clase de manera adicional.
+Lo último que nos queda es nuestra
+pequeña barra de búsqueda. Si bien
+ahorita mismo le voy a dar 1 2 3 y pues
+no está buscando porque no tiene el
+nombre del parámetro. En este caso,
+digamos que Bootstrap no le puso un
+nombre al parámetro con el que estamos
+buscando. Entonces, podemos poner name
+igual search. Guardamos, ponemos ropa,
+damos buscar y vemos que ya se realizó
+por aquí el query search igual a ropa.
+Básicamente lo que ya hemos conocido
+todo este tiempo de cómo crear un
+formulario, de cómo enviarlo un
+parámetro por get, pero vemos que
+únicamente nos faltaba eso. Entonces,
+Boostrap, aunque nos ofrece muchas
+facilidades, igual necesitamos conocer
+de HTML para poderlo complementar. Ya
+conocimos una de las facilidades de
+boostra, que es podernos traer todos
+estos componentes que son bastante
+complejos. Los busco en la
+documentación, los copio, los pego y los
+adecúo a lo que yo tengo. Ahora vamos a
+ver lo segundo, que es usar clases que
+tiene Boostra para modificar rápidamente
+cómo se ve mi página. Ejemplo, yo aquí
+hay muchas clases que realmente no sé
+para qué sirven. Realmente muchas veces
+lo que hago es copiar y pegar, pero hay
+algunas que sí es bueno, digamos, uno
+memorizárselas y entender para qué son.
+Por ejemplo, esta de aquí, me rayita 2,
+esto significa margin de tamaño dos.
+Básicamente todo Boostrap lo maneja,
+digamos, entre niveles de 1 y c o de cer
+y cco más bien, donde cinco es el máximo
+y cero es el mínimo. Entonces, por
+ejemplo, si yo cambio esta margin de
+cero, vemos que la barrita se quedó
+pegada. Si lo cambio a cinco, vemos que
+se separa el máximo y dos, pues fue lo
+que me recomendó inicialmente, pero yo
+lo puedo ir cambiando. Si yo no tuviera
+Boostrap, pues yo tendría que ir por
+aquí, ponerle una clase, ponerle un ID
+al input, crear un styles.css,
+mientras que note que lo único que
+necesito hacer para modificar aquí este
+margin que hay al final es cambiar la
+clase por otra.
+¿Qué otras cosas podemos ver por aquí?
+clases que podemos ir aprendiendo, ya
+más adelante las vamos a usar de flex.
+¿Qué le estoy diciendo a esto? Que
+quiero que el formulario tenga como
+display flex nuevamente. En vez de tener
+que aquí asignar un ID, ir al styles,
+modificarlo, poner que esto sea display
+flexbox, únicamente poniendo esta clase
+ya Bootstrap tiene todo planeado y me
+permite que esto esté en display flex.
+Ahora, ¿qué quiero hacer? Quiero tener
+que apenas entra a la página, por aquí
+se muestra un carrusel de esos que se
+mueven automáticamente para que digamos
+muestre el contenido principal de mi
+página. Para eso eso puede ser también
+bastante difícil de hacer apunta SDS,
+tal vez si uno sabe mucho de animaciones
+y también juntándolo con JavaScript,
+pero busquemos Bootstrap
+y por aquí tengo carrusel. Nuevamente me
+voy a ir a la versión 5co de Bootstrap y
+vamos a ver los diferentes ejemplos de
+carrusel y vamos a copiarnos del que nos
+guste más. Este por aquí dice slides
+only, como que no hace mucho. Este está
+chévere. Miren, tiene aquí para
+controles de ir adelante y hacia atrás y
+además se actualiza de manera
+además se actualiza de manera automática.
+Por aquí tenemos este que adicional
+tiene estos botoncitos,
+este contexto adicional y pues si
+seguimos bajando vamos a ver diferentes.
+Por ejemplo, este aquí tiene como una
+Por ejemplo, este aquí tiene como una animación
+animación diferente.
+Y bueno, ahí ya nos tocaría leer para
+ver cuál es la diferencia entre cada uno
+de los que está acá. Vamos a copiarnos
+de este de acá. Nuevamente copiamos,
+pegamos, guardamos
+y venimos acá y nada nos funciona. ¿Por
+qué? Porque por ejemplo aquí necesito
+completar cuál es el source code de las
+imágenes. Para eso simplemente voy a ir
+aquí a imágenes y voy a ir poniendo las
+que ya tenía guardadas para este
+que ya tenía guardadas para este ejemplo.
+Guardamos y vemos que ya tenemos un
+carrusel con solo cambiar esas tres
+líneas de código. Un carrusel bastante
+sencillo que en teoría se mueve
+automáticamente y podemos también ahí
+mirándolo por encima entender el resto
+del código. Por ejemplo, aquí tengo un
+botón que dice control previous,
+probablemente sea este botón de acá y
+tengo un botón que dice control next,
+que es este otro botón de acá. El resto
+es necesario que lo entienda.
+Probablemente no. probablemente esté
+Active, no sé, sea para seleccionar cuál
+es la primera imagen que aparece o algo
+así, pero note que la mayoría de cosas
+no las tuve que mover, sino simplemente
+modificar tres líneas de código y obtuve
+un carrusel superbonito. También hay
+pequeños detalles que, como ya sabemos,
+HTML y CSS y JavaScript podemos
+identificar. Por ejemplo, en la clase de
+JavaScript hablamos de qué era esto que
+decía data. data es para agregar
+nuevamente atributos personalizables
+a cualquier cosa que tengamos en HTML.
+Entonces, digamos, un botón tiene el
+atributo type, tiene el atributo alto,
+ancho, click, pero pues nosotros podemos
+agregarle nuevos atributos. ¿Qué hace
+Boostrap? Todo estos son atributos que
+Boostrap agrega para poder conseguir
+estas animaciones y estos efectos que
+tenemos acá. Normalmente esto está
+relacionado con el JavaScript.
+Necesitamos entenderlo, ¿no? Pero ya
+sabemos, por ejemplo, que esto es un
+atributo personalizado que creó
+Bootstrap para poder generar esta
+animación. Ahora, veamos qué pasa cuando
+comienzo a agrandar y a checar mi
+página. Entonces, comienzo a agrandar la
+página y vemos que mi carrusel está
+ocupando siempre el 100% del espacio.
+Este, digamos, es uno de los errores
+básicos que cometemos cuando no sabemos
+bien que es ser responsive. Nosotros
+creemos que sea responses es simplemente
+ponerle aquí, no sé, un max with o
+ponerle que esto siempre sea el 100% o
+que un objeto siempre ocupe el 33% de la
+página, pero ya vemos que con pantallas
+que son ultra anchas o temas así, pues
+igualmente mis páginas se comienzan a
+dañar. Para eso, para realmente ser
+responsive, Boostrap nos regala una
+clase que es bastante interesante.
+Entonces vamos a ir a donde comienza
+nuestro carrusel. Uy, aquí me di cuenta
+de un error super grande y es que todo
+esto lo tenía fuera de del body. Esto
+debería ir aquí adentro. Listo. Ahora sí
+vamos a ir por acá y debajo de nuestro
+napar vamos a crear un div.
+Boostrap nos va a regalar la clase
+container. Voy a meter todo lo que no
+sea la barra de navegación normalmente
+dentro del container. Ya vamos a ver
+para qué sirve. Entonces vamos a copiar,
+quitar todo esto y lo vamos a ingresar.
+¿Qué hace el container? Ayuda que mi
+página realmente se vea mejor
+dependiendo del tamaño de la pantalla.
+Primero, ¿qué hace? Me mete un margin a
+los lados para que el contenido no
+crezca siempre hasta los extremos. Pero
+vamos a ir notando algunas cosas. Voy a
+sacarlo de acá para que sea más fácil. Y
+vemos que miren
+esto de acá, esto sí es ser responsive.
+Cuando mi página pasa de cierto tamaño,
+yo quiero que todos mis elementos
+yo quiero que todos mis elementos crezcan
+hasta un máximo. Miren cómo se ve
+bonito. En este caso, la barra de
+navegación ocupa todo el espacio, pero
+mi contenido central, en este caso que
+estoy trabajando con una pantalla ultra
+ancha, ocupa solo hasta esa parte.
+Vamos a checarlo y vamos a ver cómo se
+modifica. Entonces, quiero que vean, si
+se acuerdan, la vez pasada hablamos de
+los media queries, que eran básicamente
+código que se ejecuta cuando cambiamos
+de ciertos tamaños de pantalla.
+Entonces, si ven, por ejemplo, ahí mi
+pantalla siempre ocupa el mismo espacio
+y cuando llego acá se achicó, es decir,
+automáticamente boostra por debajo
+activo un media query que ahora hace que
+todo el contenido ocupe ese ancho que
+vemos ahí. Sigamos achicando
+y nuevamente miren, se achicó
+automáticamente, es decir, todas estas
+pantallas de acá van a tener ese ancho y
+puedo seguir.
+Y si ven, esto sí es responsive. Ya
+cuando esté en mi celular, miren que ya
+sí el celular es demasiado chiquito, si
+le dice que ocupe el 100% del ancho,
+pero normalmente mi contenido va a
+cambiar dependiendo de el tipo de
+pantalla de manera apropiada y no va a
+crecer al infinito.
+Ahora nos puede surgir una pregunta, ¿es
+posible modificar los estilos que están
+por debajo de Boostrap? La respuesta es
+sí. No es tan sencillo, pero sí se
+puede. Entonces, por ejemplo, quiero que
+estos botoncitos de acá no se vean de
+esta manera, sino que tengan como un
+circulito gris. ¿Cómo vamos a hacer eso
+normal? Vamos a ir, por ejemplo, aquí
+vamos a crear nuestra carpeta de
+vamos a crear nuestra carpeta de estilos.
+Listo. Vamos a crear nuestro
+estilos. CSS
+y vamos a investigar quiénes son estos
+botones según Bootstrap. No es tan
+sencillo porque si ven hay muchos
+elementos, pero recuerden que aquí con
+inspeccionar puedo tratar de conocer.
+Por ejemplo, me dice que el botón
+siguiente se llama carrusel control next
+psych. Entonces, al contrario de lo que
+nos podría decir nuestra intuición, que
+podría ser que es este de acá, vemos que
+el icono en sí que estamos queremos
+modificar es este que se encuentra acá.
+Entonces, vamos a copiar,
+vamos a ir a nuestros estilos y vamos a
+modificar ambos botones. Ese es el botón
+de next y el botón de previews
+llama de manera parecida. Aquí está.
+Listo. Y vamos a aplicarles ciertos
+estilos. Nuevamente aquí es con punto
+para acceder a la clase
+y vamos a cambiarlo. Vamos a poner que
+quiero un background color de gris.
+Veamos si por aquí algo sirva. Bueno,
+esto por acá. Ya vemos si se ve un
+border radios de 50 para que se forme el
+círculo y un padding de 20 para tener
+algo de espacio entre el icono.
+Listo. Hasta ahí pues no he hecho nada
+porque no he insertado justamente por
+acá mi CSS. Vamos a subir lo más arriba
+que podamos y vamos a relacionarlo.
+Recuerden que CSS o HTML en general se
+lee de arriba para abajo. Entonces, ¿qué
+voy a hacer en este caso? Primero, él va
+a importar todo el CSS de Ustrap, va a
+cargar todas esas clases y después yo
+las voy a sobreescribir. Guardemos y
+vemos que ya logré sobreescribir los
+botones de manera apropiada.
+Vamos a crear dos secciones más para
+seguir viendo todas las ventajas que nos
+ofrece Bootstrap. Entonces, por aquí
+creo que ya acabó el dif y este es el
+del container, si no me equivoco.
+Entonces, recuerden que todo por aquí
+debería ir dentro del container. Vamos a
+crear un H2 con un título
+y vamos a ponerle productos destacados.
+Bueno, sigamos la recomendación.
+Cerremos por acá y vemos que me puse el
+título aquí a la izquierda. Yo quiero
+que el título esté centrado nuevamente.
+Aquí sí es más comenzarse a memorizar
+todas estas clases, igual uno se va
+acostumbrando, pero hay una clase en
+Boostrap que me ayuda a tener el texto
+centrado, se llama texter. Y hay otra
+que me ayuda a tener un margin otros
+elementos. Margin top y aquí puedo poner
+un número margin top de uno, de dos, de
+tres. Dejémoslo de cuatro por ahí.
+Listo. Entonces ahí ya tengo mi título
+centrado y un margin top de cuatro. ¿Qué
+es lo que vamos a representar en nuestra
+sección de productos destacados?
+Entonces, la idea va a ser tener algunos
+tipos de tarjetas que muestren cómo va
+la imagen del artículo, una descripción,
+su precio. Vamos a buscar también algo
+que nos ofrece Bootstrap que es de eso.
+Entonces, por aquí ya tengo el enlace
+guardado. Boostrap cards.
+Ahámoslo más bien en una nueva pestaña
+y vemos. Entonces, estas son las
+tarjeticas que quiero copiarme. Si bien
+bastante parecido a lo que podríamos
+tener en una página de mercado. Vamos a
+copiar y pegar. Entonces, cemos
+y pegamos.
+a irnos por acá y vamos a cambiar
+únicamente nuestro código. Entonces, por
+aquí esto sería imágenes y joyas un
+metamos la misma imagen que está arriba
+y vemos que ya tenemos una tarjetica
+bastante sencilla para mostrar nuestros
+artículos. Ahora que ya creamos nuestra
+primera tarjeta, la idea es crear varias
+más y que estas sean bonitas y
+organizadas y responsive según el tamaño
+de la pantalla. Por ahora solo vamos a
+copiar y pegar nuestra tarjeta.
+Le damos copiar, pegar y vemos que se
+ubica una debajo de la otra en formato
+vertical. Esto, ¿por qué es? Porque los
+div son display block, es decir, ocupan
+su máximo espacio y se ubican uno debajo
+del otro. Para poder solucionar esto, lo
+que vamos a hacer, entonces, para que se
+ubiquen de manera horizontal
+ubiquen de manera horizontal es
+aquí vamos a crear un dif y vamos a
+ponerle la clase row.
+guardamos y dentro de ese row la idea es
+ir ingresando nuestras tarjetas. Pero
+antes toca explicar en qué consiste el
+sistema de cuadrículas de Bootstrap.
+Para inicializar el sistema de
+cuadrícula tenemos que crear primero un
+row. Entonces aquí lo tenemos y esto lo
+que va a hacer es crear una fila que
+ocupe todo el ancho. Aquí no podemos ver
+nada. Entonces, vamos a ayudarnos un
+poquito de CSS para poder visualizar
+mejor lo que está pasando por debajo.
+Voy a agregar aquí un estilo y es que
+quiero que la fila ocupe 100 píxeles.
+Por aquí vemos que todo se movió un poco
+para abajo y por aquí en mi CSS vamos a
+agregar más cosas. Vamos a decir que
+quiero que la fila
+tenga un borde
+de un píxel negro. Listo. Entonces,
+ahora sí podemos ver la fila. ¿Qué está
+haciendo Ustrap? está inicializando el
+sistema de cuadrícula, una fila que va a
+ocupar todo el ancho. Dentro de esa
+fila, interiormente está dividida en 12
+columnas. No las podemos ver, pero
+créanme que por debajo está viido en 12.
+Ahora, ¿cómo hago yo para organizar los
+elementos? Le puedo decir a cada uno de
+los elementos que ocupe tantas columnas
+como sean necesarias. Por ejemplo, si yo
+tengo dos elementos y quiero que cada
+uno ocupe el 50%,
+voy a decirle al primer elemento que
+ocupe seis columnas. y al otro que ocupe
+otras seis columnas, que tengo tres
+elementos y cada uno quiero que ocupe el
+mismo espacio. Voy a decir que cada uno
+ocupe cuatro columnas, que tengo dos
+elementos y quiero que uno ocupe un
+tercio y el otro dos tercios. Primero
+ocuparía cuatro columnas y el otro ocho
+columnas. Vamos a ponerlo a prueba para
+que me vayan creyendo. Entonces, el row
+siempre va acompañado de otro elemento
+que se llama el call, que es columna.
+Entonces, vamos a crear otro DIF aquí
+por dentro.
+Y vamos a ponerle como clase igual
+Y vamos a ponerle como clase igual call
+y vamos a crear dos. Entonces vamos a
+decir que quiero que las dos columnas
+ocupen el 50%.
+Vamos a guardar. Y ahorita no se ve nada
+porque mi div está invisible. Para eso,
+entonces lo que vamos a hacer es también
+ayudarnos aquí de CSS
+y vamos a decir que todos los elementos
+dentro de mi row tengan
+un borde, pero pongámoslo verde para
+poder rolper. ¿Listo? Entonces ahí vemos
+que tengo dos elementos y cada uno está
+ocupando seis columnas. Nuevamente
+quiero que uno ocupe un tercio, entonces
+sería que el primero ocupe 41 y el otro
+sería que el primero ocupe 41 y el otro 8/1.
+que no quiero ocupar toda la columna.
+Veamos qué pasa si ponemos cuatro y
+cuatro. Entonces está ocupando un
+tercio, 1 terci y el otro tercio está
+quedando desocupado.
+¿Qué pasa si me paso de 12? Entonces
+pongámosle 8 y cinco. Pues nada, que
+como las hay solamente siempre 12
+columnas, pues este está ocupando 8
+12avos, la otra no cabe y se va para
+12avos, la otra no cabe y se va para abajo.
+Entonces volvamos a 6 y seis
+y vamos a ingresar nuestras tarjetas.
+ahora dentro. Entonces, copiamos y vamos
+a ingresar por acá nuestra primera
+a ingresar por acá nuestra primera tarjeta
+y por acá nuestra segunda tarjeta.
+Guardamos y vemos ahorita por esto de
+acá que ya cada elemento está, digamos,
+ocupando el 50% del espacio disponible.
+Que queremos agregar una tercera
+tarjeta. Entonces, copiemos y peguemos.
+tarjeta. Entonces, copiemos y peguemos. Esto
+estaba hasta por acá.
+guardemos y como ahorita cada una está
+ocupando el 50% del espacio, esta no
+cabe y se va para abajo. Pero si quiero
+tener tres tarjetas, ¿qué hago? Pues que
+cada una ocupe solo cuatro columnas.
+Guardamos y vemos que ya cada una ocupa
+un tercio del espacio. Nuevamente, ya
+falta de parecer repetitivo, digamos que
+quiero hacer un diseño diferente y que
+el artículo de la mitad sea un poquito
+más grande porque es el principal.
+Entonces, podemos decir que el artículo
+de la mitad ocupe seis columnas, me
+quedan seis disponibles y que los otros
+dos ocupen solo tres. Guardamos y vemos
+el resultado. Este está ocupando 50%,
+sin embargo, se ve un poco feo porque no
+tengo las cosas centradas. Entonces
+vamos a centrar todo. Para centrar vamos
+a tener una clase que es display flex
+para decir que eso se ubique con flex y
+le voy a decir justify content center y
+vamos a hacer lo mismo para el resto de
+tarjetas. Entonces simplemente quiero
+que el contenido se centre porque nótese
+que se está yendo hacia la izquierda.
+Guardamos y vemos que ya logramos más o
+menos ese efecto de que esta tarjeta
+ocupe más espacio que las otras dos.
+Ahora les voy a mostrar dos formas de
+hacer esto responsive. Notemos que
+ahorita no está muy responsive porque si
+achico la pantalla, miren como se
+comienzan a ver las tarjetas, bastante
+feo y si la grando pues se ve bien, pero
+en dispositivos pequeños no tendría un
+buen look. Entonces, opción uno, que de
+vez en cuando les va a funcionar. Vamos
+a quitar, en vez de definir yo el tamaño
+de las tarjetas, voy a dejar únicamente
+la etiqueta columna. Guardamos y noten
+lo que va a pasar. Entonces,
+cuando me voy achicando,
+Boostrapicamente, si los elementos no
+cabe, los manda para abajo y define su
+tamaño. Entonces, le estoy dando más
+libertad, digamos, a Bustrap para
+definir que ahorita caben, aquí ya no
+caben. Entonces, este ocupa seis
+columnas, este seis y el de abajo 12.
+Que sigo achicando la pantalla, cada uno
+ocupa 12 columnas y se va para su propia
+fila. Entonces, esa sería la opción uno,
+ponerle simplemente call, pero no
+siempre va a ser así. Esto puede ser
+útil, por ejemplo, ahorita que tenemos
+elementos que quiero que todos miran lo
+mismo y son proporcionales. Para
+mostrarles la segunda forma, vamos a
+crear una cuarta tarjeta. Entonces,
+vamos a agregarla por acá, le damos
+copiar, pegar y vemos que por lo menos
+caben cuatro tarjetas en este monitor
+que es bastante grande. Sin embargo,
+normalmente lo que yo quiero es poder
+definir y tener un mayor control sobre
+cuántos elementos quiero que haya
+dependiendo del tamaño de la pantalla.
+Para eso hay unas clases especiales en
+booster. Si se acuerdan de las clases
+pasadas hablamos de los media queries,
+que era básicamente como hacer un if,
+que si el tamaño de la pantalla es tal
+se aplique en ciertos estilos y no
+otros. Esto lo podemos hacer también
+bastante sencillo con bootstrap sin
+tener que ir allá hacer los media
+queries de manera explícita. Para eso,
+por ejemplo, podemos usar la siguiente
+clase. Ya les explico qué hace. Call
+LG4. Vamos a ponérsela
+a todos nuestros elementos. ¿Y qué me
+dice esto? En pantallas large o
+superior. Entonces, en pantallas grandes
+o extra grandes, quiero que cada
+elemento ocupe cuatro columnas, es
+decir, van a haber tres elementos en la
+fila, ¿cierto? Porque máximo tengo 12.
+¿Cómo hago para ver estos tamaños a qué
+corresponden? Entonces, por aquí tengo
+la página de Boostrapos
+por acá que me aparecen todos los
+tamaños de pantalla. Una pantalla small
+para es una de 576 píxeles, mediana 768,
+large 992
+y así. Entonces, aquí estoy diciéndole
+arap para cualquier pantalla de más de
+992 píxeles, ubique tres elementos por
+fila. Vamos a ir atrás. Guardamos.
+Vemos que al guardar en estas pantallas
+que ya son grandes, hasta las extra
+grandes, siempre van a caber únicamente
+tres elementos por fila. Miren, hay un
+cambio de mía query que se nota
+bastante, pero como todavía sigo en
+pantalla grande, él está ubicando tres
+elementos. Si me sigo achicando, tres
+elementos y ya el resto se lo dejo a
+consideración dep, como organizarlos.
+Pero lo que normalmente se hace es
+poner, digamos, si uno quiere ser
+bastante juicioso, el tamaño o cuántos
+elementos debería haber en cada tipo de
+pantalla. Veamos qué estoy diciendo acá.
+Para pantallas muy muy grandes quiero
+que que cuatro elementos. Para pantallas
+grandes quiero que quepan tres elementos
+donde cada uno ocupa cuatro columnas.
+Para pantallas medianas quiero que
+quepan siempre dos elementos y así.
+Entonces vamos a copiar y pegar.
+Guardemos. Ahorita mismo estoy en una
+pantalla. Acaben tres elementos. Sería
+una pantalla grande. Vemos que si la
+seguimos agrandando se vuelve una
+pantalla ultra grande y caen cuatro
+elementos. Ahora lo siguiente sería una
+pantalla pequeña. Cuando la pantalla es
+pequeña deben caer únicamente dos.
+Entonces aquí queemos la pantalla y
+vemos que cuando la pantalla es pequeña,
+cuando pasa ese breakpoint que define
+Bootstrap de tamaño de la pantalla, se
+organiza a dos elementos y más pequeño
+aún él ya digamos lo toma de manera
+automática o lo que él considere mejor,
+pero pues uno debería ser juicioso y
+siempre tener en cuenta estos tamaños.
+Vamos a seguir conociendo más
+componentes de Boostraparlos de manera
+apropiada. En este caso vamos a buscar,
+por ejemplo, cómo son los formularios en
+Boostrap. Entonces vamos a buscar en
+Boostrap Forms y vemos que me ofrece
+varias posibilidades de formularios con
+estilos mucho más bonitos que los que
+ofrece, digamos, HTML por defecto. Vamos
+a copiar y pegar el primero y si algo lo
+adecuamos a nuestro página web. Entonces
+copiamos, pegamos. Recuerden que todo
+tiene que ir dentro del container y
+vemos que ya por defecto tenemos un tipo
+de formulario.
+Ahora vemos que el formulario, algo que
+no me gusta es que siempre está ocupando
+el 100% del espacio, lo cual no es buena
+en pantallas grandes y ultra grandes. En
+una pantalla pequeña, bueno, puede que
+se vea bien, por ejemplo, acá, pero pues
+no sé, no me gusta en pantallas grandes.
+Entces vamos a ir al inicio de nuestro
+formulario que está por acá y vamos a
+juntar todo lo que acabamos de aprender.
+Entonces, primero que todo, quiero que
+el contenido esté más o menos centrado.
+Entonces, voy a crear un dif
+y dentro del dif vamos a usar las
+siguientes clases. Primero, para separar
+el contenido de la sección anterior con
+la sección actual, vamos a usar marking
+top 5. ¿Qué más podemos usar? Podemos
+usar display flex y justify content, es
+decir, que quiero que el contenido esté
+centrado. Vamos a meter todo nuestro
+formulario dentro y vemos que ya el
+contenido se centra. Tenemos un margin
+con el contenido anterior, sin embargo,
+solo está ocupando, digamos, el espacio
+mínimo necesario dado que puse display
+flex. Vamos a corregir eso también.
+Entonces, vamos a llegar acá y vamos a
+crear otro DIF. Dentro de ese divumnas.
+Entonces vamos a poner clase igual. Y
+quiero que en pantallas grandes o más el
+formulario ocupe únicamente el 50% del
+espacio disponible, mientras que en
+pantallas small o más ocupe todo el
+espacio disponible.
+Entonces vamos justamente a ahora copiar
+nuevamente todo nuestro formulario,
+meterlo dentro de ahí y vemos que acaba
+de funcionar. Esta es una pantalla creo
+que grande y vemos que en pantallas
+grandes, ultra grandes, el formulario
+ocupa el 50%.
+Ahí sigue siendo una pantalla bastante
+grande, se ve el formulario bien y ya en
+pantallas que son menos que grandes
+pedid en small extra small, el
+formulario ocupa el 100% del espacio.
+Entonces, nótese que ya en un celular
+pues así se vería bastante bien que
+ocupe todo el ancho disponible. Sin
+embargo, yo creo que esto todavía se
+puede ver mejor. Si en el formulario se
+ve bastante simple. Entonces, ahora lo
+que voy a hacer es juntar dos
+componentes que realmente no tienen nada
+que ver, que son las tarjetas y los
+formularios. Va a juntar ambos para que
+se vea un poco mejor todo este tema.
+Esto no les va a aparecer en ninguna
+documentación, simplemente es como un
+tema de creatividad de ir juntando cosas
+que tienen diferentes componentes para
+lograr un efecto bonito. Entonces, para
+eso voy a crear una tarjeta. Vamos a
+poner dif. Vamos a ponerle como clase
+poner dif. Vamos a ponerle como clase card.
+Guardamos y vamos a meter todo esto de
+por acá que es nuestro formulario dentro
+de la tarjeta para darle justamente ese
+efecto. Entonces, copiamos aquí todo
+nuestro formulario, guardamos y vemos
+que ya me puse como ese borde que es
+característico de las tarjetas.
+dentro de una tarjeta. Acce que hay
+diferentes partes de la tarjeta.
+Entonces, por ejemplo, puedo poner por
+acá difar
+encabezado de la tarjeta para darle un
+título a mi formulario y que se vea
+bastante bonito. Entonces, vamos a
+ponerle carger, quiero el texto
+centrado, quiero la letra
+en negrilla y quiero la letra de un
+tamaño un poco más grande. es font size
+3 y pongámosle aquí formulario.
+Guardamos y ven que juntando dos cosas
+que no tienen nada que ver como la
+tarjeta del formulario, ya estamos dando
+un efecto mucho más bonito. Vamos a
+seguir agregando más estilos únicamente
+usando las clases de Ustra. Por ejemplo,
+aquí yo quiero que haya un padding.
+Entonces, nuevamente, ¿qué hago? Voy
+aquí a classing
+3 y vemos que ya tenemos un pequeño
+espacio. También me parece que todo esto
+está muy pegado. Aquí voy a hacer un
+truco y es que voy a usar row junto g.
+G3 es gap como bueno, no es gap
+exactamente la clase, pero me sirve como
+para crear este espacio entre los
+elementos que haya dentro de mi
+formulario. Eso también lo deberíamos
+poder usar acá. Nótese que cuando un
+elemento no cabe, este se ve pegado al
+otro. Entonces, vamos a ir a nuestra
+fila inicial que estaba por acá y vamos
+a usar lo mismo. Vamos a ponerle G3.
+Y ahora cuando se genere una nueva fila,
+va a haber un pequeño espacio entre las
+tarjetas. Ya nuestro formulario se está
+viendo mucho mejor, pero vamos a seguir
+modificándolo. No sé ustedes, pero pues
+por ejemplo a mí esto de que aquí diga
+email address, email address de nuevo es
+como un poquito repetitivo. Entonces la
+idea va a ser justamente modificar esta
+parte de acá para que únicamente diga
+una vez y se genere un efecto digamos
+animado. Para eso también voy a usar
+clases. Todo esto lo encuentran en la
+documentación de Ustrap. Ya pues digamos
+que uno se comienza a conocer estos
+efectos y lo que vamos a hacer es
+cambiar este for group por forting.
+Vamos a copiar y pegar en ambos.
+Y vemos que, bueno, ya desapareció, por
+ejemplo, mi label. Pero bueno, ¿qué es
+lo que va a pasar? Vamos a hacer los
+siguientes pasos. Esto tiene que ser
+así, lo pueden buscar en la
+documentación, no hay ningún problema.
+van a mover su label para abajo siempre
+de su input
+y le damos guardar. Ahora miren este
+efecto que se está generando acá. Aquí
+en email ya lo tenemos. en password me
+falta un poquito generarlo. Creo que es
+básicamente aquí me quedó pegado. Listo.
+Y ahora miren el efecto que tenemos en
+nuestro formulario. Tan bonito.
+Entonces, ya podemos quitar esto de acá,
+que tampoco me interesa. Y bueno, ya
+vamos teniendo un formulario más
+minimalista, pero que sigue igual,
+teniendo la misma información. Y nótese
+que cuando escribo, pues ya queda como
+lo que tenía que escribir el usuario en
+la parte de arriba, únicamente cambiando
+la clase y moviendo el label para abajo.
+Ahora este botón me parece que es un
+poquito exagerado, que siempre esté
+ocupando el 100% del espacio. Entonces
+vamos a usar lo que hemos aprendido y
+vamos a meter en este caso mi botón
+dentro de un div.
+Vemos que ya con eso por lo menos el
+botón únicamente ocupa el espacio
+necesario y si lo quiero mover hacia la
+derecha, ¿qué tendría que hacer?
+Entonces vamos a usar simplemente las
+clases de Ustrap. Vamos a decirle
+display flex y en vez de decirle que me
+centre todo en la mitad, vamos a decirle
+que lo mueva hacia el final. Entonces,
+ya tenemos nuestro botón de un tamaño
+mejor y al final vamos a crear un
+segundo botón. Entonces vamos a copiar y
+pegar este
+y este en vez de decir digamos, no sé,
+esto digamos que sea como suscribirse al
+boletín, suscribirse,
+este me sirva para limpiar mi
+formulario. Vamos a darle limpiar. Si
+ven, tenemos los dos botones, los dos se
+generaron del mismo color y vamos a
+hacer algunas modificaciones para que
+este botón limpie todo lo que está en el
+formulario. Lo primero que esto creo que
+ya lo vimos en la clase de HTML, vamos a
+hacer que este botón sea de tipo reset.
+Entonces, vamos a escribir cualquier
+cosa, le damos reset y se borra todo. Lo
+segundo es que ya bootrap
+varios tipos de botones. Podemos por
+aquí buscar para que me crea
+y vemos todos los tipos de botones que
+tiene Boostrop. Entonces vemos que
+únicamente cambiando la clase botón ya
+obtenemos diferentes tipos de colores.
+Para limpiar los botones voy a usar el
+de warning, este por acá. Entonces, en
+vez de usar button primary, voy a usar
+button warning por acá. Y ya dice
+limpiar de manera correcta. Y el único
+detalle que me faltaría sería tal vez un
+pequeño espacio entre estos botones.
+Entonces, margin end de dos. Y vemos que
+ya quedaron separados.
+Normalmente cuando tenemos este tipo de
+formularios, por ejemplo, aquí podemos
+ver un botón que dice como desea aceptar
+los términos y condiciones y un enlace
+que me lleva como a una pestaña o
+normalmente a un cuadro flotante donde
+aparecen los términos y condiciones.
+Sería un poquito extremo llevarlo a otra
+pestaña. Para crear este tipo de cuadro
+flotante existe algo que se llama los
+modal. Entonces vamos a buscar que es un
+modal en postraf. Básicamente son este
+tipo de ventanas flotantes que aparecen
+momentáneamente y las puedo activar con
+un botón. Entonces, la idea sería que
+cuando el usuario le dea ver términos y
+condiciones, aparezca esta ventana.
+Vamos a copiarnos de lo que está por acá
+para lograrlo. Entonces, vamos a copiar
+esto de acá, que es la ventana que
+aparece volando por ahí. Y esta si la
+pueden pegar en cualquier parte, hasta
+por aquí después del script la voy a
+por aquí después del script la voy a pegar.
+Y listo, por ahí quedó mi ventana
+flotante y me dice ahora que necesito
+modificar la parte en la que aparece el
+botón. Para eso vamos a ir a nuestro
+formulario y aquí tenemos algo que dice
+check me out. Entonces vamos a poner lo
+check me out. Entonces vamos a poner lo siguiente.
+siguiente. Acepto
+Acepto los
+y dentro de eso vamos a poner por aquí
+me lo está poniendo automáticamente un
+enlace que dice términos y condiciones.
+Y como vemos aquí a la derecha tengo que
+agregar estas clases de acá. Bueno, más
+bien estos atributos. data boostrap
+toggle y le pongo modal y data boostrap
+target y le tengo que poner exactamente
+el mismo ID que le haya puesto a mi
+modal por acá para que se abra. Vamos a
+guardar. Esperemos que con algo de
+suerte todo funcione. Vamos a darle a
+términos y condiciones y vemos que
+automáticamente ya tengo este modal
+bastante lindo para aceptar todo.
+Entonces vamos a hacer varias cosas,
+alguna que otra modificación.
+Primero, no me interesa este botón de
+save changes. Segundo, vamos a agregarle
+mucho más texto a nuestro modal. Este
+sería el título. Entonces, esto sería
+términos y condiciones.
+Y por aquí estaría el body. En el body
+vamos a generar un lorem de 100.
+Guardamos. Veamos cómo se ve. Entonces,
+era aquí términos y condiciones
+y vamos a exagerarlo mucho más porque
+digamos que nuestros términos y
+condiciones son de 1000 palabras. Lorem
+2000 es que quiero que sea más grande
+que el espacio de pantalla. Loren 2000.
+Listo. Guardemos.
+Vamos acá y vemos que ya tenemos nuestro
+lore. Sin embargo, estoy haciendo como
+un scroll sobre la página y eso es lo
+que no quiero que ocurra. Entonces vamos
+a subir por acá arriba
+y vamos a ponerle aquí en el modal vamos
+a agregarle otra clase aquí en modal el
+dialog vamos a decirle además modal
+dialog y no center sino scrollable.
+Guardamos y miren la diferencia. Ya
+quedó super bonito aquí para meter todos
+los términos y condiciones necesarias.
+Close y ya el usuario los puede aceptar.
+Y acá dice, "Acaba el tiempo de la
+clase, pero les quiero mostrar cómo
+podemos juntar esto con lo de JavaScript
+y por qué Boostrap igualmente no me va a
+solucionar siempre la vida. Entonces,
+vamos a ir primero a realizar una
+validación de nuestro formulario. Para
+eso vamos a poner que nuestros dos
+inputs sean obligatorios.
+Ahorita mismo aparece este tipo de
+mensaje que es básicamente del
+navegadores, no es de Booster ni nada.
+que no me permite enviar el formulario
+hasta que tenga los dos campos. Esto lo
+podemos hacer mucho más bonito.
+Entonces, vamos a ver diferentes clases
+en boostrap
+experiencia al usuario cuando esté
+llenando el formulario. Por ejemplo, por
+aquí existen dos clases. Una es is
+aquí existen dos clases. Una es is valid,
+que va a mostrar un chulito en caso de
+que todo esté correcto. Y otra es is
+invalid que va a mostrar este signo de
+advertencia en caso de que las cosas
+estén mal. Vamos a quitar ambas. Y si
+quiero que todo mi formulario tenga esos
+chulitos o esos signos de advertencia,
+vamos a ir a nuestro forum y vamos a
+agregar la clase
+was validated.
+Guardamos y miren, entonces ahorita como
+estos dos campos son requeridos y el
+usuario no los ha ingresado, pues
+aparecen ambos con rojo de manera
+automática. Pero a medida que vaya
+llenando los campos,
+digamos, ahí ya él reconoce que eso es
+un correo, le pone chulito y apenas
+comienzo a ingresar algo en contraseña,
+ya me deja seguir. ¿Qué problema ven con
+esto? Yo veo dos. Recarguemos y verán.
+Primero que es bastante dramático para
+el usuario que apenas ingresa, miren que
+esto ya se pone en rojo y el usuario ni
+siquiera ha escrito nada. Sería mejor
+que después de que hace clic en el botón
+es que apareciera esto en rojo. Y
+segundo, que no puedo validar
+condiciones más complejas. Por ejemplo,
+no puedo validar un reyex con el correo
+porque según mi navegador esto es un
+correo, pero según yo los correos
+siempre tienen punto o algo y no puedo
+validar, por ejemplo, que la contraseña
+tenga tantos caracteres, tenga una
+mayúscula, una minúscula. En este caso
+vamos a juntar lo que vimos la clase
+pasada de JavaScript con CSS y con
+Boostrapinar nuestro formulario de
+manera correcta.
+Vamos a realizar ciertos cambios. El
+primero, vamos a quitar esta clase de
+acá que me está molestando porque es la
+que hace que aparezca de una vez todo
+como un error. Y lo segundo es que vamos
+a decirle que nuestro formulario no se
+valide manera automática, sino que voy a
+ser yo el que lo voy a validar a través
+de un script. Para eso clicamos aquí el
+atributo no validate para que digamos el
+navegador y HTML no validen el
+formulario de manera automática.
+Tercero, simplemente voy a agregar por
+acá una clase formar el formulario
+dentro de mi JavaScript. Entonces, vamos
+a bajar por acá debajo de nuestro script
+de Boostrap vamos a agregar segundo
+script en el cual vamos a buscar nuestro
+formulario y vamos a evitar que se envíe
+de manera automática.
+Vamos por acá
+y lo único que estoy diciendo es evitar
+que el formulario se envíe y agregar
+inmediatamente la clase eh fue validado
+para que aparezca ahora sí los chulitos.
+Entonces vamos a guardar y ven que
+inicialmente no aparece todo en rojo,
+pero ya cuando el usuario le va a enviar
+si tiene algún error aparecen los
+símbolos de error, lo cual tiene más
+lógica. Entonces vemos que Bootrap no me
+solucionó todo, pero yo juntándolo con
+JavaScript lo voy mejorando.
+Todavía quedarían algunos detalles por
+acabar, por ejemplo, verificar bien el
+correo, verificar la contraseña que
+tenga tantos dígitos, verificar que por
+aquí le haya dado aceptar. Sin embargo,
+ya por términos de tiempo no alcanzo a
+hacer todo eso dentro del JavaScript,
+pero es bastante parecido a lo que ya
+realizamos en otro video. Ahora,
+conclusión de la clase. Ya ven que
+Bootstrap básicamente me ofrece un
+montón de clases para no tener que estar
+escribiendo CSS. Nótese todo el CSS que
+tuve que escribir para crear una página
+bastante, digamos, bonita,
+bastante, digamos, bonita, responsive.
+Y lo único que tuve que hacer fue a
+medida que iba escribiendo el HTML,
+conocer las clases de USRAP y irlas
+agregando. Copiar, pegar de la
+documentación muchas veces e ir
+modificando. No necesito entender todas
+las clases. Va van a haber algunas que
+me voy a memorizar, otras que se me van
+a olvidar y no pasa nada. Listo. Yo sé
+que es un poquito eh canzón o muy pesado
+ver tantas clases y no saber lo que
+hacen, pero pues uno va aprendiendo
+lentamente a memorizárselas, a conocer
+una que otra y a usarlas de manera
+seguida y esto agiliza pues mucho el
+desarrollo porque en vez de estar
+pasando aquí entre dos pestañas todo el
+tiempo y agregando por acá clases para,
+por ejemplo, agregar nuevamente un
+margin, agrego una clase y se acabó y
+puedo seguir con mi desarrollo. Ollo
+bastante rápido. Problemas de Boostrap,
+por ejemplo, el que acabamos de ver, no
+todo se soluciona con Bootstrap porque
+pues algunas clases no van a cumplir los
+requerimientos que yo quiero. Segundo
+problema, a mi forma de verlo, se forma
+un infierno de dips como lo estamos
+teniendo ahorita. ¿Por qué? Pues porque
+Boostrapciona así. Vamos a tener como 10
+dips uno encima de otro y mi código de
+HTML se vuelve bastante ilegible.
+Tercer problema, vamos a terminar
+agregando muchas clases. ¿Por qué digo
+que es un problema? Porque, pues,
+digamos, si pensamos, no sé, como un
+poquito en la separación de
+responsabilidades, así sea en HTML y
+CSS. HTML se encarga de la estructura y
+CSS de los estilos. Aquí básicamente
+cuando hacemos esto así tan largo,
+estamos juntando en el HTML cada uno de
+los estilos que le queremos dar.
+Normalmente cuando veo códigos que
+tienen Bootstrap, que no tienen
+Bootstrap, queda un poco mejor
+organizado el HTML de los códigos que no
+usan Bootstrap, pero nadie puede negar
+que esto es mucho más rápido de hacer.
+Por último, todas las páginas se ven
+bastante parecidas. Nótese que cuando
+creo un botón con Bootstrap se, por
+ejemplo, se crea con este azul
+característico y este amarillo
+característico y hay muchas cosas muy
+características de Boostrap. Eso hace
+que como tanta gente usa Boostrap,
+muchas páginas web sean muy parecidas.
+Entonces uno ya, ojo, dice como, uy,
+esto fue creado con Boostrap
+esto, digamos, el estilo visual de
+Bootstrap y que apenas uno entre se vea
+como una página tan simple. Obviamente
+esto ya es pereza del programador que no
+cambia el color de los botones, que no
+cambia las formas y usa todo lo que
+viene por defecto en el framework.

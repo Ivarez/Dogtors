@@ -1,0 +1,1278 @@
+Hola a todos, bienvenidos a su tercera
+semana de desarrollo web. Esta semana
+vamos a ver todo lo que son los
+fundamentos de la web y para esto vamos
+a ver un tecnologías que son algo viejas
+por ahí del 2002, 2003, pero todo estos
+son los fundamentos de lo que va a estar
+debajo después cuando trabajemos
+tecnologías más modernas como Springbot.
+En específico, vamos a trabajar con Java
+Enterprise Edition y vamos a enfocarnos
+en el tema de los servlets. ¿Qué es Java
+Enterprise Edition? Entonces, recordemos
+que Java tiene varias versiones. Por
+ejemplo, está Java Standard Edition, la
+cual me permite crear aplicaciones de
+escritorio, y está Java Enterprise
+Edition, que me permite crear
+aplicaciones para la industria, por
+ejemplo, un aplicativo web robusto, el
+cual pues tiene mucha más complejidad
+que lo que ustedes han creado hasta
+ahora. En general, ya Enterprise Price
+Edition lo podemos considerar como un
+conjunto de librerías que me permiten
+crear estas aplicaciones robustas ya a
+nivel industrial. Dentro de esas
+librerías hoy nos vamos a enfocar solo
+en una y que es la base de la web, lo
+cual se llama Serblet. Los Serblets son
+objetos que saben recibir peticiones
+HTTP y saben responder a estas, por
+ejemplo, con un HTML, con una imagen,
+con un código de estatus, etcétera. Solo
+por la clase de hoy vamos a trabajar con
+un ID diferente. En este caso vamos a
+trabajar con NetBins. ¿Por qué? porque
+Netflix me permite fácilmente crear todo
+lo que es el aplicativo web y también
+lanzarlo en un servidor. También vamos a
+usar como navegador Firefox en vez de
+Chrome, nuevamente porque tiene mejores
+herramientas para desarrollador y es más
+fácil ver el contenido de las
+peticiones. Para empezar vamos a ir a
+file, vamos a dar new project y si ven
+aquí en Java with my event, de una vez
+me permite crear un aplicativo web.
+Vamos a darle next.
+Ponemos el nombre.
+Y pueden dejar el resto tal.
+Aquí en esta parte tenemos que decir con
+qué servidor queremos que se ejecute
+nuestro aplicativo web. Probablemente
+ustedes no les aparezca nada, así que
+tengan que agregar un servidor nuevo. En
+este caso yo estoy usando Glassfish y
+estoy diciendo que voy a usar Java
+Enterprise Edition versión 11. Cualquier
+cosa, descarguen este tipo de servidor y
+ya podrían continuar.
+Antes de empezar vamos a realizar
+ciertas configuraciones para que sea más
+sencillo trabajar con este proyecto.
+Vamos a hacer clic derecho, vamos a ir a
+propiedades y vamos a modificar nuestro
+nombre de proyecto para que únicamente
+diga clase servets. Después vamos a ir a
+compile y vamos a darle aquí a compile
+on save para que cada vez que guardemos
+el proyecto se compile nuevamente.
+Finalmente vamos a ir aquí a run y vamos
+a decirles que se ejecute en Firefox. Si
+lo quieren trabajar en Chrome tampoco
+hay ningún problema, pero pues ya les
+dije que Firefox tiene mejores
+herramientas. Le damos okay, damos
+herramientas. Le damos okay, damos ejecutar
+y vamos a ver varias cosas. La primera
+es que se comienza a lanzar todo lo que
+fue nuestro servidor de Classfich. Es
+decir, para ejecutar una aplicación en
+Java Enterprise Edition, necesito
+descargar un servidor donde se pueda
+ejecutar esto. No es necesario en
+frameworks más modernos como Sprw.
+¿Dónde está mi servidor? Acá. Si van a
+services y servers, van a ver que
+Classfish ya fue lanzado y lo pueden
+parar y volver a lanzar. En este caso,
+cuando abrimos nuestro proyecto, podemos
+ir a webpages y vamos a ver que tenemos
+un index.html html, que como le hemos
+estado hablando es la página que siempre
+se va a lanzar inicialmente. Vamos a
+realizar un par de configuraciones más
+dentro de esas vamos a ir aquí a source
+packages y vamos a eliminar ambos
+paquetes. Esos no los vamos a necesitar
+para esta clase.
+También les quería mostrar por acá en
+project files el pont.xml, el cual me
+sirve para manejar dependencias. En este
+caso, cualquier librería externa que
+ustedes quieran usar, la ponen aquí
+dentro de pendencias y ya Java la
+instala de manera automática.
+Vamos a volver a nuestra página
+principal y vamos a crear nuestro primer
+servlet. ¿Qué son los servets? Los
+servets son objetos en Java, los cuales
+nuevamente saben recibir y responder a
+peticiones http. Para crear un Serblet,
+vamos a ir aquí a source packages, vamos
+a dar new y vamos a darle a Java class.
+Podemos crear directamente el Serblet,
+pero la idea es que primero lo creemos
+como Java Class que hereda de la clase
+Serplet. Para eso vamos a llamar a
+nuestro Serplet
+Hola, mundo
+Serblet y vamos a meterlo en el paquete
+Serblet y vamos a meterlo en el paquete web.
+Ahora, si queremos que esto se vuelva un
+serblet, vamos a hacer dos cosas. Uno es
+que herede de la clase que ya está
+creada, que es http
+serblet. La importamos
+y vamos a ver que HTTP Serblet es una
+clase la cual tiene muchos métodos para
+saber responder a peticiones HTTP. tiene
+un método get, un método post, do put,
+do delete. Es decir, cuando recibe una
+petición get, responde con esto, cuando
+recibe una petición post, responde con
+eso. Y otros métodos para saber
+responder a peticiones http. Adicional,
+¿qué vamos a editar? Vamos a decirle que
+esta clase va a responder a ciertas URLs
+en específico. Para eso vamos a poner
+web servlet
+y vamos a decir qué tipo de URLs va a
+saber este servet responder. En este
+caso le voy a decir que sepa responder a
+hola mundo
+servet, es decir, cuando el usuario
+llegue acá y ingresa a clase servlets
+llegue acá y ingresa a clase servlets slash
+hola mundo servet, este servlet de acá,
+este objeto de acá va a ser el que va a
+saber responder a las peticiones http.
+Ahora vamos a comenzar sobrescribiendo
+uno de los métodos que viene en el
+serplit. Este es to get, es decir,
+cuando hagan una petición get a esta
+URL, voy a responder. Para eso, antes de
+seguir, vemos que la petición recibe dos
+parámetros, un request y un response.
+Vamos a recordar de las clases pasadas
+qué significa esto en http. Para
+ejemplificar y recordar cómo funcionan
+las peticiones HTTP, vamos a realizar
+una petición sencilla para traer esta
+imagen de un Pikachu. Entonces, vamos a
+darle aquí a recargar y vemos que se
+realizó una petición get. Esa petición
+get se realiza a la siguiente URL. Vemos
+que me respondió con un estado de
+respuesta 200, es decir, que todo se
+salió bien. Vemos que se realizó con la
+versión HTTP 2.0 y finalmente el
+protocolo HTTP va a tener dos partes, un
+response y un request. De esos podemos
+sacar muchos parámetros. Por ejemplo, en
+la respuesta que podemos sacar, podemos
+sacar el tipo de contenido, en este caso
+que se respondió con una imagen JPG, el
+tamaño de la imagen, la fecha en la que
+se respondió, entre otros. Si aquí
+ponemos rout podemos ver cómo lo ve el
+navegador. También el request va a tener
+diferentes parámetros, entre esos el
+tipo de navegador a través del cual
+realizamos la petición, en este caso
+navegador Mozila. Desde dónde llegué a
+esa página, me dice que es de BIN.
+También podemos ver, por ejemplo, el
+idioma, entre otras cuestiones.
+Finalmente, si me meto por aquí al
+response, podemos ver que la petición me
+respondió con la imagen del Pikachu, que
+es la que estamos viendo en pantalla. Lo
+que quiero que notemos acá es justamente
+que el método get de un servet recibe
+igualmente un request y un response.
+Podemos tener todos los parámetros de un
+request. Entonces, podríamos saber, por
+ejemplo, qué tipo de navegador fue el
+que realizó la petición. Y también
+podemos modificar el response desde
+cero. Podemos devolver una imagen,
+podemos devolver un HTML, podemos
+devolver diferentes códigos de
+respuesta, entre otros.
+Vamos justamente ahora a modificar
+nuestro método get para que nos responda
+con un hola mundo seret. Para eso vamos
+a quitar esta primera línea de código y
+vamos a modificar cada uno de los
+parámetros de la respuesta. Por ejemplo,
+voy a decir respuesta pun set
+content type y vamos a decir que vamos a
+responder con contenido HTML. Para eso
+hacemos lo de siguiente manera y con un
+charset de
+UTF8. ¿Qué más podemos decir? Para poder
+escribir la respuesta, necesitamos un
+print writer como parecido a como
+necesitamos un sistema output print para
+escribir cosas en consola. Ya. Vamos a
+ver cómo se usa. Entonces, para eso
+vamos a hacer aquí print writer y vamos
+a hacer out igual y vamos a obtener el
+writer que viene en el response, es
+decir, esto me va a permitir escribir en
+la respuesta. Vamos a hacer response
+la respuesta. Vamos a hacer response getw
+y igual que cuando estabas más chiquitos
+y escribían en la consola de Java, ahora
+vamos a escribir es en la respuesta de
+la petición http. Vamos a hacer out
+la petición http. Vamos a hacer out punprint
+y vamos a escribirle
+y vamos a escribirle hola
+servit. Vamos a darle guardar aquí el
+punto y coma que nos faltaba. Vamos a
+volverlo a ejecutar por si acaso.
+Y ahora cuando desde acá yo vaya a la
+URL que termina con hola mundo serblet,
+vemos que aparece mi mensaje en
+pantalla. Si analizamos la petición,
+vamos por acá, vamos a network y
+recargamos, vemos que estoy realizando
+una petición get a este puerto. Esto por
+acá lo recibe y responde con el
+contenido de Hola Mundo. Vamos a ver la
+contenido de Hola Mundo. Vamos a ver la respuesta
+en formato rout y vemos que únicamente
+llegó eso y aquí ya es el encargado del
+navegador. Digamos que si no viene en
+este formato con etiquetas, él lo trata
+de poner simplemente como un HTML dentro
+de un body.
+Volviendo a nuestro index, vamos a
+volver por acá y simplemente vamos a
+crear una pequeña lista con enlaces que
+me permita navegar a todos los servets a
+lo largo de este video. Vamos a cambiar
+aquí el título a Serblets
+y vamos a crear una lista no ordenada
+donde cada elemento
+va a ser un enlace.
+Este enlace. Entonces, por aquí vamos a
+poner hola mundo
+serblet y el enlace al que vamos a
+dirigir nuestro HR va a ser igual a
+justamente la dirección que queremos que
+responda a nuestro CCLET. Vamos a
+guardar, vamos a volver atrás,
+recargamos y vemos que ya tenemos una
+navegación sencilla entre nuestras dos
+páginas. Vamos a crear un segundo
+serblet y ver qué otras cosas podemos
+hacer con ellos. Para eso nuevamente
+vamos a ir a nuestro paquete web y vamos
+a dar new. Y esta vez sí vamos a crear
+directamente un servlet. Este lo vamos a
+llamar formularios
+llamar formularios servlet.
+Guardamos, damos finalizar y vemos que
+ya me crea la estructura general para
+tener un serplit. Vamos a agrandar un
+poco y vemos que ya extiende la clase.
+Me pone que la URL a la que tiene que
+responder es esta de acá y ya me mete un
+método que se llama process request. Se
+parece bastante al duet. Si ven, recibe
+un request, recibido un response y por
+aquí, por las comentarios automáticos
+que me ingresa, podemos ver que este
+process request sabe tanto responder a
+peticiones get a peticiones post.
+Entonces digamos que es un método que me
+sirve para responder a ambos tipos de
+peticiones. También por aquí me pone un
+printwriter, ya obteniendo lo del
+response y un código HTML básico donde
+básicamente si quiero insertar algo acá,
+pues lo tengo que escribir como un
+string, el cual contiene el HTML e
+insertarlo en Java. Vamos a modificar
+esto. Entonces, para eso vamos a primero
+quitar esto de acá. Vamos a dejar que
+simplemente diga formulario servlet y
+vamos a comenzar a escribir nuestro
+código HTML. Entonces voy a ir copiando
+y pegando y ayudándome acá van a ver que
+esta forma de escribir HTML es bastante
+fea porque además no tiene como un tipo
+de autocorrector que me ayude dado que
+estoy escribiendo strings. Si quiero
+insertar un string al interior de acá,
+tengo que usar comilla sencilla. Y
+recuerden que los métodos from tienen un
+action, que es la página a la cual me
+voy a redirigir. En este caso voy a
+decir que me redirija cuando le enviar a
+respuesta Serflet. Y mientras tanto
+vamos a decir que el método es get.
+Listo. Nuevamente vamos a seguir
+modificando y vamos a ingresar nuestro
+primer parámetro del formulario. Por
+aquí vamos a poner usuario
+y vamos a decir que esto es un input
+para que el usuario lo pueda agregar de
+tipo texto y el nombre que se va a
+enviar como parámetro es usuario.
+Vamos ahora a tener un pequeño BR para
+que haga el salto de línea. Vamos a
+volver a copiar y pegar esto. Y ahora en
+vez de usuario voy a enviar la
+vez de usuario voy a enviar la contraseña.
+Aquí vamos a ponerle como type password
+y como parámetro que se envía la
+y como parámetro que se envía la contraseña.
+Le vamos a ingresar un BR
+y vamos a ingresar finalmente un input
+que tenga el botón de enviar. Entonces,
+vamos a copiar esto para no tener que
+repetir código. Input
+como type. Aquí es submit
+y listo. Podemos quitar aquí el name que
+no es necesario. Finalmente es necesario
+que cerremos nuestro formulario para
+tener nuestro código HTML completo.
+Vamos a darle acá. Vamos a guardar y
+vamos a tratar de acceder a esto.
+Entonces dijimos que es desde acá y
+vamos a tener formularios.
+Vamos a ver si nos responde bien. Y
+vemos que tenemos justamente todo el
+HTML que acabamos de generar
+por acá. Al parecer tengo un pequeño
+error porque si no me aparece el botón
+de submit. Eh, creo que es que me faltó
+cerrar aquí los inputs, porque esta es
+una etiqueta que se abre y se cierra ahí
+mismo. Veamos si fue eso.
+Ah, y aquí me faltó una comilla, ambas
+cosas. Vamos a recargar.
+Y bueno, veamos que aquí ya tenemos
+nuestro botón de enviar. Ahora si
+enviamos con 1 2 3 1 2 3 vamos a ver que
+trata de redirigir a respuesta Serblet y
+como es método get está enviando los
+parámetros por la URL, usuario 1 2 3 y
+password 1 2 3. Obviamente esto sería
+mejor enviarlo a través de un método
+post para que no todo el mundo lo
+pudiera ver. Vamos a crear ahora mismo
+el tercer servet, el cual vas a ver
+responder a justamente respuesta
+serblet, los parámetros y
+mostrarlos en pantalla y digamos
+realizar una autenticación sencilla.
+Entonces vamos a ir por acá, vamos a
+darle new Serblet y vamos a llamarlo
+darle new Serblet y vamos a llamarlo respuesta
+Serblet. Vamos a darle finish
+y vamos a agrandar un poquito. Listo.
+Entonces, ¿cómo hago para obtener los
+parámetros que me llegan? Puede ser
+tanto por la URL como por el body si es
+post. Entonces, para eso vamos a crear
+dos variables. Primera variable, la
+vamos a llamar usuario. Y para obtener
+los parámetros vamos a hacer lo
+siguiente. Request punto
+get parameter y vamos a ponerle el
+nombre del parámetro, en este caso
+nombre del parámetro, en este caso usuario.
+Vamos a hacer lo mismo para la
+Vamos a hacer lo mismo para la contraseña.
+En este caso dijimos que la contraseña
+la pasamos como password. Entonces
+pasémosla igualito porque si no no lo va
+a Y vamos a tratar de imprimir
+ambos de esos datos por acá. Nuevamente
+voy a quitar esto de acá
+y debajo del H1 vamos a imprimir el
+nombre de usuario y la contraseña para
+ver que si estamos obteniendo los datos
+de manera apropiada. Voy a copiar y
+pegar esto. Vamos a cambiar nuestro H1
+por un párrafo
+y vamos a poner acá
+nombre usuario,
+los puntos. Vamos a concatenar
+y aquí vamos a meter
+nuestra variable. Vamos a guardar.
+Vamos a probar primero eso que esté
+funcionando. Y vemos que cogió
+correctamente, que nuestro usuario es 1
+2 3, que fue el que escribimos en el
+formulario. Vamos a hacer lo mismo con
+la contraseña.
+Guardamos y vemos que nos permitió
+realizar todo el proceso. Ahora, si
+volvemos a nuestro formulario Serblet y
+pasamos esto por post, vamos a guardar.
+Vamos a volver por acá. Esperemos que ya
+haya recargado. 1 2 3 1 2 3. Vemos que
+todo funciona exactamente igual, sino
+que los parámetros no se pasaron por
+aquí por la URL, sino por el cuerpo de
+la petición. Pero igualmente usando aquí
+request param pudimos obtener los
+parámetros sin ningún problema, sin
+importar si es get o si es post. Nótese
+que en esta parte del código yo puedo
+escribir Java. Finalmente todo lo estoy
+escribiendo Java y estoy insertando
+HTML. Entonces puedo mezclar ambas
+cosas. Esta sería, digamos, una ventaja,
+entre muchas comillas, dado que estoy
+mezclando responsabilidades de este tipo
+de frameworks. Pero vamos a hacerlo para
+mostrar un ejemplo. Si usuario punto
+equals y vamos a decir que si mete admin
+y admin como clave.
+y admin como clave. Entonces
+vamos a decir que la autenticación fue
+correcta. En caso contrario, incorrecta.
+Si ambos strings son admin, vamos a
+hacer lo siguiente. Vamos a imprimir un
+párrafo diciendo
+usuario correcto.
+En caso contrario,
+vamos a imprimir usuario incorrecto.
+Guardamos. Entonces, usando nuevamente
+por acá, vamos a hacer 1 2 3 1 2 3. Me
+dice usuario incorrecto, pero ahora
+vamos a hacer admin
+y vemos que nos dice usuario correcto.
+Entonces sí puede que en un inicio esta
+forma de escribir HTML sea bastante
+engorrosa, pero nótese que puedo hacer
+muchas cosas. Entonces, por ejemplo,
+para crear una lista, no tengo que
+escribir cada uno de los li uno por uno.
+Puedo crear una lista por acá en Java,
+¿cierto? Una array list y hacer por acá
+un for. Y dentro de ese for ir creando
+un li por li por li y así tener mi lista
+bastante rápido. Puedo hacer for, puedo
+hacer if, puedo hacer switch, puedo
+hacer cualquier cosa de Java dentro de
+este tipo de código y así ir modificando
+mi HTML.
+Quiero realizar una pequeña aclaración
+antes de que continuemos con más
+serplets. Si notan, por aquí tenemos el
+método process request, pero si nos
+metemos HTTP Servet, no hay ningún
+método que se llame así realmente.
+Entonces, por aquí en el código
+escondido que me generó Netbins o más
+bien el Serblet, vemos que está nuestro
+método que usamos la primera vez, to get
+y do post y simplemente estoy
+redirigiendo ahí hacia process request.
+Por eso es que por acá me decía que
+process request va responder tanto a
+peticiones get post, pero simplemente es
+porque estoy redirigiendo aquí todo y
+pues esta parte por acá estaba
+pues esta parte por acá estaba escondida.
+Volviendo nuestro index html, vamos a
+copiar y pegar esto para que tengamos la
+navegación completa y verifiquemos que
+todo está funcionando. Nuevamente aquí
+tenemos que redirigir esa formulario
+tenemos que redirigir esa formulario Serblet
+y pongamos aquí
+y pongamos aquí formularios.
+Guardemos, volvamos a nuestra página
+Guardemos, volvamos a nuestra página inicial
+y vemos que ya tendríamos la navegación
+hacia todas nuestras páginas.
+Vamos a continuar con todo el tema de
+los servets y ahora vamos a ver cómo
+puedo hacer para modificar el código de
+respuesta. Para eso vamos a crear un
+nuevo servet. Vamos a llamarlo status
+nuevo servet. Vamos a llamarlo status servlet
+y la idea va a ser retornar un código de
+respuesta diferente al 200. En este caso
+vamos a retornar exactamente el código
+308. 308 significa redireccionar.
+Entonces, por ejemplo, imaginemos que
+tenemos una página temporal de
+promociones de temporada con cierta URL.
+Ya las promociones desaparecieron y
+quiero que cada vez que nuevamente
+alguien trate de ingresar este link se
+le redireccione directamente al home. O
+también podemos pensar en otros casos,
+no sé que completamente mi página cambió
+de dominio. Cambiamos de llamarnos
+Twitter a X y quiero que cada vez que
+alguien intente entrar a twitter.com lo
+redireccione a x.com.
+para eso. Entonces, obviamente no
+necesitamos retornar ningún HTML,
+entonces podemos quitar todo esto de
+acá. Y lo único que vamos a hacer es lo
+siguiente. Vamos a poner response
+punto y vamos a modificar el estado.
+Entonces, si ven por acá hay un set est
+status y podemos modificar el código de
+respuesta a cualquiera, un 200, un 300,
+un 400, etcétera. Esto también es de
+bastante importancia. Ya más adelante
+cuando tengamos un front y un backend,
+que ustedes sepan devolver un código de
+respuesta de acuerdo a lo que haya
+pasado en su backend. Por ejemplo,
+completamente si las cosas fallaron, por
+ejemplo, devolvieron 404, si se envió
+una petición incorrecta, enviaron 500.
+Si ya la URL no existe, le enviaron 300.
+Y así saber manejar cada uno de los
+códigos de respuesta que tenemos.
+Entonces, nuevamente vamos a hacer un
+código 308, que es redireccionar.
+¿A dónde vamos a redireccionar? Entonces
+vamos a poner eso en los headers que
+vamos a poner eso en los headers que tenemos.
+En este caso vamos a usar aquí una clase
+que tiene varios atributos estáticos,
+que es httpz
+y esto me permite pues directamente ir
+modificando cada uno de los atributos
+que tiene el head de la respuesta. En
+este caso quiero modificar el header de
+locación y le voy a decir que me retorne
+a página referenciada.
+Vamos a guardar. Vamos a tratar de
+probar. Primero vamos aquí a importar
+probar. Primero vamos aquí a importar esto.
+Guardamos
+y vamos a copiar justamente la URL.
+Entonces vemos que apenas trato de
+ingresar a la página Status Servet, él
+redirige hacia página referencia, la
+cual no existe y por eso me muestra un
+cual no existe y por eso me muestra un 404.
+Creémosla rápidamente. Entonces, creemos
+aquí un nuevo Serblet que simplemente se
+aquí un nuevo Serblet que simplemente se llame
+página referenciada
+de finalizar y probemos nuevamente.
+Entonces vamos acá, vamos a tratar de
+ingresar a status y vemos que
+directamente me redirige a página
+referenciada. Podemos tratar de
+inspeccionar por aquí como se realizaron
+las peticiones. Nuevamente
+vamos a limpiar la consola para que se
+vea mejor y le vamos a enviar. Entonces
+vemos aquí que cuando traté de entrar a
+status me devolvió un 308, el cual
+reenvió a página referenciada que me
+reenvió un código 200. Esto de aquí de
+404 es que no encuentra un icono para la
+página, pero no tiene nada que ver.
+sigamos modificando más atributos de los
+headers. Ahora lo que vamos a hacer es
+que en el header le vamos a indicar al
+navegador que apenas llegue a la página
+descargue todo el contenido que se
+encuentra en esta más exactamente el
+HTML. Entonces vamos a ir aquí a nuestra
+carpeta de web, vamos a darle new
+servlet y vamos a llamarlo descargar
+servlet y vamos a llamarlo descargar servet.
+servet. Listo.
+Nuevamente, entonces para yo decirle al
+navegador que apenas ingrese esta
+página, me descargue el archivo, vamos a
+hacer lo siguiente. Entonces, vamos a
+agrandar por acá, vamos a bajar y vamos
+a hacer lo siguiente. Entonces, response
+a hacer lo siguiente. Entonces, response nuevamente
+punto set header
+y nuevamente vamos a usar la clase que
+usamos en el anterior servet, que es
+http headers.
+Y vamos a usar el atributo estático que
+Y vamos a usar el atributo estático que es
+es content
+description.
+Y como segundo parámetro, para que lo
+descargue apenas ingrese a la página,
+vamos a decirle attach.
+Aquí me va a decir nuevamente que
+importemos esta clase y aquí debo tener
+algún pequeño error. Perdón, aquí no es
+content description, sino content
+content description, sino content disposition.
+Listo. Ahora sí, attachment. Aquí sin la
+T. Guardamos y vamos a probar. Vamos a
+copiar la URL. Vamos a pegarla acá.
+Descargar Serblet.
+Y vemos que apenas trato de entrar a
+descargar Serblet, él me lo descarga el
+archivo con el HTML. Entonces vemos que
+no hay ningún problema y que funciona
+según lo adecuado. Entonces pensemos
+otros casos. Por ejemplo, que cada vez
+que alguien ingrese a cierta URL se le
+descargue un Excel con los datos que le
+ha llenado o se descargue un PDF o se
+descarga un Word o cierto archivo.
+Entonces, de esta manera, indicando que
+esta URL está asociada a una página
+donde apenas ingresé tengo que descargar
+cierto tipo de archivo, es que se logran
+este tipo de contenidos. Sigamos
+avanzando. Vamos a crear otro servet que
+se llame cookie servet y vamos a
+entender qué son las cookies, cómo
+traerlas y cómo guardarlas en el
+navegador. Entonces, cookie servet.
+Vamos a finalizar
+y vamos a agrandar un poco.
+y vamos a agrandar un poco. ¿Listo?
+Entonces, comencemos. ¿Qué son las
+cookies? Las cquies, básicamente es una
+pequeña base de datos o una tabla llave
+valor que tienen nuestros navegadores
+donde pueden almacenar datos. Ahora, si
+yo quiero que haya persistencia entre
+las diferentes peticiones, lo puedo
+hacer a través de cookies. Entonces, yo
+puedo, por ejemplo, guardar una cookie
+que sea, no sé, mi nombre de usuario y
+cada vez que yo envíe una petición al
+servidor, enviar el nombre de usuario
+para que el servidor sepa, digamos,
+buscar, no sé, los correos de depende de
+mi nombre de usuario o cosas así o
+realizar cualquier petición acorde a mi
+nombre de usuario. Eso son las cookies.
+¿Cómo podemos acceder a ellas?
+Básicamente aquí en, busquémoslo, en
+storage debe haber varias formas de
+guardar datos en nuestro navegador.
+Nuevamente la más común son las cookies,
+aunque más adelante en el curso veremos
+otra como es local storage. También hay
+algunas más avanzadas como index, que ya
+crear una base de datos relacional en mi
+navegador, pero ya se complicaba
+bastante la cosa y espero que no lo
+tengan que usar nunca.
+Entonces vamos a comenzar a crear
+nuestra cookie y para eso aquí en Java
+hay un objeto que se llama cookie.
+Entonces vamos a importar y vamos a
+crear una cookie que se llame nombre de
+usuario, donde vamos a guardar el nombre
+de usuario para que lo presente en
+pantalla cada vez que realicemos una
+petición. Es importante recordar que
+usamos las cookies porque los servidores
+no tienen memoria, es decir, cada
+petición que yo realice, el servidor no
+sabe sobre peticiones pasadas. Entonces,
+el mecanismo de las cookies me permite
+enviar información con cada nueva
+petición para que el servidor sepa de
+esta información adicional. Pero también
+hay que tener en cuenta que las cookies
+tienen un problema. ¿Y cuál es? Que
+siempre las voy a enviar con cada una de
+mis peticiones. Entonces, piensen que
+eso puede llegar a ser que la petición
+sea más pesada o que si yo tengo muchas
+cookies todo se vuelva más lento.
+Entonces, vamos a crear nuevamente la
+cookie. Aquí vamos a ponerle
+nombre usuario
+y vamos a decir que me guarde como one
+y las cookies las enviamos en nuestro
+response. Entonces vamos a decirle que
+me agregue la cookie, nombre usuario,
+vamos a guardar, vamos a tratar de
+ingresar a nuestra página que es
+ingresar a nuestra página que es slcookieerblet,
+poner por acá cookie
+poner por acá cookie servet
+y veamos cómo funciona. Entonces, por
+aquí me está mostrando el HTML básico
+que se creó por defecto. Pero si vamos
+aquí a las cookies y local h 180, vamos
+a ver que tenemos aquí nuestra pequeña
+base de datos donde básicamente me dice
+que tengo un cookie que se llama nombre
+usuario y que su valor es Juan.
+Ahora vamos a seguir y vamos a tratar de
+obtener las cookies. Para eso vamos a
+hacer lo siguiente. Vamos a crear aquí
+un pequeño arreglo que contengan todas
+las cookies. Entonces, acordémonos que
+las cookies se envían con cada petición,
+es decir, estas pares ya de valor cada
+petición que yo realice van a llegar a
+esta parte que es el servidor. Para eso
+vamos a hacer request punto get cookies.
+Vamos a bajar un poco y de aquí debajo
+de nuestro H1 nuevamente vamos a
+combinar nuestro código Java con nuestro
+código HTML. Entonces vamos a hacer un
+código HTML. Entonces vamos a hacer un forage
+donde por cada cookie dentro de cookies
+vamos a generar el siguiente código. Voy
+a copiar por aquí alguno de estos para
+no tener que estar de cero. Y vamos a
+crear un párrafo
+donde el contenido sea el siguiente.
+Entonces vamos a ir concatenando más C
+Entonces vamos a ir concatenando más C punto
+y vamos a obtener el nombre de la
+cookie, que en este caso sería nombre de
+usuario. Vamos a agregarle un pequeño
+usuario. Vamos a agregarle un pequeño espacio
+y el valor de la cookie que es C pun
+get value.
+Tenamos con nuestro párrafo, guardamos
+y vamos a recargar nuestra página.
+Entonces, vamos a bajar un poquito por
+acá y veamos que aquí aparece justamente
+nombre de usuario es Juan. Entonces,
+nótese que cada vez que yo estoy
+haciendo una petición envío esta cookie
+con estos valores, el servidor la
+recibe, renderiza la página o crea la
+página más bien con todos estos datos y
+lo reenvía a mi navegador donde ya sé
+que el nombre de usuario siempre es
+Juan. Para complementar el ejemplo vamos
+a hacer un contador de visitas, es
+decir, vamos a saber cuántas veces este
+usuario ha logrado visitar la página.
+Nuevamente por aquí vamos a crear un
+nuevo cookie y vamos a llamarlo cantidad
+de visitas.
+Vamos a darle new cookie
+y el valor va a ser visitas,
+más bien la llave va a ser visitas y el
+valor va a ser cero. Aquí ven que no me
+deja poner cero directamente porque para
+crear un cookinate dos strings. Entonces
+vamos a ponerle cero en formato string y
+ya. En ya posteriormente hacemos todo el
+parcero. Vamos a ponerle response punto
+ad cookie.
+Recargamos y ya vemos que tenemos
+nuestras dos cookies. Ahora, ¿cómo hago
+para aumentar esto? Y también en teoría
+si recargo la página aquí me debería
+aparecer visitas cero. Ahorita si la
+recargo varias veces pues el contador de
+visitas no está aumentando. Entonces
+vamos a crear un ciclo en el cual vamos
+a encontrar la cookie y si la
+encontramos vamos a aumentar su cantidad
+en uno. Para eso lo primero es
+asegurarnos que cookies no sea nulo,
+para que no nos lance un nul pointer
+exception. Y vamos a recorrer cookie por
+exception. Y vamos a recorrer cookie por cookie.
+igual que hicimos abajo
+y vamos a buscar una cookie que tenga el
+nombre de visitas. Entonces, si
+la cookie tiene el nombre de
+la cookie tiene el nombre de visitas,
+vamos a realizar el siguiente código.
+Entonces, vamos a obtener el valor de la
+cookie, el valor anterior, el cual lo
+puedo obtener de esta manera. me va a
+tocar hacer el parceo
+a entero.
+Entonces, ya ahí sé que, por ejemplo, en
+la anterior visita teníamos un valor de
+cero. Vamos a aumentar el contador en
+cero. Vamos a aumentar el contador en uno
+y vamos a asignar el valor de la cookie
+y vamos a asignar el valor de la cookie al
+nuevo contador
+nuevamente. Entonces, hago integer punto
+to string. Ahora para pasarlo a string y
+pongo anterior que ya está actualizado.
+Voy a decir que eh voy a tener digamos
+una bandera que me indique si encontré o
+no la cookie para enviarla en caso de
+que digamos sea la primera vez que el
+usuario ingresa al navegador. Entonces
+voy a poner por aquí un buleano que se
+ha encontrado
+y vamos a inicializarlo como falso.
+Si encuentra la cookie, es decir, no es
+la primera vez que ingresa al navegador,
+vas a ponerle en control es igual a
+vas a ponerle en control es igual a true.
+Y vamos a agregar nuevamente
+la cookie en la respuesta.
+Listo, ahí ya todo quedó. Por aquí me
+falta un paréntesis. Y en caso de que la
+coquita todavía no exista, es decir, que
+sea completamente la primera vez que el
+usuario ingresa a mi página, vas a poner
+si la cooki no fue encontrada,
+ejecutamos este código de acá.
+Vamos a ver qué tal funciona. Guardamos,
+vamos a ir recargando y vemos que ahora
+ya la cookie está aumentando de valor
+cada vez que ingreso a la página y tengo
+un conteo de visitas. Así ya podría
+saber si un usuario es la primera vez
+que ingresa o si ya había ingresado a mi
+página anteriormente y por ejemplo
+usarlo darlo de manera diferente. Vamos
+a crear un último ejemplo a través del
+cual podamos obtener un campo que viene
+en el head del request, el cual me
+indica desde qué página se llegó a mi
+página actual. Con esto yo podría
+realizar diferentes tipos de
+estadísticas. Por ejemplo, saber eh si
+la gente llega desde Google, si llega
+desde Wikipedia, si llega desde un
+enlace, una página de terceros y así.
+Para eso vamos a crear un último
+servlet. Entonces, vamos a ponerle por
+acá y el atributo se llama referer.
+Vamos a darle guardar, le damos
+finalizar y vamos a obtener únicamente
+ese atributo e imprimirlo en pantalla.
+Para eso, entonces vamos a crear por
+aquí un string donde pueda guardar la
+página y vamos a hacerle request
+página y vamos a hacerle request punto
+get header
+y el header que queremos obtener se
+llama referer. Listo. Ahora simplemente
+lo vamos a imprimir. Vamos a copiar esto
+de por acá.
+Lo convertimos en un párrafo
+y vamos a concatenarle para que muestre
+la página desde la cual se
+guardamos y vamos a tratar de hacer.
+Entonces vamos a copiar por acá,
+vamos a ir acá a referer servet
+y vemos que me dice nul. ¿Por qué en
+este caso me dice nul? Porque digamos
+directamente escribí la URL, es decir,
+no me estoy redireccionando desde otra
+página hacia esta, pero si vamos hacia
+nuestro index y creamos otro elemento en
+nuestra lista,
+pongámosle aquí
+y redirijamos a nuestra página.
+guardamos, volvamos a la página
+anterior, recargamos y veamos que todo
+está funcionando. Y por aquí me dice que
+para llegar a esta página fui redirigido
+desde el local H 8080 clase Servets que
+es la página anterior. Entonces, si ven,
+todo funciona. Esto es muy interesante
+para hacer estadísticas sobre quién
+llega a mi página y cómo llega.
+Ahora viene una duda bien importante y
+es, ¿por qué estamos viendo esto?
+¿Listo? ¿Por qué no comenzamos
+directamente con un framework moderno
+como es Angular? O porque aunque esto no
+lo vayamos a usar directamente en la
+clase, es importante conocerlo.
+Entonces, nuevamente ya Enterprise
+Edition es uno de los frameworks,
+digamos, de backen más antiguos con los
+que se comenzaron a crear todas las
+páginas web. Y si ven, trae las bases de
+cómo un framework logra recibir una
+petición y responderla. Podemos
+cualquiera de los headers, cualquiera
+del contenido y modificarlo manualmente
+a través de Java. Claro que tiene sus
+desventajas, tiene un montón. Por
+ejemplo, que se está mezclando, digamos,
+el código Java con el HTML en un solo
+lugar y si bien es muy difícil escribir
+un código HTML limpio. Sin embargo, eh
+ya las siguientes clases nos vamos a ir
+moviendo hacia otros frameworks. Después
+nos vamos a ir moviendo hacia Springbot,
+después hacia Angular y así vamos a
+llegar cada vez a Frameworks más
+modernos. Sin embargo, siempre es
+importante tener en cuenta las bases de
+la web, que si quiero responder con un
+código de respuesta, ¿qué hago? Que si
+quiero obtener un cookie, ¿qué hago? que
+si quiero modificar un header, ¿qué
+hago? Todo eso ya sabemos que se puede
+hacer. Listo, que nuestro framework se
+haga de manera diferente. Podemos
+buscarlo en internet, preguntarle una
+inteligencia artificial, pero usando
+este tipo de frameworks es que sabemos
+que todas estas cosas se pueden
+modificar para dar, digamos, la
+respuesta adecuada a nuestra página web.
+Vamos a aprovechar algunos minutos que
+nos faltan del video para mostrar,
+digamos, cuál fue la tecnología que
+siguió a los Herblets, porque obviamente
+Java, pues que es una compañía tan
+grande, no se quedó únicamente en los
+Herblets, sino que trataron de avanzar
+de que esto fuera más amigable y sí,
+listo. Mucha gente ahorita no usa ya
+Enterprise Edition, digamos, de base,
+sino que ya usamos otros frameworks. Sin
+embargo, siempre es bonito ver cómo va
+evolucionando esto y cómo evolucionaron
+todas las decisiones de diseño. Así que
+el siguiente tema que vamos a ver
+rápidamente y no vamos a profundizar en
+él son los Java Server Pages. Y como
+aquí es mucho más fácil escribir HTML y
+tener, digamos, nuestro Java un poquito
+más separado.
+Entonces, la idea es primero explicarles
+qué son los JSPs. Los JSPs es una
+abstracción que me permite crear páginas
+HTML con Java de manera más sencilla. Si
+lo que hacemos ahorita es dentro de
+nuestro código Java, dentro de un CBLET,
+insertar código HTML,
+como estamos haciendo aquí con el
+Outprint. Lo que vamos a hacer con JSPS
+es dentro de nuestro HTML, insertar
+código Java y esto hace que la
+generación de páginas web sea mucho más
+sencilla. Para empezar vamos a ir aquí a
+web pages, vamos a hacer new y vamos a
+hacer new JSP. Vemos que de una vez me
+permite crear un nuevo JSP y lo vamos a
+llamar Hola Mundo. Él automáticamente le
+mete aquí la extensión punj.
+Vamos a darle generar.
+Agrandamos, eliminemos estos comentarios
+y vemos que en general es un HTML como
+los que ya conocemos para relacionarlo
+con el resto de páginas. Entonces, vamos
+a copiar y pegar por acá.
+Y aquí simplemente en vez de poner
+directamente la extensión de esta
+manera, vamos a poner hola
+manera, vamos a poner hola jp.
+jp. Guardemos
+y va a ser necesario que ejecutemos
+nuevamente nuestro proyecto. Entonces
+vamos a darle run, vamos a ir acá y
+vemos que aparece nuestro Hello Word.
+Modifiquemos cosas. Por ejemplo,
+pongamos aquí un párrafo y hola de
+pongamos aquí un párrafo y hola de nuevo.
+Guardamos, recargamos y vemos que ya
+podemos por lo menos escribir un código
+HTML de manera más sencilla a como
+estamos acostumbrados.
+Ahora vamos a comenzar a insertar código
+Java dentro de nuestro HTML. Vamos a
+crear un nuevo párrafo y ya vamos a ver
+cómo se crea el código Java. Entonces,
+si yo quiero insertar código Java, vamos
+a hacer la siguiente sintaxis. Dentro de
+esta parte, yo puedo declarar cualquier
+código Java. Puedo declarar variables,
+puedo declarar una función, puedo
+imprimir, hacer suma, resta,
+multiplicación, división, vamos a hacer
+varias cosas. Entonces, por ejemplo,
+vamos a hacer bar
+mensaje es igual a
+Hola mundo
+Hola mundo JSP.
+Y ven que me aparece en rojito porque
+tengo una sintaxis en Java. En este caso
+me falta el punto y coma. Y después para
+imprimir, entonces vamos a hacer
+igualito a como hacíamos en loss out.
+igualito a como hacíamos en loss out. Print
+ln, pero aquí ya podría pues usar la
+variable que acabé de definir. Ponemos
+el punto y coma, guardamos y vamos a
+probar. Entonces, si ven, ya puedo
+declarar cosas como variables en Java y
+nuevamente usar el outaje.
+Ahora nos puede surgir la duda de dónde
+sale este coso que dice out, que es out.
+Entonces, como les estaba diciendo, los
+JSP simplemente son abstracciones de los
+servlets, pero por debajo están los
+servlets. ¿Cómo podemos ver que por
+debajo de esto hay un servlet? Vamos a
+ir aquí, vamos a hacer clic derecho y
+vamos a hacerle bioerblet. Entonces, por
+acá está todo el serblet que se generó
+de manera automática a partir del código
+que yo escribí en mi JSP.
+Ahora, este objeto como out, por
+ejemplo, vemos que lo usa el Serblet
+para simplemente escribir la respuesta.
+Lo que estábamos haciendo al principio,
+que era un poquito canzón, que era
+escribirlo de esta manera. ¿Qué está
+haciendo JSP? Está cogiendo línea por
+línea y la está escribiendo en la
+respuesta de nuestra petición. Sin
+embargo, para nosotros ya nos queda más
+fácil escribir un código de esta manera.
+Ahora, cuando nosotros insertamos este
+código Java, veamos que está haciendo el
+serblet por debajo. Vemos que
+simplemente está declarando código Java,
+está declarando una variable que se
+llama mensaje y después haciendo un out.
+print para imprimir el mensaje.
+Los JSPs nos van a seguir ofreciendo más
+facilidades. Entonces, como es un
+poquito canzón estar escribiendo este
+out.printl, print ln. Hay otro comando
+de los JSP que nos permite, digamos,
+ahorrarnos justamente estar escribiendo
+out. print todo el tiempo. Para eso
+vamos a hacer porcentaje igual
+porcentaje. Entonces, todo lo que
+creamos aquí lo automáticamente el JSP
+lo va a insertar en un outprint y lo va
+a imprimir en pantalla. Entonces, por
+ejemplo, si yo aquí pongo 2 + 3,
+guardamos, recargamos, vemos que aquí me
+imprime directamente el cinco. Entonces,
+todo esto, si quieren vamos a generar
+todo esto, si quieren vamos a generar nuevamente
+nuestro servlet para que nos demos
+cuenta qué es lo que está pasando.
+Vamos a ir aquí a ver Serblet y vemos
+que simplemente está haciendo out. print
+2 + 3. Entonces, cuando yo escribo
+código ya de esta forma, simplemente me
+lo inserta directamente ya en el HTML
+como out. print.
+Ahora sigamos pensando. Si ahorita les
+dije que esto por debajo es un serblet,
+significa que esto tiene, por ejemplo,
+un request y un response y que podemos
+acceder fácilmente a eso. Entonces vamos
+a copiar y pegar acá y vamos a obtener,
+por ejemplo, cómo fue la forma en la que
+se llegó a mi página, si por un método
+get o por un método post. Si cuando yo
+hago request punto, ya él sabe que hay
+un objeto Java por debajo que es request
+y puedo hacer por ejemplo get method.
+Entonces vamos a guardar, vamos a
+recargar y me dice que llegué a través
+de una petición get a esta página.
+Por último, si loss son objetos que se
+instancian en memoria, también puedo
+declararle, por ejemplo, atributos a la
+clase o al objeto que se mantengan en
+memoria a lo largo de varias peticiones.
+Para eso también hay una sintaxis
+diferente. Entonces, si yo lo que quiero
+declarare eso es un atributo, vamos a
+hacer la siguiente sintaxis, por
+ejemplo. Entonces, vamos a hacer aquí y
+la sintaxis es esta. Acá vamos a
+declarar un atributo privado que se
+declarar un atributo privado que se llame
+número y que sea igual a cero.
+Ahora vamos a imprimir el número.
+Entonces, recordemos que si queremos
+imprimir directamente lo hacemos de esta
+manera. ¿Cómo hacemos para imprimir un
+atributo? Dis punto
+número. Y vamos a hacer algo interesante
+para que veamos cómo funciona y es
+ponerle el más. Vamos a guardar. La
+primera es aparece cero. Ahora cuando
+recargo la página aparece 1 2 3 4 5.
+¿Qué es lo que está pasando por debajo?
+Vamos nuevamente a darle aquí a R file
+para asegurarnos de que se genere el
+último servlet.
+Y vamos a ver el serblet por debajo.
+Básicamente lo que está pasando es que
+estoy de esta manera declarando un
+atributo privado de tipo entero que voy
+a llamar número. Este atributo, pues,
+digamos, se mantiene a lo largo de la
+ejecución del servlet, entonces puedo
+irlo aumentando porque el servet siempre
+va a estar en memoria en mi backend,
+pues recibiendo peticiones y por cada
+petición que yo le esté realizando estoy
+aumentando el número en uno. diferente a
+lo que dice acá, que fue declarar
+simplemente una variable local dentro de
+un método. que yo tratara, por ejemplo,
+de hacer esto de acá que hicimos
+con esta parte de acá, vamos a ver qué
+tipo de error nos lanza. me dice, bueno,
+no me dice exactamente el error o no sé,
+pero el error es que cuando yo hago las
+cosas de esta manera, es decir, así, si
+yo trato de hacer eso, estaría tratando
+de declarar un atributo, pero dentro de
+un método, porque todo esto se instancia
+dentro del servicio, que es el que
+responde a las peticiones. Y recuerden
+que ustedes no pueden comenzar o
+instanciar atributos dentro de los
+métodos, pero sí en la clase. Entonces,
+para eso existe justamente este comando
+de acá.
+Voy a realizar un último ejemplo y ahora
+sí voy a cerrar la clase. Entonces,
+vamos a crear un segundo JSP donde vamos
+a ver como una cosa que hicimos
+únicamente con Servet se podría hacer
+con JSP que es obtener los parámetros de
+un request. Entonces, para eso vamos a
+ir a JSP y lo vamos a llamar
+ir a JSP y lo vamos a llamar autenticación.
+Vamos a darle finalizar.
+Vamos a agrandar por acá la letra. Y
+bueno, comencemos modificando el título
+para asegurarnos que todo esté bien. ¿Y
+cómo hago para obtener, por ejemplo,
+lo que estamos hablando ahorita, que es
+los parámetros que me vengan a través de
+la petición? Entonces, recordemos que
+para eso hago request punto y por aquí
+meben aparecer algunos métodos como get
+parámetro. Vamos a obtener un parámetro
+que sea
+el nombre de usuario.
+Y recuerden que con esta sintaxis lo que
+quiero es decir, imprímame directamente
+el resultado de esto en pantalla. Vamos
+a hacer lo mismo con la clave. Entonces
+vamos a copiar y pegar esto que tenemos
+acá, pero con password.
+Guardemos.
+Vamos a ejecutar nuevamente nuestro
+proyecto para que se genere el serbl por
+proyecto para que se genere el serbl por debajo
+y vamos a ir a nuestra página de
+y vamos a ir a nuestra página de autenticación.
+Listo. Por ahorita me dice que ambos son
+nulos, porque nótese que por aquí no los
+he pasado, pero bueno, no me voy a poner
+a crear el formulario y todo eso de
+nuevo. Podemos quemarlos por acá.
+Usuario igual a Juan
+Usuario igual a Juan y
+password = a 1 2 3. Recargamos y vemos
+que me obtiene los parámetros
+exactamente como si enviara la
+información desde un formulario, pero
+aquí me queda más fácil escribir todo
+este código al poder insertar Java en
+HTML y no al contrario. La vez pasada
+también teníamos ahí una cosa muy
+sencillita de autenticación. Voy a
+replicarla rápidamente para que nos
+demos cuenta cómo se hace. Entonces, si
+ven, recordemos que de esta manera puedo
+insertar código Java. Código Java lo
+puedo insertar en cualquier parte porque
+pues no me afecta si lo inserto acá o
+acá. Finalmente el CBLE simplemente lo
+va a insertar en una u otra parte.
+Entonces vamos a poner par válido es
+igual a true y vamos a verificar si
+nuestro usuario es o no valida.
+Entonces, para eso vamos a decir válido
+es igual a request
+es igual a request punto
+get parameter
+y vamos a comparar si lo que acabamos de
+obtener en el usuario es igual a, por
+ejemplo, no sé, admin.
+Y lo mismo con la contraseña.
+Listo. Entonces, si usuario y contraseña
+son igual a admin, vamos a decir que
+válido es verdadero. Aquí me está
+molestando porque me falta el punto y
+molestando porque me falta el punto y coma.
+Y vamos a tener un segundo stream que va
+a variar de acuerdo a si es válido o no
+el usuario de la contraseña.
+Listo. Jamos los punticas que nos
+faltaron por acá, por acá, por acá y ya
+podría llegar finalmente por aquí al
+final y crear un párrafo donde muestre
+si el usuario y la contraseña fueron
+válidos o no. Nuevamente para insertar
+válidos o no. Nuevamente para insertar directamente,
+imprimir en Java. Entonces, porcentaje
+imprimir en Java. Entonces, porcentaje igual.
+Y aquí puedo meter la variable que creé,
+dado que finalmente es una variable
+local del método. Recargamos
+y vemos que me dice usuario inválido.
+Probemos con adminó
+todo bien.
+Y ya me dice que el usuario es válido.
+Entonces, si ven, puedo replicar varias
+cosas. Nuevamente, si voy acá y busco
+qué se generó en el servlet,
+vemos que simplemente inserto un montón
+de código Java que después estoy usando
+para, por ejemplo, imprimir cosas.
+Listo, eso sería todo por este video.
+Espero les haya gustado, espero les haya
+parecido interesante. Finalmente, pues
+como les dije, es una reflexión para que
+vean que finalmente todo en la web es
+estar modificando el request y el
+response que estoy recibiendo para
+enviar los datos correctos y también
+para que vean la evolución y pues
+también como lo agradecido que tenemos
+que estar con los nuevos frameworks que
+hacen que no tengamos que escribir
+código de esta manera. Ya más adelante
+vamos a ver código mucho más limpio,
+pero imagínense tener que escribir toda
+una página web a punta de servlets o
+pues a punta JSP ya mejora, pero sigue
+siendo bastante canzón escribirlo de
+esta forma. También después existieron
+más tecnologías JSF que ya serfaces y
+así fueron mejorando. Pero pues
+finalmente los que se volvieron
+predominantes son los frameworks de
+frontend como Angular, React, View,
+etcétera. y Java se quedó con un muy
+buen puesto en el backend donde sigue
+siendo muy utilizado.

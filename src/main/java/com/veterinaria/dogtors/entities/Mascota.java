@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Mascota {
     private Integer id;
+    private Integer duenoId;
     private String nombre;
+    private String especie;
     private String raza;
     private Integer edad;
     private Double peso;

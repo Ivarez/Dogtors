@@ -1,0 +1,491 @@
+Hola a todos, bienvenidos a este nuevo
+tutorial de desarrollo web. El día de
+hoy vamos a ver cómo desplegar u
+hospedar una página web realizada con
+únicamente HTML, CSS y JavaScript en
+Gitop Pages. Recuerden que lo que
+queremos realizar al hospedar una página
+web en un lugar público es dejar de
+trabajar únicamente en local host y que
+cualquier usuario de la web pues a
+través de una URL pueda acceder a
+nuestro sitio web. Antes de empezar
+directamente con la práctica, que
+realmente van a ver que es bastante
+corta, voy a realizar esta pequeña
+presentación donde vamos a ver aspectos
+un poquito más teóricos de pages del
+despliegue. Y la idea siempre cuando
+ustedes vayan a usar cierta herramienta
+es que puedan ver cuáles son sus usos,
+sus alternativas, sus limitantes,
+etcétera. Y eso es justamente lo que
+vamos a ver esta primera parte del
+video. Comencemos con lo más básico y
+dice entender qué es Githood Pages. es
+Ghub Pages, es un servicio que viene
+integrado en GitHub y me va a permitir
+desplegar lo que es mi página web que ya
+está en un repositorio de GitHub de
+manera bastante sencilla. Nuevamente lo
+que yo quiero con el despliegue es que
+se genere una URL pública y cualquier
+usuario, pues, a través de su computador
+puede acceder a ella y ver mi página
+web. ¿Qué nos va a regalar Guot Pelles?
+Primero que todo nos va a regalar una
+URL gratuita, un dominio gratuito que se
+va a ver más o menos como el que se ve
+acá. https de una vez nos regala,
+digamos, toda la parte de seguridad y
+pues es un dominio un poquito feo, un
+poquito sencillo, pero pues es gratis,
+entonces no nos podemos quejar. Aquí
+pues va a aparecer su nombre de usuario
+de GitHub y el nombre de su repositorio.
+Otras cosas que hay que tener en cuenta
+es que aunque nos regala un dominio
+gratuito, pues nosotros podemos llegar,
+comprar un dominio en otras páginas web
+y posteriormente asociarlo a Kisot Payes
+para que no se vea pues esta URL
+gratuita que él nos regala. Es gratis,
+100% gratis y bastante sencillo de
+configurar. Entonces, van a ver que con
+un par de clicks todo sale y siempre voy
+a tener la posibilidad de realizar un
+despliegue automático. Es decir, digamos
+que yo realizo un cambio en mi
+repositorio, llego, hago el push al
+main, él automáticamente va a subir esos
+cambios para que ya estén en producción.
+Pasemos a ver los principales tipos de
+páginas web que yo puedo desplegar en G
+Payes. Y la realidad es que en G of
+Payes yo puedo desplegar casi cualquier
+tipo de página web. Aquí les puse
+algunos ejemplos, aunque esto es mucho
+más amplio y casi no hay limitantes. Yo
+puedo desplegar desde mi blog personal,
+mi portafolio como desarrollador, mi
+página web personal o la que me sirve
+para promocionar algún tipo de negocio.
+Lo importante es que se cumpla la
+siguiente condición y es que únicamente
+voy a poder desplegar lo que es el
+frontend y ese frontend tiene que estar
+hecho como sitio web estático. Es decir,
+lo único que va a hacer que dijo Pelles
+es tomar un HTML que ya está creado y
+retornarlo a mi usuario para que este lo
+pueda ver. Para que esa condición se
+cumpla de que voy a tener un sitio web
+estático, es decir, que ya está
+construido, lo único que necesito hacer
+es enviar el archivo. Vamos a tener dos
+tipos de construcción de sitios web que
+nos van a servir para desplegar en GF
+Payes. La primera es cuando yo genero un
+sitio muy sencillo, únicamente con HTML,
+CS y JavaScript, sin usar ningún
+framework adicional de desarrollo. Estos
+casos son perfectos para Ghot Pages,
+pero también yo puedo llegar y usar
+algún framework de desarrollo como
+Angular View o React, realizar, digamos,
+un proceso de despliegue en Ghot Payes y
+él también va a funcionar de manera
+perfecta. Lo importante aquí es que el
+framework y la página web que yo estoy
+desarrollando esté funcionando con CSR,
+client Site Rendering. Esto, ¿a qué se
+refiere? Que la página web, digamos, de
+alguna manera ya está creada y lo único
+que hago es retornarla. El servidor o en
+este caso PES no tiene que realizar
+ningún procesamiento, ninguna lógica
+para poder crear la página web. Esta ya
+está creada y lo único que hago es
+enviarla al usuario. Veamos los
+limitantes para que nos queden también
+un poquito más claro cuáles son los usos
+de X pages. Entonces, lo primero y más
+importante es que X Payes únicamente
+puede hospedar lo que es el frontend de
+mi página web, es decir, lo que tiene
+que ver con HTML, CSS, JavaScript, lo
+que yo desarrollo en Angular, React o
+View. El backing que normalmente
+desarrollo en otros frameworks y en
+otras tecnologías como puede ser
+otras tecnologías como puede ser Springboyo.net
+no se pueden hospedar en GFO Payes. Si
+yo tengo un aplicativo web que tiene
+tanto fronto es hospedar en GF Payes el
+front y el back en otra plataforma. El
+segundo limitante es que solamente voy a
+poder desplegar páginas o que no estén
+hechos con ningún framework de
+desarrollo o que estén hechas con
+framework de desarrollo basados en
+JavaScript, como nuevamente puede ser
+Angular, React o View. Si mi página web
+está siendo desarrollada, por ejemplo,
+con Springboot Steinlift o punto netra,
+en este caso Springboot usa Java y punto
+net usa carr, pues no los voy a poder
+desplegar. El por qué es que Ghot Pay
+nuevamente lo único que hace es que le
+llega una petición y retorna un archivo
+HTML que ya está construido. Pero en
+Springboot o pun neto yo realizo páginas
+web directamente sobre esos framework de
+desarrollo, lo que está ocurriendo es
+que Springboot o Java necesita realizar
+cierto procesamiento para generar el
+HTML y retornarlo al usuario. Entonces,
+como nuevamente lo único que hace es
+retornar archivos que ya estén creados,
+que ya hayan sido procesados, pues no va
+a poder realizar ningún tipo de
+procesamiento y por lo tanto no puedo
+usar este tipo de frameworks. En general
+vamos a decir que Got Payes me va a
+servir para desplegar lo que denominado
+single page applications, pero no
+multipage application. Single page
+application entra Angular React View y
+en multipage applications entran
+frameworks como Timeelift con Springboot
+o punto net nuevamente con Razor o pues
+cada lenguaje y programación realmente
+tiene su tecnología para desarrollo de
+páginas web. La tercera limitante es que
+no va a permitir páginas web construidas
+bajo el modelo de service y rendering.
+En este caso, cuando yo realizo una
+página web con SSR, lo que ocurre es que
+cuando se va a generar mi página web, yo
+tengo que realizar un preprocesamiento
+para cargar de una vez los datos y
+retornar todo eso al usuario. Eso no va
+a funcionar en Kups. Nuevamente Kup es
+ir y retornar un archivo ya construido,
+pero no realiza un procesamiento de
+nada. Es bastante sencillito lo que
+realiza. Entonces, como el server side
+rendering incluye un procesar, un
+pensar, un realizar un proceso lógico
+desde el lado del servidor, pues no nos
+va a funcionar. A nivel técnico, la
+única limitante que aparece en Guus
+Pelles es un límite de ancho de banda de
+100 GB al mes, es decir, de la
+información que yo voy a transferir pues
+entre guayes y los usuarios. Pero esto,
+créanme que es suficiente y les va a
+sobrar. pueden tener miles de usuarios
+al mes, miles de peticiones al día y
+este capacidad no se les va a acabar.
+Vemos que no hay ningún tipo de
+limitante frente a la cantidad de
+usuarios que pueden acceder a mi página
+web ni a la cantidad de peticiones que
+pueden realizar, pues mientras que no me
+acabe este ancho de banda que nuevamente
+les digo es suficiente y les va a
+sobrar. Buenoscamos algunas de las
+alternativas a GF Belles para que
+después ustedes puedan por su cuenta
+buscar cuáles son las ventajas,
+desventajas y diferencias de cada una de
+estas. vas a tener netlify, vas a tener
+render, vamos a tener fireb hosting, vas
+a tener cloudfages y todas estas
+nuevamente van a servir para alojar lo
+que es mi frontend, no mi backend. Hay
+algunos que me van a permitir tanto
+alojar frontend como backend, como es
+render. ¿Cuáles van a ser las
+diferencias entre todos estos
+proveedores? Algunos ya van a dar la
+posibilidad de explicar páginas que
+tengan cerveza y rendering, pero como
+dijimos por ejemplo que PES pues todavía
+no ofrece esa posibilidad porque él no
+realiza ningún tipo de procesamiento.
+También voy a tener cloud function o
+funciones serverless que pues me van a
+poder ayudar a tener algunas lógicas de
+mi backend directamente dentro de estos
+servicios, aunque pues también toca ver
+si es necesario o recomendado tenerlo
+directamente ahí o si ya desarrollo
+propiamente mi backend y lo alojo pues
+en otra plataforma diferente. la mayoría
+son gratis, no me van a cobrar, por lo
+menos tienen un muy buen nivel de cosas
+que me van a regalar, pero pues toca
+revisar cuáles son los límites. Ahorita
+dijimos que G P es el único límite es el
+ancho de banda, pero en otros como
+Netlify, por ejemplo, hay un limitante
+de cuántas peticiones hay al mes, lo
+cual puede llenarse o acabarse mucho más
+rápido que el tema del ancho de banda.
+también pueden limitarme la cantidad de
+usuarios, etcétera. La última
+alternativa que vamos a tener diferente
+a contratar cualquiera de estos
+proveedores es pues tener o yo mi propio
+servidor o alquilar mi propio servidor,
+lo cual normalmente denominamos como un
+BPS virtual priv, es decir, un
+computador que yo alquilo para que pues
+pueda yo desplegar allá lo que es mi
+página web. También hay un montón de
+proveedores de PPS como es Hostinger,
+Hestnet o Digital Ocean. Y básicamente
+pues lo que yo hago es alquilar un
+computador que todo el día esté
+recibiendo peticiones web y yo tengo,
+digamos un control total sobre ese
+computador, aunque bueno, también
+depende un poquito de la forma en la que
+yo lo alquile durante un tiempo. ¿Cuál
+es el problema o las diferencias entre
+contratar alguno de los servicios que
+dijimos anteriormente y contratar lo que
+denominamos una BPS? pues que configurar
+una VPS básicamente es configurar un
+computador y eso es mucho más complejo.
+Para configurar lo que es su servidor,
+pues necesito yo tener conocimientos de
+Linux, de SSH para poderme conectar.
+Para poder desplegar lo que es una
+página web, necesito saber lo que es la
+tecnología de Iix. Siempre van a ser de
+pago, no hay ningún tipo de VPS ahorita,
+por lo menos al momento de grabar este
+video que sean gratuitos. Normalmente
+pueden costar desde 5 al mes hasta pues
+cientos de dólares al mes. ¿Cuáles son
+las ventajas? pues que va a tener una
+configuración completa. Como yo estoy
+alquilando es un computador, pues yo lo
+puedo configurar como yo quiera. También
+por lo mismo voy a poder desplegar
+cualquier tipo de página web, ya no
+únicamente limitada a lo que son los
+frameworks de JavaScript, sino pues aquí
+yo sí puedo desplegar lo que es mi
+página web realizada con Springboot y
+Java, lo que es mi página web realizada
+en PHP o en otros frameworks. Y también
+voy a poder desplegar en un solo lugar
+tanto el frontend como el backend.
+Bueno, tocaría ver cuáles son las
+ventajas de realizar eso y no
+desplegarlos en diferentes lugares, pero
+digamos que ya es una posibilidad.
+Entonces, en mi mismo computador, pues
+tengo lo que es el front y el back. Y
+nuevamente los límites o lo que me va a
+costar el BPS, pues van a ser
+básicamente los límites de la máquina.
+Si yo arquilo una máquina que tiene 2 GB
+de RAM, pero por alguna razón mi página
+web necesita realizar mucho
+procesamiento, pues puede que no sea
+suficiente y tenga que comprar una más
+cara que cuesta más al mes, etcétera.
+Aquí, ¿qué es lo malo? pues que para
+probar nuevamente no hay ninguna
+posibilidad gratuita y la más barata
+cuesta $5 al vez. Y pues si usted no
+tiene muchos conocimientos técnicos, no
+le va a ser fácil desplegar lo que es su
+página web, por lo menos inicialmente.
+Pasemos a la parte práctica con un
+ejemplo en vivo de cómo página a Kijot
+Payes para que cualquiera pueda acceder
+a ella. Va a necesitar únicamente dos
+cosas. Lo primero es una página web que
+nuevamente únicamente esté realizada, en
+este caso con HTML, CSS y JavaScript.
+Esta es una página web que yo realizo de
+demo para otro video. Vamos a verla en
+Pío simplemente para que la conozcan y
+vean cómo se ve. En este caso estoy
+usando Live Server para ver la página y
+vemos que es como un tipo de tienda de
+joyería. Pero bueno, aquí, ¿cuál es el
+problema? Nuevamente, pues estoy
+accediendo únicamente a través de local
+host. Eso es lo primero que necesitan.
+Lo segundo pues es que ya esa página o
+proyecto esté subido a GetHub. Con esas
+dos cosas ya tenemos todo para empezar y
+desplegar nuestra página de manera
+correcta. Tal vez la única aclaración
+que tengo que hacer antes de que pasemos
+a Ghop Payes para que esto les funcione
+bien es que el index.html HTML tiene que
+estar ubicado, pues digamos en la raíz
+del proyecto, no puede estar dentro de
+ninguna carpeta, pero pues ya si tienen
+más páginas web, más HTML, más CSS, más
+JavaScript, sí pueden estar divididos en
+carpetas o subcargetpetas, pero lo
+importante es que el index.html html
+esté afuera para que Ghot Payes sepa
+reconocerlo y pueda hacer la primera
+página web que retorna al usuario.
+Después de que tengan ya su página
+publicada en GHop, es importante que se
+aseguren en cuál de las ramas están
+desplegados los últimos cambios que van
+a servir para el despliegue.
+Generalmente, pues eso lo tenemos en la
+rama main. También les quería decir que
+para que puedan seguir este ejemplo paso
+a paso, les voy a dejar el link de este
+repositorio. Pueden hacer un fork o
+descargarlo y subirlo a su propio
+repositorio y pues seguiré el paso a
+paso para que puedan ver cómo funciona
+esto y no tengan ningún problema
+después. Ahora, después de que tengan su
+código subido, vamos a ir a settings y
+en settings vamos a ir a pages.
+Por acá en pages vamos a seleccionar las
+siguientes configuraciones. Van a ver
+que es bastante corto. Vas a decir que
+pues vamos a desplegar basados en una
+rama y no en actions. Vas a señalar cuál
+es la rama sobre la cual vamos a querer
+desplegar, en mi caso el main. Y aquí
+también lo vamos a dejar quieto. Lo que
+estamos diciendo es que el index.html
+HTML se encuentra en la base de nuestro
+proyecto. Vamos a darle guardar y vemos
+que ya va a comenzar a generar lo que es
+mi GF pages. Les voy a mostrar aquí un
+par de configuraciones más que pueden
+tener solamente para que las vean. Aquí
+yo les estaba diciendo que no se tienen
+que quedar, digamos, con el dominio que
+le regala Got Pelle, sino que ustedes
+pueden asociarlo a su propio dominio.
+Esto pues ya es un poquito más
+complicado porque tienen que ir y
+comprarlo y lograrlos asociar. Pero
+miren que aquí está la posibilidad. Y
+por último vemos que le regala lo que es
+por último vemos que le regala lo que es https
+listo. En estos momentos mi g page page
+se debe estar generando. Pueden ver el
+proceso por acá en actions y vemos que
+justamente me está diciendo que está
+construyendo la página y desplegándola.
+Vamos a esperar por lo menos alrededor
+de 2 minutos y vamos a ver cómo queda
+nuestro despliegue en nuestra página
+web. Ya se terminó de desplegar lo que
+es mi página web. Vamos a hacer clic por
+acá y vemos que por acá está la pública
+a través de la cual cualquier persona en
+la web puede acceder a nuestra página
+web. Vamos a darle clic y vemos que
+bueno, tenemos una buena y una mala
+noticia. La buena noticia es que sí se
+realizó el despliegue de manera
+correcta. La mala noticia es que mi
+página web no está funcionando, como yo
+espero. Vemos que no están apareciendo
+las imágenes, no están apareciendo los
+datos, entonces algo salió mal. Y pues
+aquí viene una de las primeras
+lecciones. Puede que las cosas estén
+funcionando en local, pero cuando yo voy
+y las despliego, pues dejan de
+funcionar. Entonces, probablemente tuve
+alguna mala práctica o algún error al
+estar generando mi código. En el caso de
+la página web que acaba de desplegar,
+vemos que no puede cargar de manera
+correcta lo que son las imágenes ni
+tampoco el JavaScript. En este caso,
+bueno, pues yo ya sé cuál es la solución
+del error, es bastante o así que voy a
+venir por aquí a mi Visual Studio Code y
+les voy a explicar la solución. ¿Cómo sé
+cuál es la solución? pues porque me tocó
+buscarla en internet claramente y pues
+es algo típico de Ghot Payes. Veo que si
+está cargando, por ejemplo, lo que son
+los estilos no las imágenes y el error
+es bastante corto y es que cuando yo voy
+a hacer un HRF o un CRC no tengo que
+poner por aquí el slash al principio.
+Por eso fue que me cargó los estilos,
+pero no las imágenes. Así que vamos a
+eliminar todo lo que tenga un slash al
+principio y referencie algún recurso.
+Vamos a bajar. Vamos a buscar lo que son
+nuestras imágenes y vamos a quitarles
+también, miren, justamente aquí el slash
+y también al final pues se lo tengo que
+quitar a mi JavaScript. Entonces, vamos
+a bajar bien al fondo y vemos que por
+aquí mi JavaScript pues también tenía lo
+que es el slash al principio vamos a
+guardar. Ya corregimos el error.
+Probablemente aquí sea buena idea pues
+verificar que en local sí siga
+funcionando. Vemos que todo en local
+sigue perfecto y pues ya podemos tratar
+de realizar un segundo despliegue.
+Entonces vamos a aquí directamente
+GitHub Desktop, vamos a hacer un comit,
+vamos a poner corregido, vamos a darle
+commit y vamos a hacer el push a nuestra
+rama main. Listo, ya se terminó de hacer
+el push. Vamos a volver aquí a lo que es
+nuestro repositorio. Vamos a revisar que
+ya esté por aquí actualizado, corregido.
+Y miren que automáticamente apenas yo
+hago el push a mi rama principal, él
+comienza a realizar el despliegue con
+las nuevas actualizaciones. Aquí lo
+podemos notar por ese puntico naranja,
+aunque si me meto a GitHub Actions,
+vemos que ya está realizando el
+despliegue con los nuevos cambios. Eso
+es bastante bueno. Cada vez que yo voy
+cambiando, él va autodesplegando pues
+los últimos cambios y pues no tengo que
+digamos estar preocupado por todo este
+proceso. Ya terminó de realizar el
+segundo despliegue. Podemos hacer clic
+por acá. Vemos que la página web sigue
+siendo exactamente la misma. Vamos a
+hacer clic y vemos que ya está cargando
+por lo menos más imágenes. Ya nuestro
+carrusel está bien. También el
+JavaScript está funcionando de manera
+correcta. Todavía tenemos un pequeño
+error con la referencia o el encontrar
+lo que son las imágenes desde nuestro
+JavaScript. Eso se puede explicar
+nuevamente fácilmente. Si venimos aquí a
+nuestro script, vemos que él siempre
+hace slash images y como dijimos, pues
+tocaría aquí quitarle el slash a cada
+uno de estas imágenes para que lo agarre
+de manera correcta actions, pero ya
+solucionamos el error, ya aprendimos a
+desplegar y ya tenemos una URL gratuita
+desde la cual cualquier persona puede
+acceder a nuestra página web y con eso
+se completa este tutorial. M.

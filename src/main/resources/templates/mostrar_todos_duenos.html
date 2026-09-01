@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Administración de Dueños — Dogtors</title>
+    <link rel="stylesheet" th:href="@{/index.css}">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-[#F4F1DE] min-h-screen flex flex-col font-['Inter',sans-serif]">
+
+    <!-- Navbar Superior -->
+    <header class="w-full bg-white border-b border-gray-200 py-4 px-8 flex justify-between items-center">
+      <a th:href="@{/}" class="flex items-center gap-2 font-bold text-xl text-[#264653]">
+        <span class="text-2xl">🐶</span> Dogtors
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-[#264653]">
+        <a th:href="@{/}" class="hover:text-[#2A9D8F]">Inicio</a>
+        <a th:href="@{/mascotas}" class="hover:text-[#2A9D8F]">Mascotas</a>
+        <a th:href="@{/duenos/lista}" class="text-[#2A9D8F] font-bold">Dueños</a>
+      </nav>
+      <div class="flex gap-3">
+        <a th:href="@{/duenos/nueva}" class="bg-[#E9C46A] text-[#264653] px-4 py-2 rounded-lg font-semibold shadow-sm hover:opacity-90 text-sm">Crear Dueño</a>
+        <a th:href="@{/duenos/logout}" class="bg-[#e76f51] text-white px-4 py-2 rounded-lg font-semibold shadow-sm hover:opacity-90 text-sm">Cerrar Sesión</a>
+      </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-10 max-w-5xl">
+      <div class="mb-6 flex justify-between items-end">
+        <div>
+          <h2 class="text-2xl font-bold text-[#264653] font-['Outfit']">Directorio de Clientes</h2>
+          <p class="text-sm text-gray-600 mt-1">Gestión administrativa de los dueños de mascotas registrados.</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-100">
+              <th class="py-4 px-6 text-xs font-bold text-[#2A9D8F] uppercase tracking-wider">ID</th>
+              <th class="py-4 px-6 text-xs font-bold text-[#2A9D8F] uppercase tracking-wider">Nombre Completo</th>
+              <th class="py-4 px-6 text-xs font-bold text-[#2A9D8F] uppercase tracking-wider">Correo Electrónico</th>
+              <th class="py-4 px-6 text-xs font-bold text-[#2A9D8F] uppercase tracking-wider text-right">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-sm">
+            <tr th:each="dueno : ${duenos}" class="hover:bg-gray-50 transition-colors">
+              <td class="py-4 px-6 font-medium text-gray-500" th:text="${dueno.id}"></td>
+              <td class="py-4 px-6 font-bold text-[#264653]" th:text="${dueno.nombre}"></td>
+              <td class="py-4 px-6 text-gray-600" th:text="${dueno.correo}"></td>
+              <td class="py-4 px-6 text-right space-x-3">
+                <a th:href="@{/duenos/editar/{id}(id=${dueno.id})}" class="font-semibold text-[#E9C46A] hover:underline">Editar</a>
+                <a th:href="@{/duenos/borrar/{id}(id=${dueno.id})}" class="font-semibold text-[#e76f51] hover:underline" onclick="return confirm('¿Estás seguro de eliminar este cliente?');">Borrar</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div th:if="${#lists.isEmpty(duenos)}" class="p-8 text-center text-gray-500 text-sm">
+          No hay dueños registrados en el sistema.
+        </div>
+      </div>
+    </main>
+
+    <footer class="w-full text-center py-6 text-xs text-gray-500 mt-auto bg-white border-t border-gray-200">
+      &copy; 2026 Dogtors Veterinary Hospital. Todos los derechos reservados.
+    </footer>
+  </body>
+</html>
+
