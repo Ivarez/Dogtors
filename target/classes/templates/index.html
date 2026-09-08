@@ -7,47 +7,46 @@
     <link rel="stylesheet" th:href="@{/index.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
   <body>
-    <!-- Top Area with #F4F1DE background encapsulating both header and hero -->
-    <div class="top-section">
-      <header class="site-header">
-        <div class="container header-inner">
-          <a th:href="@{/}" class="brand">
-            <div class="logo-mark">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
-            </div>
-            <span class="brand-name">Dogtors</span>
-          </a>
-
-          <nav class="nav-desktop">
-            <a th:href="@{/}" class="active">Inicio</a>
-            <a th:href="@{/mascotas}">Mascotas</a>
-            <a href="#">Tienda</a>
-            <a href="#">Adopciones</a>
-            <a href="#">Equipo</a>
-          </nav>
-
-          <div class="header-actions">
-            <a th:href="@{/duenos/login}" class="btn-primary">Ingresar</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a th:href="@{/}" class="brand">
+          <div class="logo-mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5z" fill="white"/></svg>
           </div>
+          <span class="brand-name">Dogtors</span>
+        </a>
 
-          <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
-            <span></span><span></span><span></span>
-          </button>
+        <nav class="nav-desktop">
+          <a th:href="@{/}">Inicio</a>
+          <a th:href="@{/mascotas}">Mascotas</a>
+          <a href="#">Tienda</a>
+          <a href="#">Adopciones</a>
+          <a href="#">Equipo</a>
+        </nav>
+
+        <div class="header-actions">
+          <a th:href="@{/duenos/login}" class="btn-primary">Ingresar</a>
         </div>
-      </header>
 
-      <div class="mobile-drawer" id="mobileDrawer">
-        <a th:href="@{/}">Inicio</a>
-        <a th:href="@{/mascotas}">Mascotas</a>
-        <a href="#">Tienda</a>
-        <a href="#">Adopciones</a>
-        <a href="#">Equipo</a>
-        <a th:href="@{/duenos/login}" class="active">Ingresar</a>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
+    </header>
 
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a th:href="@{/}">Inicio</a>
+      <a th:href="@{/mascotas}">Mascotas</a>
+      <a href="#">Tienda</a>
+      <a href="#">Adopciones</a>
+      <a href="#">Equipo</a>
+      <a th:href="@{/duenos/login}">Ingresar</a>
+    </div>
+
+    <main>
       <section class="hero container">
         <div class="hero-left">
           <div class="badge">Hospital Veterinario Especializado</div>
@@ -69,35 +68,32 @@
           </div>
         </div>
       </section>
-    </div>
 
-    <main>
       <section class="services">
         <div class="container">
           <div class="eyebrow">NUESTROS SERVICIOS</div>
           <h2>Atención integral para tu mascota</h2>
-          <div class="divider"></div>
           <div class="services-grid">
             <div class="service">
-              <div class="service-icon"><span style="font-size: 24px;">🩺</span></div>
+              <div class="service-icon">🩺</div>
               <div class="step">01</div>
               <h3>Consulta General</h3>
               <p>Evaluación clínica completa y diagnóstico.</p>
             </div>
             <div class="service">
-              <div class="service-icon"><span style="font-size: 24px;">📋</span></div>
+              <div class="service-icon">🏥</div>
               <div class="step">02</div>
               <h3>Hospitalización</h3>
               <p>Monitoreo 24/7 y cuidado intensivo.</p>
             </div>
             <div class="service">
-              <div class="service-icon"><span style="font-size: 24px;">✂️</span></div>
+              <div class="service-icon">✂️</div>
               <div class="step">03</div>
               <h3>Cirugía</h3>
               <p>Procedimientos quirúrgicos especializados.</p>
             </div>
             <div class="service">
-              <div class="service-icon"><span style="font-size: 24px;">🚑</span></div>
+              <div class="service-icon">🚑</div>
               <div class="step">04</div>
               <h3>Urgencias</h3>
               <p>Atención de emergencia las 24 horas.</p>
@@ -110,60 +106,39 @@
         <div class="container">
           <div class="eyebrow">NUESTRO EQUIPO</div>
           <h2>Profesionales dedicados al bienestar animal</h2>
-          <p class="lead" style="max-width: 800px; margin-top: 20px;">Contamos con un equipo médico altamente calificado y comprometido con la salud y bienestar de tu mascota.</p>
+          <p class="lead">Contamos con un equipo médico altamente calificado y comprometido con la salud y bienestar de tu mascota.</p>
+          <!-- Espacio para tarjetas del equipo médico -->
         </div>
       </section>
-    </main>
 
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div class="footer-brand-col">
-          <div class="brand-row">
-            <div class="logo-mark small">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
+      <footer class="site-footer">
+        <div class="container footer-grid">
+          <div>
+            <div class="brand-row">
+              <span class="brand-name light">Dogtors</span>
             </div>
-            <span class="brand-name light">Dogtors</span>
+            <p class="muted">Hospital veterinario especializado en hospitalización y tratamiento prolongado de perros y gatos.</p>
           </div>
-          <p class="muted">Hospital veterinario especializado en hospitalización y tratamiento prolongado de perros y gatos.</p>
-          <div class="socials">
-            <a href="#">Fb</a>
-            <a href="#">Ig</a>
-            <a href="#">X</a>
-            <a href="#">Li</a>
+          <div>
+            <h4>Mapa del Sitio</h4>
+            <ul class="link-list">
+              <li><a th:href="@{/}">Inicio</a></li>
+              <li><a href="#">Servicios</a></li>
+              <li><a th:href="@{/mascotas}">Mascotas</a></li>
+              <li><a href="#">Equipo</a></li>
+              <li><a href="#">Adopciones</a></li>
+            </ul>
           </div>
-        </div>
-        <div>
-          <h4>MAPA DEL SITIO</h4>
-          <ul class="link-list">
-            <li><a th:href="@{/}">Inicio</a></li>
-            <li><a href="#">Servicios</a></li>
-            <li><a th:href="@{/mascotas}">Mascotas</a></li>
-            <li><a href="#">Equipo Médico</a></li>
-            <li><a href="#">Instalaciones</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Preguntas Frecuentes</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>CONTACTO</h4>
-          <div class="contact-list">
-            <div><div class="label">DIRECCIÓN</div><div class="value">Bogotá / Cundinamarca<br>[Dirección de la clínica]</div></div>
-            <div><div class="label">TELÉFONO</div><div class="value">(000) 000-0000</div></div>
-            <div class="emergency">Urgencias 24 h / 365 días</div>
+          <div>
+            <h4>Contacto</h4>
+            <div class="contact-list">
+              <div><div class="label">Dirección</div><div class="value">Bogotá / Cundinamarca</div></div>
+              <div class="emergency">Urgencias 24 h / 365 días</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="container footer-bottom">
-        <div class="bottom-row">
-          <div class="muted" style="font-size: 12px;">© 2026 Dogtors Veterinary Hospital. Todos los derechos reservados.</div>
-          <div class="small-links">
-            <a href="#">Política de Privacidad</a>
-            <a href="#">Términos de Servicio</a>
-            <a href="#">Aviso Legal</a>
-          </div>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </main>
     <script th:src="@{/script.js}"></script>
   </body>
 </html>

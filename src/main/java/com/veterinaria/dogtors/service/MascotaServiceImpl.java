@@ -1,49 +1,58 @@
 package com.veterinaria.dogtors.service;
 
+import com.veterinaria.dogtors.entities.Dueno;
 import com.veterinaria.dogtors.entities.Mascota;
+import com.veterinaria.dogtors.errors.NotFoundException;
+import com.veterinaria.dogtors.repository.DuenoRepository;
 import com.veterinaria.dogtors.repository.MascotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
 public class MascotaServiceImpl implements MascotaService {
-    
+
     @Autowired
     private MascotaRepository mascotaRepository;
 
+    @Autowired
+    private DuenoRepository duenoRepository;
+
     @Override
-    public Collection<Mascota> buscarTodas() {
+    public List<Mascota> buscarTodas() {
         return mascotaRepository.findAll();
     }
 
     @Override
-    public Mascota buscarPorId(Integer id) {
-        return mascotaRepository.findById(id);
+    public Mascota buscarPorId(Long id) {
+        return mascotaRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(id, "mascota"));
     }
 
     @Override
-    public void save(Mascota mascota) {
+    @Transactional
+    public void save(Mascota mascota, Long duenoId) {
+        // Buscar el dueno y asociarlo a la mascota (como el profe hace con Carrera)
+        Dueno dueno = duenoRepository.findById(duenoId)
+                .orElseThrow(() -> new NotFoundException(duenoId, "dueno"));
+        mascota.setDueno(dueno);
         mascotaRepository.save(mascota);
     }
 
     @Override
-    public void delete(Integer id) {
-        mascotaRepository.delete(id);
+    @Transactional
+    public void cambiarEstado(Long id) {
+        // Sprint 4: No eliminar mascota, solo cambiar su estado de activa/inactiva
+        Mascota mascota = mascotaRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(id, "mascota"));
+        mascota.setActiva(!mascota.getActiva());
+        mascotaRepository.save(mascota);
     }
 
     @Override
-    public Collection<Mascota> buscarPorDuenoId(Integer duenoId) {
-        List<Mascota> mascotasFiltradas = new ArrayList<>();
-        // Iteramos sobre todas las mascotas y filtramos manualmente
-        for (Mascota mascota : mascotaRepository.findAll()) {
-            if (mascota.getDuenoId() != null && mascota.getDuenoId().equals(duenoId)) {
-                mascotasFiltradas.add(mascota);
-            }
-        }
-        return mascotasFiltradas;
+    public List<Mascota> buscarPorDueno(Dueno dueno) {
+        return mascotaRepository.findByDueno(dueno);
     }
 }

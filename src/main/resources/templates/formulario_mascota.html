@@ -32,21 +32,19 @@
 
     <header class="w-full bg-lightbg py-5 px-8 flex justify-between items-center">
       <a th:href="@{/}" class="flex items-center gap-2 font-bold text-2xl font-outfit text-dark">
-        Dogtors
+        Dogtors <span class="text-xs text-teal font-sans uppercase tracking-widest bg-teal/10 px-2 py-1 rounded-full ml-2">Portal Veterinario</span>
       </a>
       <nav class="hidden md:flex gap-8 text-sm font-semibold text-gray-600">
         <a th:href="@{/}" class="hover:text-dark">Inicio</a>
         <a th:href="@{/mascotas}" class="text-teal border-b-2 border-mustard pb-1">Mascotas</a>
-        <a href="#" class="hover:text-dark">Tienda</a>
-        <a href="#" class="hover:text-dark">Adopciones</a>
-        <a href="#" class="hover:text-dark">Equipo</a>
+        <a th:href="@{/duenos/lista}" class="hover:text-dark">Dueños</a>
+        <a href="#" class="hover:text-dark">Tratamientos</a>
       </nav>
-      <a th:href="@{/duenos/logout}" class="bg-mustard text-dark px-6 py-2.5 rounded-md font-semibold text-sm hover:bg-yellow-400 transition-colors">Ingresar</a>
+      <a th:href="@{/}" class="bg-mustard text-dark px-6 py-2.5 rounded-md font-semibold text-sm hover:bg-yellow-400 transition-colors">Volver al Home</a>
     </header>
 
     <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-8">
       
-      <!-- Encabezado -->
       <div class="flex justify-between items-start mb-8">
         <div>
           <div class="inline-flex items-center gap-1.5 bg-teal/10 text-teal text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
@@ -54,7 +52,7 @@
             NUEVO INGRESO
           </div>
           <h1 class="text-4xl font-bold font-outfit text-dark mb-2 tracking-tight" th:text="${mascota.id != null ? 'Editar Expediente' : 'Registro de Mascota'}">Registro de Mascota</h1>
-          <p class="text-gray-500 max-w-xl text-sm">Ingrese los datos clínicos del nuevo paciente. Asegúrese de completar toda la información requerida para el historial médico.</p>
+          <p class="text-gray-500 max-w-xl text-sm">Ingrese los datos clínicos del nuevo paciente. Asegúrese de seleccionar al dueño correspondiente.</p>
         </div>
         <a th:href="@{/mascotas}" class="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -66,7 +64,6 @@
       <form th:action="@{/mascotas/guardar}" th:object="${mascota}" method="post" class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12 mb-10">
         
         <input type="hidden" th:field="*{id}" />
-        <input type="hidden" th:field="*{duenoId}" />
         <input type="hidden" th:field="*{activa}" />
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -74,6 +71,18 @@
           <!-- Columna Izquierda: Datos Generales -->
           <div class="space-y-6">
             <h2 class="text-xl font-bold font-outfit text-dark mb-6">Datos Generales</h2>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Propietario / Dueño *</label>
+              <select name="duenoId" required class="w-full px-4 py-3 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal bg-white">
+                <option value="" disabled th:selected="${mascota.dueno == null}">-- Seleccione el Dueño --</option>
+                <option th:each="dueno : ${duenos}" 
+                        th:value="${dueno.id}" 
+                        th:text="${dueno.nombre + ' (' + dueno.correo + ')'}"
+                        th:selected="${mascota.dueno != null and mascota.dueno.id == dueno.id}">
+                </option>
+              </select>
+            </div>
             
             <div>
               <label class="block text-sm font-semibold text-gray-700 mb-2">Nombre del Paciente *</label>
@@ -96,7 +105,7 @@
 
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2">Edad (Años/Meses)</label>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Edad (Años)</label>
                 <input type="number" th:field="*{edad}" placeholder="Ej. 2 años" 
                        class="w-full px-4 py-3 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal" />
               </div>
@@ -113,7 +122,7 @@
             <h2 class="text-xl font-bold font-outfit text-dark mb-6">Detalles Clínicos</h2>
             
             <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Motivo de Consulta / Diagnóstico Inicial *</label>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Motivo de Consulta / Diagnóstico *</label>
               <textarea th:field="*{enfermedad}" required placeholder="Describa el estado actual o motivo de ingreso..." rows="4"
                      class="w-full px-4 py-3 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal resize-none"></textarea>
             </div>
@@ -121,22 +130,10 @@
             <div>
               <label class="block text-sm font-semibold text-gray-700 mb-2">URL de Fotografía</label>
               <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                </div>
                 <input type="text" th:field="*{fotoUrl}" placeholder="https://" 
-                       class="w-full pl-10 pr-4 py-3 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal" />
+                       class="w-full px-4 py-3 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal" />
               </div>
-              <p class="text-xs text-gray-500 mt-2">Proporcione un enlace a la fotografía del paciente para el expediente.</p>
-            </div>
-            
-            <!-- Fake Upload area from mockup -->
-            <div class="border-2 border-dashed border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center bg-gray-50/50 mt-4">
-              <div class="w-10 h-10 bg-teal/10 text-teal rounded-full flex items-center justify-center mb-2">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-              </div>
-              <p class="text-sm font-bold text-dark">Subir documento adjunto</p>
-              <p class="text-xs text-gray-500 mt-1">PDF, JPG o PNG (Max 5MB)</p>
+              <p class="text-xs text-gray-500 mt-2">Proporcione un enlace a la fotografía del paciente.</p>
             </div>
           </div>
         </div>
@@ -146,7 +143,6 @@
             Cancelar
           </a>
           <button type="submit" class="px-6 py-3 bg-mustard text-dark font-bold text-sm rounded-xl flex items-center gap-2 hover:bg-yellow-400 transition-colors shadow-sm">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
             Guardar Registro
           </button>
         </div>

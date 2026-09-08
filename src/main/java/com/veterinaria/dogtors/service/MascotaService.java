@@ -1,13 +1,13 @@
 package com.veterinaria.dogtors.service;
 
+import com.veterinaria.dogtors.entities.Dueno;
 import com.veterinaria.dogtors.entities.Mascota;
-import java.util.Collection;
+import java.util.List;
 
 public interface MascotaService {
-    Collection<Mascota> buscarTodas();
-    Mascota buscarPorId(Integer id);
-    void save(Mascota mascota);
-    void delete(Integer id);
-    
-    Collection<Mascota> buscarPorDuenoId(Integer duenoId);
+    List<Mascota> buscarTodas();
+    Mascota buscarPorId(Long id);
+    void save(Mascota mascota, Long duenoId);
+    void cambiarEstado(Long id);
+    List<Mascota> buscarPorDueno(Dueno dueno);
 }

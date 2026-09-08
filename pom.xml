@@ -54,6 +54,19 @@
             <optional>true</optional>
         </dependency>
         
+        <!-- JPA para conexión con base de datos -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Base de datos H2 en memoria -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- Herramientas de prueba estándar -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

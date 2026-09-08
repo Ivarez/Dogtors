@@ -1,11 +1,12 @@
 package com.veterinaria.dogtors.service;
 
 import com.veterinaria.dogtors.entities.Dueno;
+import com.veterinaria.dogtors.errors.NotFoundException;
 import com.veterinaria.dogtors.repository.DuenoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.List;
 
 @Service
 public class DuenoServiceImpl implements DuenoService {
@@ -14,13 +15,14 @@ public class DuenoServiceImpl implements DuenoService {
     private DuenoRepository duenoRepository;
 
     @Override
-    public Collection<Dueno> findAll() {
+    public List<Dueno> findAll() {
         return duenoRepository.findAll();
     }
 
     @Override
-    public Dueno findById(Integer id) {
-        return duenoRepository.findById(id);
+    public Dueno findById(Long id) {
+        return duenoRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(id, "dueno"));
     }
 
     @Override
@@ -29,18 +31,16 @@ public class DuenoServiceImpl implements DuenoService {
     }
 
     @Override
-    public void delete(Integer id) {
-        duenoRepository.delete(id);
+    public void delete(Long id) {
+        duenoRepository.deleteById(id);
     }
 
     @Override
     public Dueno validarLogin(String correo, String password) {
-        // Iteramos el HashMap para buscar coincidencias
-        for (Dueno dueno : duenoRepository.findAll()) {
-            if (dueno.getCorreo().equals(correo) && dueno.getPassword().equals(password)) {
-                return dueno; // Credenciales correctas
-            }
+        Dueno dueno = duenoRepository.findByCorreo(correo);
+        if (dueno == null || !dueno.getPassword().equals(password)) {
+            throw new IllegalArgumentException("Correo o contraseña incorrectos");
         }
-        return null; // Credenciales incorrectas
+        return dueno;
     }
 }

@@ -1,0 +1,58 @@
+SPRINTS
+
+1
+Nombre del negocio
+LANDING PAGE (Usando únicamente html, css y JS)
+PALETA COLORES
+UML(Diagrama de clases, no pongan getters y setters)
+LOGO
+Diseño landing page en Figma
+
+2
+Tener mockups de 10 páginas. Cada mockup asociarlo con una URL.​
+Diagramar la navegación entre páginas. Cómo desde una página se llega a otra.​
+Pasar el trabajo realizado en el sprint 1 al Springboot.​
+
+Veterinaria
+
+    Usando el modelo de capas + mvc, crear una falsa base de datos de mascotas.
+    Mostrar todas las mascotas en una página en formato de tabla.​
+    Tener una página que muestre la información únicamente de una mascota.​
+    Todavía no relacionar mascota con nadie más. ​
+    Las imágenes se manejan como URL(String) ​
+
+3
+Todavía no usar base de datos
+Usar en al menos una página bootstrap
+Usar en al menos una página tailwind
+Decidir si van a trabajar con Tailwind, bootstrap o Vanilla CSS
+
+Veterinaria
+
+Tener el CRUD completo para mascotas.​
+    (Falta seleccionar a que mascota está asociada el dueño)
+Tener el CRUD completo para los dueños de mascotas.​
+Permitir realizar un login a un dueño de mascota.​
+En el perfil del dueño las mascotas se tienen que mostrar en formato de tarjeta
+    Además el cliente no realiza el crud de sus propias mascotas
+Relacionar cliente y mascota. Mostrar las mascotas del cliente cuando este realice login.​
+No están usando la Inyección de dependencias, falta el autowired.
+No usar httpSession,
+El manejo de errores lo debería realizar el servicio.
+
+
+4 
+General
+
+Diagrama entidad–relación​ (omitir)
+Tener el Sprint 3 funcionando con JPA​
+Tener al menos una página para el manejo de errores. 
+Las entidades deben tener las notaciones para definir las restricciones(nullable, unique, lenght)
+Correcciones del Sprint 3 solucionadas​
+Mejoras propuestas durante la clase
+ener repositorio con todos los archivos, incluido readme describiendo el negocio
+
+Veterinaria
+Tener datos en la base de datos H2. Al menos 100 perros y 50 clientes.
+Login funcionando mostrando solo las mascotas del dueño.​
+No hay eliminar mascota directamente, se cambia su estado de activo o inactiva
