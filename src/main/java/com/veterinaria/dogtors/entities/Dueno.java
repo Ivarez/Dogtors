@@ -31,7 +31,7 @@ public class Dueno {
     @Builder.Default
     private List<Mascota> mascotas = new ArrayList<>();
 
-    // Constructor con todos los parametros excepto id y relaciones (como pide el profe)
+    // Constructor con todos los parametros excepto id y relaciones
     public Dueno(String nombre, String correo, String password) {
         this.nombre = nombre;
         this.correo = correo;

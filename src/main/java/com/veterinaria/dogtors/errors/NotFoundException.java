@@ -1,6 +1,6 @@
 package com.veterinaria.dogtors.errors;
 
-// Paso 1 del profesor: Crear excepcion personalizada que hereda de RuntimeException
+// Crear excepcion personalizada que hereda de RuntimeException
 public class NotFoundException extends RuntimeException {
 
     public NotFoundException(Long id, String entidad) {

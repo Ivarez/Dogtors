@@ -4,7 +4,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-// Paso 3 del profesor: Controlador especial que atrapa excepciones y redirige a una pagina de error
+// Controlador especial que atrapa excepciones y redirige a una pagina de error
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

@@ -29,7 +29,7 @@ public class DuenoController {
         return "login";
     }
 
-    // Procesar Login (sin HttpSession, el servicio lanza la excepcion)
+    // Procesar Login
     @PostMapping("/login")
     public String procesarLogin(@ModelAttribute("dueno") Dueno dueno, Model model) {
         try {

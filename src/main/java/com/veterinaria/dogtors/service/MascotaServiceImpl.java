@@ -34,7 +34,7 @@ public class MascotaServiceImpl implements MascotaService {
     @Override
     @Transactional
     public void save(Mascota mascota, Long duenoId) {
-        // Buscar el dueno y asociarlo a la mascota (como el profe hace con Carrera)
+        // Buscar el dueno y asociarlo a la mascota
         Dueno dueno = duenoRepository.findById(duenoId)
                 .orElseThrow(() -> new NotFoundException(duenoId, "dueno"));
         mascota.setDueno(dueno);
@@ -44,7 +44,7 @@ public class MascotaServiceImpl implements MascotaService {
     @Override
     @Transactional
     public void cambiarEstado(Long id) {
-        // Sprint 4: No eliminar mascota, solo cambiar su estado de activa/inactiva
+        // No eliminar mascota, solo cambiar su estado de activa/inactiva
         Mascota mascota = mascotaRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(id, "mascota"));
         mascota.setActiva(!mascota.getActiva());

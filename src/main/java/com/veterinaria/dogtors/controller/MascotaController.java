@@ -40,7 +40,7 @@ public class MascotaController {
         return "formulario_mascota";
     }
 
-    // Guardar mascota (recibe el duenoId como @RequestParam, como enseña el profe)
+    // Guardar mascota (recibe el duenoId como @RequestParam)
     @PostMapping("/guardar")
     public String guardarMascota(@ModelAttribute("mascota") Mascota mascota,
                                  @RequestParam("duenoId") Long duenoId) {

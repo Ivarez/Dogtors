@@ -41,7 +41,7 @@ public class Mascota {
     @Builder.Default
     private Boolean activa = true;
 
-    // Relacion ManyToOne con Dueno (como el profe enseña con Estudiante-Carrera)
+    // Relacion ManyToOne con Dueno
     @ManyToOne
     @JoinColumn(name = "dueno_id")
     @org.hibernate.annotations.OnDelete(action = org.hibernate.annotations.OnDeleteAction.CASCADE)
