@@ -1,34 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dogtors — Hospital Veterinario</title>
-    <link rel="stylesheet" th:href="@{/index.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  </head>
-  <body>
+    <link rel="stylesheet" th:href="@{/index.css}">
+</head>
+<body>
+    <!-- Navbar -->
     <header class="site-header">
       <div class="container header-inner">
         <a th:href="@{/}" class="brand">
-          <div class="logo-mark" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5z" fill="white"/></svg>
-          </div>
+          <img th:src="@{/images/logo.png}" alt="Logo Dogtors" class="brand-logo">
           <span class="brand-name">Dogtors</span>
         </a>
 
         <nav class="nav-desktop">
-          <a th:href="@{/}">Inicio</a>
-          <a th:href="@{/mascotas}">Mascotas</a>
-          <a href="#">Tienda</a>
-          <a href="#">Adopciones</a>
-          <a href="#">Equipo</a>
+          <a th:href="@{/}" class="active">Inicio</a>
+          <a th:href="@{/duenos/login}">Portal Propietarios</a>
+          <a th:href="@{/mascotas}">Área Médica</a>
+          <a th:href="@{/duenos/lista}">Gestión Hospitalaria</a>
         </nav>
 
         <div class="header-actions">
-          <a th:href="@{/duenos/login}" class="btn-primary">Ingresar</a>
+          <a th:href="@{/duenos/login}" class="link-access">Acceso Personal</a>
+          <a th:href="@{/duenos/nueva}" class="btn-portal">Portal Pacientes</a>
         </div>
 
         <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
@@ -37,108 +36,163 @@
       </div>
     </header>
 
-    <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
       <a th:href="@{/}">Inicio</a>
-      <a th:href="@{/mascotas}">Mascotas</a>
-      <a href="#">Tienda</a>
-      <a href="#">Adopciones</a>
-      <a href="#">Equipo</a>
-      <a th:href="@{/duenos/login}">Ingresar</a>
+      <a th:href="@{/duenos/login}">Dueños</a>
+      <a th:href="@{/mascotas}">Área Médica</a>
+      <a th:href="@{/duenos/lista}">Gestión Administrativa</a>
+      <a th:href="@{/duenos/login}">Iniciar Sesión</a>
+      <a th:href="@{/duenos/nueva}">Registrarse</a>
     </div>
 
     <main>
-      <section class="hero container">
-        <div class="hero-left">
-          <div class="badge">Hospital Veterinario Especializado</div>
-          <h1>Atención médica veterinaria <span class="teal">de nivel superior</span></h1>
-          <p class="lead">Hospitalización prolongada y tratamiento intensivo para perros y gatos. Nuestro equipo especializado acompaña a tu mascota en cada etapa de su recuperación.</p>
-          <a th:href="@{/duenos/login}" class="btn-primary large">Ingresar al Sistema</a>
+      <!-- Green Banner -->
+      <div class="banner-pill">
+        <span>&#9679; UNIDAD DE CUIDADOS INTENSIVOS</span>
+      </div>
 
-          <div class="stats">
-            <div><div class="stat-n">98%</div><div class="stat-label">Tasa de recuperación</div></div>
-            <div><div class="stat-n">24/7</div><div class="stat-label">Monitoreo activo</div></div>
-            <div><div class="stat-n">+800</div><div class="stat-label">Pacientes atendidos</div></div>
-            <div><div class="stat-n">15</div><div class="stat-label">Especialistas</div></div>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <div class="image-placeholder">
-            <div class="placeholder-label">Módulo Clínico Activo</div>
+      <!-- Hero -->
+      <section class="hero">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="" class="hero-bg">
+        <div class="hero-gradient"></div>
+        <div class="container hero-inner">
+          <div class="hero-text">
+            <div class="eyebrow">HOSPITALIZACIÓN PROLONGADA Y CUIDADOS CRÍTICOS</div>
+            <h1>Atención médica veterinaria de <em>nivel superior.</em></h1>
+            <p class="lead">Infraestructura clínica de alta complejidad diseñada para la recuperación integral y el monitoreo hemodinámico ininterrumpido de caninos y felinos en estados delicados.</p>
+            <div class="hero-buttons">
+              <a th:href="@{/duenos/login}" class="btn-primary">Ingresar &rarr;</a>
+              <a href="#process" class="btn-outline">Conocer Protocolos</a>
+            </div>
+            <div class="hero-checks">
+              <span>&#10003; Informes médicos en tiempo real</span>
+              <span>&#10003; Acompañamiento familiar guiado</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="services">
+      <!-- Stats -->
+      <section class="stats-section">
         <div class="container">
-          <div class="eyebrow">NUESTROS SERVICIOS</div>
-          <h2>Atención integral para tu mascota</h2>
-          <div class="services-grid">
-            <div class="service">
-              <div class="service-icon">🩺</div>
-              <div class="step">01</div>
-              <h3>Consulta General</h3>
-              <p>Evaluación clínica completa y diagnóstico.</p>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <div class="stat-number">98%</div>
+              <div class="stat-title">Tasa de recuperación</div>
+              <div class="stat-sub">Casos críticos de alta complejidad</div>
             </div>
-            <div class="service">
-              <div class="service-icon">🏥</div>
-              <div class="step">02</div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="stat-number">24/7</div>
+              <div class="stat-title">Monitoreo continuo</div>
+              <div class="stat-sub">Presencia médica presencial sin pausas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="stat-number">+800</div>
+              <div class="stat-title">Pacientes atendidos</div>
+              <div class="stat-sub">En internación de estancia prolongada</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div class="stat-number">15</div>
+              <div class="stat-title">Especialistas UCI</div>
+              <div class="stat-sub">Diplomados en emergencias y anestesiología</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Clinical Process -->
+      <section class="process-section" id="process">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="eyebrow">RUTA TERAPÉUTICA</div>
+              <h2>Proceso de Hospitalización Clínica</h2>
+            </div>
+            <p class="section-desc">Protocolos estandarizados diseñados para actuar con celeridad ante descompensaciones agudas, garantizando certeza en cada fase del tratamiento.</p>
+          </div>
+
+          <div class="process-grid">
+            <div class="process-card">
+              <div class="process-num">01</div>
+              <h3>Ingreso y Triaje</h3>
+              <p>Evaluación hemodinámica inmediata (escala ABC), estabilización respiratoria e instalación de vías prioritarias. Tiempo de respuesta &lt; 5 min.</p>
+            </div>
+            <div class="process-card">
+              <div class="process-num">02</div>
+              <h3>Evaluación Clínica</h3>
+              <p>Gasometría instantánea, ecografía FAST, panel hematológico de urgencia y trazado electrocardiográfico basal. Laboratorio propio in situ.</p>
+            </div>
+            <div class="process-card">
+              <div class="process-num">03</div>
               <h3>Hospitalización</h3>
-              <p>Monitoreo 24/7 y cuidado intensivo.</p>
+              <p>Asignación a box térmico individual, infusión dosificada continua por bomba y soporte nutricional enteral asistido. Boxes independientes felinos/caninos.</p>
             </div>
-            <div class="service">
-              <div class="service-icon">✂️</div>
-              <div class="step">03</div>
-              <h3>Cirugía</h3>
-              <p>Procedimientos quirúrgicos especializados.</p>
-            </div>
-            <div class="service">
-              <div class="service-icon">🚑</div>
-              <div class="step">04</div>
-              <h3>Urgencias</h3>
-              <p>Atención de emergencia las 24 horas.</p>
+            <div class="process-card">
+              <div class="process-num">04</div>
+              <h3>Alta y Seguimiento</h3>
+              <p>Consolidación de epicrisis completa, plan de medicación oral domiciliaria y telemonitoreo post-alta en portal. Acceso digital a estudios.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="about-section">
-        <div class="container">
-          <div class="eyebrow">NUESTRO EQUIPO</div>
-          <h2>Profesionales dedicados al bienestar animal</h2>
-          <p class="lead">Contamos con un equipo médico altamente calificado y comprometido con la salud y bienestar de tu mascota.</p>
-          <!-- Espacio para tarjetas del equipo médico -->
-        </div>
-      </section>
-
+      <!-- Footer -->
       <footer class="site-footer">
-        <div class="container footer-grid">
-          <div>
-            <div class="brand-row">
-              <span class="brand-name light">Dogtors</span>
+        <div class="container">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <div class="footer-brand-header">
+                <img th:src="@{/images/logo.png}" alt="Logo Dogtors" class="footer-logo">
+                <span class="brand-name">Dogtors</span>
+              </div>
+              <p>Centro especializado en hospitalización crítica y cuidados intensivos prolongados para caninos y felinos. Excelencia clínica y acompañamiento empático permanente.</p>
             </div>
-            <p class="muted">Hospital veterinario especializado en hospitalización y tratamiento prolongado de perros y gatos.</p>
-          </div>
-          <div>
-            <h4>Mapa del Sitio</h4>
-            <ul class="link-list">
-              <li><a th:href="@{/}">Inicio</a></li>
-              <li><a href="#">Servicios</a></li>
-              <li><a th:href="@{/mascotas}">Mascotas</a></li>
-              <li><a href="#">Equipo</a></li>
-              <li><a href="#">Adopciones</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Contacto</h4>
-            <div class="contact-list">
-              <div><div class="label">Dirección</div><div class="value">Bogotá / Cundinamarca</div></div>
-              <div class="emergency">Urgencias 24 h / 365 días</div>
+            <div class="footer-col">
+              <h4>Servicios Clínicos</h4>
+              <ul>
+                <li><a href="#">Cuidados Intensivos (UCI)</a></li>
+                <li><a href="#">Hospitalización Prolongada</a></li>
+                <li><a href="#">Monitoreo Hemodinámico</a></li>
+                <li><a href="#">Farmacología Hospitalaria</a></li>
+              </ul>
             </div>
+            <div class="footer-col">
+              <h4>Contacto de Emergencia</h4>
+              <ul>
+                <li><span>Admisión 24/7 Urgencias</span></li>
+                <li><span>Tel: +54 11 4589-9000</span></li>
+                <li><span>contacto@dogtorshospital.com</span></li>
+                <li><span>Buenos Aires, Argentina</span></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Protocolos Médicos</h4>
+              <ul>
+                <li><a href="#">Políticas de Acompañamiento</a></li>
+                <li><a href="#">Consentimientos Informados</a></li>
+                <li><a th:href="@{/duenos/login}">Portal Médico &amp; Turnos</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <span>&copy; 2025 Dogtors Hospital Veterinario. Todos los derechos reservados.</span>
+            <span>Infraestructura Médica de Precisión</span>
           </div>
         </div>
       </footer>
     </main>
     <script th:src="@{/script.js}"></script>
-  </body>
+</body>
 </html>

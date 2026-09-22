@@ -2,8 +2,6 @@ package com.veterinaria.dogtors.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
-import java.util.ArrayList;
 
 @Entity
 @Getter
@@ -11,8 +9,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString(exclude = "mascotas")
-public class Dueno {
+public class Administrador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,12 +24,8 @@ public class Dueno {
     @Column(nullable = false, length = 100)
     private String password;
 
-    @OneToMany(mappedBy = "dueno", cascade = CascadeType.ALL)
-    @Builder.Default
-    private List<Mascota> mascotas = new ArrayList<>();
-
     // Constructor con todos los parametros excepto id y relaciones
-    public Dueno(String nombre, String correo, String password) {
+    public Administrador(String nombre, String correo, String password) {
         this.nombre = nombre;
         this.correo = correo;
         this.password = password;

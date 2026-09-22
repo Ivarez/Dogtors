@@ -11,8 +11,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString(exclude = "mascotas")
-public class Dueno {
+public class Veterinario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,14 +26,18 @@ public class Dueno {
     @Column(nullable = false, length = 100)
     private String password;
 
-    @OneToMany(mappedBy = "dueno", cascade = CascadeType.ALL)
+    @Column(length = 100)
+    private String especialidad;
+
+    @OneToMany(mappedBy = "veterinario")
     @Builder.Default
-    private List<Mascota> mascotas = new ArrayList<>();
+    private List<Tratamiento> tratamientos = new ArrayList<>();
 
     // Constructor con todos los parametros excepto id y relaciones
-    public Dueno(String nombre, String correo, String password) {
+    public Veterinario(String nombre, String correo, String password, String especialidad) {
         this.nombre = nombre;
         this.correo = correo;
         this.password = password;
+        this.especialidad = especialidad;
     }
 }

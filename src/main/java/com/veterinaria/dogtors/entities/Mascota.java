@@ -47,6 +47,10 @@ public class Mascota {
     @org.hibernate.annotations.OnDelete(action = org.hibernate.annotations.OnDeleteAction.CASCADE)
     private Dueno dueno;
 
+    @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @Builder.Default
+    private java.util.List<Tratamiento> tratamientos = new java.util.ArrayList<>();
+
     // Constructor con todos los parametros excepto id y relaciones
     public Mascota(String nombre, String especie, String raza, Integer edad,
                    Double peso, String enfermedad, String fotoUrl, Boolean activa) {

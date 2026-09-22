@@ -22,6 +22,18 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     private MascotaRepository mascotaRepository;
 
+    @Autowired
+    private com.veterinaria.dogtors.repository.AdministradorRepository administradorRepository;
+
+    @Autowired
+    private com.veterinaria.dogtors.repository.VeterinarioRepository veterinarioRepository;
+
+    @Autowired
+    private com.veterinaria.dogtors.repository.DrogaRepository drogaRepository;
+
+    @Autowired
+    private com.veterinaria.dogtors.repository.TratamientoRepository tratamientoRepository;
+
     @Override
     public void run(String... args) {
         Random random = new Random(42);
@@ -99,7 +111,6 @@ public class DataLoader implements CommandLineRunner {
                 raza = razasGato[random.nextInt(razasGato.length)];
             }
 
-            // Asociar a un dueno aleatorio
             int indiceDueno = random.nextInt(cantidadDuenos);
             Dueno dueno = duenos.get(indiceDueno);
 
@@ -111,11 +122,61 @@ public class DataLoader implements CommandLineRunner {
                     .peso(Math.round((random.nextDouble() * 40 + 1) * 10.0) / 10.0)
                     .enfermedad(enfermedades[random.nextInt(enfermedades.length)])
                     .fotoUrl(fotos[random.nextInt(fotos.length)])
-                    .activa(random.nextInt(10) > 1) // 80% estables, 20% criticos
+                    .activa(random.nextInt(10) > 1) 
                     .dueno(dueno)
                     .build();
 
             mascotaRepository.save(mascota);
+        }
+
+        // ===================== ADMINISTRADORES =====================
+        for (int i = 1; i <= 5; i++) {
+            com.veterinaria.dogtors.entities.Administrador admin = com.veterinaria.dogtors.entities.Administrador.builder()
+                    .nombre("Admin " + i)
+                    .correo("admin" + i + "@dogtors.com")
+                    .password("admin123")
+                    .build();
+            administradorRepository.save(admin);
+        }
+
+        // ===================== VETERINARIOS =====================
+        for (int i = 1; i <= 5; i++) {
+            com.veterinaria.dogtors.entities.Veterinario vet = com.veterinaria.dogtors.entities.Veterinario.builder()
+                    .nombre("Dr. Vet " + i)
+                    .correo("vet" + i + "@dogtors.com")
+                    .password("vet123")
+                    .especialidad(i % 2 == 0 ? "Cirugía" : "Medicina Interna")
+                    .build();
+            veterinarioRepository.save(vet);
+        }
+
+        // ===================== DROGAS =====================
+        String[] nombreDrogas = {"Amoxicilina", "Meloxicam", "Tramadol", "Ivermectina", "Doxiciclina"};
+        for (int i = 0; i < 5; i++) {
+            com.veterinaria.dogtors.entities.Droga droga = com.veterinaria.dogtors.entities.Droga.builder()
+                    .nombre(nombreDrogas[i])
+                    .precioCompra(10.0 + i * 2)
+                    .precioVenta(20.0 + i * 5)
+                    .unidadesDisponibles(100 - i * 10)
+                    .unidadesVendidas(i * 5)
+                    .build();
+            drogaRepository.save(droga);
+        }
+
+        // ===================== TRATAMIENTOS =====================
+        List<Mascota> todasMascotas = mascotaRepository.findAll();
+        List<com.veterinaria.dogtors.entities.Veterinario> todosVets = veterinarioRepository.findAll();
+        List<com.veterinaria.dogtors.entities.Droga> todasDrogas = drogaRepository.findAll();
+
+        for (int i = 0; i < 20; i++) {
+            com.veterinaria.dogtors.entities.Tratamiento tratamiento = com.veterinaria.dogtors.entities.Tratamiento.builder()
+                    .mascota(todasMascotas.get(random.nextInt(todasMascotas.size())))
+                    .veterinario(todosVets.get(random.nextInt(todosVets.size())))
+                    .droga(todasDrogas.get(random.nextInt(todasDrogas.size())))
+                    .fecha(java.time.LocalDate.now().minusDays(random.nextInt(30)))
+                    .observaciones("Administrar cada 8 horas por " + (random.nextInt(5) + 3) + " días.")
+                    .build();
+            tratamientoRepository.save(tratamiento);
         }
     }
 }

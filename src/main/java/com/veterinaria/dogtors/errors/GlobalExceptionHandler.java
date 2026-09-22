@@ -19,4 +19,11 @@ public class GlobalExceptionHandler {
         model.addAttribute("mensaje", ex.getMessage());
         return "error";
     }
+
+    @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
+    public String handleDataIntegrityViolationException(org.springframework.dao.DataIntegrityViolationException ex, Model model) {
+        // En lugar de dar un 500 feo, mostramos el error amigable
+        model.addAttribute("mensaje", "Error de integridad: Ya existe un registro con esos datos únicos (como el correo o la cédula).");
+        return "error";
+    }
 }

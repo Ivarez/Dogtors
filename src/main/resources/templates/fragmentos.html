@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title != null ? title + ' | Dogtors' : 'Dogtors — Hospital Veterinario'}">Dogtors</title>
+    
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1F5D50',
+                        secondary: '#7FA98F',
+                        accent1: '#BBD7B0',
+                        accent2: '#E07A5F',
+                        highlight: '#E9C46A',
+                        dark: '#202522',
+                        neutral: '#707773',
+                        borders: '#DDE3DF',
+                        appbg: '#F7F8F5',
+                        surface: '#FFFFFF'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Fix browser autofill bright yellow highlight */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0px 1000px #F7F8F5 inset !important;
+            -webkit-text-fill-color: #202522 !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR FRAGMENT -->
+    <nav th:fragment="navbar(activeTab)" class="bg-surface border-b border-borders sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand / Logo -->
+                <div class="flex items-center gap-6">
+                    <a th:href="@{/}" class="flex items-center gap-3 group">
+                        <img th:src="@{/images/logo.png}" alt="Logo Dogtors" class="h-10 w-auto object-contain transform group-hover:scale-105 transition-transform duration-200">
+                        <div class="flex flex-col">
+                            <span class="font-outfit font-bold text-2xl text-primary tracking-tight leading-none">Dogtors</span>
+                            <span class="text-[10px] font-semibold text-neutral uppercase tracking-wider mt-0.5">Hospital Veterinario</span>
+                        </div>
+                    </a>
+
+                    <!-- Desktop Nav Links -->
+                    <div class="hidden lg:flex items-center space-x-1 pl-4 border-l border-borders/60">
+                        <a th:href="@{/}" 
+                           th:classappend="${activeTab == 'inicio' ? 'text-primary font-bold bg-primary/5' : 'text-neutral hover:text-dark hover:bg-appbg font-medium'}"
+                           class="px-3.5 py-2 rounded-lg text-sm transition-colors">
+                            Inicio
+                        </a>
+                        <a th:href="@{/duenos/login}" 
+                           th:classappend="${activeTab == 'propietarios' ? 'text-primary font-bold bg-primary/5' : 'text-neutral hover:text-dark hover:bg-appbg font-medium'}"
+                           class="px-3.5 py-2 rounded-lg text-sm transition-colors">
+                            Portal Propietarios
+                        </a>
+                        <a th:href="@{/mascotas}" 
+                           th:classappend="${activeTab == 'mascotas' ? 'text-primary font-bold bg-primary/5' : 'text-neutral hover:text-dark hover:bg-appbg font-medium'}"
+                           class="px-3.5 py-2 rounded-lg text-sm transition-colors">
+                            Área Médica
+                        </a>
+                        <a th:href="@{/duenos/lista}" 
+                           th:classappend="${activeTab == 'duenos' ? 'text-primary font-bold bg-primary/5' : 'text-neutral hover:text-dark hover:bg-appbg font-medium'}"
+                           class="px-3.5 py-2 rounded-lg text-sm transition-colors">
+                            Gestión Hospitalaria
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a th:href="@{/mascotas/nueva}" 
+                       class="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-sm font-semibold rounded-xl hover:bg-primary/90 transition-all shadow-sm focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        <span>Registrar Paciente</span>
+                    </a>
+                    
+                    <a th:href="@{/duenos/login}" 
+                       class="inline-flex items-center gap-1.5 px-4 py-2.5 bg-highlight text-dark text-sm font-semibold rounded-xl hover:bg-highlight/90 transition-all shadow-sm">
+                        <span>Portal Pacientes</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-dark p-2 rounded-lg hover:bg-appbg focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden lg:hidden border-t border-borders py-4 space-y-2">
+                <a th:href="@{/}" class="block px-3 py-2 rounded-lg text-base font-medium text-dark hover:bg-appbg">Inicio</a>
+                <a th:href="@{/duenos/login}" class="block px-3 py-2 rounded-lg text-base font-medium text-dark hover:bg-appbg">Portal Propietarios</a>
+                <a th:href="@{/mascotas}" class="block px-3 py-2 rounded-lg text-base font-medium text-dark hover:bg-appbg">Área Médica</a>
+                <a th:href="@{/duenos/lista}" class="block px-3 py-2 rounded-lg text-base font-medium text-dark hover:bg-appbg">Gestión Hospitalaria</a>
+                <div class="pt-3 border-t border-borders flex flex-col gap-2">
+                    <a th:href="@{/mascotas/nueva}" class="w-full text-center py-2.5 bg-primary text-white font-medium rounded-xl text-sm">Registrar Paciente</a>
+                    <a th:href="@{/duenos/login}" class="w-full text-center py-2.5 bg-highlight text-dark font-semibold rounded-xl text-sm">Portal Pacientes</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FOOTER FRAGMENT -->
+    <footer th:fragment="footer" class="bg-dark text-white pt-16 pb-12 mt-auto border-t border-borders/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
+                <!-- Col 1: Brand & Logo -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <img th:src="@{/images/logo.png}" alt="Logo Dogtors" class="h-10 w-auto object-contain brightness-0 invert">
+                        <span class="font-outfit font-bold text-2xl text-white tracking-tight">Dogtors</span>
+                    </div>
+                    <p class="text-neutral text-sm leading-relaxed max-w-sm">
+                        Centro especializado en hospitalización crítica y cuidados intensivos prolongados para caninos y felinos. Excelencia clínica y acompañamiento permanente.
+                    </p>
+                    <div class="pt-2">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-primary/30 text-accent1 border border-primary/40">
+                            <span class="w-2 h-2 rounded-full bg-accent1 animate-pulse"></span>
+                            UCI Activa 24/7
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Col 2: Servicios -->
+                <div>
+                    <h4 class="font-outfit font-semibold text-white text-sm uppercase tracking-wider mb-4">Servicios Clínicos</h4>
+                    <ul class="space-y-2.5 text-sm text-neutral">
+                        <li><a th:href="@{/mascotas}" class="hover:text-accent1 transition-colors">Cuidados Intensivos (UCI)</a></li>
+                        <li><a th:href="@{/mascotas}" class="hover:text-accent1 transition-colors">Hospitalización</a></li>
+                        <li><a th:href="@{/mascotas}" class="hover:text-accent1 transition-colors">Monitoreo Hemodinámico</a></li>
+                        <li><a th:href="@{/mascotas}" class="hover:text-accent1 transition-colors">Farmacología Especializada</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Contacto -->
+                <div>
+                    <h4 class="font-outfit font-semibold text-white text-sm uppercase tracking-wider mb-4">Contacto Urgencias</h4>
+                    <ul class="space-y-2.5 text-sm text-neutral">
+                        <li><span class="text-white/90 font-medium">Admisión 24/7 Urgencias</span></li>
+                        <li><span>Tel: +57 (601) 789-0123</span></li>
+                        <li><span>emergencias@dogtors.com</span></li>
+                        <li><span>Bogotá D.C., Colombia</span></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Protocolos -->
+                <div>
+                    <h4 class="font-outfit font-semibold text-white text-sm uppercase tracking-wider mb-4">Protocolos</h4>
+                    <ul class="space-y-2.5 text-sm text-neutral">
+                        <li><a th:href="@{/duenos/login}" class="hover:text-accent1 transition-colors">Portal Propietarios</a></li>
+                        <li><a th:href="@{/duenos/lista}" class="hover:text-accent1 transition-colors">Directorio Médico</a></li>
+                        <li><a th:href="@{/mascotas}" class="hover:text-accent1 transition-colors">Expedientes Activos</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-neutral">
+                <p>&copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span> Dogtors Hospital Veterinario. Todos los derechos reservados.</p>
+                <p class="font-medium text-white/60">Infraestructura Médica de Precisión</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+

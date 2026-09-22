@@ -1,141 +1,150 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mis Mascotas — Portal Cliente</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              bone: '#F4F1DE',
-              dark: '#264653',
-              teal: '#2A9D8F',
-              mustard: '#E9C46A',
-              lightbg: '#F9FAFB'
-            },
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              outfit: ['Outfit', 'sans-serif']
-            }
-          }
-        }
-      }
-    </script>
-</head>
-<body class="bg-lightbg min-h-screen flex flex-col font-sans text-dark">
+<head th:replace="~{fragmentos :: head('Expediente Clínico Personal')}"></head>
+<body class="bg-appbg text-dark font-sans antialiased min-h-screen flex flex-col">
 
-    <!-- Header Portal Cliente -->
-    <header class="w-full bg-white py-4 px-8 flex justify-between items-center border-b border-gray-100 shadow-sm">
-        <a th:href="@{/}" class="flex items-center gap-2 font-bold text-2xl font-outfit text-dark">
-            Dogtors <span class="text-xs text-teal font-sans uppercase tracking-widest bg-teal/10 px-2 py-1 rounded-full ml-2">Portal Cliente</span>
-        </a>
-        <nav class="hidden md:flex gap-8 text-sm font-semibold text-gray-600">
-            <a href="#" class="text-teal border-b-2 border-teal pb-1">Mis Mascotas</a>
-            <a href="#" class="hover:text-dark">Historial de Pagos</a>
-            <a href="#" class="hover:text-dark">Soporte</a>
-        </nav>
-        <div class="flex items-center gap-4">
-            <div class="hidden md:flex flex-col text-right">
-                <span class="text-sm font-bold text-dark" th:text="${dueno.nombre}">Juan Pérez</span>
-                <span class="text-xs text-gray-500" th:text="${dueno.correo}">juan@correo.com</span>
+    <!-- Shared Navbar -->
+    <div th:replace="~{fragmentos :: navbar('propietarios')}"></div>
+
+    <!-- Header Section -->
+    <header class="bg-surface border-b border-borders py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+                <div>
+                    <span class="text-xs font-bold tracking-widest text-secondary uppercase mb-1.5 block">PORTAL PROPIETARIOS • SEGUIMIENTO CLÍNICO</span>
+                    <h1 class="text-3xl sm:text-4xl font-outfit font-bold text-dark mb-2">
+                        Hola, <span class="text-primary" th:text="${dueno.nombre}">Dueño</span>
+                    </h1>
+                    <p class="text-neutral text-sm sm:text-base max-w-2xl">
+                        Consulta en tiempo real la evolución clínica, monitoreo y tratamientos suministrados a tus mascotas hospitalizadas.
+                    </p>
+                </div>
+                
+                <!-- Quick Info Pill -->
+                <div class="flex items-center gap-3">
+                    <div class="bg-appbg border border-borders rounded-2xl p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold font-outfit">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-bold uppercase tracking-wider text-neutral">Mascotas Vinculadas</span>
+                            <span class="text-lg font-outfit font-bold text-dark" th:text="${mascotas != null ? mascotas.size() : 0}">0</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a th:href="@{/duenos/logout}" class="bg-red-50 text-red-600 hover:bg-red-100 px-4 py-2 rounded-lg font-semibold text-sm transition-colors">Cerrar Sesión</a>
         </div>
     </header>
 
-    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-10">
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
         
-        <!-- Welcome Section -->
-        <div class="bg-teal text-white rounded-3xl p-8 mb-10 shadow-md relative overflow-hidden">
-            <!-- Deco circle -->
-            <div class="absolute -top-16 -right-16 w-64 h-64 bg-white/10 rounded-full blur-2xl"></div>
-            
-            <h1 class="text-3xl md:text-4xl font-bold font-outfit mb-2 relative z-10">Hola, <span th:text="${dueno.nombre}">Juan</span>! 👋</h1>
-            <p class="text-teal-50 relative z-10 max-w-2xl">Aquí puedes revisar el estado clínico en tiempo real de tus mascotas. Recuerda que la actualización de datos médicos es realizada exclusivamente por nuestro equipo veterinario.</p>
-        </div>
-
-        <!-- Section Title -->
-        <div class="flex justify-between items-end mb-6">
+        <!-- Section title -->
+        <div class="flex items-center justify-between mb-8">
             <div>
-                <h2 class="text-2xl font-bold font-outfit text-dark">Tus Mascotas Hospitalizadas</h2>
-                <p class="text-sm text-gray-500 mt-1">Expedientes activos en el sistema</p>
+                <h2 class="text-2xl font-outfit font-bold text-dark">Mis Pacientes Registrados</h2>
+                <p class="text-xs sm:text-sm text-neutral mt-0.5">Expedientes activos bajo cuidado veterinario.</p>
             </div>
         </div>
 
-        <!-- Mascotas Cards Grid -->
-        <div th:if="${mascotas != null and !mascotas.isEmpty()}" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Pet Cards Grid -->
+        <div th:if="${mascotas != null and !mascotas.isEmpty()}" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
             <!-- Card -->
-            <div th:each="mascota : ${mascotas}" class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow group flex flex-col">
+            <div th:each="mascota : ${mascotas}" 
+                 class="bg-surface rounded-2xl border border-borders overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row">
                 
-                <!-- Image Header -->
-                <div class="h-48 bg-gray-200 relative overflow-hidden">
-                    <img th:src="${mascota.fotoUrl != null and !mascota.fotoUrl.isEmpty() ? mascota.fotoUrl : 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}" 
-                         alt="Foto Mascota" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    
-                    <!-- Status Badge -->
-                    <div class="absolute top-4 right-4">
-                        <span th:if="${mascota.activa}" class="bg-green-100 text-green-700 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide border border-green-200 shadow-sm">
-                            ● Estable
-                        </span>
-                        <span th:unless="${mascota.activa}" class="bg-red-100 text-red-700 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide border border-red-200 shadow-sm">
-                            ● Crítico
-                        </span>
+                <!-- Photo Column -->
+                <div class="sm:w-2/5 relative min-h-[220px] sm:min-h-full">
+                    <img th:if="${mascota.fotoUrl != null and !mascota.fotoUrl.isEmpty()}" 
+                         th:src="${mascota.fotoUrl}" 
+                         alt="Foto de la mascota" 
+                         class="w-full h-full object-cover">
+                    <div th:unless="${mascota.fotoUrl != null and !mascota.fotoUrl.isEmpty()}" 
+                         class="w-full h-full bg-appbg flex items-center justify-center p-6">
+                        <img th:src="@{/images/logo.png}" alt="Logo Dogtors" class="h-16 w-auto opacity-50">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent sm:hidden"></div>
+                    <div class="absolute bottom-4 left-4 sm:hidden text-white">
+                        <h3 class="text-2xl font-outfit font-bold" th:text="${mascota.nombre}">Nombre</h3>
+                        <p class="text-xs text-white/80" th:text="${mascota.especie + ' • ' + mascota.raza}">Especie • Raza</p>
                     </div>
                 </div>
+                
+                <!-- Content Column -->
+                <div class="p-6 sm:w-3/5 flex flex-col justify-between flex-grow">
+                    <div>
+                        <!-- Header inside card -->
+                        <div class="hidden sm:flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-outfit font-bold text-dark" th:text="${mascota.nombre}">Nombre</h3>
+                                <p class="text-xs text-neutral font-medium" th:text="${mascota.especie + ' • ' + mascota.raza}">Especie • Raza</p>
+                            </div>
+                            <span th:if="${mascota.activa}" 
+                                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-secondary/20 text-primary border border-secondary/30">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                Estable
+                            </span>
+                            <span th:unless="${mascota.activa}" 
+                                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-accent2/10 text-accent2 border border-accent2/20">
+                                <span class="w-1.5 h-1.5 bg-accent2 rounded-full"></span>
+                                Alta Médica
+                            </span>
+                        </div>
 
-                <!-- Card Body -->
-                <div class="p-6 flex-grow flex flex-col">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold font-outfit text-dark mb-1" th:text="${mascota.nombre}">Max</h3>
-                            <p class="text-sm text-gray-500" th:text="${mascota.especie + ' • ' + mascota.raza}">Perro • Golden Retriever</p>
+                        <!-- Stats Row -->
+                        <div class="grid grid-cols-2 gap-3 mb-5">
+                            <div class="bg-appbg p-3 rounded-xl border border-borders">
+                                <span class="block text-[11px] font-bold text-neutral uppercase tracking-wider mb-0.5">Edad</span>
+                                <span class="font-outfit font-bold text-dark text-sm" th:text="${mascota.edad + ' años'}">--</span>
+                            </div>
+                            <div class="bg-appbg p-3 rounded-xl border border-borders">
+                                <span class="block text-[11px] font-bold text-neutral uppercase tracking-wider mb-0.5">Peso</span>
+                                <span class="font-outfit font-bold text-dark text-sm" th:text="${mascota.peso + ' kg'}">--</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Diagnosis -->
+                        <div class="mb-5">
+                            <span class="text-[11px] font-bold text-neutral uppercase tracking-wider mb-1 block">Diagnóstico Principal</span>
+                            <p class="text-xs text-dark bg-appbg p-3 rounded-xl border border-borders font-medium leading-relaxed" 
+                               th:text="${mascota.enfermedad}">Diagnóstico no disponible</p>
                         </div>
                     </div>
-
-                    <!-- Mini Stats Grid -->
-                    <div class="grid grid-cols-2 gap-3 mb-6">
-                        <div class="bg-gray-50 rounded-xl p-3 border border-gray-100">
-                            <p class="text-xs text-gray-400 mb-0.5">Edad</p>
-                            <p class="font-semibold text-dark text-sm" th:text="${mascota.edad + ' años'}">3 años</p>
-                        </div>
-                        <div class="bg-gray-50 rounded-xl p-3 border border-gray-100">
-                            <p class="text-xs text-gray-400 mb-0.5">Peso</p>
-                            <p class="font-semibold text-dark text-sm" th:text="${mascota.peso + ' kg'}">32.5 kg</p>
-                        </div>
-                    </div>
-
-                    <!-- Enfermedad / Motivo -->
-                    <div class="mb-6 mt-auto">
-                        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Diagnóstico / Motivo</p>
-                        <p class="text-sm text-dark bg-mustard/10 border border-mustard/20 p-3 rounded-xl" th:text="${mascota.enfermedad}">Tratamiento Post-operatorio</p>
-                    </div>
-
-                    <!-- Action Button -->
-                    <button type="button" class="w-full bg-dark text-white font-bold text-sm py-3 rounded-xl hover:bg-teal transition-colors shadow-sm mt-auto">
-                        Ver Detalles Completos
-                    </button>
+                    
+                    <!-- View details link -->
+                    <a th:href="@{/mascotas/{id}(id=${mascota.id})}" 
+                       class="w-full bg-primary text-white hover:bg-primary/90 transition-all font-semibold py-2.5 px-4 rounded-xl text-xs sm:text-sm flex justify-center items-center gap-2 shadow-sm mt-2">
+                        <span>Ver Expediente y Tratamientos</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </a>
                 </div>
             </div>
-
+            
         </div>
 
         <!-- Empty State -->
-        <div th:if="${mascotas == null or mascotas.isEmpty()}" class="bg-white rounded-3xl border border-gray-100 p-16 text-center shadow-sm">
-            <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
-                🦴
+        <div th:if="${mascotas == null or mascotas.isEmpty()}" 
+             class="bg-surface rounded-2xl border border-borders p-12 text-center max-w-xl mx-auto">
+            <div class="w-16 h-16 bg-appbg rounded-2xl flex items-center justify-center mx-auto mb-4 text-neutral">
+                <img th:src="@{/images/logo.png}" alt="Logo Dogtors" class="h-10 w-auto opacity-50">
             </div>
-            <h3 class="text-xl font-bold font-outfit text-dark mb-2">No tienes mascotas registradas</h3>
-            <p class="text-gray-500 max-w-md mx-auto">Actualmente no hay expedientes clínicos asociados a tu cuenta. El equipo veterinario actualizará esta sección cuando ingrese un paciente.</p>
+            <h3 class="text-xl font-outfit font-bold text-dark mb-2">No Hay Pacientes Asociados</h3>
+            <p class="text-neutral text-sm leading-relaxed mb-6">
+                No hemos encontrado mascotas vinculadas a tu cuenta de propietario en este momento. Si tu mascota ingresó recientemente, por favor contacta a la mesa de admisión.
+            </p>
+            <a th:href="@{/duenos/logout}" class="px-5 py-2.5 border border-borders rounded-xl text-sm font-semibold text-neutral hover:bg-appbg">
+                Cerrar Sesión
+            </a>
         </div>
-
     </main>
+
+    <!-- Shared Footer -->
+    <div th:replace="~{fragmentos :: footer}"></div>
+
 </body>
 </html>
-

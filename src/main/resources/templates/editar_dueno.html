@@ -1,71 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Editar Dueño — Dogtors</title>
-    <link rel="stylesheet" th:href="@{/index.css}">
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-[#F4F1DE] min-h-screen flex flex-col justify-between font-['Inter',sans-serif]">
+<head th:replace="~{fragmentos :: head('Editar Propietario')}"></head>
+<body class="bg-appbg text-dark font-sans antialiased min-h-screen flex flex-col">
 
-    <!-- Navbar Superior -->
-    <header class="w-full bg-white border-b border-gray-200 py-4 px-8 flex justify-between items-center">
-      <a th:href="@{/}" class="flex items-center gap-2 font-bold text-xl text-[#264653]">
-        <span class="text-2xl">🐶</span> Dogtors
-      </a>
-      <a th:href="@{/duenos/lista}" class="text-sm font-semibold text-gray-500 hover:text-[#264653]">← Volver al directorio</a>
-    </header>
+    <!-- Shared Navbar -->
+    <div th:replace="~{fragmentos :: navbar('duenos')}"></div>
 
-    <!-- Contenido Principal -->
-    <main class="flex-grow flex flex-col items-center justify-center px-4 py-12">
-      
-      <div class="bg-white w-full max-w-md p-8 rounded-2xl shadow-xl border border-gray-100">
-        <div class="text-center mb-6">
-          <h2 class="text-2xl font-bold font-['Outfit'] text-[#264653]">Editar Cliente</h2>
-          <p class="text-xs text-gray-500 mt-1">Actualiza los datos del dueño de mascota.</p>
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="bg-surface w-full max-w-md rounded-2xl shadow-sm border border-borders p-8">
+            <div class="text-center mb-8">
+                <span class="text-xs font-bold text-secondary uppercase tracking-widest block mb-1">GESTIÓN ADMINISTRATIVA</span>
+                <h1 class="text-3xl font-outfit font-bold text-primary mb-1">Editar Propietario</h1>
+                <p class="text-neutral text-sm">Actualiza los datos de contacto del cliente</p>
+            </div>
+
+            <form th:action="@{/duenos/editar}" th:object="${dueno}" method="post" class="space-y-5">
+                <!-- Hidden ID -->
+                <input type="hidden" th:field="*{id}">
+
+                <!-- Nombre -->
+                <div>
+                    <label for="nombre" class="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">Nombre Completo *</label>
+                    <input type="text" id="nombre" th:field="*{nombre}" required 
+                           class="w-full rounded-xl border border-borders bg-appbg px-4 py-2.5 text-sm text-dark placeholder-neutral focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
+                </div>
+
+                <!-- Correo -->
+                <div>
+                    <label for="correo" class="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">Correo Electrónico *</label>
+                    <input type="email" id="correo" th:field="*{correo}" required 
+                           class="w-full rounded-xl border border-borders bg-appbg px-4 py-2.5 text-sm text-dark placeholder-neutral focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
+                </div>
+
+                <!-- Contraseña -->
+                <div>
+                    <label for="password" class="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">Contraseña *</label>
+                    <input type="text" id="password" th:field="*{password}" required 
+                           class="w-full rounded-xl border border-borders bg-appbg px-4 py-2.5 text-sm text-dark placeholder-neutral focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
+                    <p class="text-[11px] text-neutral mt-1.5">Visible para fines de soporte y administración hospitalaria.</p>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="flex items-center gap-3 pt-4 border-t border-borders">
+                    <a th:href="@{/duenos/lista}" 
+                       class="flex-1 text-center py-2.5 px-4 border border-borders text-dark font-semibold text-sm rounded-xl hover:bg-appbg transition-colors">
+                        Cancelar
+                    </a>
+                    <button type="submit" 
+                            class="flex-1 py-2.5 px-4 bg-primary text-white font-semibold text-sm rounded-xl hover:bg-primary/90 transition-all shadow-sm focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                        Guardar Cambios
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <form th:action="@{/duenos/editar}" th:object="${dueno}" method="post" class="space-y-4">
-          
-          <!-- ID Oculto para que Spring Boot sepa que es una actualización -->
-          <input type="hidden" th:field="*{id}" />
-
-          <div>
-            <label class="block text-xs font-semibold text-gray-700 mb-1">Nombre Completo</label>
-            <input type="text" th:field="*{nombre}" required 
-                   class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]" />
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-gray-700 mb-1">Correo Electrónico</label>
-            <input type="email" th:field="*{correo}" required 
-                   class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]" />
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-gray-700 mb-1">Contraseña</label>
-            <input type="text" th:field="*{password}" required 
-                   class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]" />
-            <p class="text-[10px] text-gray-400 mt-1">La contraseña actual es visible para propósitos administrativos.</p>
-          </div>
-
-          <div class="flex gap-3 pt-2">
-            <a th:href="@{/duenos/lista}" class="w-1/3 bg-gray-100 text-gray-600 text-center py-3 rounded-lg font-bold text-sm hover:bg-gray-200 transition-all">
-              Cancelar
-            </a>
-            <button type="submit" class="w-2/3 bg-[#E9C46A] text-[#264653] py-3 rounded-lg font-bold text-sm shadow-md hover:opacity-95 transition-all">
-              Guardar Cambios
-            </button>
-          </div>
-        </form>
-      </div>
     </main>
 
-    <footer class="w-full text-center py-6 text-xs text-gray-500">
-      &copy; 2026 Dogtors Veterinary Hospital. Todos los derechos reservados.
-    </footer>
+    <!-- Shared Footer -->
+    <div th:replace="~{fragmentos :: footer}"></div>
 
-  </body>
+</body>
 </html>
-

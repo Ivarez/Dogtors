@@ -34,6 +34,9 @@ public class MascotaServiceImpl implements MascotaService {
     @Override
     @Transactional
     public void save(Mascota mascota, Long duenoId) {
+        if (mascota.getActiva() == null) {
+            mascota.setActiva(true);
+        }
         // Buscar el dueno y asociarlo a la mascota
         Dueno dueno = duenoRepository.findById(duenoId)
                 .orElseThrow(() -> new NotFoundException(duenoId, "dueno"));
