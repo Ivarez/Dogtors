@@ -62,7 +62,6 @@
 
         <form th:action="@{/mascotas/guardar}" th:object="${mascota}" method="post" class="space-y-8">
             <input type="hidden" th:field="*{id}">
-            <input type="hidden" th:field="*{activa}">
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 
@@ -145,6 +144,16 @@
                                        class="w-full rounded-xl border border-borders bg-appbg px-4 py-2.5 text-sm text-dark focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" 
                                        placeholder="Ej. 14.5">
                             </div>
+                        </div>
+
+                        <!-- Estado Clínico -->
+                        <div>
+                            <label for="activa" class="block text-xs font-bold text-dark uppercase tracking-wider mb-1.5">Estado del Paciente</label>
+                            <select id="activa" th:field="*{activa}" required
+                                    class="w-full rounded-xl border border-borders bg-appbg px-4 py-2.5 text-sm text-dark font-medium focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
+                                <option value="true">● Activa (En Tratamiento)</option>
+                                <option value="false">○ Inactiva (Dado de Alta)</option>
+                            </select>
                         </div>
 
                         <!-- Condición / Diagnóstico -->

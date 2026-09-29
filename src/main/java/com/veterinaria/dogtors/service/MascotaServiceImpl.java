@@ -41,6 +41,14 @@ public class MascotaServiceImpl implements MascotaService {
         Dueno dueno = duenoRepository.findById(duenoId)
                 .orElseThrow(() -> new NotFoundException(duenoId, "dueno"));
         mascota.setDueno(dueno);
+
+        // Mantener tratamientos existentes en caso de actualización
+        if (mascota.getId() != null) {
+            mascotaRepository.findById(mascota.getId()).ifPresent(existente -> {
+                mascota.setTratamientos(existente.getTratamientos());
+            });
+        }
+
         mascotaRepository.save(mascota);
     }
 
