@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorio de Propietarios | Dogtors</title>
+    
+    <!-- Bootstrap 5.3.2 CSS (Sprint 3 Requirement) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1F5D50;
+            --secondary: #7FA98F;
+            --accent1: #BBD7B0;
+            --accent2: #E07A5F;
+            --highlight: #E9C46A;
+            --dark: #202522;
+            --neutral: #707773;
+            --borders: #DDE3DF;
+            --appbg: #F7F8F5;
+            --surface: #FFFFFF;
+        }
+
+        body {
+            background-color: var(--appbg);
+            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .bg-primary-custom { background-color: var(--primary) !important; color: white; }
+        .text-primary-custom { color: var(--primary) !important; }
+        
+        .site-navbar {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--borders);
+            min-height: 80px;
+        }
+
+        .nav-link-custom {
+            color: var(--neutral) !important;
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding: 0.5rem 0.875rem !important;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .nav-link-custom:hover {
+            color: var(--dark) !important;
+            background-color: var(--appbg);
+        }
+        .nav-link-custom.active {
+            color: var(--primary) !important;
+            font-weight: 700;
+            background-color: rgba(31, 93, 80, 0.06);
+        }
+
+        .btn-brand-primary {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.75rem;
+            border: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+        .btn-brand-primary:hover {
+            background-color: #17483e;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-brand-highlight {
+            background-color: var(--highlight);
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 0.875rem;
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.75rem;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-brand-highlight:hover {
+            background-color: #dfb858;
+            color: var(--dark);
+        }
+
+        .table-card {
+            background-color: var(--surface);
+            border: 1px solid var(--borders);
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+        
+        .table > thead {
+            background-color: rgba(247, 248, 245, 0.8);
+        }
+
+        .table > thead > tr > th {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--neutral);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--borders);
+            padding: 1rem 1.5rem;
+        }
+
+        .table > tbody > tr > td {
+            vertical-align: middle;
+            border-bottom: 1px solid var(--borders);
+            padding: 1rem 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        .btn-action-edit {
+            color: var(--primary);
+            border: 1px solid var(--borders);
+            background: white;
+            border-radius: 0.5rem;
+            padding: 0.35rem 0.65rem;
+            font-size: 0.875rem;
+        }
+        .btn-action-edit:hover {
+            background-color: var(--appbg);
+            color: var(--primary);
+        }
+
+        .btn-action-delete {
+            color: var(--accent2);
+            border: 1px solid rgba(224, 122, 95, 0.3);
+            background: rgba(224, 122, 95, 0.05);
+            border-radius: 0.5rem;
+            padding: 0.35rem 0.65rem;
+            font-size: 0.875rem;
+        }
+        .btn-action-delete:hover {
+            background-color: var(--accent2);
+            color: white;
+        }
+
+        .site-footer-bootstrap {
+            background-color: var(--dark);
+            color: white;
+            padding-top: 4rem;
+            padding-bottom: 2.5rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Unified Navbar (Bootstrap 5) -->
+    <nav class="navbar navbar-expand-lg site-navbar sticky-top shadow-sm">
+        <div class="container-xl">
+            <!-- Brand Logo -->
+            <a class="navbar-brand d-flex items-center align-items-center gap-2" th:href="@{/}">
+                <img th:src="@{/images/logo.png}" alt="Logo Dogtors" style="height: 40px; width: auto;" class="me-1">
+                <div class="d-flex flex-column">
+                    <span class="fw-bold fs-4 text-primary-custom lh-1">Dogtors</span>
+                    <span class="text-uppercase text-muted" style="font-size: 10px; letter-spacing: 0.05em; font-weight: 600;">Hospital Veterinario</span>
+                </div>
+            </a>
+
+            <!-- Mobile Toggler -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#bootstrapNavbar" aria-controls="bootstrapNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links & Actions -->
+            <div class="collapse navbar-collapse" id="bootstrapNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" th:href="@{/}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" th:href="@{/duenos/login}">Portal Propietarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" th:href="@{/mascotas}">Área Médica</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom active" aria-current="page" th:href="@{/duenos/lista}">Gestión Hospitalaria</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <a th:href="@{/duenos/nueva}" class="btn btn-brand-primary">
+                        <i class="bi bi-person-plus-fill me-1"></i>Crear Dueño
+                    </a>
+                    <a th:href="@{/duenos/logout}" class="btn btn-outline-secondary" style="border-radius: 0.75rem; font-size: 0.875rem; padding: 0.625rem 1rem;">
+                        <i class="bi bi-box-arrow-right me-1"></i>Salir
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container-xl py-5">
+        
+        <!-- Header Row -->
+        <div class="row mb-4 align-items-center">
+            <div class="col-md-8">
+                <span class="text-uppercase text-muted fw-bold d-block mb-1" style="font-size: 11px; letter-spacing: 0.1em; color: var(--secondary) !important;">GESTIÓN HOSPITALARIA • PROPIETARIOS</span>
+                <h1 class="text-primary-custom fw-bold mb-1" style="font-size: 2.25rem;">Directorio de Clientes</h1>
+                <p class="text-muted mb-0">Padrón de tutores legales, vinculación a pacientes hospitalizados y datos de contacto.</p>
+            </div>
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <a th:href="@{/duenos/nueva}" class="btn btn-brand-highlight">
+                    <i class="bi bi-plus-circle me-1"></i>Registrar Nuevo Dueño
+                </a>
+            </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="table-card">
+            
+            <!-- Empty state -->
+            <div th:if="${duenos == null or #lists.isEmpty(duenos)}" class="text-center py-5 px-3">
+                <div class="p-3 bg-light rounded-circle d-inline-block mb-3">
+                    <i class="bi bi-people text-muted" style="font-size: 2.5rem;"></i>
+                </div>
+                <h4 class="text-primary-custom fw-bold">No hay clientes registrados</h4>
+                <p class="text-muted mb-4">Aún no se ha ingresado ningún tutor o dueño en la base de datos.</p>
+                <a th:href="@{/duenos/nueva}" class="btn btn-brand-primary">Registrar el primer dueño</a>
+            </div>
+
+            <!-- Table -->
+            <div th:unless="${duenos == null or #lists.isEmpty(duenos)}" class="table-responsive m-0">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre Completo</th>
+                            <th scope="col">Correo Electrónico</th>
+                            <th scope="col">Pacientes Vinculados</th>
+                            <th scope="col" class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="dueno : ${duenos}">
+                            <td class="text-muted fw-semibold">
+                                #<span th:text="${dueno.id}">1</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="rounded-circle d-flex align-items-center justify-center fw-bold" 
+                                         style="width: 36px; height: 36px; background-color: rgba(31, 93, 80, 0.08); color: var(--primary); font-size: 0.85rem; display: flex; justify-content: center; align-items: center;">
+                                        <span th:text="${#strings.substring(dueno.nombre, 0, 1)}">J</span>
+                                    </div>
+                                    <span class="fw-semibold text-dark" th:text="${dueno.nombre}">Juan Pérez</span>
+                                </div>
+                            </td>
+                            <td class="text-muted" th:text="${dueno.correo}">juan.perez@example.com</td>
+                            <td>
+                                <span class="badge" style="background-color: rgba(127, 169, 143, 0.15); color: var(--primary); font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(127, 169, 143, 0.3);">
+                                    <span th:text="${dueno.mascotas != null ? dueno.mascotas.size() : 0}">0</span> mascotas
+                                </span>
+                            </td>
+                            <td class="text-end">
+                                <a th:href="@{/duenos/editar/{id}(id=${dueno.id})}" class="btn btn-action-edit me-1" title="Editar Propietario">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a th:href="@{/duenos/borrar/{id}(id=${dueno.id})}" 
+                                   class="btn btn-action-delete" 
+                                   title="Eliminar Propietario"
+                                   onclick="return confirm('¿Estás seguro de eliminar este cliente? Sus mascotas vinculadas también serán actualizadas.');">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Table Footer -->
+            <div th:if="${duenos != null and !#lists.isEmpty(duenos)}" 
+                 class="p-3 border-top d-flex justify-content-between align-items-center" 
+                 style="background-color: rgba(247, 248, 245, 0.5); border-color: var(--borders) !important;">
+                <small class="text-muted">Total de clientes registrados: <strong th:text="${duenos.size()}">0</strong></small>
+                <small class="text-muted text-uppercase fw-bold" style="font-size: 10px; color: var(--secondary) !important;">Módulo Bootstrap 5 • Cumplimiento Sprint</small>
+            </div>
+        </div>
+    </main>
+
+    <!-- Unified Footer (Bootstrap 5 HTML) -->
+    <footer class="site-footer-bootstrap">
+        <div class="container-xl">
+            <div class="row pb-4 border-bottom border-secondary border-opacity-25 gy-4">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <img th:src="@{/images/logo.png}" alt="Logo Dogtors" style="height: 38px; width: auto; filter: brightness(0) invert(1);">
+                        <span class="fw-bold fs-4 text-white">Dogtors</span>
+                    </div>
+                    <p class="text-muted small pe-lg-4">
+                        Centro especializado en hospitalización crítica y cuidados intensivos prolongados para caninos y felinos. Excelencia clínica y acompañamiento empático.
+                    </p>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-uppercase text-white small fw-bold mb-3">Servicios</h6>
+                    <ul class="list-unstyled text-muted small">
+                        <li class="mb-2"><a th:href="@{/mascotas}" class="text-decoration-none text-muted">UCI Cuidados</a></li>
+                        <li class="mb-2"><a th:href="@{/mascotas}" class="text-decoration-none text-muted">Hospitalización</a></li>
+                        <li class="mb-2"><a th:href="@{/mascotas}" class="text-decoration-none text-muted">Monitoreo 24/7</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h6 class="text-uppercase text-white small fw-bold mb-3">Urgencias</h6>
+                    <ul class="list-unstyled text-muted small">
+                        <li class="mb-2 text-white">Admisión 24/7 Urgencias</li>
+                        <li class="mb-2">+57 (601) 789-0123</li>
+                        <li class="mb-2">emergencias@dogtors.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-uppercase text-white small fw-bold mb-3">Protocolos</h6>
+                    <ul class="list-unstyled text-muted small">
+                        <li class="mb-2"><a th:href="@{/duenos/login}" class="text-decoration-none text-muted">Portal Propietarios</a></li>
+                        <li class="mb-2"><a th:href="@{/mascotas}" class="text-decoration-none text-muted">Expedientes Médicos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-3 d-flex flex-column flex-sm-row justify-content-between align-items-center text-muted small">
+                <p class="mb-0">&copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span> Dogtors Hospital Veterinario. Todos los derechos reservados.</p>
+                <p class="mb-0 text-white-50">Infraestructura Médica de Precisión (Bootstrap 5)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3.2 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

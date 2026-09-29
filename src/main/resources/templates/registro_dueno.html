@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: head('Registro de Propietario')}"></head>
+<body class="bg-gradient-to-br from-appbg via-appbg to-accent1/15 text-dark font-sans antialiased min-h-screen flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
+
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <!-- Logo & Brand Header -->
+        <div class="flex flex-col items-center justify-center text-center">
+            <a th:href="@{/}" class="flex items-center gap-3 group mb-2">
+                <img th:src="@{/images/logo.png}" alt="Logo Dogtors" class="h-12 w-auto object-contain transform group-hover:scale-105 transition-transform duration-200">
+                <span class="font-outfit font-bold text-3xl text-primary tracking-tight">Dogtors</span>
+            </a>
+            <p class="text-xs font-bold tracking-widest text-neutral uppercase mb-4">PORTAL CLÍNICO HOSPITALARIO</p>
+
+            <h1 class="font-outfit text-3xl sm:text-4xl font-extrabold text-dark tracking-tight">
+                Registro de Propietario
+            </h1>
+            <p class="mt-1 text-sm text-neutral font-medium">
+                Crea tu cuenta para acceder al expediente clínico de tus mascotas
+            </p>
+        </div>
+    </div>
+
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="bg-surface py-8 px-6 sm:px-10 shadow-lg shadow-borders/40 rounded-2xl border border-borders">
+            
+            <form th:action="@{/duenos/nueva}" th:object="${dueno}" method="post" class="space-y-5">
+                <!-- Nombre -->
+                <div>
+                    <label for="nombre" class="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">Nombre Completo *</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
+                        <input type="text" id="nombre" th:field="*{nombre}" required 
+                               class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-borders bg-appbg text-dark text-sm placeholder-neutral focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                               placeholder="Ej. Juan Pérez">
+                    </div>
+                </div>
+
+                <!-- Correo -->
+                <div>
+                    <label for="correo" class="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">Correo Electrónico *</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.206" />
+                            </svg>
+                        </div>
+                        <input type="email" id="correo" th:field="*{correo}" required 
+                               class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-borders bg-appbg text-dark text-sm placeholder-neutral focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                               placeholder="tu@correo.com">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label for="password" class="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">Contraseña *</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <input type="password" id="password" th:field="*{password}" required 
+                               class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-borders bg-appbg text-dark text-sm placeholder-neutral focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                               placeholder="••••••••">
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-2">
+                    <button type="submit" 
+                            class="w-full flex justify-center items-center gap-2 rounded-xl bg-highlight px-4 py-3 text-sm font-bold text-dark shadow-sm hover:bg-highlight/90 focus:ring-2 focus:ring-offset-2 focus:ring-highlight transition-all transform hover:-translate-y-0.5">
+                        <span>Crear Cuenta de Propietario</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-6 pt-6 border-t border-borders text-center">
+                <p class="text-sm text-neutral">
+                    ¿Ya tienes una cuenta?
+                    <a th:href="@{/duenos/login}" class="font-bold text-primary hover:text-secondary transition-colors ml-1">
+                        Inicia sesión
+                    </a>
+                </p>
+                <div class="mt-3">
+                    <a th:href="@{/}" class="text-xs font-semibold text-neutral hover:text-dark transition-colors inline-flex items-center gap-1">
+                        &larr; Volver al Portal Principal
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center">
+            <p class="text-xs text-neutral">
+                &copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span> Dogtors. Todos los derechos reservados.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

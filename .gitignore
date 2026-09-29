@@ -1,0 +1,47 @@
+# Build output
+target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.factorypath
+.springBeans
+nbproject/
+build/
+nbbuild/
+nbdist/
+nb-miscellanea/
+
+# Maven wrapper (regenerable)
+.mvn/
+mvnw
+mvnw.cmd
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment / secrets
+.env
+
+# Compiled classes
+*.class
+*.jar
+*.war
+
+# Logs
+*.log
+spring.log
+
+# Misc
+*.bak
+*.tmp
+

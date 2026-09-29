@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: head('Editar Propietario')}"></head>
+<body class="bg-appbg text-dark font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Shared Navbar -->
+    <div th:replace="~{fragmentos :: navbar('duenos')}"></div>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="bg-surface w-full max-w-md rounded-2xl shadow-sm border border-borders p-8">
+            <div class="text-center mb-8">
+                <span class="text-xs font-bold text-secondary uppercase tracking-widest block mb-1">GESTIÓN ADMINISTRATIVA</span>
+                <h1 class="text-3xl font-outfit font-bold text-primary mb-1">Editar Propietario</h1>
+                <p class="text-neutral text-sm">Actualiza los datos de contacto del cliente</p>
+            </div>
+
+            <form th:action="@{/duenos/editar}" th:object="${dueno}" method="post" class="space-y-5">
+                <!-- Hidden ID -->
+                <input type="hidden" th:field="*{id}">
+
+                <!-- Nombre -->
+                <div>
+                    <label for="nombre" class="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">Nombre Completo *</label>
+                    <input type="text" id="nombre" th:field="*{nombre}" required 
+                           class="w-full rounded-xl border border-borders bg-appbg px-4 py-2.5 text-sm text-dark placeholder-neutral focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
+                </div>
+
+                <!-- Correo -->
+                <div>
+                    <label for="correo" class="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">Correo Electrónico *</label>
+                    <input type="email" id="correo" th:field="*{correo}" required 
+                           class="w-full rounded-xl border border-borders bg-appbg px-4 py-2.5 text-sm text-dark placeholder-neutral focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
+                </div>
+
+                <!-- Contraseña -->
+                <div>
+                    <label for="password" class="block text-xs font-bold uppercase tracking-wider text-dark mb-1.5">Contraseña *</label>
+                    <input type="text" id="password" th:field="*{password}" required 
+                           class="w-full rounded-xl border border-borders bg-appbg px-4 py-2.5 text-sm text-dark placeholder-neutral focus:bg-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
+                    <p class="text-[11px] text-neutral mt-1.5">Visible para fines de soporte y administración hospitalaria.</p>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="flex items-center gap-3 pt-4 border-t border-borders">
+                    <a th:href="@{/duenos/lista}" 
+                       class="flex-1 text-center py-2.5 px-4 border border-borders text-dark font-semibold text-sm rounded-xl hover:bg-appbg transition-colors">
+                        Cancelar
+                    </a>
+                    <button type="submit" 
+                            class="flex-1 py-2.5 px-4 bg-primary text-white font-semibold text-sm rounded-xl hover:bg-primary/90 transition-all shadow-sm focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                        Guardar Cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <div th:replace="~{fragmentos :: footer}"></div>
+
+</body>
+</html>
