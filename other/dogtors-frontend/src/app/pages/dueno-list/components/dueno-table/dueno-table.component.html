@@ -1,0 +1,36 @@
+<div class="table-responsive">
+  <table class="dueno-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>PROPIETARIO</th>
+        <th>CORREO ELECTRÓNICO</th>
+        <th class="text-right">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (dueno of duenoArray(); track dueno.id) {
+        <tr>
+          <td class="id-cell">#{{ dueno.id }}</td>
+          <td>
+            <div class="owner-cell">
+              <div class="owner-avatar">{{ dueno.nombre.charAt(0) }}</div>
+              <span class="owner-name">{{ dueno.nombre }}</span>
+            </div>
+          </td>
+          <td class="email-text">{{ dueno.correo }}</td>
+          <td class="text-right actions-cell">
+            <a [routerLink]="['/duenos', dueno.id]" class="btn-action btn-view">Ver</a>
+            <a [routerLink]="['/duenos/editar', dueno.id]" class="btn-action btn-edit">Editar</a>
+            <button type="button" class="btn-action btn-delete" (click)="eliminar(dueno)">Eliminar</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="4" class="empty-message">No hay propietarios registrados.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+

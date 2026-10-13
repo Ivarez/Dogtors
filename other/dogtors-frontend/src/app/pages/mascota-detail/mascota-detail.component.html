@@ -1,0 +1,32 @@
+<div class="detail-page">
+  <div class="container">
+    <!-- Back Link -->
+    <div class="back-nav">
+      <a routerLink="/mascotas" class="back-link">
+        &larr; Volver al Directorio de Pacientes
+      </a>
+    </div>
+
+    @if (mascota) {
+      <div class="detail-card">
+        <!-- Componente hijo: Información del paciente -->
+        <app-pet-info
+          [mascota]="mascota"
+          (estadoCambiado)="cambiarEstado()">
+        </app-pet-info>
+
+        <!-- Componente hijo: Historial de tratamientos -->
+        <app-treatments-history
+          [tratamientos]="mascota.tratamientos || []">
+        </app-treatments-history>
+      </div>
+    } @else {
+      <!-- Not Found -->
+      <div class="not-found-card">
+        <h2>Paciente no encontrado</h2>
+        <p>No se encontró ninguna mascota con el identificador solicitado.</p>
+        <a routerLink="/mascotas" class="btn-primary">Regresar al Directorio</a>
+      </div>
+    }
+  </div>
+</div>

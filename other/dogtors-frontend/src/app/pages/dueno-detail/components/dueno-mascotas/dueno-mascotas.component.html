@@ -1,0 +1,30 @@
+<section class="mascotas-section">
+  <h3>Mascotas Registradas</h3>
+  <p class="section-sub">Pacientes asociados a este propietario.</p>
+
+  @if (mascotas().length > 0) {
+    <div class="mascotas-grid">
+      @for (m of mascotas(); track m.id) {
+        <a [routerLink]="['/mascotas', m.id]" class="mascota-card">
+          @if (m.fotoUrl) {
+            <img [src]="m.fotoUrl" [alt]="m.nombre" class="pet-photo" />
+          } @else {
+            <div class="pet-photo placeholder">🐾</div>
+          }
+          <div class="pet-body">
+            <div class="pet-name">{{ m.nombre }}</div>
+            <div class="pet-meta">{{ m.especie }} · {{ m.raza }}</div>
+            @if (m.activa) {
+              <span class="badge badge-activa">Hospitalizado</span>
+            } @else {
+              <span class="badge badge-inactiva">Alta Médica</span>
+            }
+          </div>
+        </a>
+      }
+    </div>
+  } @else {
+    <div class="no-mascotas">Este propietario no tiene mascotas registradas.</div>
+  }
+</section>
+

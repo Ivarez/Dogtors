@@ -1,0 +1,19 @@
+<header class="navbar-header">
+  <div class="navbar-container">
+    <a routerLink="/" class="navbar-brand">
+      <img src="/images/logo.png" alt="Dogtors Logo" class="navbar-logo" />
+      <span class="brand-text">Dogtors</span>
+    </a>
+
+    <nav class="navbar-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
+      <a routerLink="/mascotas" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Mascotas</a>
+      <a routerLink="/mascotas/nueva" routerLinkActive="active">Registrar Mascota</a>
+      <a routerLink="/duenos" routerLinkActive="active">Dueños</a>
+    </nav>
+
+    <div class="navbar-actions">
+      <a routerLink="/mascotas/nueva" class="btn-nuevo">+ Nuevo Ingreso</a>
+    </div>
+  </div>
+</header>

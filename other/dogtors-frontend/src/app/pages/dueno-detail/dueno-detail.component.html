@@ -1,0 +1,26 @@
+<div class="detail-page">
+  <div class="container">
+    <div class="back-nav">
+      <a routerLink="/duenos" class="back-link">&larr; Volver al Directorio</a>
+    </div>
+
+    @if (dueno) {
+      <div class="detail-card">
+        <app-dueno-info
+          [dueno]="dueno"
+          [cantidadMascotas]="mascotas.length"
+          (eliminado)="eliminarDueno()">
+        </app-dueno-info>
+
+        <app-dueno-mascotas [mascotas]="mascotas"></app-dueno-mascotas>
+      </div>
+    } @else {
+      <div class="not-found">
+        <h2>Propietario no encontrado</h2>
+        <p>El cliente que busca no existe o fue eliminado.</p>
+        <a routerLink="/duenos" class="btn-primary">Volver al Directorio</a>
+      </div>
+    }
+  </div>
+</div>
+

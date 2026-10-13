@@ -1,0 +1,30 @@
+<div class="dueno-list-page">
+  <div class="container">
+    <!-- Header -->
+    <div class="page-header">
+      <div>
+        <div class="eyebrow">GESTIÓN HOSPITALARIA</div>
+        <h1>Directorio de Clientes</h1>
+        <p class="subtitle">Propietarios registrados y responsables de los pacientes del hospital.</p>
+      </div>
+      <div>
+        <a routerLink="/duenos/nuevo" class="btn-primary">+ Registrar Propietario</a>
+      </div>
+    </div>
+
+    <section class="table-section">
+      <div class="section-title-row">
+        <h2>
+          Propietarios
+          <span class="count-badge">{{ duenos.length }}</span>
+        </h2>
+      </div>
+
+      <app-dueno-table
+        [duenoArray]="duenos"
+        (duenoEliminado)="eliminarDueno($event)">
+      </app-dueno-table>
+    </section>
+  </div>
+</div>
+

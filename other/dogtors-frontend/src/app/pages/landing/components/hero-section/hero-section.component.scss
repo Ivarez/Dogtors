@@ -1,0 +1,159 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Banner */
+.banner-pill {
+  background: var(--accent1);
+  text-align: center;
+  padding: 12px 0;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(31, 93, 80, 0.08);
+    color: var(--primary);
+    padding: 6px 20px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+  z-index: 1;
+}
+
+.hero-gradient {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(32, 37, 34, 0.95) 0%,
+    rgba(32, 37, 34, 0.7) 50%,
+    rgba(32, 37, 34, 0.3) 100%
+  );
+  z-index: 2;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding: 80px 0;
+}
+
+.hero-text {
+  max-width: 560px;
+}
+
+.eyebrow {
+  color: var(--accent1);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  color: var(--surface);
+  margin: 0 0 20px;
+  font-weight: 800;
+
+  em {
+    font-style: normal;
+    text-decoration: underline;
+    text-decoration-color: var(--highlight);
+    text-underline-offset: 6px;
+  }
+}
+
+.hero .lead {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--surface);
+  padding: 14px 28px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover { background: var(--secondary); }
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--surface);
+  padding: 14px 28px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: background 0.2s;
+
+  &:hover { background: rgba(255, 255, 255, 0.08); }
+}
+
+.hero-checks {
+  display: flex;
+  gap: 24px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+}

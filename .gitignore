@@ -45,3 +45,5 @@ spring.log
 *.bak
 *.tmp
 
+#Transcripts
+*.transcript

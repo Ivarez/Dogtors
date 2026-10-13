@@ -1,0 +1,123 @@
+<div class="form-page">
+  <div class="container">
+    <div class="back-nav">
+      <a routerLink="/mascotas" class="back-link">&larr; Volver al Directorio</a>
+    </div>
+
+    <div class="form-card">
+      <div class="form-header">
+        <div class="eyebrow">{{ isEdit ? 'MODIFICACIÓN DE EXPEDIENTE' : 'NUEVO INGRESO HOSPITALARIO' }}</div>
+        <h1>{{ isEdit ? 'Editar Paciente' : 'Registro de Mascota' }}</h1>
+        <p class="subtitle">Complete los campos obligatorios del expediente clínico del paciente.</p>
+      </div>
+
+      <form [formGroup]="mascotaForm" (ngSubmit)="handleSubmit()" class="form-grid">
+        <!-- Propietario — asociación con OBJETO, no con ID -->
+        <div class="form-group full-width">
+          <label for="dueno">Propietario Responsable *</label>
+          <select id="dueno" formControlName="dueno" [compareWith]="compararDuenos" class="form-control">
+            <option [ngValue]="null" disabled>-- Seleccione un propietario --</option>
+            @for (d of duenos; track d.id) {
+              <option [ngValue]="d">{{ d.nombre }} ({{ d.correo }})</option>
+            }
+          </select>
+          @if (mascotaForm.get('dueno')?.touched && mascotaForm.get('dueno')?.invalid) {
+            <span class="error-msg">Debe seleccionar un propietario para el paciente.</span>
+          }
+        </div>
+
+        <!-- Nombre -->
+        <app-form-field
+          label="Nombre de la Mascota *"
+          fieldId="nombre"
+          [control]="$any(mascotaForm.get('nombre'))"
+          placeholder="Ej: Max, Luna..."
+          errorMessage="El nombre es obligatorio y debe tener al menos 2 caracteres.">
+        </app-form-field>
+
+        <!-- Especie -->
+        <div class="form-group">
+          <label for="especie">Especie *</label>
+          <select id="especie" formControlName="especie" class="form-control">
+            <option value="Perro">Perro</option>
+            <option value="Gato">Gato</option>
+          </select>
+        </div>
+
+        <!-- Raza -->
+        <app-form-field
+          label="Raza *"
+          fieldId="raza"
+          [control]="$any(mascotaForm.get('raza'))"
+          placeholder="Ej: Golden Retriever, Criollo..."
+          errorMessage="La raza es obligatoria.">
+        </app-form-field>
+
+        <!-- Edad -->
+        <app-form-field
+          label="Edad (Años) *"
+          fieldId="edad"
+          type="number"
+          [control]="$any(mascotaForm.get('edad'))"
+          placeholder="Ej: 4"
+          errorMessage="Ingrese una edad válida (0 a 35 años).">
+        </app-form-field>
+
+        <!-- Peso -->
+        <app-form-field
+          label="Peso Corporal (kg) *"
+          fieldId="peso"
+          type="number"
+          [control]="$any(mascotaForm.get('peso'))"
+          placeholder="Ej: 14.5"
+          errorMessage="Ingrese un peso válido mayor a 0 kg.">
+        </app-form-field>
+
+        <!-- Estado -->
+        <div class="form-group">
+          <label for="activa">Estado Clínico *</label>
+          <select id="activa" formControlName="activa" class="form-control">
+            <option [ngValue]="true">Hospitalizado (Activo)</option>
+            <option [ngValue]="false">Dado de Alta (Inactivo)</option>
+          </select>
+        </div>
+
+        <!-- URL de Fotografía -->
+        <app-form-field
+          label="URL de Fotografía Clínica (Opcional)"
+          fieldId="fotoUrl"
+          type="url"
+          [control]="$any(mascotaForm.get('fotoUrl'))"
+          placeholder="https://images.unsplash.com/..."
+          hint="Si se deja vacío, el sistema mostrará un avatar por defecto."
+          [isFullWidth]="true">
+        </app-form-field>
+
+        <!-- Diagnóstico / Enfermedad -->
+        <div class="form-group full-width">
+          <label for="enfermedad">Diagnóstico Clínico / Motivo de Consulta *</label>
+          <textarea
+            id="enfermedad"
+            formControlName="enfermedad"
+            rows="3"
+            placeholder="Describa la sintomatología o el cuadro clínico de ingreso..."
+            class="form-control textarea"></textarea>
+          @if (mascotaForm.get('enfermedad')?.touched && mascotaForm.get('enfermedad')?.invalid) {
+            <span class="error-msg">El diagnóstico clínico es obligatorio.</span>
+          }
+        </div>
+
+        <!-- Botones -->
+        <div class="form-actions full-width">
+          <a routerLink="/mascotas" class="btn-cancel">Cancelar</a>
+          <button
+            type="submit"
+            [disabled]="!mascotaForm.valid"
+            class="btn-submit">
+            {{ isEdit ? 'Guardar Cambios' : 'Registrar Ingreso' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

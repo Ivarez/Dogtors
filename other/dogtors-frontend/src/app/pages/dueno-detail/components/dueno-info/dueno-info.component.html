@@ -1,0 +1,25 @@
+<div class="info-card">
+  <div class="avatar">{{ dueno().nombre.charAt(0) }}</div>
+
+  <div class="info-body">
+    <div class="eyebrow">CLIENTE #{{ dueno().id }}</div>
+    <h2>{{ dueno().nombre }}</h2>
+
+    <div class="stats-row">
+      <div class="mini-stat">
+        <span class="label">CORREO</span>
+        <span class="value">{{ dueno().correo }}</span>
+      </div>
+      <div class="mini-stat">
+        <span class="label">MASCOTAS</span>
+        <span class="value">{{ cantidadMascotas() }}</span>
+      </div>
+    </div>
+
+    <div class="actions-row">
+      <a [routerLink]="['/duenos/editar', dueno().id]" class="btn-primary">Editar Cliente</a>
+      <button type="button" class="btn-danger" (click)="eliminar()">Eliminar</button>
+    </div>
+  </div>
+</div>
+

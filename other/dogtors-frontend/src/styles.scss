@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Dogtors — Global Stylesheet
+   Color Palette:
+   Primary: #1F5D50 | Secondary: #7FA98F | Accent1: #BBD7B0 | Accent2: #E07A5F
+   Highlight: #E9C46A | Dark: #202522 | Neutral: #707773
+   Borders: #DDE3DF | AppBG: #F7F8F5 | Surface: #FFFFFF
+   ========================================================================== */
+
+:root {
+  --primary: #1F5D50;
+  --secondary: #7FA98F;
+  --accent1: #BBD7B0;
+  --accent2: #E07A5F;
+  --highlight: #E9C46A;
+  --dark: #202522;
+  --neutral: #707773;
+  --borders: #DDE3DF;
+  --appbg: #F7F8F5;
+  --surface: #FFFFFF;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--appbg);
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  color: var(--dark);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

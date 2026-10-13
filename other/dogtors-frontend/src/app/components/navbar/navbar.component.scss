@@ -1,0 +1,102 @@
+.navbar-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--borders);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+
+  .navbar-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .brand-text {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--dark);
+  }
+}
+
+.navbar-links {
+  display: flex;
+  gap: 28px;
+
+  a {
+    color: var(--neutral);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    padding: 6px 0;
+    position: relative;
+
+    &:hover {
+      color: var(--dark);
+    }
+
+    &.active {
+      color: var(--primary);
+      font-weight: 600;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .btn-nuevo {
+    background: var(--primary);
+    color: var(--surface);
+    padding: 9px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+
+    &:hover {
+      background: var(--secondary);
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-links {
+    gap: 14px;
+    font-size: 0.8rem;
+  }
+  .navbar-actions {
+    display: none;
+  }
+}

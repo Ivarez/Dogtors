@@ -1,0 +1,35 @@
+<div class="treatments-section">
+  <h3>Historial Terapéutico y Farmacológico</h3>
+  <p class="section-sub">Tratamientos suministrados durante la hospitalización.</p>
+
+  @if (tratamientos().length > 0) {
+    <div class="treatments-table-wrapper">
+      <table class="treatments-table">
+        <thead>
+          <tr>
+            <th>FECHA</th>
+            <th>VETERINARIO TRATANTE</th>
+            <th>FÁRMACO APLICADO</th>
+            <th>OBSERVACIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (t of tratamientos(); track t.id) {
+            <tr>
+              <td><strong>{{ t.fecha }}</strong></td>
+              <td>{{ t.veterinario?.nombre || 'Médico de turno' }}</td>
+              <td>
+                <span class="drug-tag">{{ t.droga?.nombre || 'Fármaco hospitalario' }}</span>
+              </td>
+              <td>{{ t.observaciones }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <div class="no-treatments">
+      <p>No registra tratamientos farmacológicos administrados actualmente.</p>
+    </div>
+  }
+</div>

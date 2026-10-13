@@ -1,0 +1,67 @@
+<div class="table-responsive">
+  <table class="mascota-table">
+    <thead>
+      <tr>
+        <th>PACIENTE</th>
+        <th>ESPECIE / RAZA</th>
+        <th>DUEÑO</th>
+        <th>DIAGNÓSTICO</th>
+        <th>ESTADO</th>
+        <th class="text-right">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (mascota of mascotaArray(); track mascota.id) {
+        <tr>
+          <td>
+            <div class="patient-cell">
+              @if (mascota.fotoUrl) {
+                <img [src]="mascota.fotoUrl" [alt]="mascota.nombre" class="pet-avatar" />
+              } @else {
+                <div class="pet-avatar-placeholder">🐾</div>
+              }
+              <div>
+                <div class="pet-name">{{ mascota.nombre }}</div>
+                <div class="pet-meta">{{ mascota.edad }} años · {{ mascota.peso }} kg</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="species-text">{{ mascota.especie }}</div>
+            <div class="breed-text">{{ mascota.raza }}</div>
+          </td>
+          <td>
+            <span class="owner-name">{{ mascota.dueno?.nombre || 'Sin dueño asignado' }}</span>
+          </td>
+          <td>
+            <span class="disease-text">{{ mascota.enfermedad }}</span>
+          </td>
+          <td>
+            @if (mascota.activa) {
+              <span class="badge badge-activa">Hospitalizado</span>
+            } @else {
+              <span class="badge badge-inactiva">Alta Médica</span>
+            }
+          </td>
+          <td class="text-right actions-cell">
+            <a [routerLink]="['/mascotas', mascota.id]" class="btn-action btn-view" title="Ver Expediente">
+              Ver
+            </a>
+            <a [routerLink]="['/mascotas/editar', mascota.id]" class="btn-action btn-edit" title="Editar Mascota">
+              Editar
+            </a>
+            <button type="button" class="btn-action btn-toggle" (click)="cambiarEstado(mascota)">
+              {{ mascota.activa ? 'Dar Alta' : 'Reactivar' }}
+            </button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6" class="empty-message">
+            No hay pacientes en esta sección.
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

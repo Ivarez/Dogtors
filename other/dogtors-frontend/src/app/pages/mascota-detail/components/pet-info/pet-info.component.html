@@ -1,0 +1,82 @@
+<div class="detail-grid">
+  <!-- Left Column: Photo -->
+  <div class="photo-column">
+    @if (mascota().fotoUrl) {
+      <img [src]="mascota().fotoUrl" [alt]="mascota().nombre" class="pet-full-photo" />
+    } @else {
+      <div class="photo-placeholder">
+        <span>🐾</span>
+        <p>Sin fotografía clínica</p>
+      </div>
+    }
+    <div class="photo-tag">
+      {{ mascota().especie }} · {{ mascota().raza }}
+    </div>
+  </div>
+
+  <!-- Right Column: Medical Info -->
+  <div class="info-column">
+    <div class="header-row">
+      <div>
+        <div class="eyebrow">EXPEDIENTE #{{ mascota().id }}</div>
+        <h2 class="pet-title">{{ mascota().nombre }}</h2>
+      </div>
+      <div>
+        @if (mascota().activa) {
+          <span class="badge badge-activa">Hospitalizado</span>
+        } @else {
+          <span class="badge badge-inactiva">Alta Médica</span>
+        }
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="stats-row">
+      <div class="mini-stat">
+        <span class="stat-label">ESPECIE</span>
+        <span class="stat-value">{{ mascota().especie }}</span>
+      </div>
+      <div class="mini-stat">
+        <span class="stat-label">RAZA</span>
+        <span class="stat-value">{{ mascota().raza }}</span>
+      </div>
+      <div class="mini-stat">
+        <span class="stat-label">EDAD</span>
+        <span class="stat-value">{{ mascota().edad }} años</span>
+      </div>
+      <div class="mini-stat">
+        <span class="stat-label">PESO</span>
+        <span class="stat-value">{{ mascota().peso }} kg</span>
+      </div>
+    </div>
+
+    <!-- Owner Box -->
+    <div class="owner-box">
+      <span class="owner-box-title">PROPIETARIO RESPONSABLE</span>
+      @if (mascota().dueno) {
+        <div class="owner-info">
+          <strong>{{ mascota().dueno?.nombre }}</strong>
+          <span class="owner-email">{{ mascota().dueno?.correo }}</span>
+        </div>
+      } @else {
+        <p class="no-owner">Sin propietario registrado</p>
+      }
+    </div>
+
+    <!-- Diagnosis Box -->
+    <div class="diagnosis-box">
+      <span class="diagnosis-title">DIAGNÓSTICO CLÍNICO PRINCIPAL</span>
+      <p class="diagnosis-text">{{ mascota().enfermedad }}</p>
+    </div>
+
+    <!-- Actions Row -->
+    <div class="actions-row">
+      <a [routerLink]="['/mascotas/editar', mascota().id]" class="btn-primary">
+        Editar Expediente
+      </a>
+      <button type="button" class="btn-outline" (click)="cambiarEstado()">
+        {{ mascota().activa ? 'Dar de Alta' : 'Reactivar' }}
+      </button>
+    </div>
+  </div>
+</div>

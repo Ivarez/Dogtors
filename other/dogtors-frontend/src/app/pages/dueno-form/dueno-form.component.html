@@ -1,0 +1,53 @@
+<div class="form-page">
+  <div class="container">
+    <div class="back-nav">
+      <a routerLink="/duenos" class="back-link">&larr; Volver al Directorio</a>
+    </div>
+
+    <div class="form-card">
+      <div class="form-header">
+        <div class="eyebrow">{{ isEdit ? 'MODIFICACIÓN DE CLIENTE' : 'NUEVO PROPIETARIO' }}</div>
+        <h1>{{ isEdit ? 'Editar Cliente' : 'Registro de Propietario' }}</h1>
+        <p class="subtitle">Complete los datos del propietario responsable del paciente.</p>
+      </div>
+
+      <form [formGroup]="duenoForm" (ngSubmit)="handleSubmit()" class="form-grid">
+        <app-form-field
+          label="Nombre Completo *"
+          fieldId="nombre"
+          [control]="$any(duenoForm.get('nombre'))"
+          placeholder="Ej: Juan Pérez"
+          errorMessage="El nombre es obligatorio y debe tener al menos 3 caracteres."
+          [isFullWidth]="true">
+        </app-form-field>
+
+        <app-form-field
+          label="Correo Electrónico *"
+          fieldId="correo"
+          type="email"
+          [control]="$any(duenoForm.get('correo'))"
+          placeholder="Ej: juan.perez&#64;correo.com"
+          errorMessage="Ingrese un correo electrónico válido.">
+        </app-form-field>
+
+        <app-form-field
+          label="Contraseña *"
+          fieldId="password"
+          type="text"
+          [control]="$any(duenoForm.get('password'))"
+          placeholder="Mínimo 6 caracteres"
+          errorMessage="La contraseña debe tener al menos 6 caracteres."
+          hint="La contraseña es visible con fines administrativos.">
+        </app-form-field>
+
+        <div class="form-actions full-width">
+          <a routerLink="/duenos" class="btn-cancel">Cancelar</a>
+          <button type="submit" [disabled]="!duenoForm.valid" class="btn-submit">
+            {{ isEdit ? 'Guardar Cambios' : 'Registrar Propietario' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

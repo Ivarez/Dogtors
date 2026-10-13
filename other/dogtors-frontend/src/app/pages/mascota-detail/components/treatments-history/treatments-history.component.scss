@@ -1,0 +1,81 @@
+:host {
+  display: block;
+}
+
+.treatments-section {
+  padding: 32px;
+
+  h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 0 0 4px;
+    color: var(--dark);
+  }
+
+  .section-sub {
+    color: var(--neutral);
+    font-size: 0.85rem;
+    margin: 0 0 20px;
+  }
+}
+
+.treatments-table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--borders);
+}
+
+.treatments-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+
+  thead {
+    background: #FAFBFA;
+    border-bottom: 1px solid var(--borders);
+
+    th {
+      padding: 12px 16px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--neutral);
+      letter-spacing: 0.05em;
+      text-align: left;
+    }
+  }
+
+  tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--borders);
+    color: var(--dark);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .drug-tag {
+    background: rgba(187, 215, 176, 0.35);
+    color: var(--primary);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    display: inline-block;
+  }
+}
+
+.no-treatments {
+  background: #FAFBFA;
+  border: 1px dashed var(--borders);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  color: var(--neutral);
+  font-size: 0.875rem;
+
+  p {
+    margin: 0;
+  }
+}

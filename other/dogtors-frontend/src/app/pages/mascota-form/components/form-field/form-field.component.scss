@@ -1,0 +1,46 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &.full-width {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: 0.02em;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--borders);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--dark);
+    background: #FAFBFA;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px rgba(31, 93, 80, 0.1);
+    }
+  }
+
+  .error-msg {
+    color: var(--accent2);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .field-hint {
+    color: var(--neutral);
+    font-size: 0.75rem;
+  }
+}

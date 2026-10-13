@@ -1,0 +1,15 @@
+<div class="form-group" [class.full-width]="isFullWidth()">
+  <label [for]="fieldId()">{{ label() }}</label>
+  <input
+    [id]="fieldId()"
+    [type]="type()"
+    [formControl]="control()"
+    [placeholder]="placeholder()"
+    class="form-control" />
+  @if (control().touched && control().invalid) {
+    <span class="error-msg">{{ errorMessage() }}</span>
+  }
+  @if (hint()) {
+    <span class="field-hint">{{ hint() }}</span>
+  }
+</div>

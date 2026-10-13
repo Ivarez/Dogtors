@@ -1,0 +1,242 @@
+:host {
+  display: block;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  border-bottom: 1px solid var(--borders);
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.photo-column {
+  position: relative;
+  background: #f0f2ef;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .pet-full-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .photo-placeholder {
+    text-align: center;
+    color: var(--neutral);
+
+    span {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 0.85rem;
+      margin: 0;
+    }
+  }
+
+  .photo-tag {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(32, 37, 34, 0.75);
+    color: var(--surface);
+    backdrop-filter: blur(4px);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+}
+
+.info-column {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+
+  .eyebrow {
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  .pet-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0;
+    color: var(--dark);
+  }
+}
+
+.badge {
+  display: inline-flex;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  &.badge-activa {
+    background: rgba(31, 93, 80, 0.12);
+    color: var(--primary);
+  }
+
+  &.badge-inactiva {
+    background: rgba(224, 122, 95, 0.12);
+    color: var(--accent2);
+  }
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mini-stat {
+    background: #FAFBFA;
+    border: 1px solid var(--borders);
+    border-radius: 10px;
+    padding: 10px 12px;
+
+    .stat-label {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--neutral);
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+
+    .stat-value {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+  }
+}
+
+.owner-box {
+  background: #FAFBFA;
+  border: 1px solid var(--borders);
+  border-radius: 12px;
+  padding: 14px 18px;
+
+  .owner-box-title {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--neutral);
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  .owner-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    strong {
+      color: var(--dark);
+      font-size: 0.95rem;
+    }
+
+    .owner-email {
+      color: var(--neutral);
+      font-size: 0.85rem;
+    }
+  }
+
+  .no-owner {
+    color: var(--neutral);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+}
+
+.diagnosis-box {
+  border-left: 3px solid var(--primary);
+  background: rgba(31, 93, 80, 0.04);
+  padding: 14px 16px;
+  border-radius: 0 10px 10px 0;
+
+  .diagnosis-title {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+
+  .diagnosis-text {
+    color: var(--dark);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+.actions-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+
+  .btn-primary {
+    background: var(--primary);
+    color: var(--surface);
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+
+    &:hover {
+      background: var(--secondary);
+    }
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--dark);
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border: 1px solid var(--borders);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #eee;
+    }
+  }
+}
