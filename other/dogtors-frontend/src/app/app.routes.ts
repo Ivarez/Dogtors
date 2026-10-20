@@ -8,6 +8,9 @@ import { DuenoFormComponent } from './pages/dueno-form/dueno-form.component';
 import { DuenoDetailComponent } from './pages/dueno-detail/dueno-detail.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PerfilDuenoComponent } from './pages/perfil-dueno/perfil-dueno.component';
+import { MedicamentosExcelComponent } from './pages/medicamentos-excel/medicamentos-excel.component';
+import { TratamientoFormComponent } from './pages/tratamiento-form/tratamiento-form.component';
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -21,5 +24,10 @@ export const routes: Routes = [
   { path: 'duenos/nuevo', component: DuenoFormComponent },
   { path: 'duenos/editar/:id', component: DuenoFormComponent },
   { path: 'duenos/:id', component: DuenoDetailComponent },
+  { path: 'medicamentos', component: MedicamentosExcelComponent },
+  { path: 'drogas', redirectTo: 'medicamentos' },
+  { path: 'tratamientos', component: TratamientoFormComponent },
+  { path: 'tratamientos/nuevo', component: TratamientoFormComponent },
+  { path: 'error', component: ErrorPageComponent },
   { path: '**', redirectTo: '' }
 ];

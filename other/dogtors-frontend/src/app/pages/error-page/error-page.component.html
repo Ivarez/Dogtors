@@ -1,0 +1,70 @@
+<div class="error-screen">
+  <div class="error-card">
+    <!-- Contingency Protocol Header -->
+    <div class="protocol-header">
+      <span class="red-dot">●</span>
+      <span class="protocol-text">PROTOCOLO DE CONTINGENCIA</span>
+      <span class="separator">&bull;</span>
+      <span class="protocol-code">{{ protocolo }}</span>
+    </div>
+
+    <!-- Illustrated Medical Icon -->
+    <div class="error-icon-circle">
+      <div class="circle-inner">
+        <svg class="paw-icon" width="46" height="46" viewBox="0 0 24 24" fill="#1F5D50">
+          <ellipse cx="8.5" cy="5" rx="2" ry="3"/>
+          <ellipse cx="15.5" cy="5" rx="2" ry="3"/>
+          <ellipse cx="5" cy="10" rx="2" ry="3"/>
+          <ellipse cx="19" cy="10" rx="2" ry="3"/>
+          <path d="M12 11c-3.5 0-6 2.5-6 6.5 0 2 1.5 3.5 3.5 3.5 1.5 0 2-1 2.5-1s1 1 2.5 1c2 0 3.5-1.5 3.5-3.5 0-4-2.5-6.5-6-6.5z"/>
+        </svg>
+        <span class="cross-badge">💊</span>
+      </div>
+    </div>
+
+    <!-- Error Titles -->
+    <div class="error-code-num">{{ codigo }}</div>
+    <h1 class="error-headline">{{ titulo }}</h1>
+    <p class="error-description">
+      {{ mensaje }}
+    </p>
+
+    <!-- Suggestion Box -->
+    <div class="suggestion-box">
+      <div class="sugg-icon">ℹ️</div>
+      <div class="sugg-text">
+        <strong>Sugerencia clínica</strong>
+        <p>{{ sugerencia }}</p>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="action-buttons">
+      <a routerLink="/" class="btn-primary-return">
+        <span class="arrow-left">&larr;</span>
+        Regresar al Inicio
+      </a>
+      <a routerLink="/medicamentos" class="btn-link-action">
+        <span class="icon-help">📦</span>
+        Ir a Cargar Excel de Drogas
+      </a>
+    </div>
+
+    <!-- Technical Incident Footer -->
+    <div class="incident-footer">
+      <div class="node-info">
+        <span class="status-dot">●</span> Nodo UCI Central: <strong>ACTIVO-04</strong>
+      </div>
+      <button type="button" class="btn-copy-incident" (click)="copiarIncidente()">
+        📋 Copiar ID Incidente
+      </button>
+    </div>
+  </div>
+
+  <div class="bottom-brand">
+    <span class="paw-symbol">🐾</span>
+    <strong>Dogtors</strong>
+    <span class="divider">|</span>
+    <span>Hospitalización &amp; Cuidados Críticos</span>
+  </div>
+</div>

@@ -1,0 +1,272 @@
+<div class="excel-page">
+  <div class="container">
+    <!-- Breadcrumb / Back nav -->
+    <div class="back-nav">
+      <a routerLink="/mascotas" class="back-link">&larr; Volver al Portal de Pacientes</a>
+    </div>
+
+    <!-- Header Section -->
+    <div class="page-header">
+      <div class="header-left">
+        <span class="badge-tag">MÓDULO DE FARMACIA & LOGÍSTICA</span>
+        <h1>Carga de Catálogo e Inventario Farmacológico</h1>
+        <p class="subtitle">
+          Actualice el maestro de medicamentos e insumos hospitalarios mediante la importación de archivos Excel oficiales (.xlsx).
+        </p>
+      </div>
+      <div class="header-actions">
+        <a routerLink="/tratamientos/nuevo" class="btn-action-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Nuevo Tratamiento
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats Summary Cards -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon icon-primary">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Total Referencias</span>
+          <span class="stat-value">{{ medicamentos.length }}</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-success">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Unidades en Bodega</span>
+          <span class="stat-value">{{ totalDisponibles }}</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-warning">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Sin Stock (0 disp.)</span>
+          <span class="stat-value" [class.alert-number]="totalAgotados > 0">{{ totalAgotados }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert Messages -->
+    @if (mensajeExito) {
+      <div class="alert-box alert-success">
+        <div class="alert-icon">✓</div>
+        <div class="alert-content">
+          <h4>¡Carga Completada con Éxito!</h4>
+          <p>{{ mensajeExito }}</p>
+          @if (medicamentosCargadosContador !== null) {
+            <span class="alert-sub">Se registraron o actualizaron {{ medicamentosCargadosContador }} medicamentos en el sistema.</span>
+          }
+        </div>
+        <button type="button" class="btn-close-alert" (click)="mensajeExito = ''">✕</button>
+      </div>
+    }
+
+    @if (mensajeError) {
+      <div class="alert-box alert-danger">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+          <h4>Error en la Operación</h4>
+          <p>{{ mensajeError }}</p>
+        </div>
+        <button type="button" class="btn-close-alert" (click)="mensajeError = ''">✕</button>
+      </div>
+    }
+
+    <!-- Upload Card -->
+    <div class="upload-section-card">
+      <div class="section-title-wrap">
+        <h2>Importar Archivo Excel de Medicamentos</h2>
+        <p>Cargue un archivo .xlsx con las columnas requeridas (Nombre, Precio Venta, Precio Compra, Unidades Disponibles).</p>
+      </div>
+
+      <div 
+        class="dropzone"
+        [class.dragging]="estaArrastrando"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)">
+        
+        <input 
+          type="file" 
+          #fileInput 
+          accept=".xlsx, .xls"
+          (change)="onFileSelected($event)" 
+          style="display: none;" />
+
+        <div class="dropzone-inner">
+          <div class="dropzone-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="12" y1="18" x2="12" y2="12"></line>
+              <polyline points="9 15 12 12 15 15"></polyline>
+            </svg>
+          </div>
+
+          @if (!archivoSeleccionado) {
+            <div class="dropzone-text">
+              <p class="main-prompt">
+                Arrastre y suelte su archivo Excel aquí, o
+                <button type="button" class="btn-inline-browse" (click)="fileInput.click()">examine su equipo</button>
+              </p>
+              <span class="format-hint">Formatos soportados: .xlsx, .xls (Microsoft Excel)</span>
+            </div>
+          } @else {
+            <div class="file-ready-box">
+              <div class="file-icon-badge">XLSX</div>
+              <div class="file-meta">
+                <span class="file-name">{{ nombreArchivo }}</span>
+                <span class="file-size">{{ tamanoArchivo }}</span>
+              </div>
+              <button type="button" class="btn-remove-file" (click)="archivoSeleccionado = null; nombreArchivo = ''">Cambiar archivo</button>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="upload-actions">
+        <button 
+          type="button" 
+          class="btn-primary-upload"
+          [disabled]="!archivoSeleccionado || subiendoExcel"
+          (click)="subirArchivo()">
+          @if (subiendoExcel) {
+            <span class="spinner-small"></span> Procesando Excel...
+          } @else {
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            Subir y Procesar Archivo
+          }
+        </button>
+
+        <div class="divider-text">ó también</div>
+
+        <button 
+          type="button" 
+          class="btn-default-server"
+          [disabled]="subiendoExcel"
+          (click)="cargarDefaultServidor()"
+          title="Carga directa de other/Medicamentos.xlsx alojado en el servidor">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          </svg>
+          Cargar Excel por Defecto del Servidor
+        </button>
+      </div>
+    </div>
+
+    <!-- Inventory Table Card -->
+    <div class="inventory-card">
+      <div class="inventory-header">
+        <div class="title-with-badge">
+          <h2>Catálogo e Inventario en Bodega</h2>
+          <span class="counter-badge">{{ medicamentosFiltrados.length }} fármacos</span>
+        </div>
+
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="text" 
+            [(ngModel)]="filtroBusqueda" 
+            placeholder="Buscar por nombre de medicamento..." />
+        </div>
+      </div>
+
+      @if (cargandoLista) {
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>Consultando catálogo de medicamentos...</p>
+        </div>
+      } @else if (medicamentos.length === 0) {
+        <div class="empty-inventory-state">
+          <div class="empty-icon">💊</div>
+          <h3>No hay medicamentos registrados en el inventario</h3>
+          <p>El inventario se encuentra actualmente vacío. Utilice el formulario de arriba para cargar el archivo Excel de medicamentos.</p>
+          <button type="button" class="btn-action-primary" (click)="cargarDefaultServidor()">
+            Cargar Medicamentos Oficiales Ahora
+          </button>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table class="inventory-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NOMBRE DEL FÁRMACO</th>
+                <th>PRECIO COMPRA</th>
+                <th>PRECIO VENTA</th>
+                <th>UNIDADES DISPONIBLES</th>
+                <th>UNIDADES VENDIDAS</th>
+                <th>ESTADO</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (m of medicamentosFiltrados; track m.id) {
+                <tr [class.out-of-stock-row]="m.unidadesDisponibles <= 0">
+                  <td class="col-id">#{{ m.id }}</td>
+                  <td class="col-nombre">
+                    <strong>{{ m.nombre }}</strong>
+                  </td>
+                  <td class="col-precio">${{ m.precioCompra | number:'1.2-2' }}</td>
+                  <td class="col-precio font-semibold">${{ m.precioVenta | number:'1.2-2' }}</td>
+                  <td class="col-stock">
+                    @if (m.unidadesDisponibles > 0) {
+                      <span class="stock-badge in-stock">
+                        {{ m.unidadesDisponibles }} viales
+                      </span>
+                    } @else {
+                      <span class="stock-badge out-stock">
+                        0 disponibles
+                      </span>
+                    }
+                  </td>
+                  <td class="col-vendidas">{{ m.unidadesVendidas || 0 }}</td>
+                  <td class="col-estado">
+                    @if (m.unidadesDisponibles > 0) {
+                      <span class="status-indicator active">
+                        <span class="dot"></span> Disponible
+                      </span>
+                    } @else {
+                      <span class="status-indicator depleted">
+                        <span class="dot"></span> Agotado
+                      </span>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
+  </div>
+</div>

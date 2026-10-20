@@ -1,27 +1,56 @@
 <div class="treatments-section">
-  <h3>Historial Terapéutico y Farmacológico</h3>
-  <p class="section-sub">Tratamientos suministrados durante la hospitalización.</p>
+  <div class="section-top-bar">
+    <div>
+      <h3>Historial Terapéutico y Farmacológico</h3>
+      <p class="section-sub">Tratamientos suministrados y medicamentos administrados al paciente.</p>
+    </div>
+    
+    <a 
+      [routerLink]="['/tratamientos/nuevo']" 
+      [queryParams]="mascotaId() ? { mascotaId: mascotaId() } : null"
+      class="btn-add-treatment">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      Administrar Tratamiento
+    </a>
+  </div>
 
   @if (tratamientos().length > 0) {
     <div class="treatments-table-wrapper">
       <table class="treatments-table">
         <thead>
           <tr>
+            <th>ID</th>
             <th>FECHA</th>
-            <th>VETERINARIO TRATANTE</th>
+            <th>MÉDICO VETERINARIO</th>
             <th>FÁRMACO APLICADO</th>
-            <th>OBSERVACIONES</th>
+            <th>POSOLOGÍA &amp; OBSERVACIONES</th>
           </tr>
         </thead>
         <tbody>
           @for (t of tratamientos(); track t.id) {
             <tr>
-              <td><strong>{{ t.fecha }}</strong></td>
-              <td>{{ t.veterinario?.nombre || 'Médico de turno' }}</td>
-              <td>
-                <span class="drug-tag">{{ t.droga?.nombre || 'Fármaco hospitalario' }}</span>
+              <td class="col-id">#{{ t.id }}</td>
+              <td class="col-fecha">
+                <strong>{{ t.fecha }}</strong>
               </td>
-              <td>{{ t.observaciones }}</td>
+              <td class="col-vet">
+                <span class="vet-name">{{ t.veterinario?.nombre || 'Médico Veterinario' }}</span>
+                @if (t.veterinario?.especialidad) {
+                  <span class="vet-spec">{{ t.veterinario?.especialidad }}</span>
+                }
+              </td>
+              <td class="col-drug">
+                <span class="drug-tag">
+                  💊 {{ t.droga?.nombre || 'Fármaco hospitalario' }}
+                </span>
+                @if (t.droga?.precioVenta) {
+                  <span class="drug-price">${{ t.droga?.precioVenta | number:'1.2-2' }}</span>
+                }
+              </td>
+              <td class="col-obs">{{ t.observaciones }}</td>
             </tr>
           }
         </tbody>
@@ -29,7 +58,15 @@
     </div>
   } @else {
     <div class="no-treatments">
-      <p>No registra tratamientos farmacológicos administrados actualmente.</p>
+      <div class="empty-icon">💉</div>
+      <h4>Sin registros de tratamientos farmacológicos</h4>
+      <p>Este paciente aún no registra administración de medicamentos en su expediente clínico.</p>
+      <a 
+        [routerLink]="['/tratamientos/nuevo']" 
+        [queryParams]="mascotaId() ? { mascotaId: mascotaId() } : null"
+        class="btn-empty-add">
+        Prescribir y Administrar Primer Tratamiento
+      </a>
     </div>
   }
 </div>

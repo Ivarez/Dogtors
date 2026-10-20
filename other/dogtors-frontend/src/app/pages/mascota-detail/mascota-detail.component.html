@@ -22,7 +22,9 @@
 
         <!-- Componente hijo: Historial de tratamientos -->
         <app-treatments-history
-          [tratamientos]="mascota.tratamientos || []">
+          [tratamientos]="mascota.tratamientos || []"
+          [mascotaId]="mascota.id"
+          [mascotaNombre]="mascota.nombre">
         </app-treatments-history>
       </div>
     } @else {

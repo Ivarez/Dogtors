@@ -1,0 +1,309 @@
+<div class="treatment-page">
+  <div class="container">
+    <!-- Back nav -->
+    <div class="back-nav">
+      @if (mascotaSeleccionada) {
+        <a [routerLink]="['/mascotas', mascotaSeleccionada.id]" class="back-link">
+          &larr; Volver al Expediente de {{ mascotaSeleccionada.nombre }}
+        </a>
+      } @else {
+        <a routerLink="/mascotas" class="back-link">&larr; Volver al Directorio de Pacientes</a>
+      }
+    </div>
+
+    <!-- Banner Protocolo UCV Monitoreo Activo -->
+    <div class="protocol-banner">
+      <div class="banner-pill">
+        <span class="pulse-dot"></span> UCV Monitoreo Activo &bull; Pabellón Intensivo A &amp; B
+      </div>
+      <div class="banner-sync">
+        <span class="icon-sync">🔄</span> Trazabilidad Farmacéutica &amp; Stock Dinámico (Backend H2)
+      </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="eyebrow">UNIDAD DE CUIDADOS CRÍTICOS &amp; CIRUGÍA</div>
+      <h1>Administración de Tratamientos e Insumos Hospitalarios</h1>
+      <p class="subtitle">
+        Prescriba y registre la aplicación de medicamentos en pacientes hospitalizados. El inventario se descontará automáticamente en el backend.
+      </p>
+    </div>
+
+    <!-- Error Banner: Cuando NO hay drogas en el sistema (Requirement 4) -->
+    @if (errorSinDrogas) {
+      <div class="contingency-card">
+        <div class="contingency-header">
+          <span class="status-indicator-badge">ALERTA DE SUMINISTROS &bull; PROTOCOLO DE CONTINGENCIA</span>
+          <span class="badge-code">ERR_NO_DRUGS_AVAILABLE</span>
+        </div>
+        <div class="contingency-body">
+          <div class="contingency-icon">⚠️</div>
+          <div class="contingency-text">
+            <h3>No hay medicamentos disponibles para administrar</h3>
+            <p>
+              El depósito central hospitalario no cuenta con medicamentos registrados o las existencias están completamente agotadas. Para poder prescribir y aplicar un tratamiento clínico, es indispensable cargar el archivo Excel de medicamentos.
+            </p>
+            <div class="contingency-actions">
+              <a routerLink="/medicamentos" class="btn-load-excel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                Ir a Cargar Archivo Excel de Medicamentos
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Alerta de Error Dinámico (cuando falla submit o backend) -->
+    @if (mensajeError && !errorSinDrogas) {
+      <div class="alert-box alert-danger">
+        <div class="alert-icon">❌</div>
+        <div class="alert-content">
+          <h4>Restricción de Seguridad Farmacológica</h4>
+          <p>{{ mensajeError }}</p>
+        </div>
+        <button type="button" class="btn-close-alert" (click)="mensajeError = ''">✕</button>
+      </div>
+    }
+
+    <!-- Alerta de Éxito -->
+    @if (mensajeExito) {
+      <div class="alert-box alert-success">
+        <div class="alert-icon">✓</div>
+        <div class="alert-content">
+          <h4>¡Tratamiento Administrado y Registrado!</h4>
+          <p>{{ mensajeExito }} Redirigiendo al expediente...</p>
+        </div>
+      </div>
+    }
+
+    <!-- Loading State -->
+    @if (cargandoDatos) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Sincronizando pacientes, medicamentos y personal veterinario...</p>
+      </div>
+    } @else {
+      <!-- Form & Side Info Layout (Como en el mockup) -->
+      <div class="treatment-layout">
+        <!-- Main Form Column -->
+        <div class="form-card">
+          <div class="traceability-info-box">
+            <div class="info-icon">📋</div>
+            <div class="info-text">
+              <strong>Trazabilidad Farmacéutica &amp; Stock Dinámico</strong>
+              <span>Al confirmar la administración, el backend descontará 1 unidad del inventario y aumentará las unidades vendidas.</span>
+            </div>
+          </div>
+
+          <form [formGroup]="tratamientoForm" (ngSubmit)="handleSubmit()" class="form-content">
+            
+            <!-- 1. Paciente Receptor -->
+            <div class="form-group">
+              <label for="mascotaId">
+                <span class="step-num">1.</span> Paciente Hospitalizado Receptor *
+              </label>
+              <select id="mascotaId" formControlName="mascotaId" class="form-control">
+                <option [ngValue]="null" disabled>-- Seleccione el paciente --</option>
+                @for (m of mascotas; track m.id) {
+                  <option [value]="m.id">
+                    {{ m.nombre }} &bull; {{ m.especie }} ({{ m.raza }}) — {{ m.activa ? 'Hospitalizado' : 'Ambulatorio' }}
+                  </option>
+                }
+              </select>
+              @if (tratamientoForm.get('mascotaId')?.touched && tratamientoForm.get('mascotaId')?.invalid) {
+                <span class="field-error">Debe seleccionar un paciente para el tratamiento.</span>
+              }
+            </div>
+
+            <!-- 2. Veterinario Responsable -->
+            <div class="form-group">
+              <label for="veterinarioId">
+                <span class="step-num">2.</span> Médico Veterinario Responsable *
+              </label>
+              <select id="veterinarioId" formControlName="veterinarioId" class="form-control">
+                <option [ngValue]="null" disabled>-- Seleccione el médico veterinario --</option>
+                @for (v of veterinarios; track v.id) {
+                  <option [value]="v.id">
+                    {{ v.nombre }} ({{ v.especialidad || 'Medicina General' }})
+                  </option>
+                }
+              </select>
+              @if (tratamientoForm.get('veterinarioId')?.touched && tratamientoForm.get('veterinarioId')?.invalid) {
+                <span class="field-error">Debe asignar el médico veterinario tratante.</span>
+              }
+            </div>
+
+            <!-- 3. Medicamento / Fármaco -->
+            <div class="form-group">
+              <div class="label-with-badge">
+                <label for="drogaId">
+                  <span class="step-num">3.</span> Fármaco, Solución o Insumo Clínico *
+                </label>
+                @if (drogaSeleccionada) {
+                  @if (drogaSeleccionada.unidadesDisponibles > 0) {
+                    <span class="stock-pill in-stock">
+                      Stock Disponible: {{ drogaSeleccionada.unidadesDisponibles }} viales
+                    </span>
+                  } @else {
+                    <span class="stock-pill out-stock">
+                      ⚠️ SIN STOCK (0 viales)
+                    </span>
+                  }
+                }
+              </div>
+
+              <select id="drogaId" formControlName="drogaId" class="form-control" [class.input-alert]="esDrogaSinStock">
+                <option [ngValue]="null" disabled>-- Seleccione un fármaco o medicamento --</option>
+                @for (d of drogas; track d.id) {
+                  <option [value]="d.id">
+                    {{ d.nombre }} — {{ d.unidadesDisponibles > 0 ? (d.unidadesDisponibles + ' disponibles | Tarifa: $' + d.precioVenta) : '[AGOTADO - 0 DISPONIBLES]' }}
+                  </option>
+                }
+              </select>
+
+              @if (tratamientoForm.get('drogaId')?.touched && tratamientoForm.get('drogaId')?.invalid) {
+                <span class="field-error">Debe seleccionar el medicamento a suministrar.</span>
+              }
+
+              <!-- Error específico cuando la droga no tiene stock -->
+              @if (esDrogaSinStock) {
+                <div class="stock-error-message">
+                  <strong>⚠️ Medicamento sin disponibilidad:</strong> No se puede registrar la administración de <em>{{ drogaSeleccionada?.nombre }}</em> porque cuenta con 0 unidades en el inventario. Seleccione otra droga o reabastezca con el archivo Excel.
+                </div>
+              }
+            </div>
+
+            <!-- 4. Fecha de Administración -->
+            <div class="form-group">
+              <label for="fecha">
+                <span class="step-num">4.</span> Fecha de Administración *
+              </label>
+              <input 
+                id="fecha" 
+                type="date" 
+                formControlName="fecha" 
+                class="form-control" />
+              @if (tratamientoForm.get('fecha')?.touched && tratamientoForm.get('fecha')?.invalid) {
+                <span class="field-error">La fecha es obligatoria.</span>
+              }
+            </div>
+
+            <!-- 5. Observaciones / Posología y Dosis -->
+            <div class="form-group">
+              <label for="observaciones">
+                <span class="step-num">5.</span> Posología, Dosis y Notas de Evolución *
+              </label>
+              <textarea 
+                id="observaciones" 
+                formControlName="observaciones" 
+                rows="4" 
+                placeholder="Ej: Administrar 250mg cada 8 horas vía intravenosa. Monitorear tolerancia gástrica y respuesta febril..." 
+                class="form-control textarea"></textarea>
+              @if (tratamientoForm.get('observaciones')?.touched && tratamientoForm.get('observaciones')?.invalid) {
+                <span class="field-error">Describa las notas de posología y evolución (mínimo 5 caracteres).</span>
+              }
+            </div>
+
+            <!-- Resumen de impacto de stock previo a confirmar -->
+            @if (mascotaSeleccionada && drogaSeleccionada && !esDrogaSinStock) {
+              <div class="impact-summary-card">
+                <div class="impact-icon">🛡️</div>
+                <div class="impact-details">
+                  <strong>Confirmación de Trazabilidad e Impacto Clínico</strong>
+                  <p>
+                    Se descontará <strong>1 vial de {{ drogaSeleccionada.nombre }}</strong> del inventario hospitalario y se registrará en el expediente clínico de <strong>{{ mascotaSeleccionada.nombre }}</strong> con una tarifa de <strong>${{ drogaSeleccionada.precioVenta | number:'1.2-2' }}</strong>.
+                  </p>
+                </div>
+              </div>
+            }
+
+            <!-- Botones de Acción -->
+            <div class="form-actions">
+              <a [routerLink]="mascotaSeleccionada ? ['/mascotas', mascotaSeleccionada.id] : '/mascotas'" class="btn-cancel">
+                Cancelar
+              </a>
+              <button 
+                type="submit" 
+                class="btn-submit"
+                [disabled]="tratamientoForm.invalid || esDrogaSinStock || guardando || errorSinDrogas">
+                @if (guardando) {
+                  <span class="spinner-small"></span> Registrando Tratamiento...
+                } @else {
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  Confirmar Administración y Descontar Inventario
+                }
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Side Clinical Context Card (Like the mockup Ficha Receptor UCI) -->
+        <div class="side-info-card">
+          <div class="card-eyebrow">FICHA RECEPTOR UCI</div>
+
+          @if (mascotaSeleccionada) {
+            <div class="pet-summary">
+              <div class="pet-photo-wrap">
+                <img 
+                  [src]="mascotaSeleccionada.fotoUrl || '/images/default-avatar.png'" 
+                  [alt]="mascotaSeleccionada.nombre" 
+                  class="pet-photo"
+                  (error)="mascotaSeleccionada.fotoUrl = '/images/default-avatar.png'" />
+              </div>
+              <h3 class="pet-name">{{ mascotaSeleccionada.nombre }}</h3>
+              <p class="pet-meta">
+                {{ mascotaSeleccionada.especie }} &bull; {{ mascotaSeleccionada.raza }} &bull; {{ mascotaSeleccionada.edad }} años
+              </p>
+              
+              <div class="vital-badge" [class.badge-active]="mascotaSeleccionada.activa">
+                {{ mascotaSeleccionada.activa ? '● Hospitalizado Activo' : '○ Alta Médica' }}
+              </div>
+
+              <div class="clinical-details-list">
+                <div class="detail-row">
+                  <span class="d-label">Peso Actual:</span>
+                  <span class="d-value">{{ mascotaSeleccionada.peso }} kg</span>
+                </div>
+                <div class="detail-row">
+                  <span class="d-label">Diagnóstico:</span>
+                  <span class="d-value d-diag">{{ mascotaSeleccionada.enfermedad }}</span>
+                </div>
+                @if (mascotaSeleccionada.dueno) {
+                  <div class="detail-row">
+                    <span class="d-label">Tutor / Dueño:</span>
+                    <span class="d-value">{{ mascotaSeleccionada.dueno.nombre }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+          } @else {
+            <div class="empty-side-prompt">
+              <div class="side-icon">🐾</div>
+              <h4>Seleccione un Paciente</h4>
+              <p>Elija un paciente en el paso 1 del formulario para visualizar su ficha clínica y antecedentes de ingreso.</p>
+            </div>
+          }
+
+          <!-- Protocolo de Seguridad Farmacológica -->
+          <div class="safety-protocol-box">
+            <h4>Regla de los 5 Correctos Veterinarios</h4>
+            <ul class="checklist">
+              <li><span>✓</span> Paciente correcto identificado</li>
+              <li><span>✓</span> Medicamento e insumo verificado en stock</li>
+              <li><span>✓</span> Dosis prescrita exacta</li>
+              <li><span>✓</span> Vía de administración y hora confirmada</li>
+              <li><span>✓</span> Registro médico con firma de turno</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
