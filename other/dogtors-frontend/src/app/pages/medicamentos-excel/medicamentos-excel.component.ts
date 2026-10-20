@@ -20,6 +20,7 @@ export class MedicamentosExcelComponent implements OnInit {
   nombreArchivo: string = '';
   tamanoArchivo: string = '';
   estaArrastrando: boolean = false;
+  sobrescribirCatalogo: boolean = false;
 
   cargandoLista: boolean = false;
   subiendoExcel: boolean = false;
@@ -106,7 +107,7 @@ export class MedicamentosExcelComponent implements OnInit {
     this.mensajeError = '';
     this.mensajeExito = '';
 
-    this.drogaService.cargarExcel(this.archivoSeleccionado).subscribe({
+    this.drogaService.cargarExcel(this.archivoSeleccionado, this.sobrescribirCatalogo).subscribe({
       next: (resp) => {
         this.subiendoExcel = false;
         this.mensajeExito = resp.mensaje || '¡Archivo Excel cargado y procesado exitosamente!';
@@ -142,6 +143,39 @@ export class MedicamentosExcelComponent implements OnInit {
         this.mensajeError = err.error?.message || err.error?.mensaje || 'No se pudo cargar el archivo Excel por defecto del servidor.';
       }
     });
+  }
+
+  eliminarMedicamento(id: number | undefined, nombre: string): void {
+    if (!id) return;
+    if (confirm(`¿Está seguro de eliminar el medicamento "${nombre}" del catálogo?`)) {
+      this.drogaService.eliminar(id).subscribe({
+        next: () => {
+          this.mensajeExito = `El medicamento "${nombre}" fue eliminado del catálogo.`;
+          this.cargarMedicamentos();
+        },
+        error: (err) => {
+          console.error('Error al eliminar medicamento:', err);
+          this.mensajeError = 'No se pudo eliminar el medicamento del catálogo.';
+        }
+      });
+    }
+  }
+
+  vaciarCatalogo(): void {
+    if (confirm('¿Está seguro de vaciar completamente el catálogo de medicamentos? Los tratamientos previos registrados en mascotas no se perderán.')) {
+      this.cargandoLista = true;
+      this.drogaService.limpiarCatalogo().subscribe({
+        next: () => {
+          this.mensajeExito = 'El catálogo de medicamentos ha sido vaciado exitosamente.';
+          this.cargarMedicamentos();
+        },
+        error: (err) => {
+          console.error('Error al vaciar catálogo:', err);
+          this.mensajeError = 'No se pudo vaciar el catálogo de medicamentos.';
+          this.cargandoLista = false;
+        }
+      });
+    }
   }
 
   get medicamentosFiltrados(): Droga[] {

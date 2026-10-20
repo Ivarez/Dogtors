@@ -17,6 +17,12 @@ public interface DrogaService {
 
     int cargarDesdeExcel(MultipartFile archivo);
 
+    int cargarDesdeExcel(MultipartFile archivo, boolean sobrescribir);
+
     int cargarDesdeExcelServidor(String ruta);
+
+    void eliminar(Long id);
+
+    void limpiarCatalogo();
 }
 

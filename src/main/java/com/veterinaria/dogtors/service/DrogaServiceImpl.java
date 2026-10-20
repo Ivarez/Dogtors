@@ -3,6 +3,7 @@ package com.veterinaria.dogtors.service;
 import com.veterinaria.dogtors.entities.Droga;
 import com.veterinaria.dogtors.errors.NotFoundException;
 import com.veterinaria.dogtors.repository.DrogaRepository;
+import com.veterinaria.dogtors.repository.TratamientoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,9 @@ public class DrogaServiceImpl implements DrogaService {
 
     @Autowired
     private DrogaRepository drogaRepository;
+
+    @Autowired
+    private TratamientoRepository tratamientoRepository;
 
     @Autowired
     private ExcelService excelService;
@@ -46,8 +50,43 @@ public class DrogaServiceImpl implements DrogaService {
     @Override
     @Transactional
     public int cargarDesdeExcel(MultipartFile archivo) {
+        return cargarDesdeExcel(archivo, false);
+    }
+
+    @Override
+    @Transactional
+    public int cargarDesdeExcel(MultipartFile archivo, boolean sobrescribir) {
+        if (sobrescribir) {
+            limpiarCatalogo();
+        }
         List<Droga> drogasLeidas = excelService.leerDrogasDesdeMultipart(archivo);
         return persistirDrogas(drogasLeidas);
+    }
+
+    @Override
+    @Transactional
+    public void eliminar(Long id) {
+        Droga droga = drogaRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Medicamento no encontrado con ID: " + id));
+        List<com.veterinaria.dogtors.entities.Tratamiento> tratamientos = tratamientoRepository.findByDrogaId(id);
+        for (com.veterinaria.dogtors.entities.Tratamiento t : tratamientos) {
+            t.setDroga(null);
+            tratamientoRepository.save(t);
+        }
+        drogaRepository.delete(droga);
+    }
+
+    @Override
+    @Transactional
+    public void limpiarCatalogo() {
+        List<com.veterinaria.dogtors.entities.Tratamiento> tratamientos = tratamientoRepository.findAll();
+        for (com.veterinaria.dogtors.entities.Tratamiento t : tratamientos) {
+            if (t.getDroga() != null) {
+                t.setDroga(null);
+                tratamientoRepository.save(t);
+            }
+        }
+        drogaRepository.deleteAll();
     }
 
     @Override

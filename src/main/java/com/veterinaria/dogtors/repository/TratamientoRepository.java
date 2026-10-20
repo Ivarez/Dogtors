@@ -8,4 +8,6 @@ import java.util.List;
 public interface TratamientoRepository extends JpaRepository<Tratamiento, Long> {
 
     List<Tratamiento> findByMascotaId(Long mascotaId);
+
+    List<Tratamiento> findByDrogaId(Long drogaId);
 }

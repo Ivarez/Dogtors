@@ -145,6 +145,13 @@
         </div>
       </div>
 
+      <div class="upload-options">
+        <label class="checkbox-label">
+          <input type="checkbox" [(ngModel)]="sobrescribirCatalogo" />
+          <span><strong>Reemplazar catálogo:</strong> Vaciar los medicamentos anteriores antes de cargar el nuevo archivo</span>
+        </label>
+      </div>
+
       <div class="upload-actions">
         <button 
           type="button" 
@@ -189,15 +196,27 @@
           <span class="counter-badge">{{ medicamentosFiltrados.length }} fármacos</span>
         </div>
 
-        <div class="search-box">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input 
-            type="text" 
-            [(ngModel)]="filtroBusqueda" 
-            placeholder="Buscar por nombre de medicamento..." />
+        <div class="header-right-tools">
+          @if (medicamentos.length > 0) {
+            <button type="button" class="btn-clear-catalog" (click)="vaciarCatalogo()" title="Vaciar todo el inventario">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              Vaciar Catálogo
+            </button>
+          }
+
+          <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              [(ngModel)]="filtroBusqueda" 
+              placeholder="Buscar por nombre de medicamento..." />
+          </div>
         </div>
       </div>
 
@@ -227,6 +246,7 @@
                 <th>UNIDADES DISPONIBLES</th>
                 <th>UNIDADES VENDIDAS</th>
                 <th>ESTADO</th>
+                <th>ACCIÓN</th>
               </tr>
             </thead>
             <tbody>
@@ -260,6 +280,14 @@
                         <span class="dot"></span> Agotado
                       </span>
                     }
+                  </td>
+                  <td class="col-actions">
+                    <button type="button" class="btn-delete-row" (click)="eliminarMedicamento(m.id, m.nombre)" title="Eliminar medicamento">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                      </svg>
+                    </button>
                   </td>
                 </tr>
               }

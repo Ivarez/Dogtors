@@ -22,14 +22,24 @@ export class DrogaService {
     return this.http.get<Droga>(`${this.apiUrl}/${id}`);
   }
 
-  cargarExcel(archivo: File): Observable<{ status: number; mensaje: string; medicamentosCargados: number }> {
+  cargarExcel(archivo: File, sobrescribir: boolean = false): Observable<{ status: number; mensaje: string; medicamentosCargados: number }> {
     const formData = new FormData();
     formData.append('archivo', archivo);
-    return this.http.post<{ status: number; mensaje: string; medicamentosCargados: number }>(`${this.apiUrl}/cargar-excel`, formData);
+    return this.http.post<{ status: number; mensaje: string; medicamentosCargados: number }>(
+      `${this.apiUrl}/cargar-excel?sobrescribir=${sobrescribir}`,
+      formData
+    );
   }
 
   cargarExcelDefault(): Observable<{ status: number; mensaje: string; medicamentosCargados: number }> {
     return this.http.post<{ status: number; mensaje: string; medicamentosCargados: number }>(`${this.apiUrl}/cargar-excel-default`, {});
   }
-}
 
+  eliminar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  limpiarCatalogo(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/limpiar`);
+  }
+}

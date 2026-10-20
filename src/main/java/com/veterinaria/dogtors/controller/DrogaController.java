@@ -39,13 +39,29 @@ public class DrogaController {
         return drogaService.buscarPorId(id);
     }
 
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar un medicamento por su ID")
+    public ResponseEntity<Void> eliminar(@PathVariable("id") Long id) {
+        drogaService.eliminar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/limpiar")
+    @Operation(summary = "Vaciar todo el catálogo de medicamentos")
+    public ResponseEntity<Void> limpiarCatalogo() {
+        drogaService.limpiarCatalogo();
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping(value = "/cargar-excel", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Cargar medicamentos desde un archivo Excel (.xlsx)")
-    public ResponseEntity<Map<String, Object>> cargarDesdeExcel(@RequestParam("archivo") MultipartFile archivo) {
-        int cargados = drogaService.cargarDesdeExcel(archivo);
+    public ResponseEntity<Map<String, Object>> cargarDesdeExcel(
+            @RequestParam("archivo") MultipartFile archivo,
+            @RequestParam(value = "sobrescribir", defaultValue = "false") boolean sobrescribir) {
+        int cargados = drogaService.cargarDesdeExcel(archivo, sobrescribir);
         Map<String, Object> resp = new HashMap<>();
         resp.put("status", 200);
-        resp.put("mensaje", "Archivo Excel procesado correctamente.");
+        resp.put("mensaje", sobrescribir ? "Catálogo reemplazado exitosamente con el nuevo archivo." : "Archivo Excel procesado correctamente.");
         resp.put("medicamentosCargados", cargados);
         return ResponseEntity.ok(resp);
     }
