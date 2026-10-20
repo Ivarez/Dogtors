@@ -1,7 +1,9 @@
 package com.veterinaria.dogtors.controller;
 
 import com.veterinaria.dogtors.entities.Mascota;
+import com.veterinaria.dogtors.entities.Tratamiento;
 import com.veterinaria.dogtors.service.MascotaService;
+import com.veterinaria.dogtors.service.TratamientoService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,9 @@ public class MascotaController {
 
     @Autowired
     private MascotaService mascotaService;
+
+    @Autowired
+    private TratamientoService tratamientoService;
 
     // Mostrar todas las mascotas (devuelve JSON directamente, tal como explica el transcript)
     @GetMapping
@@ -35,6 +40,13 @@ public class MascotaController {
     @Operation(summary = "Mostrar mascotas asociadas a un dueño")
     public List<Mascota> mostrarMascotasPorDueno(@PathVariable Long duenoId) {
         return mascotaService.buscarPorDuenoId(duenoId);
+    }
+
+    // Traer los tratamientos de una mascota (paso a paso, sin anidar innecesariamente)
+    @GetMapping("/{id}/tratamientos")
+    @Operation(summary = "Mostrar los tratamientos asignados a una mascota")
+    public List<Tratamiento> mostrarTratamientosMascota(@PathVariable Long id) {
+        return tratamientoService.buscarPorMascotaId(id);
     }
 
     // Agregar mascota recibida por el body de la petición

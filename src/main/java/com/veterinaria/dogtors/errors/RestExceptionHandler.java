@@ -23,11 +23,15 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, Object>> handleIllegalArgument(IllegalArgumentException ex) {
+        String msg = ex.getMessage() != null ? ex.getMessage() : "";
+        boolean esAuth = msg.toLowerCase().contains("credencial") || msg.toLowerCase().contains("contraseña") || msg.toLowerCase().contains("correo o contraseña");
+        HttpStatus status = esAuth ? HttpStatus.UNAUTHORIZED : HttpStatus.BAD_REQUEST;
+
         Map<String, Object> body = new HashMap<>();
-        body.put("status", HttpStatus.UNAUTHORIZED.value());
-        body.put("error", "Credenciales incorrectas");
-        body.put("message", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body);
+        body.put("status", status.value());
+        body.put("error", esAuth ? "Credenciales incorrectas" : "Solicitud inválida o regla de negocio no cumplida");
+        body.put("message", msg);
+        return ResponseEntity.status(status).body(body);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
@@ -48,4 +52,3 @@ public class RestExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
     }
 }
-

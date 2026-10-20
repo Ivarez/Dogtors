@@ -8,9 +8,6 @@ import java.util.ArrayList;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Droga {
 
     @Id
@@ -33,9 +30,24 @@ public class Droga {
     private Integer unidadesVendidas;
 
     @OneToMany(mappedBy = "droga")
-    @Builder.Default
     @com.fasterxml.jackson.annotation.JsonIgnore
     private List<Tratamiento> tratamientos = new ArrayList<>();
+
+    public Droga() {
+    }
+
+    @Builder
+    public Droga(Long id, String nombre, Double precioVenta, Double precioCompra, Integer unidadesDisponibles, Integer unidadesVendidas, List<Tratamiento> tratamientos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precioVenta = precioVenta;
+        this.precioCompra = precioCompra;
+        this.unidadesDisponibles = unidadesDisponibles;
+        this.unidadesVendidas = unidadesVendidas;
+        if (tratamientos != null) {
+            this.tratamientos = tratamientos;
+        }
+    }
 
     // Constructor con todos los parametros excepto id y relaciones
     public Droga(String nombre, Double precioVenta, Double precioCompra, Integer unidadesDisponibles, Integer unidadesVendidas) {

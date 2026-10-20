@@ -1,6 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { mergeMap } from 'rxjs';
 import { MascotaService } from '../../services/mascota.service';
+import { TratamientoService } from '../../services/tratamiento.service';
 import { Mascota } from '../../models/mascota.model';
 import { PetInfoComponent } from './components/pet-info/pet-info.component';
 import { TreatmentsHistoryComponent } from './components/treatments-history/treatments-history.component';
@@ -14,6 +16,7 @@ import { TreatmentsHistoryComponent } from './components/treatments-history/trea
 export class MascotaDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private mascotaService = inject(MascotaService);
+  private tratamientoService = inject(TratamientoService);
 
   mascota: Mascota | undefined;
   cargando: boolean = true;
@@ -27,13 +30,23 @@ export class MascotaDetailComponent implements OnInit {
   cargarDetalle(id: number): void {
     this.cargando = true;
     this.errorMsg = '';
-    this.mascotaService.obtenerMascotaPorId(id).subscribe({
-      next: (m) => {
+
+    // Patrón mergeMap de consultas anidadas del Transcript 10:
+    // Primero obtiene la mascota y luego encadena la consulta de sus tratamientos
+    this.mascotaService.obtenerMascotaPorId(id).pipe(
+      mergeMap(m => {
         this.mascota = m;
+        return this.tratamientoService.obtenerPorMascota(id);
+      })
+    ).subscribe({
+      next: (tratamientos) => {
+        if (this.mascota) {
+          this.mascota.tratamientos = tratamientos;
+        }
         this.cargando = false;
       },
       error: (err) => {
-        console.error('Error al cargar mascota:', err);
+        console.error('Error al cargar detalle de mascota o tratamientos:', err);
         this.errorMsg = 'No se encontró el paciente o el servidor no respondió.';
         this.cargando = false;
       }

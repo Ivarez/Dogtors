@@ -6,9 +6,6 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Administrador {
 
     @Id
@@ -23,6 +20,17 @@ public class Administrador {
 
     @Column(nullable = false, length = 100)
     private String password;
+
+    public Administrador() {
+    }
+
+    @Builder
+    public Administrador(Long id, String nombre, String correo, String password) {
+        this.id = id;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.password = password;
+    }
 
     // Constructor con todos los parametros excepto id y relaciones
     public Administrador(String nombre, String correo, String password) {

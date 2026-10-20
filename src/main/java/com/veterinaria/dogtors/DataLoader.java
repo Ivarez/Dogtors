@@ -34,6 +34,9 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     private com.veterinaria.dogtors.repository.TratamientoRepository tratamientoRepository;
 
+    @Autowired
+    private com.veterinaria.dogtors.service.DrogaService drogaService;
+
     @Override
     public void run(String... args) {
         Random random = new Random(42);
@@ -161,6 +164,23 @@ public class DataLoader implements CommandLineRunner {
                     .unidadesVendidas(i * 5)
                     .build();
             drogaRepository.save(droga);
+        }
+
+        // Droga de prueba con 0 unidades disponibles (para validar regla de negocio de rechazo)
+        com.veterinaria.dogtors.entities.Droga drogaAgotada = com.veterinaria.dogtors.entities.Droga.builder()
+                .nombre("Morfina Veterinaria (Sin Stock)")
+                .precioCompra(45.0)
+                .precioVenta(90.0)
+                .unidadesDisponibles(0)
+                .unidadesVendidas(20)
+                .build();
+        drogaRepository.save(drogaAgotada);
+
+        // Carga opcional inicial de medicamentos desde el archivo Excel
+        try {
+            drogaService.cargarDesdeExcelServidor("other/Medicamentos.xlsx");
+        } catch (Exception e) {
+            System.out.println("Nota DataLoader: Carga inicial de Excel omitida: " + e.getMessage());
         }
 
         // ===================== TRATAMIENTOS =====================

@@ -7,9 +7,6 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Tratamiento {
 
     @Id
@@ -17,7 +14,6 @@ public class Tratamiento {
     private Long id;
 
     @Column(nullable = false)
-    @Builder.Default
     private LocalDate fecha = LocalDate.now();
 
     @Column(length = 500)
@@ -39,8 +35,21 @@ public class Tratamiento {
     @JoinColumn(name = "droga_id", nullable = false)
     private Droga droga;
 
+    public Tratamiento() {
+    }
+
+    @Builder
+    public Tratamiento(Long id, LocalDate fecha, String observaciones, Mascota mascota, Veterinario veterinario, Droga droga) {
+        this.id = id;
+        this.fecha = (fecha != null) ? fecha : LocalDate.now();
+        this.observaciones = observaciones;
+        this.mascota = mascota;
+        this.veterinario = veterinario;
+        this.droga = droga;
+    }
+
     public Tratamiento(LocalDate fecha, String observaciones, Mascota mascota, Veterinario veterinario, Droga droga) {
-        this.fecha = fecha;
+        this.fecha = (fecha != null) ? fecha : LocalDate.now();
         this.observaciones = observaciones;
         this.mascota = mascota;
         this.veterinario = veterinario;
