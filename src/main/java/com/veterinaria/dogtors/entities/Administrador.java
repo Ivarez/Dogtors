@@ -24,7 +24,6 @@ public class Administrador {
     public Administrador() {
     }
 
-    @Builder
     public Administrador(Long id, String nombre, String correo, String password) {
         this.id = id;
         this.nombre = nombre;

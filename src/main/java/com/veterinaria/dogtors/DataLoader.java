@@ -134,11 +134,11 @@ public class DataLoader implements CommandLineRunner {
 
         // ===================== ADMINISTRADORES =====================
         for (int i = 1; i <= 5; i++) {
-            com.veterinaria.dogtors.entities.Administrador admin = com.veterinaria.dogtors.entities.Administrador.builder()
-                    .nombre("Admin " + i)
-                    .correo("admin" + i + "@dogtors.com")
-                    .password("admin123")
-                    .build();
+            com.veterinaria.dogtors.entities.Administrador admin = new com.veterinaria.dogtors.entities.Administrador(
+                    "Admin " + i,
+                    "admin" + i + "@dogtors.com",
+                    "admin123"
+            );
             administradorRepository.save(admin);
         }
 
@@ -153,7 +153,7 @@ public class DataLoader implements CommandLineRunner {
             veterinarioRepository.save(vet);
         }
 
-        // ===================== DROGAS =====================
+        /*/ ===================== DROGAS =====================
         String[] nombreDrogas = {"Amoxicilina", "Meloxicam", "Tramadol", "Ivermectina", "Doxiciclina"};
         for (int i = 0; i < 5; i++) {
             com.veterinaria.dogtors.entities.Droga droga = com.veterinaria.dogtors.entities.Droga.builder()
@@ -176,7 +176,7 @@ public class DataLoader implements CommandLineRunner {
                 .build();
         drogaRepository.save(drogaAgotada);
 
-        // Carga opcional inicial de medicamentos desde el archivo Excel
+         Carga opcional inicial de medicamentos desde el archivo Excel
         try {
             drogaService.cargarDesdeExcelServidor("other/Medicamentos.xlsx");
         } catch (Exception e) {
@@ -197,6 +197,6 @@ public class DataLoader implements CommandLineRunner {
                     .observaciones("Administrar cada 8 horas por " + (random.nextInt(5) + 3) + " días.")
                     .build();
             tratamientoRepository.save(tratamiento);
-        }
+        } /*/
     }
 }
