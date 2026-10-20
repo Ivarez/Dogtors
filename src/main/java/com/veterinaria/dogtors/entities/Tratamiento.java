@@ -32,7 +32,8 @@ public class Tratamiento {
 
     // Relación con Droga
     @ManyToOne
-    @JoinColumn(name = "droga_id", nullable = false)
+    @JoinColumn(name = "droga_id", nullable = true)
+    @org.hibernate.annotations.OnDelete(action = org.hibernate.annotations.OnDeleteAction.SET_NULL)
     private Droga droga;
 
     public Tratamiento() {

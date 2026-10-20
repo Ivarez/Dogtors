@@ -28,7 +28,7 @@ public class HomeController {
     }
 
     @GetMapping("/veterinario/{id}")
-    public String verVeterinarioPorId(@PathVariable Long id, Model model) {
+    public String verVeterinarioPorId(@PathVariable("id") Long id, Model model) {
         if (veterinarioRepository != null) {
             veterinarioRepository.findById(id).ifPresent(v -> model.addAttribute("veterinario", v));
         }

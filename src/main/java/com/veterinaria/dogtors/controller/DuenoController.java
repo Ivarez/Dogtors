@@ -26,7 +26,7 @@ public class DuenoController {
     // Buscar dueño por ID
     @GetMapping("/{id}")
     @Operation(summary = "Obtener un dueño por su ID")
-    public Dueno buscarPorId(@PathVariable Long id) {
+    public Dueno buscarPorId(@PathVariable("id") Long id) {
         return duenoService.findById(id);
     }
 
@@ -48,13 +48,13 @@ public class DuenoController {
     // Borrar dueño por ID
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar un dueño por ID")
-    public void borrarDueno(@PathVariable Long id) {
+    public void borrarDueno(@PathVariable("id") Long id) {
         duenoService.delete(id);
     }
 
     @GetMapping("/borrar/{id}")
     @Operation(summary = "Eliminar un dueño (GET alternativo)")
-    public void borrarDuenoGet(@PathVariable Long id) {
+    public void borrarDuenoGet(@PathVariable("id") Long id) {
         duenoService.delete(id);
     }
 

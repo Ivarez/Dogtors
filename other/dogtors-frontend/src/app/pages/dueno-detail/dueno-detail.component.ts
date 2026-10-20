@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { mergeMap } from 'rxjs';
+import { mergeMap, catchError, of } from 'rxjs';
 import { DuenoService } from '../../services/dueno.service';
 import { MascotaService } from '../../services/mascota.service';
 import { Dueno } from '../../models/dueno.model';
@@ -38,7 +38,12 @@ export class DuenoDetailComponent implements OnInit {
     this.duenoService.obtenerDuenoPorId(id).pipe(
       mergeMap(d => {
         this.dueno = d;
-        return this.mascotaService.obtenerMascotasPorDueno(id);
+        return this.mascotaService.obtenerMascotasPorDueno(id).pipe(
+          catchError(err => {
+            console.warn('El propietario no tiene mascotas asociadas o hubo un problema al cargarlas:', err);
+            return of([]);
+          })
+        );
       })
     ).subscribe({
       next: (pets) => {

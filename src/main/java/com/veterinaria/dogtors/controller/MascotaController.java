@@ -31,21 +31,21 @@ public class MascotaController {
     // Mostrar información de una única mascota por ID
     @GetMapping("/{id}")
     @Operation(summary = "Mostrar detalle de una mascota")
-    public Mascota mostrarDetalleMascota(@PathVariable Long id) {
+    public Mascota mostrarDetalleMascota(@PathVariable("id") Long id) {
         return mascotaService.buscarPorId(id);
     }
 
     // Traer las mascotas de un dueño en específico (patrón student/{id} del transcript)
     @GetMapping("/dueno/{duenoId}")
     @Operation(summary = "Mostrar mascotas asociadas a un dueño")
-    public List<Mascota> mostrarMascotasPorDueno(@PathVariable Long duenoId) {
+    public List<Mascota> mostrarMascotasPorDueno(@PathVariable("duenoId") Long duenoId) {
         return mascotaService.buscarPorDuenoId(duenoId);
     }
 
     // Traer los tratamientos de una mascota (paso a paso, sin anidar innecesariamente)
     @GetMapping("/{id}/tratamientos")
     @Operation(summary = "Mostrar los tratamientos asignados a una mascota")
-    public List<Tratamiento> mostrarTratamientosMascota(@PathVariable Long id) {
+    public List<Tratamiento> mostrarTratamientosMascota(@PathVariable("id") Long id) {
         return tratamientoService.buscarPorMascotaId(id);
     }
 
@@ -66,13 +66,13 @@ public class MascotaController {
     // Alternar estado de la mascota (no se elimina, se cambia de activa a inactiva)
     @PutMapping("/{id}/estado")
     @Operation(summary = "Cambiar estado de activa/inactiva de una mascota")
-    public void cambiarEstadoMascota(@PathVariable Long id) {
+    public void cambiarEstadoMascota(@PathVariable("id") Long id) {
         mascotaService.cambiarEstado(id);
     }
 
     @GetMapping("/cambiar-estado/{id}")
     @Operation(summary = "Cambiar estado de activa/inactiva (GET alternativo)")
-    public void cambiarEstadoMascotaGet(@PathVariable Long id) {
+    public void cambiarEstadoMascotaGet(@PathVariable("id") Long id) {
         mascotaService.cambiarEstado(id);
     }
 }

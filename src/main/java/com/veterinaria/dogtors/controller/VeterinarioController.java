@@ -24,7 +24,7 @@ public class VeterinarioController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener un veterinario por ID")
-    public Veterinario buscarPorId(@PathVariable Long id) {
+    public Veterinario buscarPorId(@PathVariable("id") Long id) {
         return veterinarioService.buscarPorId(id);
     }
 }

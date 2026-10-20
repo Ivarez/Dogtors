@@ -35,7 +35,7 @@ public class DrogaController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener un medicamento por ID")
-    public Droga buscarPorId(@PathVariable Long id) {
+    public Droga buscarPorId(@PathVariable("id") Long id) {
         return drogaService.buscarPorId(id);
     }
 

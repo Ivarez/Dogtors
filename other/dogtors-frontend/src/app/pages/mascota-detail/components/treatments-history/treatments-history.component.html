@@ -44,7 +44,7 @@
               </td>
               <td class="col-drug">
                 <span class="drug-tag">
-                  💊 {{ t.droga?.nombre || 'Fármaco hospitalario' }}
+                  💊 {{ t.droga?.nombre || 'Medicamento no catalogado' }}
                 </span>
                 @if (t.droga?.precioVenta) {
                   <span class="drug-price">${{ t.droga?.precioVenta | number:'1.2-2' }}</span>

@@ -25,13 +25,13 @@ public class TratamientoController {
 
     @GetMapping("/mascota/{mascotaId}")
     @Operation(summary = "Listar tratamientos asociados a una mascota (consulta paso a paso)")
-    public List<Tratamiento> listarPorMascota(@PathVariable Long mascotaId) {
+    public List<Tratamiento> listarPorMascota(@PathVariable("mascotaId") Long mascotaId) {
         return tratamientoService.buscarPorMascotaId(mascotaId);
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener un tratamiento por ID")
-    public Tratamiento buscarPorId(@PathVariable Long id) {
+    public Tratamiento buscarPorId(@PathVariable("id") Long id) {
         return tratamientoService.buscarPorId(id);
     }
 

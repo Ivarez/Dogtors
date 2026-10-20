@@ -11,22 +11,19 @@
       }
     </div>
 
-    <!-- Banner Protocolo UCV Monitoreo Activo -->
+    <!-- Estado del Servicio -->
     <div class="protocol-banner">
       <div class="banner-pill">
-        <span class="pulse-dot"></span> UCV Monitoreo Activo &bull; Pabellón Intensivo A &amp; B
-      </div>
-      <div class="banner-sync">
-        <span class="icon-sync">🔄</span> Trazabilidad Farmacéutica &amp; Stock Dinámico (Backend H2)
+        <span class="pulse-dot"></span> Atención Veterinaria
       </div>
     </div>
 
     <!-- Page Header -->
     <div class="page-header">
-      <div class="eyebrow">UNIDAD DE CUIDADOS CRÍTICOS &amp; CIRUGÍA</div>
-      <h1>Administración de Tratamientos e Insumos Hospitalarios</h1>
+      <div class="eyebrow">HISTORIAL MÉDICO</div>
+      <h1>Registrar Tratamiento</h1>
       <p class="subtitle">
-        Prescriba y registre la aplicación de medicamentos en pacientes hospitalizados. El inventario se descontará automáticamente en el backend.
+        Asigne un medicamento y registre las indicaciones clínicas del tratamiento para el paciente.
       </p>
     </div>
 
@@ -95,8 +92,8 @@
           <div class="traceability-info-box">
             <div class="info-icon">📋</div>
             <div class="info-text">
-              <strong>Trazabilidad Farmacéutica &amp; Stock Dinámico</strong>
-              <span>Al confirmar la administración, el backend descontará 1 unidad del inventario y aumentará las unidades vendidas.</span>
+              <strong>Control de Inventario</strong>
+              <span>Al registrar el tratamiento se descontará 1 unidad del medicamento en el inventario.</span>
             </div>
           </div>
 
@@ -105,7 +102,7 @@
             <!-- 1. Paciente Receptor -->
             <div class="form-group">
               <label for="mascotaId">
-                <span class="step-num">1.</span> Paciente Hospitalizado Receptor *
+                <span class="step-num">1.</span> Paciente *
               </label>
               <select id="mascotaId" formControlName="mascotaId" class="form-control">
                 <option [ngValue]="null" disabled>-- Seleccione el paciente --</option>
@@ -142,7 +139,7 @@
             <div class="form-group">
               <div class="label-with-badge">
                 <label for="drogaId">
-                  <span class="step-num">3.</span> Fármaco, Solución o Insumo Clínico *
+                  <span class="step-num">3.</span> Medicamento *
                 </label>
                 @if (drogaSeleccionada) {
                   @if (drogaSeleccionada.unidadesDisponibles > 0) {
@@ -196,7 +193,7 @@
             <!-- 5. Observaciones / Posología y Dosis -->
             <div class="form-group">
               <label for="observaciones">
-                <span class="step-num">5.</span> Posología, Dosis y Notas de Evolución *
+                <span class="step-num">5.</span> Dosis e Indicaciones *
               </label>
               <textarea 
                 id="observaciones" 
@@ -214,7 +211,7 @@
               <div class="impact-summary-card">
                 <div class="impact-icon">🛡️</div>
                 <div class="impact-details">
-                  <strong>Confirmación de Trazabilidad e Impacto Clínico</strong>
+                  <strong>Resumen del Tratamiento</strong>
                   <p>
                     Se descontará <strong>1 vial de {{ drogaSeleccionada.nombre }}</strong> del inventario hospitalario y se registrará en el expediente clínico de <strong>{{ mascotaSeleccionada.nombre }}</strong> con una tarifa de <strong>${{ drogaSeleccionada.precioVenta | number:'1.2-2' }}</strong>.
                   </p>
@@ -237,7 +234,7 @@
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  Confirmar Administración y Descontar Inventario
+                  Guardar Tratamiento
                 }
               </button>
             </div>
@@ -246,7 +243,7 @@
 
         <!-- Side Clinical Context Card (Like the mockup Ficha Receptor UCI) -->
         <div class="side-info-card">
-          <div class="card-eyebrow">FICHA RECEPTOR UCI</div>
+          <div class="card-eyebrow">DATOS DEL PACIENTE</div>
 
           @if (mascotaSeleccionada) {
             <div class="pet-summary">
@@ -291,15 +288,14 @@
             </div>
           }
 
-          <!-- Protocolo de Seguridad Farmacológica -->
+          <!-- Verificación de Seguridad -->
           <div class="safety-protocol-box">
-            <h4>Regla de los 5 Correctos Veterinarios</h4>
+            <h4>Verificación del Tratamiento</h4>
             <ul class="checklist">
-              <li><span>✓</span> Paciente correcto identificado</li>
-              <li><span>✓</span> Medicamento e insumo verificado en stock</li>
-              <li><span>✓</span> Dosis prescrita exacta</li>
-              <li><span>✓</span> Vía de administración y hora confirmada</li>
-              <li><span>✓</span> Registro médico con firma de turno</li>
+              <li><span>✓</span> Paciente verificado</li>
+              <li><span>✓</span> Medicamento y disponibilidad comprobados</li>
+              <li><span>✓</span> Dosis e indicaciones completas</li>
+              <li><span>✓</span> Registro en el expediente clínico</li>
             </ul>
           </div>
         </div>

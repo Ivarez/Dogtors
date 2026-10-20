@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { mergeMap } from 'rxjs';
+import { mergeMap, catchError, of } from 'rxjs';
 import { DuenoService } from '../../services/dueno.service';
 import { MascotaService } from '../../services/mascota.service';
 import { AuthService } from '../../services/auth.service';
@@ -50,7 +50,12 @@ export class PerfilDuenoComponent implements OnInit {
         if (!this.authService.usuarioActual()) {
           this.authService.usuarioActual.set(d);
         }
-        return this.mascotaService.obtenerMascotasPorDueno(id);
+        return this.mascotaService.obtenerMascotasPorDueno(id).pipe(
+          catchError(err => {
+            console.warn('El propietario no registra mascotas asociadas o hubo un error al listarlas:', err);
+            return of([]);
+          })
+        );
       })
     ).subscribe({
       next: (pets) => {

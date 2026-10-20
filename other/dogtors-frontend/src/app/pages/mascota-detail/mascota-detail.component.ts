@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { mergeMap } from 'rxjs';
+import { mergeMap, catchError, of } from 'rxjs';
 import { MascotaService } from '../../services/mascota.service';
 import { TratamientoService } from '../../services/tratamiento.service';
 import { Mascota } from '../../models/mascota.model';
@@ -36,7 +36,12 @@ export class MascotaDetailComponent implements OnInit {
     this.mascotaService.obtenerMascotaPorId(id).pipe(
       mergeMap(m => {
         this.mascota = m;
-        return this.tratamientoService.obtenerPorMascota(id);
+        return this.tratamientoService.obtenerPorMascota(id).pipe(
+          catchError(err => {
+            console.warn('No se encontraron tratamientos previos para la mascota:', err);
+            return of([]);
+          })
+        );
       })
     ).subscribe({
       next: (tratamientos) => {
