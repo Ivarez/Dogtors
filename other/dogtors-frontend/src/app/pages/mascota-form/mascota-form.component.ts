@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MascotaService } from '../../services/mascota.service';
+import { DuenoService } from '../../services/dueno.service';
 import { Mascota } from '../../models/mascota.model';
 import { Dueno } from '../../models/dueno.model';
 import { FormFieldComponent } from './components/form-field/form-field.component';
@@ -16,10 +17,13 @@ export class MascotaFormComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private mascotaService = inject(MascotaService);
+  private duenoService = inject(DuenoService);
 
   isEdit: boolean = false;
   mascotaId: number | undefined;
   duenos: Dueno[] = [];
+  guardando: boolean = false;
+  errorMsg: string = '';
 
   mascotaForm = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -34,26 +38,47 @@ export class MascotaFormComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.duenos = this.mascotaService.obtenerDuenos();
-    const idParam = this.route.snapshot.params['id'];
-    if (idParam) {
-      this.mascotaId = Number(idParam);
-      this.isEdit = true;
-      const mascotaExistente = this.mascotaService.obtenerMascotaPorId(this.mascotaId);
-      if (mascotaExistente) {
-        this.mascotaForm.patchValue({
-          nombre: mascotaExistente.nombre,
-          especie: mascotaExistente.especie,
-          raza: mascotaExistente.raza,
-          edad: mascotaExistente.edad,
-          peso: mascotaExistente.peso,
-          enfermedad: mascotaExistente.enfermedad,
-          fotoUrl: mascotaExistente.fotoUrl || '',
-          dueno: mascotaExistente.dueno || null,
-          activa: mascotaExistente.activa
-        });
+    // Cargar lista de dueños desde el backend
+    this.duenoService.obtenerDuenos().subscribe({
+      next: (data) => {
+        this.duenos = data;
+        // Si estamos en modo edición, cargar la mascota
+        const idParam = this.route.snapshot.params['id'];
+        if (idParam) {
+          this.mascotaId = Number(idParam);
+          this.isEdit = true;
+          this.cargarMascota(this.mascotaId);
+        }
+      },
+      error: (err) => {
+        console.error('Error al cargar dueños:', err);
+        this.errorMsg = 'No se pudieron cargar los propietarios desde el servidor.';
       }
-    }
+    });
+  }
+
+  cargarMascota(id: number): void {
+    this.mascotaService.obtenerMascotaPorId(id).subscribe({
+      next: (m) => {
+        // Encontrar el dueño correspondiente en la lista cargada
+        const duenoEncontrado = m.dueno ? this.duenos.find(d => d.id === m.dueno?.id) : null;
+        this.mascotaForm.patchValue({
+          nombre: m.nombre,
+          especie: m.especie,
+          raza: m.raza,
+          edad: m.edad,
+          peso: m.peso,
+          enfermedad: m.enfermedad,
+          fotoUrl: m.fotoUrl || '',
+          dueno: duenoEncontrado || m.dueno || null,
+          activa: m.activa
+        });
+      },
+      error: (err) => {
+        console.error('Error al cargar mascota:', err);
+        this.errorMsg = 'No se pudo cargar la información de la mascota.';
+      }
+    });
   }
 
   compararDuenos(d1: Dueno | null, d2: Dueno | null): boolean {
@@ -61,11 +86,13 @@ export class MascotaFormComponent implements OnInit {
   }
 
   handleSubmit(): void {
-    if (this.mascotaForm.invalid) {
+    if (this.mascotaForm.invalid || this.guardando) {
       this.mascotaForm.markAllAsTouched();
       return;
     }
 
+    this.guardando = true;
+    this.errorMsg = '';
     const formVal = this.mascotaForm.value;
 
     const mascotaData: Mascota = {
@@ -81,11 +108,29 @@ export class MascotaFormComponent implements OnInit {
     };
 
     if (this.isEdit && this.mascotaId) {
-      this.mascotaService.actualizarMascota(this.mascotaId, mascotaData);
+      this.mascotaService.actualizarMascota(this.mascotaId, mascotaData).subscribe({
+        next: () => {
+          this.guardando = false;
+          this.router.navigate(['/mascotas']);
+        },
+        error: (err) => {
+          console.error('Error al actualizar mascota:', err);
+          this.errorMsg = 'Error al actualizar el expediente de la mascota.';
+          this.guardando = false;
+        }
+      });
     } else {
-      this.mascotaService.agregarMascota(mascotaData);
+      this.mascotaService.agregarMascota(mascotaData).subscribe({
+        next: () => {
+          this.guardando = false;
+          this.router.navigate(['/mascotas']);
+        },
+        error: (err) => {
+          console.error('Error al registrar mascota:', err);
+          this.errorMsg = 'Error al registrar el paciente en el backend.';
+          this.guardando = false;
+        }
+      });
     }
-
-    this.router.navigate(['/mascotas']);
   }
 }

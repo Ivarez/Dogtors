@@ -4,8 +4,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-// Controlador especial que atrapa excepciones y redirige a una pagina de error
-@ControllerAdvice
+// Controlador especial que atrapa excepciones de vistas Thymeleaf
+@ControllerAdvice(assignableTypes = com.veterinaria.dogtors.controller.HomeController.class)
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)

@@ -2,64 +2,65 @@ package com.veterinaria.dogtors.controller;
 
 import com.veterinaria.dogtors.entities.Mascota;
 import com.veterinaria.dogtors.service.MascotaService;
-import com.veterinaria.dogtors.service.DuenoService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("/mascotas")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
 public class MascotaController {
 
     @Autowired
     private MascotaService mascotaService;
 
-    @Autowired
-    private DuenoService duenoService;
-
-    // Mostrar TODAS las mascotas (Veterinario)
+    // Mostrar todas las mascotas (devuelve JSON directamente, tal como explica el transcript)
     @GetMapping
-    public String mostrarTodasLasMascotas(Model model) {
-        model.addAttribute("mascotas", mascotaService.buscarTodas());
-        return "mostrar_todas_mascotas";
+    @Operation(summary = "Mostrar todas las mascotas")
+    public List<Mascota> mostrarTodasLasMascotas() {
+        return mascotaService.buscarTodas();
     }
 
-    // Detalle de una mascota
+    // Mostrar información de una única mascota por ID
     @GetMapping("/{id}")
-    public String mostrarDetalleMascota(@PathVariable Long id, Model model) {
-        model.addAttribute("mascota", mascotaService.buscarPorId(id));
-        return "mostrar_mascota";
+    @Operation(summary = "Mostrar detalle de una mascota")
+    public Mascota mostrarDetalleMascota(@PathVariable Long id) {
+        return mascotaService.buscarPorId(id);
     }
 
-    // Formulario de creacion (Veterinario)
-    @GetMapping("/nueva")
-    public String mostrarFormularioCrear(Model model) {
-        model.addAttribute("mascota", new Mascota());
-        model.addAttribute("duenos", duenoService.findAll());
-        return "formulario_mascota";
+    // Traer las mascotas de un dueño en específico (patrón student/{id} del transcript)
+    @GetMapping("/dueno/{duenoId}")
+    @Operation(summary = "Mostrar mascotas asociadas a un dueño")
+    public List<Mascota> mostrarMascotasPorDueno(@PathVariable Long duenoId) {
+        return mascotaService.buscarPorDuenoId(duenoId);
     }
 
-    // Guardar mascota (recibe el duenoId como @RequestParam)
-    @PostMapping("/guardar")
-    public String guardarMascota(@ModelAttribute("mascota") Mascota mascota,
-                                 @RequestParam("duenoId") Long duenoId) {
-        mascotaService.save(mascota, duenoId);
-        return "redirect:/mascotas";
+    // Agregar mascota recibida por el body de la petición
+    @PostMapping
+    @Operation(summary = "Agregar una mascota")
+    public void agregarMascota(@RequestBody Mascota mascota) {
+        mascotaService.save(mascota);
     }
 
-    // Formulario de edicion (Veterinario)
-    @GetMapping("/editar/{id}")
-    public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
-        model.addAttribute("mascota", mascotaService.buscarPorId(id));
-        model.addAttribute("duenos", duenoService.findAll());
-        return "formulario_mascota";
+    // Actualizar mascota recibida por el body de la petición
+    @PutMapping
+    @Operation(summary = "Actualizar una mascota")
+    public void actualizarMascota(@RequestBody Mascota mascota) {
+        mascotaService.save(mascota);
     }
 
-    // Sprint 4: No eliminar mascota, cambiar su estado activa/inactiva
-    @GetMapping("/cambiar-estado/{id}")
-    public String cambiarEstadoMascota(@PathVariable Long id) {
+    // Alternar estado de la mascota (no se elimina, se cambia de activa a inactiva)
+    @PutMapping("/{id}/estado")
+    @Operation(summary = "Cambiar estado de activa/inactiva de una mascota")
+    public void cambiarEstadoMascota(@PathVariable Long id) {
         mascotaService.cambiarEstado(id);
-        return "redirect:/mascotas";
+    }
+
+    @GetMapping("/cambiar-estado/{id}")
+    @Operation(summary = "Cambiar estado de activa/inactiva (GET alternativo)")
+    public void cambiarEstadoMascotaGet(@PathVariable Long id) {
+        mascotaService.cambiarEstado(id);
     }
 }

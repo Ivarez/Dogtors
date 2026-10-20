@@ -26,6 +26,7 @@ public class Tratamiento {
     // Relación con Mascota
     @ManyToOne
     @JoinColumn(name = "mascota_id", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private Mascota mascota;
 
     // Relación con Veterinario

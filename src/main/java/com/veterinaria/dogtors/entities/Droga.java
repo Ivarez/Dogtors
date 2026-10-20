@@ -34,6 +34,7 @@ public class Droga {
 
     @OneToMany(mappedBy = "droga")
     @Builder.Default
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
     // Constructor con todos los parametros excepto id y relaciones

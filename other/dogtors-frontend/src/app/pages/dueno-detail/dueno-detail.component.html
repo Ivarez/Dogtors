@@ -4,7 +4,12 @@
       <a routerLink="/duenos" class="back-link">&larr; Volver al Directorio</a>
     </div>
 
-    @if (dueno) {
+    @if (cargando) {
+      <div class="loading-box">
+        <div class="spinner"></div>
+        <p>Cargando información del propietario y sus pacientes...</p>
+      </div>
+    } @else if (dueno) {
       <div class="detail-card">
         <app-dueno-info
           [dueno]="dueno"

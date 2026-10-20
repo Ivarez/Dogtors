@@ -63,7 +63,31 @@ public class MascotaServiceImpl implements MascotaService {
     }
 
     @Override
+    @Transactional
+    public void save(Mascota mascota) {
+        if (mascota.getActiva() == null) {
+            mascota.setActiva(true);
+        }
+        if (mascota.getDueno() != null && mascota.getDueno().getId() != null) {
+            Dueno dueno = duenoRepository.findById(mascota.getDueno().getId())
+                    .orElseThrow(() -> new NotFoundException(mascota.getDueno().getId(), "dueno"));
+            mascota.setDueno(dueno);
+        }
+        if (mascota.getId() != null) {
+            mascotaRepository.findById(mascota.getId()).ifPresent(existente -> {
+                mascota.setTratamientos(existente.getTratamientos());
+            });
+        }
+        mascotaRepository.save(mascota);
+    }
+
+    @Override
     public List<Mascota> buscarPorDueno(Dueno dueno) {
         return mascotaRepository.findByDueno(dueno);
+    }
+
+    @Override
+    public List<Mascota> buscarPorDuenoId(Long duenoId) {
+        return mascotaRepository.findByDuenoId(duenoId);
     }
 }

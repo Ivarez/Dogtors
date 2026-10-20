@@ -12,19 +12,32 @@
       </div>
     </div>
 
-    <section class="table-section">
-      <div class="section-title-row">
-        <h2>
-          Propietarios
-          <span class="count-badge">{{ duenos.length }}</span>
-        </h2>
+    @if (errorMsg) {
+      <div class="alert-error">
+        <span>⚠️ {{ errorMsg }}</span>
       </div>
+    }
 
-      <app-dueno-table
-        [duenoArray]="duenos"
-        (duenoEliminado)="eliminarDueno($event)">
-      </app-dueno-table>
-    </section>
+    @if (cargando) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Cargando lista de propietarios...</p>
+      </div>
+    } @else {
+      <section class="table-section">
+        <div class="section-title-row">
+          <h2>
+            Propietarios
+            <span class="count-badge">{{ duenos.length }}</span>
+          </h2>
+        </div>
+
+        <app-dueno-table
+          [duenoArray]="duenos"
+          (duenoEliminado)="eliminarDueno($event)">
+        </app-dueno-table>
+      </section>
+    }
   </div>
 </div>
 

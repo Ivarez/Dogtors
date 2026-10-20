@@ -15,20 +15,36 @@ export class MascotaListComponent implements OnInit {
 
   mascotasActivas: Mascota[] = [];
   mascotasInactivas: Mascota[] = [];
+  cargando: boolean = true;
+  errorMsg: string = '';
 
   ngOnInit(): void {
     this.cargarMascotas();
   }
 
   cargarMascotas(): void {
-    this.mascotasActivas = this.mascotaService.obtenerMascotasActivas();
-    this.mascotasInactivas = this.mascotaService.obtenerMascotasInactivas();
+    this.cargando = true;
+    this.errorMsg = '';
+    this.mascotaService.obtenerMascotas().subscribe({
+      next: (todas) => {
+        this.mascotasActivas = todas.filter(m => m.activa);
+        this.mascotasInactivas = todas.filter(m => !m.activa);
+        this.cargando = false;
+      },
+      error: (err) => {
+        console.error('Error al cargar mascotas:', err);
+        this.errorMsg = 'No se pudo conectar con el backend de Spring Boot (puerto 8080).';
+        this.cargando = false;
+      }
+    });
   }
 
   cambiarEstado(mascota: Mascota): void {
     if (mascota.id) {
-      this.mascotaService.cambiarEstado(mascota.id);
-      this.cargarMascotas();
+      this.mascotaService.cambiarEstado(mascota.id).subscribe({
+        next: () => this.cargarMascotas(),
+        error: (err) => console.error('Error al cambiar estado:', err)
+      });
     }
   }
 }

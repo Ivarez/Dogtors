@@ -18,11 +18,13 @@ export class DuenoFormComponent implements OnInit {
 
   isEdit: boolean = false;
   duenoId: number | undefined;
+  guardando: boolean = false;
+  errorMsg: string = '';
 
   duenoForm = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
     correo: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    password: new FormControl('', [Validators.required, Validators.minLength(4)])
   });
 
   ngOnInit(): void {
@@ -30,23 +32,30 @@ export class DuenoFormComponent implements OnInit {
     if (idParam) {
       this.duenoId = Number(idParam);
       this.isEdit = true;
-      const duenoExistente = this.duenoService.obtenerDuenoPorId(this.duenoId);
-      if (duenoExistente) {
-        this.duenoForm.patchValue({
-          nombre: duenoExistente.nombre,
-          correo: duenoExistente.correo,
-          password: duenoExistente.password || ''
-        });
-      }
+      this.duenoService.obtenerDuenoPorId(this.duenoId).subscribe({
+        next: (duenoExistente) => {
+          this.duenoForm.patchValue({
+            nombre: duenoExistente.nombre,
+            correo: duenoExistente.correo,
+            password: duenoExistente.password || ''
+          });
+        },
+        error: (err) => {
+          console.error('Error al cargar dueño:', err);
+          this.errorMsg = 'No se encontró el propietario solicitado.';
+        }
+      });
     }
   }
 
   handleSubmit(): void {
-    if (this.duenoForm.invalid) {
+    if (this.duenoForm.invalid || this.guardando) {
       this.duenoForm.markAllAsTouched();
       return;
     }
 
+    this.guardando = true;
+    this.errorMsg = '';
     const formVal = this.duenoForm.value;
 
     const duenoData: Dueno = {
@@ -56,12 +65,29 @@ export class DuenoFormComponent implements OnInit {
     };
 
     if (this.isEdit && this.duenoId) {
-      this.duenoService.actualizarDueno(this.duenoId, duenoData);
+      this.duenoService.actualizarDueno(this.duenoId, duenoData).subscribe({
+        next: () => {
+          this.guardando = false;
+          this.router.navigate(['/duenos']);
+        },
+        error: (err) => {
+          console.error('Error al actualizar dueño:', err);
+          this.errorMsg = 'Error al actualizar el propietario.';
+          this.guardando = false;
+        }
+      });
     } else {
-      this.duenoService.agregarDueno(duenoData);
+      this.duenoService.agregarDueno(duenoData).subscribe({
+        next: () => {
+          this.guardando = false;
+          this.router.navigate(['/duenos']);
+        },
+        error: (err) => {
+          console.error('Error al registrar dueño:', err);
+          this.errorMsg = err.error?.message || 'Error al registrar el propietario en el backend.';
+          this.guardando = false;
+        }
+      });
     }
-
-    this.router.navigate(['/duenos']);
   }
 }
-

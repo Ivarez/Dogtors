@@ -1,0 +1,63 @@
+<div class="login-page">
+  <div class="container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="brand-badge">
+          <img src="/images/logo.png" alt="Dogtors Logo" class="brand-logo" />
+          <span class="brand-name">Dogtors</span>
+        </div>
+        <div class="eyebrow">PORTAL CLÍNICO PARA FAMILIAS</div>
+        <h1>Iniciar Sesión</h1>
+        <p class="subtitle">Ingrese para consultar el estado clínico y evolución hospitalaria de sus compañeros.</p>
+      </div>
+
+      @if (errorMsg) {
+        <div class="alert-error">
+          <span>⚠️ {{ errorMsg }}</span>
+        </div>
+      }
+
+      <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()" class="login-form">
+        <div class="form-group">
+          <label for="correo">Correo Electrónico</label>
+          <input
+            id="correo"
+            type="email"
+            formControlName="correo"
+            placeholder="ejemplo&#64;correo.com"
+            class="form-control" />
+          @if (loginForm.get('correo')?.touched && loginForm.get('correo')?.invalid) {
+            <span class="error-msg">Ingrese un correo electrónico válido.</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="••••••••"
+            class="form-control" />
+          @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+            <span class="error-msg">La contraseña es obligatoria.</span>
+          }
+        </div>
+
+        <button type="submit" [disabled]="!loginForm.valid || cargando" class="btn-submit">
+          {{ cargando ? 'Verificando...' : 'Ingresar al Portal →' }}
+        </button>
+      </form>
+
+      <div class="test-hint">
+        <span class="hint-title">💡 Credenciales de prueba cargadas por el sistema:</span>
+        <code>usuario1&#64;dogtors.com</code> / Contraseña: <code>1234</code>
+      </div>
+
+      <div class="login-footer">
+        <span>¿No tiene cuenta? <a routerLink="/duenos/nuevo">Registrarse como Propietario</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+

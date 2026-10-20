@@ -1,0 +1,195 @@
+.login-page {
+  padding: 60px 0 100px;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.login-card {
+  background: var(--surface);
+  border: 1px solid var(--borders);
+  border-radius: 24px;
+  padding: 44px 36px;
+  box-shadow: 0 10px 30px rgba(31, 93, 80, 0.05);
+
+  @media (max-width: 480px) {
+    padding: 32px 24px;
+  }
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 28px;
+
+  .brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+
+    .brand-logo {
+      height: 32px;
+      width: auto;
+    }
+
+    .brand-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+  }
+
+  .eyebrow {
+    color: var(--primary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+    font-weight: 800;
+    margin: 0 0 8px;
+  }
+
+  .subtitle {
+    color: var(--neutral);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+.alert-error {
+  background: rgba(224, 122, 95, 0.12);
+  border: 1px solid var(--accent2);
+  color: var(--accent2);
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 24px;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--borders);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: #FAFBFA;
+      transition: all 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary);
+        background: var(--surface);
+        box-shadow: 0 0 0 3px rgba(31, 93, 80, 0.1);
+      }
+    }
+
+    .error-msg {
+      color: var(--accent2);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+  }
+
+  .btn-submit {
+    margin-top: 6px;
+    background: var(--primary);
+    color: var(--surface);
+    padding: 13px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+
+    &:hover:not([disabled]) {
+      background: var(--secondary);
+    }
+
+    &[disabled] {
+      background: var(--borders);
+      color: var(--neutral);
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+  }
+}
+
+.test-hint {
+  background: #F7FAF8;
+  border: 1px dashed #CBE0D3;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.78rem;
+  color: #395246;
+  margin-bottom: 24px;
+  line-height: 1.5;
+
+  .hint-title {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  code {
+    background: #E8F2EC;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+}
+
+.login-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--neutral);
+  border-top: 1px solid var(--borders);
+  padding-top: 18px;
+
+  a {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+

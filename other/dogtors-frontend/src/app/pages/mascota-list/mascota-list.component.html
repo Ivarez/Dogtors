@@ -14,7 +14,19 @@
       </div>
     </div>
 
-    <!-- Active Pets Section -->
+    @if (errorMsg) {
+      <div class="alert-error">
+        <span>⚠️ {{ errorMsg }}</span>
+      </div>
+    }
+
+    @if (cargando) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Cargando pacientes desde el servidor...</p>
+      </div>
+    } @else {
+      <!-- Active Pets Section -->
     <section class="table-section">
       <div class="section-title-row">
         <h2>
@@ -47,5 +59,6 @@
         (mascotaEstadoCambiado)="cambiarEstado($event)">
       </app-mascota-table>
     </section>
+    }
   </div>
 </div>

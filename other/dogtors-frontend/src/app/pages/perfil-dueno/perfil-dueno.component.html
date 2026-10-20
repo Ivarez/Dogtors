@@ -1,0 +1,66 @@
+<div class="perfil-page">
+  <div class="container">
+    @if (cargando) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Cargando información de sus mascotas...</p>
+      </div>
+    } @else if (errorMsg) {
+      <div class="alert-error">
+        <span>⚠️ {{ errorMsg }}</span>
+      </div>
+    } @else if (dueno) {
+      <!-- Header de bienvenida al cliente -->
+      <div class="perfil-header">
+        <div class="header-left">
+          <div class="eyebrow">PORTAL DEL PROPIETARIO · EXPEDIENTES</div>
+          <h1>Hola, {{ dueno.nombre }}</h1>
+          <p class="subtitle">
+            Seguimiento en tiempo real de sus compañeros bajo nuestra supervisión clínica veterinaria.
+          </p>
+        </div>
+
+        <div class="header-stats">
+          <div class="stat-pill">
+            <span class="stat-num">{{ mascotas.length }}</span>
+            <span class="stat-lbl">Mascotas</span>
+          </div>
+          <div class="stat-pill active-pill">
+            <span class="stat-num">{{ activasCount }}</span>
+            <span class="stat-lbl">Hospitalizadas</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num">{{ inactivasCount }}</span>
+            <span class="stat-lbl">Con Alta</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección de Mascotas en Tarjetas -->
+      <section class="cards-section">
+        <div class="section-title-row">
+          <h2>
+            Sus Mascotas Registradas
+            <span class="count-badge">{{ mascotas.length }}</span>
+          </h2>
+          <span class="info-note">ℹ️ Vista exclusiva para clientes (no editable directamente).</span>
+        </div>
+
+        @if (mascotas.length > 0) {
+          <div class="cards-grid">
+            @for (m of mascotas; track m.id) {
+              <app-perfil-pet-card [mascota]="m"></app-perfil-pet-card>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <div class="empty-icon">🐾</div>
+            <h3>No tiene pacientes registrados</h3>
+            <p>Comuníquese con el equipo médico para asociar el ingreso clínico de sus mascotas.</p>
+          </div>
+        }
+      </section>
+    }
+  </div>
+</div>
+

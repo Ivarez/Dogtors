@@ -29,6 +29,7 @@ public class Dueno {
 
     @OneToMany(mappedBy = "dueno", cascade = CascadeType.ALL)
     @Builder.Default
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private List<Mascota> mascotas = new ArrayList<>();
 
     // Constructor con todos los parametros excepto id y relaciones

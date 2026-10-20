@@ -2,100 +2,66 @@ package com.veterinaria.dogtors.controller;
 
 import com.veterinaria.dogtors.entities.Dueno;
 import com.veterinaria.dogtors.service.DuenoService;
-import com.veterinaria.dogtors.service.MascotaService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("/duenos")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
 public class DuenoController {
 
     @Autowired
     private DuenoService duenoService;
 
-    @Autowired
-    private MascotaService mascotaService;
-
-    // Mostrar formulario de Login
-    @GetMapping("/login")
-    public String mostrarLogin(Model model) {
-        model.addAttribute("dueno", new Dueno());
-        return "login";
+    // Listar todos los dueños
+    @GetMapping
+    @Operation(summary = "Listar todos los dueños")
+    public List<Dueno> listarDuenos() {
+        return duenoService.findAll();
     }
 
-    // Procesar Login
-    @PostMapping("/login")
-    public String procesarLogin(@ModelAttribute("dueno") Dueno dueno, Model model) {
-        try {
-            Dueno autenticado = duenoService.validarLogin(dueno.getCorreo(), dueno.getPassword());
-            return "redirect:/duenos/perfil/" + autenticado.getId();
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("error", e.getMessage());
-            return "login";
-        }
+    // Buscar dueño por ID
+    @GetMapping("/{id}")
+    @Operation(summary = "Obtener un dueño por su ID")
+    public Dueno buscarPorId(@PathVariable Long id) {
+        return duenoService.findById(id);
     }
 
-    // Perfil del dueno: muestra sus mascotas en formato de tarjeta
-    @GetMapping("/perfil/{id}")
-    public String perfilDueno(@PathVariable Long id, Model model) {
-        Dueno dueno = duenoService.findById(id);
-        model.addAttribute("dueno", dueno);
-        model.addAttribute("mascotas", mascotaService.buscarPorDueno(dueno));
-        return "perfil_dueno";
-    }
-
-    // Formulario de Registro
-    @GetMapping("/nueva")
-    public String mostrarFormularioRegistro(Model model) {
-        model.addAttribute("dueno", new Dueno());
-        return "registro_dueno";
-    }
-
-    // Procesar Registro
-    @PostMapping("/nueva")
-    public String procesarRegistro(@ModelAttribute("dueno") Dueno dueno) {
+    // Agregar nuevo dueño (datos recibidos en el Body)
+    @PostMapping
+    @Operation(summary = "Registrar un nuevo dueño")
+    public Dueno agregarDueno(@RequestBody Dueno dueno) {
         duenoService.save(dueno);
-        return "redirect:/duenos/login";
+        return dueno;
     }
 
-    // Listar todos los duenos (CRUD Veterinario)
-    @GetMapping("/lista")
-    public String listarDuenos(Model model) {
-        model.addAttribute("duenos", duenoService.findAll());
-        return "mostrar_todos_duenos";
-    }
-
-    // Formulario de edicion
-    @GetMapping("/editar/{id}")
-    public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
-        Dueno dueno = duenoService.findById(id);
-        model.addAttribute("dueno", dueno);
-        return "editar_dueno";
-    }
-
-    // Procesar edicion
-    @PostMapping("/editar")
-    public String procesarEdicion(@ModelAttribute("dueno") Dueno dueno) {
+    // Actualizar dueño
+    @PutMapping
+    @Operation(summary = "Actualizar datos de un dueño")
+    public void actualizarDueno(@RequestBody Dueno dueno) {
         duenoService.save(dueno);
-        return "redirect:/duenos/lista";
     }
 
-    // Borrar dueno
-    @GetMapping("/borrar/{id}")
-    public String borrarDueno(@PathVariable Long id) {
+    // Borrar dueño por ID
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar un dueño por ID")
+    public void borrarDueno(@PathVariable Long id) {
         duenoService.delete(id);
-        return "redirect:/duenos/lista";
     }
 
-    // Cerrar sesion (redireccion simple)
-    @GetMapping("/logout")
-    public String cerrarSesion() {
-        return "redirect:/";
+    @GetMapping("/borrar/{id}")
+    @Operation(summary = "Eliminar un dueño (GET alternativo)")
+    public void borrarDuenoGet(@PathVariable Long id) {
+        duenoService.delete(id);
+    }
+
+    // Procesar Login mediante POST con credenciales en el Body
+    @PostMapping("/login")
+    @Operation(summary = "Login de cliente por correo y contraseña")
+    public Dueno procesarLogin(@RequestBody Dueno credenciales) {
+        return duenoService.validarLogin(credenciales.getCorreo(), credenciales.getPassword());
     }
 }

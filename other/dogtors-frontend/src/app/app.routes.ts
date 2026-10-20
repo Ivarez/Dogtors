@@ -6,9 +6,13 @@ import { MascotaDetailComponent } from './pages/mascota-detail/mascota-detail.co
 import { DuenoListComponent } from './pages/dueno-list/dueno-list.component';
 import { DuenoFormComponent } from './pages/dueno-form/dueno-form.component';
 import { DuenoDetailComponent } from './pages/dueno-detail/dueno-detail.component';
+import { LoginComponent } from './pages/login/login.component';
+import { PerfilDuenoComponent } from './pages/perfil-dueno/perfil-dueno.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'perfil/:id', component: PerfilDuenoComponent },
   { path: 'mascotas', component: MascotaListComponent },
   { path: 'mascotas/nueva', component: MascotaFormComponent },
   { path: 'mascotas/editar/:id', component: MascotaFormComponent },

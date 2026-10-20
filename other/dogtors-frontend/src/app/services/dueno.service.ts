@@ -1,49 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Dueno } from '../models/dueno.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DuenoService {
+  private http = inject(HttpClient);
+  private readonly apiUrl = 'http://localhost:8080/duenos';
 
-  private duenos: Dueno[] = [
-    { id: 1, nombre: 'Juan Pérez', correo: 'juan.perez@dogtors.com', password: '123456' },
-    { id: 2, nombre: 'María García', correo: 'maria.garcia@dogtors.com', password: '123456' },
-    { id: 3, nombre: 'Carlos López', correo: 'carlos.lopez@dogtors.com', password: '123456' },
-    { id: 4, nombre: 'Ana Martínez', correo: 'ana.martinez@dogtors.com', password: '123456' },
-    { id: 5, nombre: 'Pedro Rodríguez', correo: 'pedro.rodriguez@dogtors.com', password: '123456' },
-    { id: 6, nombre: 'Laura Sánchez', correo: 'laura.sanchez@dogtors.com', password: '123456' }
-  ];
-
-  constructor() { }
-
-  obtenerDuenos(): Dueno[] {
-    return this.duenos;
+  obtenerDuenos(): Observable<Dueno[]> {
+    return this.http.get<Dueno[]>(this.apiUrl);
   }
 
-  obtenerDuenoPorId(id: number): Dueno | undefined {
-    return this.duenos.find(d => d.id === id);
+  obtenerDuenoPorId(id: number): Observable<Dueno> {
+    return this.http.get<Dueno>(`${this.apiUrl}/${id}`);
   }
 
-  agregarDueno(dueno: Dueno): void {
-    const maxId = this.duenos.length > 0 ? Math.max(...this.duenos.map(d => d.id || 0)) : 0;
-    dueno.id = maxId + 1;
-    this.duenos.push(dueno);
+  agregarDueno(dueno: Dueno): Observable<Dueno> {
+    return this.http.post<Dueno>(this.apiUrl, dueno);
   }
 
-  actualizarDueno(id: number, dueno: Dueno): void {
-    const existente = this.obtenerDuenoPorId(id);
-    if (existente) {
-      // Se modifica el mismo objeto para que las mascotas asociadas vean el cambio
-      Object.assign(existente, { ...dueno, id: id });
-    }
+  actualizarDueno(id: number, dueno: Dueno): Observable<void> {
+    return this.http.put<void>(this.apiUrl, { ...dueno, id });
   }
 
-  eliminarDueno(id: number): void {
-    const index = this.duenos.findIndex(d => d.id === id);
-    if (index !== -1) {
-      this.duenos.splice(index, 1);
-    }
+  eliminarDueno(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
-

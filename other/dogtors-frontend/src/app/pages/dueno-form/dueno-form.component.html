@@ -11,6 +11,12 @@
         <p class="subtitle">Complete los datos del propietario responsable del paciente.</p>
       </div>
 
+      @if (errorMsg) {
+        <div class="alert-error full-width">
+          <span>⚠️ {{ errorMsg }}</span>
+        </div>
+      }
+
       <form [formGroup]="duenoForm" (ngSubmit)="handleSubmit()" class="form-grid">
         <app-form-field
           label="Nombre Completo *"

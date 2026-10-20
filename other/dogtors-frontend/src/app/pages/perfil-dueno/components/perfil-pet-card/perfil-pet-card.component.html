@@ -1,0 +1,38 @@
+<div class="pet-card">
+  <div class="pet-card-image">
+    @if (mascota().fotoUrl) {
+      <img [src]="mascota().fotoUrl" [alt]="mascota().nombre" class="photo" />
+    } @else {
+      <div class="photo-placeholder">🐾</div>
+    }
+    <div class="badge-wrapper">
+      @if (mascota().activa) {
+        <span class="badge badge-activa">Hospitalizado</span>
+      } @else {
+        <span class="badge badge-inactiva">Alta Médica</span>
+      }
+    </div>
+  </div>
+
+  <div class="pet-card-body">
+    <div class="eyebrow">{{ mascota().especie }} · {{ mascota().raza }}</div>
+    <h3 class="pet-name">{{ mascota().nombre }}</h3>
+
+    <div class="meta-row">
+      <span class="meta-pill"><strong>{{ mascota().edad }}</strong> años</span>
+      <span class="meta-pill"><strong>{{ mascota().peso }}</strong> kg</span>
+    </div>
+
+    <div class="diagnosis-box">
+      <span class="diagnosis-label">DIAGNÓSTICO REPORTADO</span>
+      <p class="diagnosis-text">{{ mascota().enfermedad }}</p>
+    </div>
+
+    <div class="card-footer">
+      <a [routerLink]="['/mascotas', mascota().id]" class="btn-expediente">
+        Ver Expediente y Tratamientos &rarr;
+      </a>
+    </div>
+  </div>
+</div>
+

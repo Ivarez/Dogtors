@@ -11,4 +11,7 @@ import java.util.List;
 public interface MascotaRepository extends JpaRepository<Mascota, Long> {
     // JPA genera la consulta automaticamente
     List<Mascota> findByDueno(Dueno dueno);
+
+    // Consulta directa por ID del dueno (patrón Transcript 10)
+    List<Mascota> findByDuenoId(Long duenoId);
 }

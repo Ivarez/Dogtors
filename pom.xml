@@ -18,6 +18,7 @@
     
     <properties>
         <java.version>17</java.version>
+        <lombok.version>1.18.42</lombok.version>
     </properties>
     
     <dependencies>
@@ -65,6 +66,13 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- Documentación OpenAPI / Swagger UI (Sprint 8 / Transcript 10) -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.5.0</version>
         </dependency>
 
         <!-- Herramientas de prueba estándar -->

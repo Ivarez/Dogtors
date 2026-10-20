@@ -81,3 +81,6 @@ Crear las clases/interfaces para todas las entidades que estaban en Springboot�
 
 Veterinaria
 Pasar CRUD de mascotas a Angular (con datos quemados)
+
+8
+Tener todo el trabajo de anteriores Sprints a Angular consumiendo datos con REST de SpringBoot. Para la mayoría de grupos esto es pasar CRUDS que tenían de varias entidades Y Logins. (preferiblemente sin cosas raras como local storage sin cookies, ni nada raro que saque una IA)

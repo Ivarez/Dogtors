@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { mergeMap } from 'rxjs';
 import { DuenoService } from '../../services/dueno.service';
 import { MascotaService } from '../../services/mascota.service';
 import { Dueno } from '../../models/dueno.model';
@@ -21,21 +22,43 @@ export class DuenoDetailComponent implements OnInit {
 
   dueno: Dueno | undefined;
   mascotas: Mascota[] = [];
+  cargando: boolean = true;
+  errorMsg: string = '';
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.params['id']);
-    this.dueno = this.duenoService.obtenerDuenoPorId(id);
-    if (this.dueno) {
-      this.mascotas = this.mascotaService.obtenerMascotasPorDueno(id);
-    }
+    this.cargarDetalle(id);
+  }
+
+  cargarDetalle(id: number): void {
+    this.cargando = true;
+    this.errorMsg = '';
+
+    // Patrón de consultas anidadas con mergeMap enseñado en Transcript 10
+    this.duenoService.obtenerDuenoPorId(id).pipe(
+      mergeMap(d => {
+        this.dueno = d;
+        return this.mascotaService.obtenerMascotasPorDueno(id);
+      })
+    ).subscribe({
+      next: (pets) => {
+        this.mascotas = pets;
+        this.cargando = false;
+      },
+      error: (err) => {
+        console.error('Error al cargar detalle del dueño:', err);
+        this.errorMsg = 'No se encontró el propietario o el servidor no respondió.';
+        this.cargando = false;
+      }
+    });
   }
 
   eliminarDueno(): void {
-    if (this.dueno?.id && confirm(`¿Estás seguro de eliminar a ${this.dueno.nombre}?`)) {
-      this.mascotaService.quitarDueno(this.dueno.id);
-      this.duenoService.eliminarDueno(this.dueno.id);
-      this.router.navigate(['/duenos']);
+    if (this.dueno?.id && confirm(`¿Estás seguro de eliminar a ${this.dueno.nombre}? Se eliminarán también las mascotas asociadas a su expediente.`)) {
+      this.duenoService.eliminarDueno(this.dueno.id).subscribe({
+        next: () => this.router.navigate(['/duenos']),
+        error: (err) => console.error('Error al eliminar dueño:', err)
+      });
     }
   }
 }
-

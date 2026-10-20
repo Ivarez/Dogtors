@@ -74,6 +74,17 @@
   grid-column: 1 / -1;
 }
 
+.alert-error {
+  background: rgba(224, 122, 95, 0.12);
+  border: 1px solid var(--accent2);
+  color: var(--accent2);
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
 .form-actions {
   display: flex;
   justify-content: flex-end;

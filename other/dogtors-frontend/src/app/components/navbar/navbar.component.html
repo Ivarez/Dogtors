@@ -1,19 +1,27 @@
 <header class="navbar-header">
   <div class="navbar-container">
-    <a routerLink="/" class="navbar-brand">
-      <img src="/images/logo.png" alt="Dogtors Logo" class="navbar-logo" />
+    <a routerLink="/" class="navbar-brand" aria-label="Dogtors - Inicio">
+      <img src="/images/logo.png" alt="Logo de Dogtors" class="navbar-logo" />
       <span class="brand-text">Dogtors</span>
     </a>
 
-    <nav class="navbar-links">
+    <nav class="navbar-links" aria-label="Navegación principal">
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
-      <a routerLink="/mascotas" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Mascotas</a>
-      <a routerLink="/mascotas/nueva" routerLinkActive="active">Registrar Mascota</a>
+      <a routerLink="/mascotas" routerLinkActive="active">Mascotas</a>
       <a routerLink="/duenos" routerLinkActive="active">Dueños</a>
     </nav>
 
     <div class="navbar-actions">
-      <a routerLink="/mascotas/nueva" class="btn-nuevo">+ Nuevo Ingreso</a>
+      @if (authService.usuarioActual(); as usuario) {
+        <a [routerLink]="['/perfil', usuario.id]" routerLinkActive="active" class="link-perfil">
+          <span class="avatar">{{ usuario.nombre.charAt(0).toUpperCase() }}</span>
+          Hola, {{ usuario.nombre.split(' ')[0] }}
+        </a>
+        <button type="button" class="btn-ghost" (click)="logout()">Salir</button>
+      } @else {
+        <a routerLink="/login" routerLinkActive="active" class="link-login">Iniciar sesión</a>
+        <a routerLink="/duenos/nuevo" class="btn-cta">Crea tu cuenta</a>
+      }
     </div>
   </div>
 </header>

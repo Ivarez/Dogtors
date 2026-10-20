@@ -7,7 +7,12 @@
       </a>
     </div>
 
-    @if (mascota) {
+    @if (cargando) {
+      <div class="loading-box">
+        <div class="spinner"></div>
+        <p>Cargando expediente clínico...</p>
+      </div>
+    } @else if (mascota) {
       <div class="detail-card">
         <!-- Componente hijo: Información del paciente -->
         <app-pet-info
