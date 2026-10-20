@@ -68,6 +68,13 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- FastExcel Reader para lectura ultraligera de Excel (.xlsx) -->
+        <dependency>
+            <groupId>org.dhatim</groupId>
+            <artifactId>fastexcel-reader</artifactId>
+            <version>0.20.2</version>
+        </dependency>
+
         <!-- Documentación OpenAPI / Swagger UI (Sprint 8 / Transcript 10) -->
         <dependency>
             <groupId>org.springdoc</groupId>
