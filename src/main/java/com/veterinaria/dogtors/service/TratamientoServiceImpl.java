@@ -86,10 +86,9 @@ public class TratamientoServiceImpl implements TratamientoService {
         droga.setUnidadesVendidas(droga.getUnidadesVendidas() != null ? droga.getUnidadesVendidas() + 1 : 1);
         drogaRepository.save(droga);
 
-        // Crear tratamiento
-        LocalDate fecha = (dto.getFecha() != null) ? dto.getFecha() : LocalDate.now();
+        // Crear tratamiento asignando automáticamente la fecha actual
         Tratamiento tratamiento = new Tratamiento(
-                fecha,
+                LocalDate.now(),
                 dto.getObservaciones(),
                 mascota,
                 veterinario,

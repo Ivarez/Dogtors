@@ -9,5 +9,6 @@ public interface VeterinarioService {
     List<Veterinario> buscarTodos();
 
     Veterinario buscarPorId(Long id);
-}
 
+    Veterinario validarLogin(String correo, String password);
+}

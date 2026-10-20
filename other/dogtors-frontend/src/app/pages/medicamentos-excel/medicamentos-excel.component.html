@@ -9,9 +9,9 @@
     <div class="page-header">
       <div class="header-left">
         <span class="badge-tag">MÓDULO DE FARMACIA & LOGÍSTICA</span>
-        <h1>Carga de Catálogo e Inventario Farmacológico</h1>
+        <h1>Catálogo e Inventario de Medicamentos</h1>
         <p class="subtitle">
-          Actualice el maestro de medicamentos e insumos hospitalarios mediante la importación de archivos Excel oficiales (.xlsx).
+          Consulte y gestione el inventario de medicamentos disponibles en la clínica o importe un archivo Excel (.xlsx).
         </p>
       </div>
       <div class="header-actions">
@@ -72,7 +72,7 @@
       <div class="alert-box alert-success">
         <div class="alert-icon">✓</div>
         <div class="alert-content">
-          <h4>¡Carga Completada con Éxito!</h4>
+          <h4>¡Operación Completada con Éxito!</h4>
           <p>{{ mensajeExito }}</p>
           @if (medicamentosCargadosContador !== null) {
             <span class="alert-sub">Se registraron o actualizaron {{ medicamentosCargadosContador }} medicamentos en el sistema.</span>
@@ -93,8 +93,117 @@
       </div>
     }
 
-    <!-- Upload Card -->
-    <div class="upload-section-card">
+    <!-- Inventory Table Card (Catálogo / CRUD de Medicamentos) -->
+    <div class="inventory-card">
+      <div class="inventory-header">
+        <div class="title-with-badge">
+          <h2>Catálogo e Inventario en Bodega</h2>
+          <span class="counter-badge">{{ medicamentosFiltrados.length }} fármacos</span>
+        </div>
+
+        <div class="header-right-tools">
+          @if (medicamentos.length > 0) {
+            <button type="button" class="btn-clear-catalog" (click)="vaciarCatalogo()" title="Vaciar todo el inventario">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              Vaciar Catálogo
+            </button>
+          }
+
+          <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              [(ngModel)]="filtroBusqueda" 
+              placeholder="Buscar por nombre de medicamento..." />
+          </div>
+        </div>
+      </div>
+
+      @if (cargandoLista) {
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>Consultando catálogo de medicamentos...</p>
+        </div>
+      } @else if (medicamentos.length === 0) {
+        <div class="empty-inventory-state">
+          <div class="empty-icon">💊</div>
+          <h3>No hay medicamentos registrados en el inventario</h3>
+          <p>El inventario se encuentra actualmente vacío. Utilice la sección de abajo para cargar un archivo Excel de medicamentos.</p>
+          <button type="button" class="btn-action-primary" (click)="cargarDefaultServidor()">
+            Cargar Medicamentos Oficiales Ahora
+          </button>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table class="inventory-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NOMBRE DEL FÁRMACO</th>
+                <th>PRECIO COMPRA</th>
+                <th>PRECIO VENTA</th>
+                <th>UNIDADES DISPONIBLES</th>
+                <th>UNIDADES VENDIDAS</th>
+                <th>ESTADO</th>
+                <th>ACCIÓN</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (m of medicamentosFiltrados; track m.id) {
+                <tr [class.out-of-stock-row]="m.unidadesDisponibles <= 0">
+                  <td class="col-id">#{{ m.id }}</td>
+                  <td class="col-nombre">
+                    <strong>{{ m.nombre }}</strong>
+                  </td>
+                  <td class="col-precio">${{ m.precioCompra | number:'1.2-2' }}</td>
+                  <td class="col-precio font-semibold">${{ m.precioVenta | number:'1.2-2' }}</td>
+                  <td class="col-stock">
+                    @if (m.unidadesDisponibles > 0) {
+                      <span class="stock-badge in-stock">
+                        {{ m.unidadesDisponibles }} viales
+                      </span>
+                    } @else {
+                      <span class="stock-badge out-stock">
+                        0 disponibles
+                      </span>
+                    }
+                  </td>
+                  <td class="col-vendidas">{{ m.unidadesVendidas || 0 }}</td>
+                  <td class="col-estado">
+                    @if (m.unidadesDisponibles > 0) {
+                      <span class="status-indicator active">
+                        <span class="dot"></span> Disponible
+                      </span>
+                    } @else {
+                      <span class="status-indicator depleted">
+                        <span class="dot"></span> Agotado
+                      </span>
+                    }
+                  </td>
+                  <td class="col-actions">
+                    <button type="button" class="btn-delete-row" (click)="eliminarMedicamento(m.id, m.nombre)" title="Eliminar medicamento">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
+
+    <!-- Upload Card (Cargar desde Excel - Abajo del catálogo) -->
+    <div class="upload-section-card" style="margin-top: 36px;">
       <div class="section-title-wrap">
         <h2>Importar Archivo Excel de Medicamentos</h2>
         <p>Cargue un archivo .xlsx con las columnas requeridas (Nombre, Precio Venta, Precio Compra, Unidades Disponibles).</p>
@@ -186,115 +295,6 @@
           Cargar Excel por Defecto del Servidor
         </button>
       </div>
-    </div>
-
-    <!-- Inventory Table Card -->
-    <div class="inventory-card">
-      <div class="inventory-header">
-        <div class="title-with-badge">
-          <h2>Catálogo e Inventario en Bodega</h2>
-          <span class="counter-badge">{{ medicamentosFiltrados.length }} fármacos</span>
-        </div>
-
-        <div class="header-right-tools">
-          @if (medicamentos.length > 0) {
-            <button type="button" class="btn-clear-catalog" (click)="vaciarCatalogo()" title="Vaciar todo el inventario">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-              Vaciar Catálogo
-            </button>
-          }
-
-          <div class="search-box">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input 
-              type="text" 
-              [(ngModel)]="filtroBusqueda" 
-              placeholder="Buscar por nombre de medicamento..." />
-          </div>
-        </div>
-      </div>
-
-      @if (cargandoLista) {
-        <div class="loading-state">
-          <div class="spinner"></div>
-          <p>Consultando catálogo de medicamentos...</p>
-        </div>
-      } @else if (medicamentos.length === 0) {
-        <div class="empty-inventory-state">
-          <div class="empty-icon">💊</div>
-          <h3>No hay medicamentos registrados en el inventario</h3>
-          <p>El inventario se encuentra actualmente vacío. Utilice el formulario de arriba para cargar el archivo Excel de medicamentos.</p>
-          <button type="button" class="btn-action-primary" (click)="cargarDefaultServidor()">
-            Cargar Medicamentos Oficiales Ahora
-          </button>
-        </div>
-      } @else {
-        <div class="table-responsive">
-          <table class="inventory-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>NOMBRE DEL FÁRMACO</th>
-                <th>PRECIO COMPRA</th>
-                <th>PRECIO VENTA</th>
-                <th>UNIDADES DISPONIBLES</th>
-                <th>UNIDADES VENDIDAS</th>
-                <th>ESTADO</th>
-                <th>ACCIÓN</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (m of medicamentosFiltrados; track m.id) {
-                <tr [class.out-of-stock-row]="m.unidadesDisponibles <= 0">
-                  <td class="col-id">#{{ m.id }}</td>
-                  <td class="col-nombre">
-                    <strong>{{ m.nombre }}</strong>
-                  </td>
-                  <td class="col-precio">${{ m.precioCompra | number:'1.2-2' }}</td>
-                  <td class="col-precio font-semibold">${{ m.precioVenta | number:'1.2-2' }}</td>
-                  <td class="col-stock">
-                    @if (m.unidadesDisponibles > 0) {
-                      <span class="stock-badge in-stock">
-                        {{ m.unidadesDisponibles }} viales
-                      </span>
-                    } @else {
-                      <span class="stock-badge out-stock">
-                        0 disponibles
-                      </span>
-                    }
-                  </td>
-                  <td class="col-vendidas">{{ m.unidadesVendidas || 0 }}</td>
-                  <td class="col-estado">
-                    @if (m.unidadesDisponibles > 0) {
-                      <span class="status-indicator active">
-                        <span class="dot"></span> Disponible
-                      </span>
-                    } @else {
-                      <span class="status-indicator depleted">
-                        <span class="dot"></span> Agotado
-                      </span>
-                    }
-                  </td>
-                  <td class="col-actions">
-                    <button type="button" class="btn-delete-row" (click)="eliminarMedicamento(m.id, m.nombre)" title="Eliminar medicamento">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-              }
-            </tbody>
-          </table>
-        </div>
-      }
     </div>
   </div>
 </div>

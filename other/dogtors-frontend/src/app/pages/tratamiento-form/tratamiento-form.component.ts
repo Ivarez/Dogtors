@@ -43,13 +43,10 @@ export class TratamientoFormComponent implements OnInit {
   errorSinDrogas: boolean = false;
 
   ngOnInit(): void {
-    const hoy = new Date().toISOString().split('T')[0];
-
     this.tratamientoForm = this.fb.group({
       mascotaId: [null, [Validators.required]],
       veterinarioId: [null, [Validators.required]],
       drogaId: [null, [Validators.required]],
-      fecha: [hoy, [Validators.required]],
       observaciones: ['', [Validators.required, Validators.minLength(5)]]
     });
 
@@ -144,7 +141,6 @@ export class TratamientoFormComponent implements OnInit {
       mascotaId: Number(val.mascotaId),
       veterinarioId: Number(val.veterinarioId),
       drogaId: Number(val.drogaId),
-      fecha: val.fecha,
       observaciones: val.observaciones
     };
 

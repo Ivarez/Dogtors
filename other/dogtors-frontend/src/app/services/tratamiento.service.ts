@@ -8,7 +8,6 @@ export interface CrearTratamientoDTO {
   veterinarioId: number;
   drogaId: number;
   observaciones?: string;
-  fecha?: string;
 }
 
 @Injectable({

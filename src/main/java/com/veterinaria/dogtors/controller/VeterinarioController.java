@@ -27,5 +27,10 @@ public class VeterinarioController {
     public Veterinario buscarPorId(@PathVariable("id") Long id) {
         return veterinarioService.buscarPorId(id);
     }
-}
 
+    @PostMapping("/login")
+    @Operation(summary = "Login de veterinario por correo y contraseña")
+    public Veterinario procesarLogin(@RequestBody Veterinario credenciales) {
+        return veterinarioService.validarLogin(credenciales.getCorreo(), credenciales.getPassword());
+    }
+}

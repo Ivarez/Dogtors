@@ -1,10 +1,7 @@
 package com.veterinaria.dogtors.dto;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -14,18 +11,46 @@ public class CrearTratamientoDTO {
     private Long veterinarioId;
     private Long drogaId;
     private String observaciones;
-    private LocalDate fecha;
 
     public CrearTratamientoDTO() {
     }
 
-    @Builder
-    public CrearTratamientoDTO(Long mascotaId, Long veterinarioId, Long drogaId, String observaciones, LocalDate fecha) {
+    public CrearTratamientoDTO(Long mascotaId, Long veterinarioId, Long drogaId, String observaciones) {
         this.mascotaId = mascotaId;
         this.veterinarioId = veterinarioId;
         this.drogaId = drogaId;
         this.observaciones = observaciones;
-        this.fecha = fecha;
+    }
+
+    public Long getMascotaId() {
+        return mascotaId;
+    }
+
+    public void setMascotaId(Long mascotaId) {
+        this.mascotaId = mascotaId;
+    }
+
+    public Long getVeterinarioId() {
+        return veterinarioId;
+    }
+
+    public void setVeterinarioId(Long veterinarioId) {
+        this.veterinarioId = veterinarioId;
+    }
+
+    public Long getDrogaId() {
+        return drogaId;
+    }
+
+    public void setDrogaId(Long drogaId) {
+        this.drogaId = drogaId;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 }
-

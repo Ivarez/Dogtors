@@ -32,15 +32,18 @@ export class LoginComponent {
     const { correo, password } = this.loginForm.value;
 
     this.authService.login(correo || '', password || '').subscribe({
-      next: (dueno) => {
+      next: (usuario) => {
         this.cargando = false;
-        // Redirigir al perfil del cliente con sus mascotas
-        this.router.navigate(['/perfil', dueno.id]);
+        if (usuario.rol === 'VETERINARIO') {
+          this.router.navigate(['/mascotas']);
+        } else {
+          this.router.navigate(['/perfil', usuario.id]);
+        }
       },
       error: (err) => {
         console.error('Error al iniciar sesión:', err);
         this.cargando = false;
-        if (err.status === 401 || err.status === 400) {
+        if (err.status === 401 || err.status === 400 || err.status === 404) {
           this.errorMsg = 'Correo o contraseña incorrectos.';
         } else {
           this.errorMsg = 'No se pudo conectar con el servidor de Dogtors (puerto 8080).';
@@ -49,4 +52,3 @@ export class LoginComponent {
     });
   }
 }
-

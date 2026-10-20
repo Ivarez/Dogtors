@@ -15,10 +15,17 @@
 
     <div class="navbar-actions">
       @if (authService.usuarioActual(); as usuario) {
-        <a [routerLink]="['/perfil', usuario.id]" routerLinkActive="active" class="link-perfil">
-          <span class="avatar">{{ usuario.nombre.charAt(0).toUpperCase() }}</span>
-          Hola, {{ usuario.nombre.split(' ')[0] }}
-        </a>
+        @if (usuario.rol === 'VETERINARIO') {
+          <a routerLink="/mascotas" class="link-perfil">
+            <span class="avatar">{{ usuario.nombre.charAt(0).toUpperCase() }}</span>
+            Hola, {{ usuario.nombre }}
+          </a>
+        } @else {
+          <a [routerLink]="['/perfil', usuario.id]" routerLinkActive="active" class="link-perfil">
+            <span class="avatar">{{ usuario.nombre.charAt(0).toUpperCase() }}</span>
+            Hola, {{ usuario.nombre.split(' ')[0] }}
+          </a>
+        }
         <button type="button" class="btn-ghost" (click)="logout()">Salir</button>
       } @else {
         <a routerLink="/login" routerLinkActive="active" class="link-login">Iniciar sesión</a>

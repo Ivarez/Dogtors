@@ -1,14 +1,24 @@
 package com.veterinaria.dogtors;
 
+import com.veterinaria.dogtors.entities.Administrador;
+import com.veterinaria.dogtors.entities.Droga;
 import com.veterinaria.dogtors.entities.Dueno;
 import com.veterinaria.dogtors.entities.Mascota;
+import com.veterinaria.dogtors.entities.Tratamiento;
+import com.veterinaria.dogtors.entities.Veterinario;
+import com.veterinaria.dogtors.repository.AdministradorRepository;
+import com.veterinaria.dogtors.repository.DrogaRepository;
 import com.veterinaria.dogtors.repository.DuenoRepository;
 import com.veterinaria.dogtors.repository.MascotaRepository;
+import com.veterinaria.dogtors.repository.TratamientoRepository;
+import com.veterinaria.dogtors.repository.VeterinarioRepository;
+import com.veterinaria.dogtors.service.DrogaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 
@@ -23,19 +33,19 @@ public class DataLoader implements CommandLineRunner {
     private MascotaRepository mascotaRepository;
 
     @Autowired
-    private com.veterinaria.dogtors.repository.AdministradorRepository administradorRepository;
+    private AdministradorRepository administradorRepository;
 
     @Autowired
-    private com.veterinaria.dogtors.repository.VeterinarioRepository veterinarioRepository;
+    private VeterinarioRepository veterinarioRepository;
 
     @Autowired
-    private com.veterinaria.dogtors.repository.DrogaRepository drogaRepository;
+    private DrogaRepository drogaRepository;
 
     @Autowired
-    private com.veterinaria.dogtors.repository.TratamientoRepository tratamientoRepository;
+    private TratamientoRepository tratamientoRepository;
 
     @Autowired
-    private com.veterinaria.dogtors.service.DrogaService drogaService;
+    private DrogaService drogaService;
 
     @Override
     public void run(String... args) {
@@ -56,11 +66,11 @@ public class DataLoader implements CommandLineRunner {
         };
 
         for (int i = 0; i < nombres.length; i++) {
-            Dueno dueno = Dueno.builder()
-                    .nombre(nombres[i])
-                    .correo("usuario" + (i + 1) + "@dogtors.com")
-                    .password("1234")
-                    .build();
+            Dueno dueno = new Dueno(
+                    nombres[i],
+                    "usuario" + (i + 1) + "@dogtors.com",
+                    "1234"
+            );
             duenoRepository.save(dueno);
         }
 
@@ -117,24 +127,24 @@ public class DataLoader implements CommandLineRunner {
             int indiceDueno = random.nextInt(cantidadDuenos);
             Dueno dueno = duenos.get(indiceDueno);
 
-            Mascota mascota = Mascota.builder()
-                    .nombre(nombresMascotas[i])
-                    .especie(especie)
-                    .raza(raza)
-                    .edad(random.nextInt(15) + 1)
-                    .peso(Math.round((random.nextDouble() * 40 + 1) * 10.0) / 10.0)
-                    .enfermedad(enfermedades[random.nextInt(enfermedades.length)])
-                    .fotoUrl(fotos[random.nextInt(fotos.length)])
-                    .activa(random.nextInt(10) > 1) 
-                    .dueno(dueno)
-                    .build();
+            Mascota mascota = new Mascota(
+                    nombresMascotas[i],
+                    especie,
+                    raza,
+                    random.nextInt(15) + 1,
+                    Math.round((random.nextDouble() * 40 + 1) * 10.0) / 10.0,
+                    enfermedades[random.nextInt(enfermedades.length)],
+                    fotos[random.nextInt(fotos.length)],
+                    random.nextInt(10) > 1,
+                    dueno
+            );
 
             mascotaRepository.save(mascota);
         }
 
         // ===================== ADMINISTRADORES =====================
         for (int i = 1; i <= 5; i++) {
-            com.veterinaria.dogtors.entities.Administrador admin = new com.veterinaria.dogtors.entities.Administrador(
+            Administrador admin = new Administrador(
                     "Admin " + i,
                     "admin" + i + "@dogtors.com",
                     "admin123"
@@ -144,59 +154,38 @@ public class DataLoader implements CommandLineRunner {
 
         // ===================== VETERINARIOS =====================
         for (int i = 1; i <= 5; i++) {
-            com.veterinaria.dogtors.entities.Veterinario vet = com.veterinaria.dogtors.entities.Veterinario.builder()
-                    .nombre("Dr. Vet " + i)
-                    .correo("vet" + i + "@dogtors.com")
-                    .password("vet123")
-                    .especialidad(i % 2 == 0 ? "Cirugía" : "Medicina Interna")
-                    .build();
+            Veterinario vet = new Veterinario(
+                    "Dr. Vet " + i,
+                    "vet" + i + "@dogtors.com",
+                    "vet123",
+                    i % 2 == 0 ? "Cirugía" : "Medicina Interna"
+            );
             veterinarioRepository.save(vet);
         }
 
-        /*/ ===================== DROGAS =====================
-        String[] nombreDrogas = {"Amoxicilina", "Meloxicam", "Tramadol", "Ivermectina", "Doxiciclina"};
-        for (int i = 0; i < 5; i++) {
-            com.veterinaria.dogtors.entities.Droga droga = com.veterinaria.dogtors.entities.Droga.builder()
-                    .nombre(nombreDrogas[i])
-                    .precioCompra(10.0 + i * 2)
-                    .precioVenta(20.0 + i * 5)
-                    .unidadesDisponibles(100 - i * 10)
-                    .unidadesVendidas(i * 5)
-                    .build();
-            drogaRepository.save(droga);
-        }
-
-        // Droga de prueba con 0 unidades disponibles (para validar regla de negocio de rechazo)
-        com.veterinaria.dogtors.entities.Droga drogaAgotada = com.veterinaria.dogtors.entities.Droga.builder()
-                .nombre("Morfina Veterinaria (Sin Stock)")
-                .precioCompra(45.0)
-                .precioVenta(90.0)
-                .unidadesDisponibles(0)
-                .unidadesVendidas(20)
-                .build();
-        drogaRepository.save(drogaAgotada);
-
-         Carga opcional inicial de medicamentos desde el archivo Excel
+        // ===================== CARGA INICIAL DE MEDICAMENTOS DESDE EXCEL =====================
         try {
             drogaService.cargarDesdeExcelServidor("other/Medicamentos.xlsx");
         } catch (Exception e) {
             System.out.println("Nota DataLoader: Carga inicial de Excel omitida: " + e.getMessage());
         }
 
-        // ===================== TRATAMIENTOS =====================
+        // ===================== TRATAMIENTOS INICIALES =====================
         List<Mascota> todasMascotas = mascotaRepository.findAll();
-        List<com.veterinaria.dogtors.entities.Veterinario> todosVets = veterinarioRepository.findAll();
-        List<com.veterinaria.dogtors.entities.Droga> todasDrogas = drogaRepository.findAll();
+        List<Veterinario> todosVets = veterinarioRepository.findAll();
+        List<Droga> todasDrogas = drogaRepository.findAll();
 
-        for (int i = 0; i < 20; i++) {
-            com.veterinaria.dogtors.entities.Tratamiento tratamiento = com.veterinaria.dogtors.entities.Tratamiento.builder()
-                    .mascota(todasMascotas.get(random.nextInt(todasMascotas.size())))
-                    .veterinario(todosVets.get(random.nextInt(todosVets.size())))
-                    .droga(todasDrogas.get(random.nextInt(todasDrogas.size())))
-                    .fecha(java.time.LocalDate.now().minusDays(random.nextInt(30)))
-                    .observaciones("Administrar cada 8 horas por " + (random.nextInt(5) + 3) + " días.")
-                    .build();
-            tratamientoRepository.save(tratamiento);
-        } /*/
+        if (!todasMascotas.isEmpty() && !todosVets.isEmpty() && !todasDrogas.isEmpty()) {
+            for (int i = 0; i < 20; i++) {
+                Tratamiento tratamiento = new Tratamiento(
+                        LocalDate.now().minusDays(random.nextInt(30)),
+                        "Administrar cada 8 horas por " + (random.nextInt(5) + 3) + " días.",
+                        todasMascotas.get(random.nextInt(todasMascotas.size())),
+                        todosVets.get(random.nextInt(todosVets.size())),
+                        todasDrogas.get(random.nextInt(todasDrogas.size()))
+                );
+                tratamientoRepository.save(tratamiento);
+            }
+        }
     }
 }

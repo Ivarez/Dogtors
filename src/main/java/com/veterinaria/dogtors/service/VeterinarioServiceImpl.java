@@ -24,5 +24,13 @@ public class VeterinarioServiceImpl implements VeterinarioService {
         return veterinarioRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Veterinario no encontrado con ID: " + id));
     }
-}
 
+    @Override
+    public Veterinario validarLogin(String correo, String password) {
+        Veterinario vet = veterinarioRepository.findByCorreo(correo);
+        if (vet == null || !vet.getPassword().equals(password)) {
+            throw new IllegalArgumentException("Correo o contraseña incorrectos");
+        }
+        return vet;
+    }
+}
