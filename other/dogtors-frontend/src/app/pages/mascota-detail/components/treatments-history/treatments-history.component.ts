@@ -14,4 +14,5 @@ export class TreatmentsHistoryComponent {
   tratamientos = input<Tratamiento[]>([]);
   mascotaId = input<number | undefined>();
   mascotaNombre = input<string | undefined>();
+  permitirAsignar = input<boolean>(true);
 }

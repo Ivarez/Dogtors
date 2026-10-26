@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap, catchError, of } from 'rxjs';
 import { DuenoService } from '../../services/dueno.service';
 import { MascotaService } from '../../services/mascota.service';
@@ -16,6 +16,7 @@ import { PerfilPetCardComponent } from './components/perfil-pet-card/perfil-pet-
 })
 export class PerfilDuenoComponent implements OnInit {
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private duenoService = inject(DuenoService);
   private mascotaService = inject(MascotaService);
   authService = inject(AuthService);
@@ -35,6 +36,12 @@ export class PerfilDuenoComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.params['id']);
+    // Si el usuario es cliente (DUEÑO), no debe poder consultar el perfil de otro dueño
+    const usuarioActual = this.authService.usuarioActual();
+    if (this.authService.esDueno() && usuarioActual?.id && usuarioActual.id !== id) {
+      this.router.navigate(['/perfil', usuarioActual.id]);
+      return;
+    }
     this.cargarPerfil(id);
   }
 
@@ -46,9 +53,9 @@ export class PerfilDuenoComponent implements OnInit {
     this.duenoService.obtenerDuenoPorId(id).pipe(
       mergeMap(d => {
         this.dueno = d;
-        // Si no había sesión activa en memoria, establecerla para el saludo del navbar
+        // Si no había sesión activa en memoria, establecerla como dueño para mantener las restricciones de rol
         if (!this.authService.usuarioActual()) {
-          this.authService.usuarioActual.set(d);
+          this.authService.establecerSesionDueno(d);
         }
         return this.mascotaService.obtenerMascotasPorDueno(id).pipe(
           catchError(err => {

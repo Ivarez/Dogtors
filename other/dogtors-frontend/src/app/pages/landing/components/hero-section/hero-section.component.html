@@ -1,8 +1,3 @@
-<!-- Green Banner -->
-<div class="banner-pill">
-  <span>&#9679; UNIDAD DE CUIDADOS INTENSIVOS 24/7 ACTIVA</span>
-</div>
-
 <!-- Hero Section -->
 <section class="hero">
   <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Hospital Veterinario Dogtors" class="hero-bg" />
@@ -13,7 +8,13 @@
       <h1>Atención médica veterinaria de <em>nivel superior.</em></h1>
       <p class="lead">Infraestructura clínica de alta complejidad diseñada para la recuperación integral y el monitoreo hemodinámico ininterrumpido de caninos y felinos en estados delicados.</p>
       <div class="hero-buttons">
-        <a routerLink="/mascotas" class="btn-primary">Ingresar al Área Médica &rarr;</a>
+        @if (authService.esDueno()) {
+          <a [routerLink]="['/perfil', authService.usuarioActual()?.id]" class="btn-primary">Ver Mis Mascotas &rarr;</a>
+        } @else if (authService.esVeterinario()) {
+          <a routerLink="/mascotas" class="btn-primary">Ingresar al Área Médica &rarr;</a>
+        } @else {
+          <a routerLink="/login" class="btn-primary">Iniciar Sesión en el Portal &rarr;</a>
+        }
         <a href="#process" class="btn-outline">Conocer Protocolos</a>
       </div>
       <div class="hero-checks">

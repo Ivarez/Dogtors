@@ -1,0 +1,308 @@
+Pontificia Universidad Javeriana – Sede Bogotá
+Clase: Desarrollo web
+Profesor: Juan Sebastián Angarita Torres
+Ingeniería de sistemas
+Proyecto: Aplicativo web para veterinarias
+
+Contexto
+Su equipo ha sido contratado por una clínica veterinaria que desea poder comenzar a
+digitalizar su negocio. El cliente desea una página web que promocione sus servicios,
+permita a los clientes estar atentos al estado de sus mascotas y al personal de la
+veterinaria registrar las atenciones médicas que realizan.
+
+Negocio
+La clínica veterinaria se especializa en gatos/perros que necesitan ser hospitalizados,
+estando en reposo y tratamiento en las instalaciones físicas del negocio. Los clientes,
+son los dueños de las mascotas los cuales al llegar al establecimiento por primera vez
+dan algunos datos personales1 (cedula, nombre, correo, celular), posteriormente uno de
+los veterinarios toma otras medidas de la mascota (nombre, raza, edad, peso,
+enfermedad y una foto) y la registra en el sistema. Tras esto la mascota se queda algunos
+días en el hospital donde los veterinarios la cuidan y administran tratamientos hasta que
+se recupera.
+
+Lo ideal es que el personal veterinario a través de la misma página web pueda ir
+registrando las atenciones que realizan. Se espera que estos puedan tener un usuario
+con los siguientes datos:
+o Cedula
+o Contraseña
+o Especialidad
+o Foto (URL)
+o Numero de atenciones
+o Nombre
+Los médicos veterinarios administran tratamientos a las mascotas que están
+hospitalizadas. Cada tratamiento consta de una droga que un veterinario da a una
+mascota en una fecha en específico. Toda droga consta de nombre, precio de compra,
+precio de venta, unidades disponibles y unidades vendidas (esta base de datos
+actualmente está en un Excel). Todos los tratamientos/atenciones deben quedar
+guardados en el sistema.
+1 Es el veterinario quien registra tanto a la mascota como al cliente en el sistema.
+Finalmente, el dueño del negocio desea un portal de administrador donde pueda analizar
+de manera sencilla los datos de su negocio: cantidad de mascotas en tratamiento,
+cantidad de atenciones que se han realizado, precio total de los tratamientos. Además,
+a través de este portal podrá agregar, eliminar o modificar a los médicos veterinarios.
+Adicionales
+• Cuando una mascota llega a la veterinaria su enfermedad puede ser “vacío”,
+mientras es atendida por algún médico.
+• Un veterinario puede tratar a varias mascotas y una mascota puede ser tratada
+por diferentes veterinarios. La relación entre un veterinario y una mascota está
+data por los tratamientos suministrados.
+• Un dueño puede tener varias mascotas registradas en el hospital.
+• Cuando una mascota se cura y el dueño la recoge la información de esta no debe
+ser borrada del sistema. La mascota debe pasar a un estado “inactivo”.
+• Puede suponer que la mascota solo sufre una enfermedad a la vez.
+• No usar herencia.
+• Inicialmente no es necesario guardar un historial de cómo ha variado el estado de
+la mascota (peso, enfermedad) sin embargo si es necesario que se guarde el
+historial de tratamientos realizados.
+
+Requerimientos
+• Feature 01: Diagrama de Clases, entidad-relación y mockups + navegación.
+AC1
+Diagrama
+de clases
+Given la información del negocio
+Then generar un diagrama de clases (UML) para cada una de las
+entidades. Este debe incluir cardinalidad, nombre de las relaciones y
+métodos.
+AC2
+Diagrama
+entidad-
+relación
+Given la información del negocio
+Then generar un diagrama entidad-relación. Este debe mostrar PK,
+FK, campos que pueden ser nulos, cardinalidad, campos únicos.
+AC3
+Mockups
+Given la información del negocio
+Then generar los mockups del diseño de la página.
+And Cada mockup debe estar asociado a una URL
+And los mockups se deben poder navegar de manera interactiva o
+mostrar cómo sería la navegación.
+And diferenciar a cuáles pantallas puede acceder cada uno de los
+tipos de usuario
+AC4
+Logo
+Given la información del negocio
+Then crear un logo
+And crear un nombre
+AC5 Given la información del negocio
+Colores Then definir una paleta de colores
+https://www.youtube.com/watch?v=yYwEnLYT55c (No es necesario
+usar HSB, ni tener una paleta compleja, lo importante es definir los
+colores de su aplicación, variaciones, y colores neutrales)
+• Feature 02: Repositorio – Github
+AC6
+Repositorio
+Given código generado durante el desarrollo
+Then crear un repositorio en Github público.
+And generar una rama de “desarrollo” y otra “producción” o
+“master”.2
+AC7
+Repositorio
+Given los entregables del feature 1
+Then cargar los entregables en el repositorio.
+AC8
+Repositorio
+Given los entregables del feature 1
+Then personalizar el repositorio con información del negocio y del
+desarrollo
+• Feature 03: Base de datos
+AC9
+Entidades
+Given la información de cada componente
+Then generar las entidades en el sistema y en la BD.
+AC10
+Repositorios
+Given cada una de las entidades
+Then generar repositorios
+AC11
+Datos
+prueba
+Given la información de cada componente
+Then generar datos iniciales de prueba que permitan simular el
+funcionamiento real de la página. 3
+• Feature 04: Landing page.
+AC12
+Landing
+Given la información del negocio y los diseños generados
+Then generar una landing page para promocionar la veterinaria
+And permitir navegar hacia el resto de las funcionalidades o portales.
+• Feature 05(dueño/cliente): Mostrar mascotas del cliente.
+AC13 Given usuario y contraseña de un cliente.
+2 La rama de producción será la que verá el cliente y calificará. En la rama de desarrollo suba y junte los cambios de
+las demás personas del grupo. Cuando todo esté funcional en la rama de desarrollo suba los cambios a producción.
+Puede crear más ramas si lo cree necesario.
+3 Para la entrega 1, solo es necesario cargar datos relacionados a mascotas y dueños.
+Mascotas
+cliente
+When el cliente está registrado.
+Then este podrá ver sus mascotas registradas en formato de tarjeta.
+AC14
+Detalles
+mascota
+cliente
+Given una mascota seleccionada.
+When el cliente está registrado.
+Then el cliente podrá ver los detalles de su mascota, incluido
+tratamientos.
+• Feature 06(portal veterinario): CRUD dueño
+AC15
+Acceso
+portal
+Given correo y contraseña del veterianario
+Then permitir acceso al Portal veterianario
+AC16
+CREATE
+Given la información del dueño
+When el dueño no está registrado
+Then pedir los datos
+And crear la información en la base de datos
+AC17
+READ
+Given la cedula del dueño
+When el dueño está registrado
+Then mostrar datos del dueño
+And mostrar información de mascotas del dueño
+AC18
+UPDATE
+Given la cedula de un dueño
+Then poder actualizar los datos de este en el sistema
+AC19
+DELETE
+Given la información de un usuario
+Then eliminarlo de la base de datos
+And eliminar cada una de sus mascotas (eliminación en cascada)
+• Feature 07(portal veterinario): CRUD mascota
+AC20
+UPDATE
+Given el nombre de una mascota
+Then poder actualizar los datos de esta en el sistema
+AC21
+SEARCH
+Given el nombre de una mascota
+Then poder buscar una mascota
+and mostrar su información
+and mostrar información del dueño
+AC22
+READ
+Given la información de la base de datos
+Then mostrar todas las mascotas de la veterinaria
+AC23
+CREATE
+Given la información de la mascota y el dueño
+When mascota no ha sido registrada
+Then usar esta información para crear una nueva mascota
+AC24
+UPDATE
+Given la información de una mascota
+Then activarla o desactivarla en el sistema
+*Las mascotas no se eliminan de manera definitiva, excepto si se
+elimina el dueño. Únicamente de “activan” y “desactivan” lo cual
+representa si están en la veterinaria o en su casa
+**Solo se puede dar tratamiento a mascotas activas.
+• Feature 08(Portal administrador): Registrar un veterinario
+AC25
+Acceso
+portal
+Given correo y contraseña del administrador
+Then permitir acceso al Portal administrador
+AC26
+CREATE
+Given la información del veterinario
+Then registrarlo en la base de datos
+AC27
+UPDATE
+Given la cedula de un veterinario
+Then poder actualizar los datos de este en el sistema
+AC28
+DELETE
+Given los datos de un veterinario
+Then cambiar su estado a “activado” o “desactivado”
+*El estado en este caso señala temas laborales. Por ejemplo, si el
+veterinario sale de vacaciones pasa momentáneamente a estar
+“desactivado” lo mismo ocurre si recibe algún tipo de incapacidad.
+• Feature 09: dashabord/tablero de datos (ADMINISTRADOR)
+AC29
+Dashboard
+Given los datos de la página
+Then Crear un dashboard que presente diferentes KPIs
+• Cantidad total de tratamiento administrados en el último mes
+• Cantidad de tratamientos por tipo de medicamento
+administrado en el último mes (tabla medicamento - cantidad)
+• Cantidad de veterinarios activos en la plataforma
+• Cantidad de veterinarios inactivos en la plataforma
+• Cantidad de mascotas totales en la veterinaria
+• Cantidad de mascotas activas (en tratamiento) en la
+veterinaria
+• Ventas totales de la veterinaria
+• Ganancias totales de la veterinaria
+• Top 3 tratamientos con más unidades vendidas
+• Feature 09: Cargar medicamentos (INICIALIZACIÓN)
+AC30
+Carga
+medicamentos
+Given la información de los medicamentos desde un archivo
+Then cargar la información de los medicamentos cuando inicia el
+programa
+• Feature 10: Dar tratamiento a mascota (VETERINARIO)
+AC31
+CREATE
+Given una mascota, un veterinario, y un medicamento desde una lista
+deplegable
+And la fecha actual
+When Unidades disponibles > 0
+Then crear un tratamiento para la mascota
+And modificar unidades disponibles y unidades vendidas
+AC32
+READ
+Given los datos de veterinario
+Then mostrar todas las mascotas a las cuales ha dado tratamiento.
+*Esta página se implementa en el portal de veterinario
+• Feature 11: Ver historial médico (VETERINARIO)
+AC33
+READ
+Given el nombre de una mascota
+Then mostrar la lista de tratamientos dados
+• Feature 13: Implementar control de acceso basado en roles
+AC34 Given la información de roles y funcionalidades
+Then implementar el control de acceso para las funcionalidades
+Entregas
+• Primera Entrega
+o Features: 1 al 7
+• Segunda Entrega
+o Features: 8 a 11
+o SPA en Angular
+• Tercera Entrega
+o Features: 13
+o Pruebas automatizadas a nivel del cliente web de al menos 2 casos de uso.
+o 25 pruebas automatizadas a nivel del backend.
+o Las pruebas automáticas deben cargar datos de prueba en la base de
+datos, los cuales deben removerse después de cada prueba
+Calificación
+La nota de los grupos se dividirá en 2 partes (2.5 unidades C/U). La primera será la
+calificación del cliente, que se calculará a partir de la entrega de cada Sprint. La segunda
+será la calificación del product mánager el cuál revisa que todos los requerimientos a
+nivel funcional de la página se cumplan.
+Calificación del cliente:
+Cada semana se realizarán entre una y dos entregas en formato de sprint donde los
+grupos de trabajo deben mostrar adelantos FUNCIONALES de su trabajo. El cliente se
+fija de manera general en temas funcionales, UX, UI y CX, para dar su calificación por
+sprint.
+Al final de semestre la calificación del cliente aporta para distinguir cuál ha sido el mejor
+proyecto durante todo el curso.
+Calificación del Product owner:
+Este revisará al final de cada corte a nivel funcional y de código como va el producto
+general a entregar. Se usará un enfoque de calificación “substractiva” donde cada uno
+de los grupos empieza con las 2.5 unidades y por cada error cometido se van
+substrayendo decimas de la nota final.
+Algunas de las penalizaciones son:
+• Código no comentado
+• Malos nombres de variables
+• No hay validación de los formularios
+• Problemas de rendimiento de la página
+• No se cumplen con los requisitos funcionales propuestos
+• Código duplicado (puede ser por mal uso de funciones o de componentes)
+• No usar los patrones de diseño mostrados en clase
+• Mal diseño (de base de datos, diagrama de clases, navegación)
+• Usar paquetes para organizar el proyecto de manera coherente
+• Usar recursos(imágenes y videos) de alta calidad donde no es necesario

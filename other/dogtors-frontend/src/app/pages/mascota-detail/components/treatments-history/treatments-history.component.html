@@ -5,16 +5,18 @@
       <p class="section-sub">Tratamientos suministrados y medicamentos administrados al paciente.</p>
     </div>
     
-    <a 
-      [routerLink]="['/tratamientos/nuevo']" 
-      [queryParams]="mascotaId() ? { mascotaId: mascotaId() } : null"
-      class="btn-add-treatment">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <line x1="12" y1="5" x2="12" y2="19"></line>
-        <line x1="5" y1="12" x2="19" y2="12"></line>
-      </svg>
-      Administrar Tratamiento
-    </a>
+    @if (permitirAsignar()) {
+      <a 
+        [routerLink]="['/tratamientos/nuevo']" 
+        [queryParams]="mascotaId() ? { mascotaId: mascotaId() } : null"
+        class="btn-add-treatment">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        Administrar Tratamiento
+      </a>
+    }
   </div>
 
   @if (tratamientos().length > 0) {
@@ -61,12 +63,14 @@
       <div class="empty-icon">💉</div>
       <h4>Sin registros de tratamientos farmacológicos</h4>
       <p>Este paciente aún no registra administración de medicamentos en su expediente clínico.</p>
-      <a 
-        [routerLink]="['/tratamientos/nuevo']" 
-        [queryParams]="mascotaId() ? { mascotaId: mascotaId() } : null"
-        class="btn-empty-add">
-        Prescribir y Administrar Primer Tratamiento
-      </a>
+      @if (permitirAsignar()) {
+        <a 
+          [routerLink]="['/tratamientos/nuevo']" 
+          [queryParams]="mascotaId() ? { mascotaId: mascotaId() } : null"
+          class="btn-empty-add">
+          Prescribir y Administrar Primer Tratamiento
+        </a>
+      }
     </div>
   }
 </div>

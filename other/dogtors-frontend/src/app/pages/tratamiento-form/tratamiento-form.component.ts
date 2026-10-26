@@ -7,6 +7,7 @@ import { TratamientoService } from '../../services/tratamiento.service';
 import { MascotaService } from '../../services/mascota.service';
 import { DrogaService } from '../../services/droga.service';
 import { VeterinarioService } from '../../services/veterinario.service';
+import { AuthService } from '../../services/auth.service';
 import { Mascota } from '../../models/mascota.model';
 import { Droga } from '../../models/droga.model';
 import { Veterinario } from '../../models/veterinario.model';
@@ -26,6 +27,7 @@ export class TratamientoFormComponent implements OnInit {
   private mascotaService = inject(MascotaService);
   private drogaService = inject(DrogaService);
   private veterinarioService = inject(VeterinarioService);
+  authService = inject(AuthService);
 
   tratamientoForm!: FormGroup;
   mascotas: Mascota[] = [];
@@ -42,10 +44,15 @@ export class TratamientoFormComponent implements OnInit {
   mensajeExito: string = '';
   errorSinDrogas: boolean = false;
 
+  get veterinarioEnSesion(): Veterinario | null {
+    return this.authService.veterinarioActual();
+  }
+
   ngOnInit(): void {
+    const vetSesion = this.veterinarioEnSesion;
     this.tratamientoForm = this.fb.group({
       mascotaId: [null, [Validators.required]],
-      veterinarioId: [null, [Validators.required]],
+      veterinarioId: [vetSesion ? vetSesion.id : null, [Validators.required]],
       drogaId: [null, [Validators.required]],
       observaciones: ['', [Validators.required, Validators.minLength(5)]]
     });
@@ -102,8 +109,11 @@ export class TratamientoFormComponent implements OnInit {
           this.mascotaSeleccionada = this.mascotas.find(m => m.id === numId) || null;
         }
 
-        // Si hay veterinarios, preseleccionar el primero por defecto
-        if (this.veterinarios.length > 0 && !this.tratamientoForm.value.veterinarioId) {
+        // Si ya hay un veterinario con sesión activa, asignarlo automáticamente sin preguntar
+        const vetSesion = this.veterinarioEnSesion;
+        if (vetSesion) {
+          this.tratamientoForm.patchValue({ veterinarioId: vetSesion.id });
+        } else if (this.veterinarios.length > 0 && !this.tratamientoForm.value.veterinarioId) {
           this.tratamientoForm.patchValue({ veterinarioId: this.veterinarios[0].id });
         }
 
@@ -137,9 +147,10 @@ export class TratamientoFormComponent implements OnInit {
     this.mensajeExito = '';
 
     const val = this.tratamientoForm.value;
+    const veterinarioId = this.veterinarioEnSesion?.id ?? Number(val.veterinarioId);
     const dto = {
       mascotaId: Number(val.mascotaId),
-      veterinarioId: Number(val.veterinarioId),
+      veterinarioId: Number(veterinarioId),
       drogaId: Number(val.drogaId),
       observaciones: val.observaciones
     };

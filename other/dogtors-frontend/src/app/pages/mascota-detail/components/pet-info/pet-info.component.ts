@@ -10,6 +10,7 @@ import { Mascota } from '../../../../models/mascota.model';
 })
 export class PetInfoComponent {
   mascota = input.required<Mascota>();
+  mostrarAcciones = input<boolean>(true);
   estadoCambiado = output<void>();
 
   cambiarEstado(): void {

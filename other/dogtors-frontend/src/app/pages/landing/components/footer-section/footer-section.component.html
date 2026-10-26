@@ -29,10 +29,16 @@
       <div class="footer-col">
         <h4>Protocolos Médicos</h4>
         <ul>
-          <li><a routerLink="/login">Portal de Propietarios</a></li>
+          @if (authService.esDueno()) {
+            <li><a [routerLink]="['/perfil', authService.usuarioActual()?.id]">Mis Mascotas</a></li>
+          } @else if (authService.esVeterinario()) {
+            <li><a routerLink="/mascotas">Listado de Pacientes</a></li>
+            <li><a routerLink="/duenos">Directorio de Dueños</a></li>
+            <li><a routerLink="/tratamientos/nuevo">Asignar Tratamiento</a></li>
+          } @else {
+            <li><a routerLink="/login">Acceso al Portal</a></li>
+          }
           <li><span>Consentimientos Informados</span></li>
-          <li><a routerLink="/mascotas">Listado de Pacientes</a></li>
-          <li><a routerLink="/mascotas/nueva">Registrar Ingreso</a></li>
         </ul>
       </div>
     </div>

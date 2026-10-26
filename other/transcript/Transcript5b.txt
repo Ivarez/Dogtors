@@ -1,0 +1,1444 @@
+Hola, buenos días a todos. Bienvenidos a
+su nueva clase de desarrollo web y el
+día de hoy vamos a ver todo lo que es la
+sincronía en JavaScript. ¿Cuál es el
+objetivo de la clase? El objetivo de la
+clase es que se familiaricen con varios
+conceptos que están relacionados a cómo
+se realizan las peticiones en
+JavaScript. Sin importar si al final
+ustedes manejan un framework de front o
+React. Estas palabras claves siempre van
+a aparecer, puede que sea en una
+entrevista de trabajo, puede que sea
+directamente desde el framework o cuando
+van a llegar a consumir un API. ¿Cuáles
+son estas palabras? por ejemplo, a ZNC,
+await, promise, fetch. Todo eso quiero
+que lo entiendan. Quiero que veamos cómo
+fue la evolución de todas estas
+palabras, de todos estos paradigmas para
+lograr realizar peticiones y cómo han
+ido evolucionando para hacer la tarea
+del programador mucho más sencilla. Para
+iniciar les voy a dejar dos archivos
+HTML. Primero es un index normalito que
+como ven, lo único que tiene es un botón
+y pues invoca un script que todavía no
+he creado. Y el segundo que es
+peticiones. HTML está un poquito más
+largo, pero tampoco crean que tiene
+mucha cosa. Básicamente lo que tiene son
+unos estilos para que la página no se
+vea tan fea. Y ya por acá tiene, bueno,
+un título, un lugar donde el usuario
+puede buscar, digamos, un username como
+si fuera Facebook o Instagram. Y la idea
+es que aquí aparezca como en una red
+social todos sus posts, comentarios,
+respuestas, etcétera. Ya vamos a ver
+cómo se realiza eso. Y también por aquí
+estoy cargando un script, pero sí los
+script no los he creado y lo único que
+he adelantado aquí son los HTML.
+Nuevamente esto lo pueden descargar del
+repositorio de la versión inicial de
+esta clase. Vamos a comenzar creando
+nuestro primer archivo para explicar el
+primer concepto. Entonces vamos a poner
+aquí callback inicial finaljs.
+Entonces como pudieron intuir por el
+nombre, mi idea para esta parte del
+video es explicarles qué son los
+callbacks. Tal vez nunca les ha sonado
+la palabra, tal vez tienen alguna
+confusión respecto a qué se refiere,
+dado que para mí también es un concepto
+bastante abierto. Digamos que si ustedes
+se meten en web, la gente solo lo
+relaciona con web. mientras que en
+programación general la gente tal vez lo
+relaciona con otros conceptos. Entonces,
+¿qué es un callback? Un callback es una
+función que se pasa como argumento a
+otra función. Esto ya lo vimos en la
+clase de JavaScript. Una función puede
+recibir como parámetro otra función y
+esa función que se pasa como parámetro
+se ejecuta como respuesta a lo que
+ocurre en la función principal. Es
+decir, el callback no se ejecuta
+automáticamente, sino que siempre es una
+respuesta a un evento que ocurre.
+¿Cuáles pueden ser llegar a ser esos
+eventos? Entonces, por aquí les traigo
+algunos ejemplos. Entonces, vamos a
+copiar aquí, pegar estos comentarios.
+Entonces, por ejemplo, cuando se termina
+de realizar una operación, digamos que
+yo tengo una operación que toma bastante
+tiempo y quiero que cuando se termine de
+ejecutar ocurra algo, que se imprima el
+resultado en pantalla, que se le envíe
+los datos al usuario. Todo eso que yo
+quiero que ocurra cuando se acaba de
+terminar la de ejecutar la operación es
+el callback. Lo mismo cuando ocurre un
+evento, normalmente vamos a tener un
+callback. Piensen en los botones.
+Ustedes ya probablemente programarán un
+botón por allá en Java o en Java FX o
+algún framework de esos viejitos. Y
+ustedes, ¿qué le pasaban a un botón, al
+método hacer clic? Ustedes le pasaban
+otro método, otra función. ¿Qué ocurre
+cuando el usuario realiza click? Es
+decir, estoy reaccionando al click. Eso
+también es un callback. Cuando una API
+está lista, es decir, cuando ya me
+llegar la respuesta de internet de algo,
+normalmente tengo que hacer algo con esa
+respuesta. El callback me va a decir qué
+voy a hacer con esa respuesta. o
+simplemente cuando otro proceso lo
+llegue a invocar. Entonces, vamos a
+pasar un poquito más a la práctica para
+entender a nivel, digamos, ya de código
+cómo funciona un callback y cómo se ve.
+A manera de repaso rápido, voy a mostrar
+todo el tema de cómo una función se pasa
+como parámetro de otra función en
+JavaScript. Entonces, ¿cuál es mi idea?
+Mi idea es declarar por aquí una
+función, digamos que sería la principal
+que se llame operación. La voy a hacer
+en modo arrow function, la cual recibe
+dos números, los cuales voy a sumar,
+restar, multiplicar o dividir. Y esa
+operación matemática va a variar
+dependiendo de este parámetro que es
+operación. Operación, ¿qué va a ser? Va
+a ser una función que voy a pasar como
+parámetro. Y lo único que voy a hacer
+aquí es retornar el resultado de evaluar
+la operación con A y con B. Entonces,
+aquí podría pasar una suma, una resta,
+una multiplicación, una adición,
+etcétera. La primera forma y un poquito
+más larga de realizar todo esto es
+declarar la otra función de manera
+explícita. Entonces, digamos que aquí
+puedo declarar suma con los parámetros A
+y B y retardar la suma de A y B. Y ya lo
+que hago al final es hacer mi conso log
+pasando 2 3 y suma. Miren que aquí estoy
+pasando una función como parámetro de
+otra función. Guardamos. Vamos a
+ejecutar esto con live server. Entonces
+vamos aquí a darle go live. Vamos a ver
+por acá nuestro resultado. Vamos a ir
+aquí a consola y vemos que aquí nos
+apareció de manera correcta el cinco.
+Ahora voy a mostrar las otras dos formas
+de hacer esto por si acaso no se
+acuerdan o se saltaron esa parte de la
+clase. La segunda forma es ya con
+funciones anónimas. ¿Qué voy a hacer con
+una función anónima? Pues no declarar
+una función de manera explícita que se
+pueda reutilizar, sino declararla
+directamente acá. Y lo que puedo hacer
+es por aquí abrir este tipo de corchetes
+y declarar mi función, digamos,
+multiplicar a por b. Entonces aquí ya me
+debe dar 6.
+Y lo último que vimos tal vez esa clase
+es que hay una última forma de escribir
+este tipo de funciones. Y es que si yo
+retorno el resultado inmediatamente,
+me puedo saltar la palabra return,
+me puedo saltar estos corchetes
+y puedo directamente, por ejemplo, aquí
+poner a men b.
+Listo, vamos a guardar y vemos que ahí
+ya tenemos el resultado de todas las
+operaciones. Y como vemos por acá, ya
+estamos pasando una función como
+parámetro a otra función, que es una de
+las cosas básicas que podemos hacer por
+acá en JavaScript. Ahora les quiero
+mostrar rápidamente un ejemplo práctico
+de la vida real de cuando se usa esto de
+pasar una función como parámetro otra
+función, que era justamente lo que
+estábamos hablando. Entonces, como ven
+por aquí en mi index.html
+tengo este pequeño botón que tiene como
+ID btn. Entonces vamos a buscarlo por
+aquí en nuestro JavaScript. Entonces
+simplemente vamos a poner const btn es
+igual a document. Selector y por aquí
+busco mi autono. También pueden hacer
+get element by iden que las dos formas
+son válidas y vamos a hacer btn.
+Listener. Por aquí vamos a poner cuál es
+el evento que estamos escuchando. Y el
+segundo parámetro que recibe de todo
+advener es qué voy a hacer cuando se
+realice click. Entonces, miren que
+justamente aquí estoy pasando una
+función como parámetro a otra función.
+ATV Listener es una función o un método
+y le estoy pasando un segundo método
+para reaccionar a lo que ocurre cuando
+se haga clic en dicho botón. Guardamos y
+ahora pues cada vez que haga clic aquí
+se muestra clic en el botón. Entonces
+miren que este tema de pasar una función
+como parámetro a otra se usa en todo lo
+que son programas interactivos. Eso
+también pasa en móvil, en web o en
+cualquier, digamos, interfaz gráfica que
+ustedes manejen. Esto que acabamos de
+realizar finalmente lo podríamos
+considerar un callback. Miren que entra
+justamente dentro de esta categoría.
+Cuando ocurre un evento, ejecuto el
+callback. Cuando alguien realiza click,
+ejecuto esta función. Depende de quién
+le pregunte. les pueden decir que si es
+un callback, no es un callback, pero en
+general vamos a meterlo dentro de esa
+categoría, pero vamos a seguir haciendo
+más ejemplos para que quede más
+explícito todo. Entonces, ¿cuál es mi
+siguiente idea? Vamos a hacer una
+pequeña función que lo que hace es sumar
+los primeros 100 números del 1 al 100.
+Entonces, vamos a ponerle sumar 100
+números y esta no recibe parámetros.
+Vamos a hacerlo en formato de arrow
+function. Vamos aquí a declarar el total
+de la suma y vamos a sumar de 1 hasta
+100 y vamos a retornar suma. Listo. Aquí
+el autocompletado me ayudó bastante,
+pero pues si no tiene nada raro. Estoy
+haciendo un forcito y sumando los
+primeros 100 números. Esto de aquí
+todavía es JavaScript normal. Y vamos a
+darle por aquí const total es igual a
+sumar los primeros 100 números y vamos a
+imprimir el total. Vamos a ejecutar y
+vemos que por aquí me aparece que el
+resultado es50.
+Ahora lo que quiero es que volvamos a
+realizar esta función de acá, pero
+pasándole una función como parámetro.
+Esa función va a ser el callback y lo
+que va a hacer es reaccionar a cuando se
+termine de realizar la operación.
+Justamente va a entrar dentro de esta
+categoría. Cuando se termine de realizar
+la operación, el callback va a
+reaccionar, va a ser algo con el
+resultado. Vamos a ver qué ocurre.
+Entonces, vamos a copiar simplemente por
+acá. Vamos a bajar y vamos a ponerle
+sumar 100 números dos. Listo. Entonces,
+¿cuál es la diferencia con la de arriba?
+que vamos a pasar una función que es
+nuestro callback y al final cuando se
+termine de realizar la operación vamos a
+llamar al callback con la suma. Y ahora
+vamos a invocar nuestra función.
+Entonces vamos a llamar a sumar 100
+números dos y como parámetro vamos a
+pasarle la función que va a reaccionar
+al resultado. Entonces simplemente aquí
+vamos a poner total
+y vamos a imprimir en pantalla el total.
+Vamos a guardar y vemos que obtenemos
+exactamente el mismo resultado que
+arriba 5050 y lo imprimos en pantalla.
+Bueno, por ahora parece que simplemente
+estamos realizando lo mismo de dos
+maneras diferentes. Tal vez piensen que
+nos estamos complicando un poco por este
+lado, pero vamos a ver ahora el tema de
+asincronía, que es realmente donde los
+callbacks toman relevancia. Recordemos
+que cuando hablamos de código asíncrono
+es tal vez código que toma algunos
+segundos en ejecutarse y no se ejecuta,
+digamos, de manera secuencial, sino que
+puede tomar un tiempo en que se ejecute.
+Ejemplo clásico, cuando realizó una
+petición a internet, el código siempre
+es asíncrono porque pues tiene que ir
+hasta por allá la base de datos y volver
+y eso toma un par de segundos. Entonces
+vamos a hacer justamente una simulación
+de lo que pasa cuando realizo una
+petición a internet. Entonces, vamos a
+hacer el tema aquí de asincronía y lo
+primero que quiero hacer es crear aquí
+un pequeño arreglo de datos. Vamos a
+llamarlo online data. Vamos a crear por
+aquí nuestro arreglo con algunos objetos
+de JavaScript. Esto es realmente lo que
+devuelve la vida real, una API que uno
+consuma desde afuera y vamos a ponerle
+aquí lo básico. Entonces, vamos a
+ponerle un ID al usuario y un nombre y
+vamos a tener por ahí unos tres
+usuarios. para que tengamos suficientes
+datos. Listo, ya con esto estaría
+completo. Por aquí me sobra esto y ya
+tenemos nuestro arreglo. Entonces, vamos
+a pensar que este arreglo es uno que yo
+voy a consultar por allá en una base de
+datos extern y que toma algunos segundos
+en volver. Ahora vamos a generar una
+nueva función, la cual nuevamente va a
+simular que voy y busco esa data de
+arriba en internet y esto me toma
+aproximadamente 3 segundos, es decir,
+sería una función asinno. Entonces vamos
+a poner aquí get datos es igual y vamos
+a hacer nuestro arrow function para que
+esto funcione. Y solamente durante esta
+clase vamos a hacer usar más bien la
+función set que lo que hace es digamos
+esperar 3 segundos antes de retornar. En
+este caso vamos a ponerle return la data
+que tenemos arriba. Esto de aquí es
+cuántos milisegundos quiere esperar.
+Vamos a ponerle que espere 3000
+milisegundos y listo. Entonces esos
+datos van a demorarse 3000 milisegundos
+en llegar. Ahora vamos a probar nuestra
+función a ver cómo nos va. Entonces
+vamos a hacer aquí un console log
+diciendo comenzamos para que veamos el
+orden en el que se ejecuta el código en
+JavaScript. Después vamos a llamar a
+nuestra función, vamos a tratar de
+imprimir los datos y finalmente
+terminamos. Vamos a guardar y vemos que
+por aquí aparece. Entonces aparece,
+comenzamos, luego un define, es decir,
+algo salió mal y terminamos. ¿Por qué
+ocurrió lo que acabamos de ver? Que fue
+que los datos nos quedaran en undefine y
+básicamente es que JavaScript primero
+correr un solo hilo y segundo ese hilo
+se ejecuta de manera síncrona. Entonces,
+él ejecuta esa línea, é va, piensen de
+arriba para abajo, como cualquier
+lenguaje de programación. Ejecuta esta,
+pero él no va a esperar los 3000
+milisegundos a que llegue la respuesta.
+Él tiene que seguir derecho. Entonces él
+llega y deja esta variable como
+ondefine, la imprime como define y
+termina el programa. Y ni siquiera ha
+llegado la respuesta del online data. Y
+aquí nuevamente es donde ahora sí los
+callbacks nos van a solucionar este
+pequeño problema. Ahora vamos a tratar
+de solucionar justamente el problema que
+acabamos de tener, que es que datos nos
+queda en ondefine. Y esto lo vamos a
+solucionar usando callbacks. Entonces
+vamos a llegar, vamos a copiar, vamos a
+pegar y en vez de retornar los datos, lo
+cual ya vimos que no funciona, lo que
+vamos a hacer es pasar un callback, el
+cual se va a ejecutar cuando transcorra
+los 3000 milisegundos. Entonces, vamos a
+llamar aquí a callback con los datos, es
+decir, vamos a ejecutar esa función con
+los, perdón, aquí es con online data
+cuando transcurran los 3000
+milisegundos. Vamos a copiar y pegar lo
+que teníamos por acá para que tengamos,
+digamos, todo igual. Y nuevamente,
+entonces aquí ya no tendría que guardar
+nada porque no estoy retornando,
+digamos, los datos, sino que hago
+getatos 2 y lo que hago es pasar como
+parámetro un arrow function con el cual
+vamos a poner qué va a pasar cuando
+llegue el online data. En este caso lo
+que voy a hacer es imprimir los datos.
+Voy a ponerle aquí datos, aquí datos y
+aquí datos. y me sobra este punto y
+coma. Ya puedo quitar esto de por acá
+porque si en el console lo que lo estoy
+haciendo directamente dentro del
+callback. Guardamos y miremos por acá.
+Miren, comenzamos, terminamos, pasan los
+3,000 milisegundos y ya se ve por aquí
+la respuesta de manera correcta.
+Entonces, justamente el callback aquí me
+ayudó a resolver mi problema de
+asincronía. Cuando retornaba
+directamente los datos, el código seguía
+derecho, mientras que con un callback,
+cuando pasan los 3,000 milisegundos, esa
+función se ejecuta. Y ahora sí tengo los
+datos de manera correcta. Bueno, pero
+aquí no para la cosa. Ahora, mi idea es
+explicarles que es el callback hell, el
+infierno de Colbacks, porque se produce,
+porque dio la evolución a las nuevas
+formas en las que tenemos que de
+realizar peticiones y realmente al final
+es más que todo un problema de cómo se
+ve mi código, que mi código va a
+terminar siendo bastante enredado. Pero
+bueno, vamos a comenzar de cero y voy a
+realizar un ejemplo donde vamos a
+simular, digamos, una red social. En una
+red social, ¿qué pasa? Digamos que
+ustedes llegan y buscan un usuario,
+entonces se realizan varias peticiones,
+por ejemplo, para mostrar todo lo que
+tiene Facebook. ¿Qué pasa? Primero se
+realiza una petición buscando usuario.
+Después, cuando ya tengo el ID de ese
+usuario, se realiza una segunda petición
+buscando post
+que tengo los post se realiza una
+tercera petición buscando los
+comentarios de cada uno de esos posts.
+Entonces, si es una petición tras otra
+petición tras otra petición que
+finalmente se tienen es un orden, ¿no?
+Pues no las puedo realizar en desorden.
+No puedo buscar los post si no sé quién
+es el usuario y no puedo buscar los
+comentarios si no sé cuáles son los
+post. Entonces vemos que todo esto tiene
+un orden. Entonces vamos a generar
+primero estas tres funciones con código
+para que veamos cómo es. Entonces voy a
+demorar por aquí un poquito
+escribiéndola. Entonces vamos a llamarla
+get user. Esta por acá va a simplemente
+pongámosle aquí algunos mensajes. Igual
+estas las voy a usar o reusar varias
+veces. Pongámosle usuario obtenido y lo
+que me va a hacer es retornarme un
+objeto de JavaScript con el ID1. y con
+el nombre de porcalis. Entonces, si ven
+esta función no es asíncrona porque no
+toma, digamos, algunos segundos en
+retornar, sino que es código se retorna
+inmediatamente, digamos, se va
+ejecutando en orden el código. Vamos a
+hacer una segunda que es get post by
+user. A este le llega el user ID y
+recuerden que estamos siguiendo esto,
+¿no? Entonces, digamos, se busca el
+usuario por nombre, me llega al usuario
+y ya tengo su ID. Entonces, ahí sí puedo
+buscar sus post. Entonces vamos a
+ponerle aquí post obtenidos del usuario
+tal y voy a retornar dos post. Aquí me
+está autocompletando de manera bastante
+bien. Y por último, obtener los
+comentarios de un post. Y ya aquí todo
+el código es síncrono. Ahora vamos a
+llamar a estas funciones a ver cómo sale
+mi código. Vamos a ir guardando entonces
+el resultado de cada una de las
+funciones dentro de una variable para
+poder invocar las siguientes. Aquí me
+está autocompletando de manera bastante
+correcta. Y finalmente voy a hacer el
+console lo loog más que de user.
+Esperen, vamos a escribirlo aquí con un
+truquito. Entonces vamos a escribir
+resultado final y vamos a escribir los
+tres objetos. Entonces si ven, para
+digamos buscar los post del usuario,
+pues tengo que usar la variable anterior
+y para buscar los comentarios tengo que
+usar los post. Vamos a guardar. Y en
+este caso pues obviamente digamos por lo
+que todo mi código es síncrono, todo
+funciona de manera perfecta. obtuve los
+post, el usuario, los comentarios y todo
+salió bastante bonito. Pero sabemos que
+así no funciona en la vida real,
+¿cierto? Porque cada una de estas
+funciones debería tomarse por lo menos
+un tiempo en ejecutarse. Entonces, vamos
+a copiarlas y vamos ahora a meterle un
+set time out simulando que pues digamos
+se toma algunos milisegundos en ir al
+servidor y retornar los datos. Entonces
+vamos a bajar por acá, vamos a ponerle
+get user 2, dejemos el mensaje y vamos a
+ponerle aquí say time out. Vamos a
+retornar exactamente lo mismo, pero en
+este caso se va a demorar 3 segundos
+retornando el mensaje. Vamos a ver si
+aquí me ayuda completando los otros dos.
+Si no, vamos a escribirlo rápidamente.
+Entonces vamos a hacer get by va a user
+dos. Lo mismo, va a ser exactamente lo
+mismo que la función de arriba, pero se
+va a tomar 3000 milisegundos. Y
+ayudémonos aquí al autocompletado para
+la última, ¿no? Lo mismo nuevamente
+simplemente es un say time out que me
+retorna. Ah, bueno, aquí tengo un
+pequeño problema porque no quiero que lo
+imprima, sino que lo retorne. Entonces,
+vamos aquí a hacerle más bien
+Tony user, aquí
+Tony user, aquí posts.
+Listo. Y vamos a volver a ejecutar el
+código y ver cuál es el resultado.
+Ahora, simplemente, pues vamos a invocar
+entonces estas nuevas funciones. Vamos a
+hacerlo bastante nuevamente parecido a
+lo que tenemos ahorita. Entonces con
+user 2 es igual a esto, post dos como en
+dos. Y vamos a imprimir por aquí nuestro
+resultado final dos. Vamos a darle
+guardar y veamos qué ocurre. Y esperamos
+algunos segundos y vemos que ni siquiera
+apareció nada. ¿Qué está ocurriendo?
+Entonces, miren, él llega, ejecuta get
+user 2, imprime por aquí este mensajito
+que dice usuario obtenido dos y ya él
+sigue nuevamente como les había dicho
+con la siguiente línea de código. En
+esta línea él trata de hacer un define
+que es user 2. Y probablemente está
+explotando aquí, pues no me lanza ningún
+error, aunque también los tengo por acá
+apagados. Ah, bueno, miren, por aquí me
+dice, no se puede acceder a la propiedad
+ID de UNDFINe. Eso es justamente lo que
+está ocurriendo porque él sigue derecho
+en el código y por lo tanto pues ya esta
+parte no se ejecuta y acaba de explotar.
+Entonces vamos a comentar esto. Como
+vemos no funciona y vamos a solucionarlo
+con callbacks y todo esto para
+mostrarles cómo se ve el callback hell.
+Para que funcione vamos a realizar una
+última implementación de estas
+funciones, pero ahora con un callback.
+Entonces, nuevamente es exactamente lo
+mismo de arriba, pero vamos a pasarle un
+callback y no va a retornar los datos.
+Lo que vamos a hacer es esperar los
+3,000 milisegundos y cuando terminen
+ejecutar el callback con esta variable
+de por acá. Entonces aquí nuevamente me
+está ayudando básicamente a
+autocompletar todo porque es bastante
+canzón volverlo a escribir, pero lo
+único que estoy haciendo es pasar un
+parámetro adicional y en vez de retornar
+ejecuto el colba cuando pasen los 3,000
+msegundos. Listo. Vamos a completar las
+todas las funciones. Aquí me perdonan
+que vaya un poquito rápido, pero como
+les dije es un poco repetitivo. Y ahora
+vamos a ejecutar nuestro código. Aquí
+viene la parte importante y nuestra
+nuevamente esto se llama callback hell.
+Comencemos entonces a llamar las
+funciones. Entonces, la primera función
+que necesito llamar es get user 3.
+Este recibe como parámetro un callback.
+Este callback recibe unos datos y lo que
+va a hacer con esos datos es lo
+siguiente y es invocar la siguiente
+función. ¿Cuál es la siguiente función?
+La siguiente función es get pa by user
+3. ¿Con qué parámetros vamos a invocar
+esa función? Con user.
+Y el segundo parámetro que recibe esta
+función de post es qué vamos a hacer
+cuando lleguen los post. Cuando lleguen
+los post vamos a invocar la función de
+get comments by post. Entonces vamos a
+ejecutar aquí nuevamente o a definir
+nuestro callback.
+Y en este caso aquí me falta ponerle
+Y en este caso aquí me falta ponerle comments
+o más bien post, perdón. Y como les
+estaba diciendo, lo que voy a reaccionar
+cuando me lleguen los post es llamar a
+la función de obtener los comentarios.
+Vamos a ponerle por aquí get comments by
+post 3. ¿Con qué parámetro lo vamos a
+ejecutar? Con pods en su parte.
+Y este nuevamente recibe un callback que
+en este caso ya digamos terminaría de
+realizar todas las peticiones.
+Pongámoslo aquí como parámetro
+comentarios. Ya terminé de realizar mis
+tres peticiones y por lo tanto puedo
+imprimir en pantalla el usuario, los
+imprimir en pantalla el usuario, los postarios.
+Vamos a darle guardar y veamos si
+funciona. Creo que me va a tocar un
+segundito comentar lo que tenía arriba.
+Ah, ya, ya lo había comentado. Miren
+cómo va. cada 3 segundos pasando una
+función a otra y cuando ya
+transcurrieron los 9 segundos me
+imprimió todos los datos de manera
+correcta. Entonces esta es la solución
+correcta por lo menos. Pero, ¿qué es lo
+que se llama callback hell? Esto de por
+acá, si ven un callback, ejecuto otro
+callback que ejecuto otro callback y así
+puedo tener 5 6 7 dependiendo de cuántas
+peticiones realice. ¿Y por qué se llama
+health? Porque si ven el código se
+comienza a volver bastante enredado,
+esto ya no es fácil de leer, tengo
+muchas corchetes, muchas paréntesis, una
+cosa dentro de otra y muchas
+anidaciones. Esto se llama un colback y
+es la práctica que normalmente se trata
+de editar y por lo cual nacieron otras
+formas de realizar peticiones, pero
+igual los callbacks siguen existiendo.
+Veamos ahora entonces cómo fue que
+JavaScript evolucionó para evitar esto
+del callback hell. Entonces, para
+mostrarles eso, voy a primero crear otro
+archivo dado que este ya quedó bastante
+largo. Y la solución, por si la han
+escuchado alguna vez, se llaman los
+escuchado alguna vez, se llaman los promises.js.
+Entonces, ¿cuál va a ser mi idea? Mi
+idea va a ser copiar lo que teníamos
+acá, pero ahora realizarlo con promesas.
+Entonces, vamos a venir por acá y vamos
+a copiar nuestro get user 3. Vamos a
+copiar, vamos a pegar y ya les muestro
+cómo se cambia esto para que use
+promesas. adicional, pues obviamente por
+acá me toca cambiar para que use este
+archivo de por acá. Guardamos. Vamos a
+quitar por aquí los errores para que no
+se vean.
+Entonces, les voy a explicar rápidamente
+qué son los promises. Los promises es
+una clase u objeto de JavaScript, el
+cual normalmente se retorna cuando estoy
+realizando peticiones asíncronas en un
+JavaScript moderno. Es decir,
+normalmente cualquier API o hacking que
+ustedes estén usando y que sea moderno,
+cuando ustedes realicen una petición
+asíncrona a ese backen, lo que les va a
+retornar es un promise. Esta sintaxis de
+acá con callbacks ya casi no se usa,
+aunque puede haber todavía ciertos appis
+que lo manejen. Entonces, vamos a ver
+justamente cómo funciona eso. Entonces,
+¿qué es lo que pasa con las funciones
+asíncronas? Que en vez de funcionar con
+callback, ahora me me van a retornar un
+promise. Entonces, vamos a poner aquí
+promise. Entonces, vamos a poner aquí return
+new promise. Como ven, es una clase y
+esta normalmente tiene, digamos, dos
+parámetros. El primero es qué ocurre en
+caso de que la petición asíncrona salga
+bien y el segundo qué ocurre en caso de
+que la petición asíncrona salga mal. Es
+decir, tanto resolve como reject son
+funciones y además son callbacks. Uno en
+caso de que las cosas salgan bien y uno
+en caso de que las cosas salgan mal.
+Después simplemente dentro de ese
+promise se mete lo que es el código
+asíncrono. Vamos aquí a entrar para que
+se vea mejor. Y en vez de digamos
+manejar esto con callbacks, lo vamos a
+manejar aquí con resolve. Entonces vamos
+a llegar, vamos a copiar, a pegar y si
+ven este parámetro de por acá ya lo
+puedo quitar. Ahora pasemos a ver cómo
+se haría la invocación de esta función y
+cómo esto también nos nos evita lo que
+es el callback hell. Entonces vamos a
+llamar a get user 3. Si nos paramos acá
+podemos ver justamente que nos retorna
+en promise y para poder digamos
+programar qué va a pasar en caso de que
+la respuesta salga bien y qué va a pasar
+en caso de que la respuesta salga mal,
+vamos a usar la sintaxis de punto den
+punto den. Abrimos paréntesis y aquí
+vamos a escribir nuestro resolve,
+nuestra función en caso de que todo
+salga de manera correcta. Entonces
+llegamos, escribimos nuestro barro
+function y lo único que quiero hacer
+ahorita es imprimir el ID del usuario.
+Entonces, pongámosle aquí ID del usuario
+y esto sería user.id. Listo. Vamos a
+guardar. Vamos a revisar si esto nos
+funciona de manera correcta y vemos que
+aquí aparece usuario obtenido tres y
+tras 3 segundos aparece idea del usuario
+uno. Vamos a quitar esto porque puede
+estar un poquito confuso y nuevamente
+tras 3 segundos debería aparecer este
+mensaje de acá.
+Hasta ahorita tenemos exactamente lo
+mismo de la desposada, simplemente es
+una sintaxis diferente y como les dije,
+la mayoría de JavaScript moderno ya no
+se maneja con callback, sino que
+automáticamente, como lo vamos a ver
+ahorita, ya me retorna lo que es un
+promise. Pasemos ahora para terminar el
+ejemplo a generar las otras dos
+funciones, pero nuevamente retornando
+promise y no con callbacks. Entonces
+vamos a hacer aquí nuestras nuevas
+función getpst by user 3 y vamos a
+hallnos aquí del auto completado para
+generar las funciones nuevamente. Son
+exactamente iguales a las anteriores. La
+única diferencia es que estoy
+envolviendo todo lo que es código
+asíncrono en una promesa y en vez de
+usar callback uso resolve. Vamos a usar
+a dejar que aquí me ayude a
+autocompletar lo que es la última
+función generando los dos comentarios. o
+pueden copiar y pegar del otro lado y
+simplemente meter todo dentro del
+promise. Y ahora pasemos a ver cómo
+concatenar estas respuestas de por acá.
+Entonces, después de encontrar el
+usuario, yo quiero buscar todos sus
+posts. Cuando yo quiero concatenar
+varias peticiones, es decir, que una se
+genere o actúe después de la otra, lo
+que voy a hacer es dentro del denición
+retornar lo que sería mi segunda
+petición. Y ahora para obtener los datos
+del resultado de esta segunda petición,
+lo que va a hacer es concatenar con otro
+den. Este den, ¿de quién es? Es de esta
+petición de por acá. Y nuevamente lo que
+estoy escribiendo aquí son los es el
+resolve de esta segunda petición. En
+este caso estoy obteniendo los post.
+Entonces vamos a hacer por aquí nuestra
+sintaxis. Vamos a ayudarnos por acá. Y
+ahora después de la segunda petición
+quiero realizar la tercera. Nuevamente
+lo que hago es retornar y llamar a la
+tercera petición. Para obtener los datos
+de esta tercera petición, escribo un
+nuevo den donde lo que estoy obteniendo
+son los comentarios y los escribo aquí
+en pantalla. Y ya así acabamos. Así es,
+logramos concatenar las diferentes
+peticiones. Vamos a ayudarnos por acá y
+vamos a ejecutar nuestro código para
+verificar que esté funcionando.
+Entonces, vamos a esperar un poco. 3
+segundos aparece el usuario. siguientes
+3 segundos aparecen los post y últimos 3
+segundos aparecen los comentarios y
+logramos nuestro cometido que es lograr
+varias peticiones asíncronas una después
+de otra sin tener temas como el
+ondefine. Vamos a comprar rápidamente
+esta sintaxis con la que teníamos
+anteriormente. Miren la que teníamos
+anteriormente. Entonces vamos a bajar
+por acá y este era nuestro famoso
+callback hell. Deci mucho anidamiento,
+muchos paréntesis, muchos corchetes y
+tal vez un poquito de leer si uno se
+encuentra por primera vez con esto. Pero
+ahora revisen lo que tenemos acá. Esto
+se lee, digamos, un poquito mejor. Ya
+vamos a ver que hay una sintaxis también
+que podemos mejorar de esto, pero ya se
+le un poquito mejor. Cuando llamo al get
+user 3 y sale todo bien, imprimo y llamo
+a la siguiente petición. Cuando esto
+sucede y sale todo bien, imprimo y llamo
+la siguiente petición. Y digamos que es
+una sintaxis un poquito más legible,
+digamos, para nosotros como
+programadores y ya evitamos, digamos,
+uno de los problemas que teníamos con
+los callbacks. También por último, es
+bastante sencillo lo que es el manejo de
+errores cuando estoy en esta sintaxis de
+promises. Entonces, como les dije por
+acá, digamos que hay dos funciones que
+uno tiene que escribir, que es el
+resolve y el reject, pero ya desde el
+lado del web, cuando a uno, por ejemplo,
+no se le ocurre un error, un 404 o
+simplemente se fue el internet o lo que
+sea y quiere, digamos, atrapar lo que es
+ese error, vamos a usar la sintaxis aquí
+de catch y el error sería, digamos, el
+objeto que me retorne el servidor y ya
+pues lo podríamos imprimir en pantalla.
+Entonces, en caso de que se genere un
+error en cualquiera de estas peticiones,
+finalmente pues aquí lo voy a imprimir y
+si ven, pues digamos fue bastante
+sencillo manejarlo. Pasemos ahora a lo
+que sería la sintaxis aún más moderna de
+los promises. Entonces, los promises
+para seguir existiendo, digamos, es lo
+que normalmente se retorna, pero hay una
+sintaxis un poquito más linda de cómo
+manejar los datos. Para eso vamos a
+llegar y vamos a crear un nuevo archivo
+y vamos a llamarlo asc.js. JS. Vamos a
+ir por aquí a nuestro index. Vamos a
+cambiar el archivo que estamos
+manejando. Le damos guardar y por acá de
+el archivo de promises nos vamos a
+copiar todas las funciones. Como les
+dije, esto no cambia. Lo que va a
+cambiar es la forma en la que consumo.
+Siempre se me va a devolver lo que son
+las promesas. Entonces vamos ahora a
+entender cómo es la sintaxis de Asinca
+Wight por aquí en JavaScript, que es la
+que ahorita más se usa. Lo primero que
+quiero que sepan es que para manejar
+esta nueva sintaxis moderna de weight
+obligatoriamente tengo que estar parado
+dentro de una función. Entonces, lo que
+voy a hacer acá es crear una función
+main para poder hacer el llamado al
+resto de métodos. Vamos a crear por aquí
+nuestro main
+y simplemente por acá abajo lo vamos a
+invocar. Esto es obligatorio nuevamente
+que para usar la la sintaxis de
+asincaweight esté dentro de una función.
+Y ahora simplemente vamos a comenzar a
+llamar a cada uno de los métodos que
+tenía arriba. Entonces vamos a hacer con
+user. Y ahora en vez de estar usando
+como hicimos por acá el punto den y el
+punto catch, puedo hacer llamado a
+funciones que me retornen un promise con
+la siguiente sintaxis. Puedo hacer await
+get user 3. Vamos a ver que aquí nos
+salta un error. Ya les digo qué es, pero
+esto es lo único que necesitamos. Y por
+aquí yo ya podría hacer un lock de, no
+sé, eh, cómo era, ID del usuario. Por
+aquí poner user.id. Vamos a quitar esto
+de por acá y vamos a entender de dónde
+sale este error. Entonces, si nos
+paramos por acá, me dice que la
+expresión de Await solo se puede usar si
+mi función es así. Entonces, ¿cuál es la
+regla? Siempre que ustedes vayan a usar
+esta sintaxis de Await, obligatoriamente
+al inicio de su función tienen que
+ponerle a sync. Y así es. Entonces vamos
+ahora a probar esto de por acá y veamos
+si nos funciona de manera correcta.
+Vamos a esperar 3 segundos. Y miren que
+por aquí apareció lo que es el ID del
+usuario. Nuevamente, en vez de estar
+usando el punto den para llamar a mis
+funciones asíncronas que me retornan un
+promise, uso la weight. Y si mi función
+invoca o usa la weight, obligatoriamente
+tiene que tener al principio la palabra
+async. Y ahora vamos a terminar de
+invocar el resto de funciones. Entonces
+vamos a escribir por acá posto
+el aweight de cada uno de los métodos.
+Vamos a guardar y vamos a ver que
+obtenemos el mismo resultado que en los
+punto den 3 segundos primero, 3 segundos
+punto den 3 segundos primero, 3 segundos segundo
+y resultado final. ¿Qué sintaxis es
+mejor? No sé, esta es la más moderna, es
+tal vez la que más se usa, es la más
+legible comparada con esta de acá. Aquí
+pues se tienen que acordar de retornar
+lo que es la segunda petición. Y digamos
+que esta es bastante popular porque me
+permite ejecutar código asíncrono, pero
+como si fuera código síncrono. Entonces,
+en vez de tener sintaxis rara, lo que
+parece que estuviera ejecutando aquí es
+código sincrono. Es bastante sencillo de
+leer. Espero que get user 3 ocurra.
+Obtengo el usuario. Espero que get post
+by user 3 ocurra y ya. Entonces, esas
+son todas las formas en las que puedo
+realizar, digamos, peticiones y consumir
+lo que son peticiones asíncronas. Por
+último, les quería mostrar cómo se hace
+el manejo de errores. Aquí en Promises
+vimos que era con este método de catch,
+pero digamos que aquí cuando usa weight
+es mucho más natural porque simplemente
+tengo que usar el try catch de toda la
+vida. Entonces, simplemente vamos a
+todo lo que me pueda llegar a
+lanzar una excepción. Lo vamos a
+ingresar acá dentro y dentro del catch
+pues vamos a imprimir el error. Vamos a
+guardar y así ya tendríamos lo que es
+manejo de errores. Vamos a aterrizar
+todo lo que acabamos de ver dado que fue
+bastante teoría en un ejemplo práctico.
+Primero un ejemplo chiquito y después ya
+lo vamos a agrandar. ¿Cuál es mi idea?
+Que por primera vez vayan a consumir lo
+que son datos de internet de una API
+real. Entonces esa API se llama Jason
+Place Holder. Vamos a meternos por acá.
+La pueden encontrar justamente acá y es
+una API de prueba. Entonces vamos a
+bajar un poquito y ven que me trae,
+digamos, todos estos datos que puedo
+llegar a consumir. ¿Cuáles son los
+primeros que vamos a consumir? Entonces,
+justamente es como el ejemplo que
+estamos haciendo, son los post.
+Entonces, ¿qué pasa cuando yo consumo un
+API? Cuando yo consumo un API, me
+retorna datos en formato de Jason.
+Entonces, por aquí pueden ver cómo
+vienen los datos, en este caso, un user
+ID, el ID, el título y el body de las
+peticiones. Y pues me retorna un arreglo
+gigante de 50 post. En este caso, si
+solo quiero, digamos obtener el post 1,
+entonces hago slash1 y ven que solo me
+trae la información del primer post.
+Entonces vamos a probar justamente cómo
+consumir datos para traernos esta
+información. Buse. Entonces, por acá
+crear un nuevo archivo que se llame
+crear un nuevo archivo que se llame fetch.js
+y vamos a actualizar lo que es nuestro
+index.html para que use este archivo.
+Ahora pasemos al código y les explico
+entonces cómo consumir el API. Lo
+primero que quiero dejar claro es que
+dependiendo de la tecnología que estemos
+usando, esta sintaxis va a cambiar
+bastante. Es decir, ahorita en vanila
+JavaScript, es decir, JavaScript sin
+ningún framework, lo que vas a usar es
+fetch, la función fetch, pero
+dependiendo del framework, por ejemplo,
+si me paso a Angular o a React, va a
+haber una librería completa para
+consumir APIs y esta, digamos, va a
+tener un diferente empaque, pero mismo
+contenido. Por ejemplo, en Angular se
+llama RXJS, la librería que usamos para
+consumir datos de internet. Pero
+nuevamente estamos en vanila JavaScript.
+Este concepto también creo que quiero
+que lo conozcan. Cuando yo digo vanila
+JavaScript o vanila CSS es JavaScript
+puro, digamos, sin ningún framework o
+tecnología adicional. Entonces vamos a
+crear por aquí nuestra función para
+traernos los post. Entonces vamos a
+llamarla get post. Vamos a abrir por acá
+y quiero que vean lo siguiente.
+Entonces, vamos a hacer aquí fetch y
+fetch es la función que nos ayuda a
+consumir los datos de internet. Pero
+quiero que vean aquí lo más importante y
+es que miren lo que me retorna a fecha,
+me retorna a una promesa. Entonces, todo
+está acorde a lo que dijimos. Dijimos
+que las APIs modernas, cuando yo consumo
+datos, me retornan una promesa la cual
+yo puedo consumir de dos formas, con la
+CCAW weight o con den. Entonces vamos lo
+primero a copiar por aquí esta URL.
+Simplemente es tan sencillo como ponerlo
+acá, copiar y pegar. Y aquí ya tenemos
+entonces dos opciones de cómo consumir
+esto. ¿Cuál hacemos primero? Hagamos
+primero la más sencilla, que es consumir
+nuestros datos con punto den. Bueno, no,
+la más sencilla, al revés, primero la
+más vieja. Y como vimos por aquí, tengo
+que escribir mi arrow function diciendo
+qué va a pasar con esa respuesta que me
+llega. Y en estos casos, cuando yo
+consumo, digamos, unos datos que vienen
+de internet y estos se devuelven en tipo
+Jason, que es lo más común, siempre voy
+a tener que realizar dos pasos.
+Entonces, parecido a lo que les estaba
+diciendo acá, que tenían que realizar,
+digamos, tres pasos. Primero, buscar al
+usuario, después los post y después los
+comentarios. Aquí también es necesario
+realizar dos pasos. El primero es traer
+la información y la segunda castearla a
+Jason, digamos, a algo que pueda
+entender mi aplicación por acá de
+JavaScript. Entonces, bueno, primer
+paso, ya realicé la petición y me traje
+los datos. Segundo paso, esto lo tengo
+que transformar a punto Jason. Esto se
+realiza con esta sintaxis de acá. Y
+nuevamente esto me retorna otro promise.
+Y como vemos para concatenar lo que es
+la respuesta de los promis, pues
+simplemente hago otro punto d, escribo
+otro arrow function y imprimo lo que son
+mis datos. Y justamente ahí estamos
+probando todo lo que les estaba diciendo
+ahorita. Ahora simplemente voy a llamar
+a la función getpost. Vamos a guardar y
+vemos que llega la información de manera
+correcta cuando se acaba la petición
+asíncrona. Pasemos ahora a probar la
+otra sintaxis que es con asincaweight.
+Entonces, simplemente voy a copiar, voy
+a pegar y vamos a quitar esta parte de
+los puntos, llamémoslo getpost 2 para no
+confundirlo. Y lo que voy a hacer
+entonces es en vez de hacer un punto de
+den, voy a guardar mi resultado dentro
+de una variable. Aquí dijimos que tengo
+que poner a weit y como aquí puse a esta
+función aquí al principio tiene que
+tener a listo. Y lo siguiente es castear
+la data nuevamente para en este caso
+concatenar dos cosas que son
+asíncronadas. Simplemente vuelvo a uso
+weight y se ve de manera bastante
+natural y simplemente al final imprimo
+los datos y en los dos obtuve
+exactamente el mismo resultado. Entonces
+ya saben cómo consumir una p Internet y
+ya vieron las dos posibilidades con
+punto den o con asing a nuevamente esta
+es la que más se usa actualmente.
+Bueno, vamos a pasar al ejemplo final de
+la clase de hoy. Digamos es el ejemplo
+más complejo donde vamos a consumir
+tanto usuarios como comentarios como
+post, pero ya de una página real, ¿no?
+Vamos a estar simulando los datos. para
+ver que todo lo que aprendimos, digamos,
+funcione con lo que sería un API que
+está en la red. Entonces, si nos metemos
+otra vez aquí a nuestra página de Jason
+Place Holder, vamos a ver que por acá
+tenemos varios recursos que podemos
+llegar a consumir. Tenemos lo que son
+usuarios, comentarios y post. Si nos
+metemos a usuarios, vemos que nos
+retornan, digamos, un montón de
+usuarios. La idea es poder buscar un
+usuario por su username, que sería esta
+variable de acá. Y vemos que todo
+usuario tiene su ID. Después de que
+encontramos el usuario, pues vamos a
+buscar todos sus post.
+Y si vemos aquí existiría como el
+foreign key, que sería el user ID. Y
+finalmente los comentarios que están
+relacionados a esos post. Vamos a abrir
+aquí cualquier comentario. Vemos que
+también trae un post ID. Entonces,
+básicamente tengo que consumir las tres
+cosas adicionalmente, pues para saber
+cómo son las rutas a las cuales llego
+para consumir esos recursos, pues voy a
+tener que leer un poquito la
+documentación de la página. yo se las
+voy a poner, entonces no se preocupen,
+pero digamos por aquí me dice que cuando
+yo quiero obtener todos los comentarios
+del post número uno, tengo que consumir
+justamente esta ruta de por acá, si bien
+tampoco es nada complicado. Entonces
+vamos a comenzar con este último
+ejemplo. Ese ejemplo va a estar
+relacionado a este HTML que tenemos por
+acá, donde estamos cargando el script.js
+JS que todavía no hemos creado y tenemos
+por aquí un div con el ID result donde
+vamos a ingresar todo lo que es el
+resultado que se carga con la
+información de internet. Vamos primero
+entonces a crear lo que es nuestro
+script.js. Entonces vamos a ponerle
+script.js. Entonces vamos a ponerle script.js.
+Vamos también a abrir de una vez lo que
+es acá
+nuestro HTML con Live Server para que
+veamos lo que tenemos. Y si bien lo que
+tenemos es bastante sencillo, un título
+y buscar el usuario por su username,
+porque obviamente es mucho más sencillo
+buscar por el user ID, pero pues nadie
+sabe cuál es el user ID de un usuario en
+la vida real. Uno siempre busca por el
+nombre de usuario. Entonces vamos a
+simular las cosas de esta manera. Vamos
+a volver a nuestro script.js y
+empecemos. Para empezar, lo primero que
+vamos a realizar aquí en nuestro
+script.js es obtener los elementos de
+nuestro HTML, todos los que vayamos a
+usar. En este caso es el campo de texto,
+el botón de buscar y nuestro div que
+todavía está vacío de resultado.
+Entonces, vamos a declarar lo que serían
+estas tres variables. Vamos a ponerle
+search ptn y vamos a obtener el
+elemento. Al segundo le vamos a poner
+username input y también obtemos el
+elemento y el tercero es el result dif.
+Listo. Ahí ya obtimos los tres elementos
+de nuestro HTML y vamos a comenzar a
+escribir las funciones para consultar
+los datos de internet. Pasemos entonces
+a lo que serían las consultas. Entonces,
+la primera que voy a realizar es la de
+traerme un usuario por su username.
+Vamos a poner function get user y recibe
+como para metro el username.
+Abrimos corchetes y vamos a realizar
+nuestra consulta con fetch. Acuérdense
+que siempre tengo que hacer dos pasos,
+que es primero realizar la consulta y
+segundo pasarla a lo que sería Jason.
+Entonces vamos a realizar la consulta
+con Fetch. Aquí dentro va una URL o una
+URI más bien con un recurso y para saber
+a cuál URI necesito, digamos,
+conectarme, pues tengo que leer la
+documentación aquí de mi API. Esto yo ya
+me lo sé un poquito por las veces que he
+realizado el curso. Entonces, cuando yo
+realizo esta URL/users, me trae todos
+los usuarios. Si yo hago users/1, me
+trae el primer usuario y así con cada
+uno de los usuarios. Y si lo que quiero
+es buscar un usuario por su username,
+hago signo de interrogación. username
+igual a Juan o Pedro o lo que sea y él
+va a buscar un usuario que tenga dicho
+username. Entonces, vamos a copiar esto
+que tenemos justamente acá. Vamos a
+pegarlo. Obviamente no vamos a buscar
+siempre a Juan, así que vamos a dejar
+ahí el igual y vamos a concatenar con el
+username y posteriormente lo que retorno
+es response, pero ya lo puedo ir
+traduciendo a formato Jason. ¿Qué nos
+faltaría acá? Si ven, no me está
+lanzando ningún error de compilación,
+pero tengo que tener mucho cuidado.
+Recuérdense que todo esto que estoy
+manejando son promises, como apareció
+por acá. Entonces, en este caso, esta
+función terminaría siendo asíncrona, se
+demora algunos segundos en ejecutarse
+porque trae datos de internet. Entonces,
+si aquí pongo a sync, aquí tengo que
+poner el a, que es lo que me está
+recomendando aquí el autocompletado. Y
+ahora sí quedó de manera correcta.
+Pasemos ahora a generar lo que serían
+las otras dos funciones. La siguiente
+sería la que me trae todos los posts de
+un usuario. Entonces vamos a ponerle a
+function y llamémosla get by user. Y lo
+único que necesita recibir esta es el
+user ID del usuario. Vamos a abrir aquí
+nuestros corchetes. Coramos aquí un
+poquito la sintaxis y vamos a ayudarnos
+con el autocompletado. Nuevamente, ¿cómo
+sé que esta es la URL que tengo que
+usar? pues porque me leí, digamos, la
+documentación y ahí me dice que cuando
+me quiera traer todos los posts con de
+un cierto usuario, tengo que usar esta
+sintaxis de por acá. Ahora el resto me
+lo autocompleto de manera bastante
+correcta y al final lo que hago es
+concatenar lo que es el parámetro y
+realemos la última que por aquí ya está
+funcionando bastante bien el
+autocompletado, como que ya sabe lo que
+quiero hacer, que es get comments by
+post, recibo el post ID y esta sería la
+URL a consultar.
+¿Qué nos queda por ahora? Ahora
+simplemente vamos a copiar este variable
+y le vamos a concatenar o a poner más
+bien lo que es un evento. Entonces
+buscar vamos a buscar aquí atnisten y
+que cuando se haga clic en el botón
+vamos a usar el método que se llame
+vamos a usar el método que se llame search
+user. Ese métro todavía no lo tengo
+declarado, así que lo vamos a declarar
+justamente acá, que es como la parte
+principal de mi código. Este método
+también es asíncrono, entonces vamos a
+ponerle ass function porque dentro vamos
+a digamos ejecutar todas estas consultas
+que todavía tienen promises y vamos a
+llamarlo justamente como lo tenemos por
+acá, se user y abrimos lo que son
+nuestros corchetes. Lo primero que vamos
+a hacer es obtener el campo que el
+usuario creía por acá dentro de este
+campito de texto. Entonces vamos a
+ponerle consername es igual a y
+busquemos como le pusimos a la variable
+por acá username input punto value punto
+trim no sé si esto ya se los había
+explicado, pero usamos el punto trim
+dado que no queremos que él pueda dejar
+el espacio vacío y se considere que
+ingresó algo. Esto yo no sé qué le pasó
+acá. Aquí es punto value, no sé por qué
+han escribido eso de por ahí. Y lo
+segundo que nos gustaría realizar es
+limpiar todo el contenido de resultados
+que habría anteriormente. Entonces vas a
+hacer resul.d
+punto pun iner html es igual a comillas
+vacías y así limpio todo lo que había
+antes. Vamos a comprobar entonces que
+por lo menos las cosas estén sirviendo.
+Vamos a verificar entonces poremplo si
+él no escribió ningún usuario, puedo
+poner aquí una alerta de estos de
+JavaScript diciendo,
+"No hay usuario, no sé. Pongamos
+cualquier cosa, guardemos y vamos a
+probar. Entonces, voy a darle
+simplemente buscar.
+Vamos a dejarlo por acá vacío. Vemos que
+algo no está funcionando. Tal vez sea
+algo de sintaxis por aquí de JavaScript.
+Vamos a abrir nuestra consola a ver si
+averiguamos qué es consola rápidamente
+y veamos los errores.
+Entonces me dice que script.js JS fue
+bloqueado. Vea. Pues entonces vamos a
+revisar por acá que puede haber así
+raro. Ya descubrí cuál es el error y es
+que aquí puse scripts.js y no script me
+sobró una S. Entonces vamos a renombrar
+sobró una S. Entonces vamos a renombrar esto.
+Vamos a probar, vamos a recargar. Vemos
+que ya no aparece el error. Y cuando le
+doy buscar, bueno, ahora me dice que no
+sabe qué es inner. HTML o más bien no
+sabe qué es el result dif. Vamos a subir
+por acá nuestro script.
+Vamos a ver si nos quedó bien. Result. Y
+por acá esto se llama solamente result.
+Entonces, quitémosle esto. Guardemos
+nuevamente. Qué pena ahí los
+inconvenientes. Vamos a darle buscar y
+me dice que no hay usuario. Si trato de
+hacer trampa y escribir espacios vacíos,
+me dice nuevamente no hay usuario. Y ya
+vemos por lo menos que todo está
+conectado y ya comenzó a ejecutarse lo
+que es por acá la función. Pasemos ahora
+sí a lo que se iría a realizar nuestras
+consultas. Entonces, acuérdense que les
+dije que todo esto normalmente tiene que
+ir encerrado en un try catch, dado que
+aquí no tenemos, digamos, un método
+aparte para lo que es atrapar los
+errores, sino que si lo vamos a hacer
+con el aweight, tenemos que hacer tryc
+catch para poder manejar, no sé, errores
+de red, errores de la consulta,
+etcétera. Vamos a realizar nuestra
+consulta, entonces vamos a llamarlo con
+user y vamos a decir que es igual a a
+weit get user. Y listo. Segundo paso,
+vamos a imprimirlo en consola porque
+quiero que revisemos una cosa. Entces
+vamos a hacer por aquí nuestro console
+lock y vamos a imprimir lo que es el
+usuario. Vamos a guardar y vamos a
+buscar un username. Entonces vamos a
+hacer aquí buscar cómo se llama el
+primer usuario. Users 1. Vemos que es
+bread con B mayúscula. Vamos a buscarlo
+por acá. Bread.
+Vamos a darle buscar y veamos qué es lo
+que se nos retorna cuando realizamos
+este tipo de consulta. Vemos que primera
+cosa muy importante, se me retorna un
+arreglo dado que tal vez por la forma en
+la que está programada puede haber más
+de un usuario con el mismo username y ya
+dentro del arreglo viene cada uno de los
+objetos con los atributos de lo que es
+mi usuario. Entonces vamos a hacer esta,
+digamos desenvoltura paso a paso.
+Entonces ya tenemos lo que es user y
+después tendríamos que hacer entonces
+más bien pongámosle aquí users porque me
+puede devolver varios usuarios, pero
+solo nos interesa el primero. Vamos a
+hacerle con user es igual a users en
+cero y podemos poner por acá, no sé,
+alguna alerta o algo por el estilo. Si
+no hay usuario, pongo usuario no
+encontrado. Vamos a guardar. Vamos a
+usar breed. Parece que todo salió bien.
+Breed 22 no creo que exista. Entonces me
+dice usuario no encontrado y ya realicé
+la primera consulta. Ahora me faltaría
+poner los datos por acá en pantalla. Ya.
+El siguiente paso es simplemente mostrar
+la información del usuario en pantalla.
+Esto no lo voy a especificar a fondo,
+sino que hicimos una clase completa de
+JavaScript y como digamos ir agregando
+lo que son los nodos a todo este árbol
+que es el HTML. Así que lo voy a ir
+realizando. No voy a hablar tanto en
+esta parte. Voy a crear un div que me
+permita ir guardando la información del
+usuario. Aquí le voy a agregar lo que es
+una clase. Esta clase es user. Si se
+preguntan de dónde se estoy agregando
+esta clase, recuérdense que en el
+archivo inicial que les pasé por acá,
+esto tenía un montón de estilos y clases
+para que digamos se les vea un poco más
+bonito lo que están realizando.
+Simplemente lo estoy agregando ahí. Y ya
+la tercera parte es agregar la
+información del usuario atributo por
+atributo a través del HTML. Vamos a
+ayudarnos aquí rápidamente el auto
+completado porque esto es un poquito
+largo. Vamos a guardar. Vamos a ver si
+nos funcionó de manera correcta. Aquí
+simplemente estoy sacando los atributos
+del objeto. Hago breed y veamos si toca
+recargar porque no creo que esté
+funcionando. Y claramente me faltó lo
+más importante aquí al final y es que al
+result dif que llamamos arriba, le tengo
+que pegar este nuevo DI que estoy
+generando. Ahora sí, pongamos bre,
+buscar y vemos que por aquí aparecen
+todos los datos que él ha realizado. Ya
+pasemos a lo que sería nuestra segunda y
+tercera consulta y veamos cómo las
+podemos ir concatenando, pero van a ver
+que es bastante sencillo. Digamos que
+con ascérdense que todo el código que
+voy escribiendo finalmente pareciera que
+fuera casi código síncrono. Entonces lo
+único que necesito es crear una variable
+donde guardar mi resultado y llamar a mi
+segunda función. nuevamente como está
+sincrona, necesito ponerle el aweit, le
+paso el user.id, que este fue todo el
+problema con el que comenzamos la clase,
+que si no hacemos la cab de manera
+correcta ese user. ID sería nulo o null
+pointerception o cositas así. Y ya
+después simplemente vamos a ir post por
+post escribiendo más HTML.
+Vamos a dejar aquí un par de espacios.
+Vamos a crear nuestro DIF. Nuevamente
+vamos a crear un nuevo DIF. Vamos a
+agregarle la clase que se llama post,
+que nuevamente ya está definida por acá
+para que no tengan que hacer trabajo
+adicional. Y ya lo que tengo que hacer
+adicional. Y ya lo que tengo que hacer es
+mostrar en pantalla cada uno de estos
+contenidos y al final agregarlo a lo que
+es nuestro resultado. Vamos a guardar,
+vamos a buscar a Bet y vemos que aquí
+llegaron cada uno de los post y ya nos
+faltan solo los comentarios. Miren una
+cosa bastante interesante. Voy a
+recargar por acá.
+Vas a buscar Bre.
+Y miren que aquí se nota bastante la
+sincronía, es bastante rápido, pero
+primero va a aparecer los usuarios y
+unos milisegundos después los post.
+Entonces, primero se carga esta parte y
+algunos milisegundos después esta. Y
+cuando hagamos los comentarios, pues
+algunos milisegundos después los
+comentarios. Todo es asíncrono en este
+código que estamos realizando por acá.
+Llamamos a lo que es nuestra última
+función. Vamos a ponerle cons es igual a
+weight y ejecutamos nuestra función con
+cada uno de los posts.id y tengo que
+hacer un for anidado. Aquí si me va a
+ayudar nuevamente por el autocompletado
+porque esto ya no tiene que ver con la
+clase, sino con la clase de JavaScript
+que realizamos por allá. Y así ya
+completamos todo lo que es nuestro
+código. Tal vez aquí deberíamos poner
+dentro del catch un error o que pasó
+algo. Vamos a guardar y vamos a buscar
+algo. Vamos a guardar y vamos a buscar abre.
+Y miren, ahí fue cargando cosita por
+cosita y me va cargando los comentarios
+de cada uno de los post que tuvo Bre. Si
+he buscado un usuario que no existe,
+nuevamente me dice usuario no
+nuevamente me dice usuario no encontrado,
+pero ya tenemos todo de manera perfecta.
+Ya con eso acabamos la clase. Si ven,
+hacer consultas a internet es bastante
+sencillo, solo tienen que saber que
+tengo que usar fetch, que fetch me
+devuelve lo que es un promise y que ese
+promise para poderlo manejar tengo que
+hacer aweight. Ya, eso era todo lo que
+les tenía que enseñar en la clase. Tal
+vez vimos otras formas de resolver eso
+por si hay un código con otras sintaxis
+o con sintaxis un poquito más viejas
+como los callbacks, pero ya logramos
+manejar todo.

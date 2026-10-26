@@ -2,9 +2,15 @@
   <div class="container">
     <!-- Back Link -->
     <div class="back-nav">
-      <a routerLink="/mascotas" class="back-link">
-        &larr; Volver al Directorio de Pacientes
-      </a>
+      @if (authService.esDueno()) {
+        <a [routerLink]="['/perfil', authService.usuarioActual()?.id]" class="back-link">
+          &larr; Volver a Mis Mascotas
+        </a>
+      } @else {
+        <a routerLink="/mascotas" class="back-link">
+          &larr; Volver al Directorio de Pacientes
+        </a>
+      }
     </div>
 
     @if (cargando) {
@@ -17,6 +23,7 @@
         <!-- Componente hijo: Información del paciente -->
         <app-pet-info
           [mascota]="mascota"
+          [mostrarAcciones]="!authService.esDueno()"
           (estadoCambiado)="cambiarEstado()">
         </app-pet-info>
 
@@ -24,7 +31,8 @@
         <app-treatments-history
           [tratamientos]="mascota.tratamientos || []"
           [mascotaId]="mascota.id"
-          [mascotaNombre]="mascota.nombre">
+          [mascotaNombre]="mascota.nombre"
+          [permitirAsignar]="!authService.esDueno()">
         </app-treatments-history>
       </div>
     } @else {
@@ -32,7 +40,11 @@
       <div class="not-found-card">
         <h2>Paciente no encontrado</h2>
         <p>No se encontró ninguna mascota con el identificador solicitado.</p>
-        <a routerLink="/mascotas" class="btn-primary">Regresar al Directorio</a>
+        @if (authService.esDueno()) {
+          <a [routerLink]="['/perfil', authService.usuarioActual()?.id]" class="btn-primary">Regresar a Mis Mascotas</a>
+        } @else {
+          <a routerLink="/mascotas" class="btn-primary">Regresar al Directorio</a>
+        }
       </div>
     }
   </div>

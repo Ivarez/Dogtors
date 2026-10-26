@@ -1,0 +1,125 @@
+--------------------------------------------------------------------------------
+1. HTML, CSS Y DISEÑO RESPONSIVO (TRANSCRIPTS 1, 3 Y 5)
+--------------------------------------------------------------------------------
+
+P: ¿Qué es el HTML semántico y por qué es importante?
+R: A partir de HTML5, se introdujeron etiquetas (como <header>, <footer>, <main>, <section>, <article>) que describen su contenido en lugar de usar múltiples <div>. Es importante por tres razones: 
+1. Mejora la legibilidad del código para otros desarrolladores.
+2. Optimización para motores de búsqueda (SEO), facilitando la indexación.
+3. Accesibilidad: ayuda a los lectores de pantalla para personas con discapacidad visual a navegar correctamente por la página.
+
+P: ¿Qué es el Modelo de Caja (Box Model) en CSS?
+R: Es el modelo que define que todo elemento en HTML es una caja rectangular. Está compuesto por cuatro capas (de adentro hacia afuera):
+1. Contenido (Content): El texto o imagen.
+2. Padding: Espacio interior entre el contenido y el borde.
+3. Borde (Border): La línea que delimita el elemento.
+4. Margen (Margin): Espacio exterior entre el borde y otros elementos.
+
+P: Diferencia entre display "block", "inline" e "inline-block".
+R: 
+- Block (ej. <div>, <h1>): Ocupa todo el ancho disponible y fuerza un salto de línea.
+- Inline (ej. <a>, <span>): Ocupa solo el espacio de su contenido, se ubica uno al lado del otro, pero NO permite modificar ancho (width) ni alto (height).
+- Inline-block: Se ubica uno al lado del otro (como inline) pero permite modificar alto y ancho (como block).
+
+P: Flexbox vs. CSS Grid. ¿Cuándo usar cuál?
+R: Flexbox es unidireccional (organiza en fila o columna) y es ideal para alinear elementos y distribuir espacios dentro de un contenedor. CSS Grid es bidireccional (filas y columnas al mismo tiempo), ideal para layouts complejos de toda la página o cuadrículas estructuradas.
+
+P: Bootstrap vs. Tailwind CSS. ¿En qué se diferencian?
+R: Bootstrap es un framework orientado a "componentes" (ofrece clases que construyen barras de navegación, modales y tarjetas directamente) y tiene un estilo visual predefinido. Tailwind es un framework orientado a "utilidades" (clases puras de CSS de bajo nivel como text-center, mt-4), requiere más código en el HTML pero ofrece un diseño 100% personalizable sin tener que sobreescribir estilos base, aunque puede "ensuciar" visualmente el HTML con muchas clases.
+
+--------------------------------------------------------------------------------
+2. DESPLIEGUE Y ARQUITECTURA (TRANSCRIPT 1B)
+--------------------------------------------------------------------------------
+
+P: ¿Qué se puede desplegar en GitHub Pages y cuáles son sus limitantes?
+R: GitHub Pages solo permite desplegar sitios web estáticos o Frontend (HTML, CSS, JavaScript) y Single Page Applications (SPA) con Client-Side Rendering (CSR). 
+Limitantes: No soporta Backend (como Spring Boot o Java), no soporta bases de datos, no permite Server-Side Rendering (SSR) dinámico.
+
+--------------------------------------------------------------------------------
+3. JAVASCRIPT FUNDAMENTOS Y DOM (TRANSCRIPT 2)
+--------------------------------------------------------------------------------
+
+P: Diferencia entre var, let y const.
+R: 
+- `var`: Es la forma antigua, no respeta los scopes (ámbitos de bloque, como un if o un for), lo que causa bugs.
+- `let`: Variable dinámica introducida en ES6, respeta el scope de bloque.
+- `const`: Constante que no permite reasignación de la variable completa (aunque si es un objeto o arreglo, sus propiedades internas sí pueden modificarse).
+
+P: Diferencia entre == y ===.
+R: El doble igual (==) compara solo el valor, haciendo conversiones de tipo si es necesario (ej. 10 == "10" es true). El triple igual (===) es el comparador estricto: compara el valor Y el tipo de dato (ej. 10 === "10" es false). Siempre es buena práctica usar ===.
+
+P: Diferencias entre map() y forEach().
+R: Ambos iteran sobre un arreglo. Sin embargo, `forEach` simplemente ejecuta una función por cada elemento (como un void, no retorna nada), mientras que `map` transforma los elementos y retorna un NUEVO arreglo con los resultados modificados.
+
+P: ¿Qué es el DOM (Document Object Model)?
+R: Es la representación en forma de árbol que hace el navegador del código HTML. Cada etiqueta se vuelve un "nodo" (hijos, padres, hermanos). JavaScript interactúa con el DOM (ej. document.querySelector) para modificar la página dinámicamente.
+
+--------------------------------------------------------------------------------
+4. ASINCRONÍA EN JAVASCRIPT (TRANSCRIPT 5B)
+--------------------------------------------------------------------------------
+
+P: ¿Qué es un Callback?
+R: Es una función que se pasa como argumento a otra función, para que sea ejecutada cuando un proceso termine o un evento ocurra (ej. el onClick de un botón o la respuesta de un servidor).
+
+P: ¿Qué es el Callback Hell?
+R: Es el anidamiento excesivo de múltiples callbacks (uno dentro de otro) que se da cuando hay múltiples peticiones asíncronas secuenciales. Hace que el código sea ilegible y difícil de mantener.
+
+P: ¿Qué es una Promesa (Promise)?
+R: Es un objeto que representa la terminación o el fracaso eventual de una operación asíncrona. Tiene métodos `.then()` para manejar el éxito (resolve) y `.catch()` para manejar el error (reject), evitando el Callback Hell.
+
+P: ¿Qué es async/await?
+R: Es "azúcar sintáctico" moderno sobre las Promesas. Permite escribir código asíncrono como si fuera secuencial/síncrono. La función debe marcarse como `async`, y se usa `await` antes de la petición para pausar la ejecución hasta que la Promesa se resuelva. Los errores se manejan con un bloque try/catch.
+
+P: ¿Qué es Fetch y por qué se usa un doble paso al consumirlo?
+R: Fetch es la función nativa para consumir APIs. Retorna una promesa. Requiere dos pasos: primero, esperar la respuesta de la red (fetch), y segundo, parsear el cuerpo de la respuesta a JSON (response.json()), lo cual también es asíncrono y retorna otra promesa.
+
+--------------------------------------------------------------------------------
+5. BACKEND, SPRING BOOT Y THYMELEAF (TRANSCRIPTS 3B Y 4)
+--------------------------------------------------------------------------------
+
+P: ¿Qué son los Servlets y cómo evolucionaron a Spring Boot?
+R: Los Servlets (Java Enterprise Edition) son objetos base que reciben y responden peticiones HTTP de forma manual (doGet, doPost). Requerían configurar servidores como Glassfish y mezclar HTML en strings de Java. Spring Boot automatiza esto, embebe el servidor (Tomcat), usa anotaciones (@Controller) para mapear rutas más fácilmente y separa la vista usando motores como Thymeleaf.
+
+P: ¿En qué consiste la arquitectura de capas (Controller, Service, Repository)?
+R: Es un patrón para separar responsabilidades:
+- Controller (Controlador): Recibe las peticiones HTTP del usuario, delega el trabajo al servicio y retorna una vista o respuesta (MVC).
+- Service (Servicio): Contiene toda la lógica de negocio. Es intermediario entre el controlador y la base de datos.
+- Repository (Repositorio): Se encarga exclusivamente de las consultas y conexión a la base de datos.
+REGLA: Nunca saltar capas (Ej: El Controller no debe llamar al Repository directo, porque se omite la lógica de negocio).
+
+P: ¿Qué es la Inyección de Dependencias y qué es un Bean en Spring?
+R: Un Bean es un objeto global administrado por el contenedor de Spring Boot (Inversión de Control). La Inyección de Dependencias (mediante @Autowired o constructores) es el mecanismo donde Spring le entrega (inyecta) automáticamente a una clase (como el Controller) las instancias que necesita (como el Service), sin que el programador tenga que usar la palabra `new`.
+
+P: Diferencia entre @PathVariable y @RequestParam.
+R: 
+- @PathVariable: Extrae datos directamente de la jerarquía de la URL (ej. /student/{id}). Ideal para recursos específicos.
+- @RequestParam: Extrae datos de la cadena de consulta (query string) después del signo de interrogación (ej. /student?id=1) o del cuerpo de un formulario en un POST. Ideal para filtros o múltiples variables.
+
+P: ¿Qué es Thymeleaf y qué son los "fragmentos"?
+R: Thymeleaf es un motor de plantillas que permite integrar variables y lógica de Java (if, forEach) directamente en el HTML mediante atributos como th:text, th:each, th:if. 
+Los "fragmentos" son componentes visuales reutilizables (como navbars o footers) que se definen una vez y se importan (con th:replace) en múltiples páginas para evitar código duplicado.
+
+--------------------------------------------------------------------------------
+6. JPA, HIBERNATE Y BASES DE DATOS (TRANSCRIPTS 6 Y 7)
+--------------------------------------------------------------------------------
+
+P: ¿Qué es JPA, Hibernate y un ORM?
+R: ORM (Object-Relational Mapping) es un software que sincroniza clases de Java con tablas de base de datos. JPA (Java Persistence API) es la especificación/contrato de Java para manejar ORMs. Hibernate es la implementación real (el motor subyacente) que hace el trabajo. Evitan tener que escribir SQL puro (JDBC) convirtiendo objetos Java directamente en filas SQL.
+
+P: ¿Por qué usamos H2 en el curso?
+R: H2 es una base de datos relacional "en memoria". Es muy rápida y excelente para la fase de desarrollo porque se reinicia con la aplicación, evitando conflictos de versionamiento o instalaciones complejas. Para producción, cambiar a Postgres o MySQL en Spring es tan simple como cambiar el application.properties (perfiles).
+
+P: En una relación @ManyToMany, ¿qué significa mappedBy y qué es el "Dueño" de la relación?
+R: En relaciones bidireccionales, JPA exige que una entidad sea la "fuerte/dueña" de la tabla intermedia y la otra sea la "débil/inversa". La entidad que tiene el atributo `mappedBy` es el lado DÉBIL. Sólo guardando datos a través de la lista de la entidad DUEÑA (la que no tiene el mappedBy) se insertarán los registros correctamente en la tabla intermedia.
+
+P: ¿Cuándo es necesario crear una tabla intermedia de forma "manual" (crear una Entidad explícita)?
+R: Se crea manualmente cuando la relación entre dos entidades (Muchos a Muchos) requiere almacenar *atributos adicionales* (ej. la Nota o Fecha en una inscripción entre Estudiante y Curso), o cuando la relación involucra 3 o más entidades a la vez. 
+
+P: ¿Qué es JPQL y en qué se diferencia del SQL nativo?
+R: JPQL (Java Persistence Query Language) es el lenguaje de consultas de JPA. En lugar de hacer consultas sobre tablas y columnas de la base de datos, se hacen sobre CLASES y ATRIBUTOS de Java. JPA se encarga de traducir el JPQL al SQL específico del motor de base de datos (ej. al dialecto de Postgres o MySQL).
+
+P: ¿Para qué sirve la anotación @Transactional?
+R: Se coloca en los métodos de la capa Service que realizan múltiples operaciones de escritura/borrado en la base de datos de forma encadenada. Garantiza que si una de las operaciones falla a la mitad, se haga un "Rollback" (reversión completa) para mantener la integridad, y si todas funcionan, se hace el "Commit".
+
+P: ¿Por qué es mala práctica usar el correo electrónico u otro dato de negocio como Primary Key (@Id)?
+R: Los datos de negocio (como el correo, teléfono o cédula) pueden cambiar en el tiempo. Si cambian, modificar una llave primaria en bases de datos relacionales es extremadamente problemático porque requiere actualizar en cascada todas las llaves foráneas. Por eso se usan IDs autogenerados (numéricos o UUIDs) sin valor de negocio.

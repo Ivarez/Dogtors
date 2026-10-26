@@ -11,13 +11,6 @@
       }
     </div>
 
-    <!-- Estado del Servicio -->
-    <div class="protocol-banner">
-      <div class="banner-pill">
-        <span class="pulse-dot"></span> Atención Veterinaria
-      </div>
-    </div>
-
     <!-- Page Header -->
     <div class="page-header">
       <div class="eyebrow">HISTORIAL MÉDICO</div>
@@ -117,29 +110,31 @@
               }
             </div>
 
-            <!-- 2. Veterinario Responsable -->
-            <div class="form-group">
-              <label for="veterinarioId">
-                <span class="step-num">2.</span> Médico Veterinario Responsable *
-              </label>
-              <select id="veterinarioId" formControlName="veterinarioId" class="form-control">
-                <option [ngValue]="null" disabled>-- Seleccione el médico veterinario --</option>
-                @for (v of veterinarios; track v.id) {
-                  <option [value]="v.id">
-                    {{ v.nombre }} ({{ v.especialidad || 'Medicina General' }})
-                  </option>
+            <!-- Veterinario Responsable (solo se pregunta si no se ha iniciado sesión como veterinario) -->
+            @if (!veterinarioEnSesion) {
+              <div class="form-group">
+                <label for="veterinarioId">
+                  <span class="step-num">2.</span> Médico Veterinario Responsable *
+                </label>
+                <select id="veterinarioId" formControlName="veterinarioId" class="form-control">
+                  <option [ngValue]="null" disabled>-- Seleccione el médico veterinario --</option>
+                  @for (v of veterinarios; track v.id) {
+                    <option [value]="v.id">
+                      {{ v.nombre }} ({{ v.especialidad || 'Medicina General' }})
+                    </option>
+                  }
+                </select>
+                @if (tratamientoForm.get('veterinarioId')?.touched && tratamientoForm.get('veterinarioId')?.invalid) {
+                  <span class="field-error">Debe asignar el médico veterinario tratante.</span>
                 }
-              </select>
-              @if (tratamientoForm.get('veterinarioId')?.touched && tratamientoForm.get('veterinarioId')?.invalid) {
-                <span class="field-error">Debe asignar el médico veterinario tratante.</span>
-              }
-            </div>
+              </div>
+            }
 
-            <!-- 3. Medicamento -->
+            <!-- Medicamento -->
             <div class="form-group">
               <div class="label-with-badge">
                 <label for="drogaId">
-                  <span class="step-num">3.</span> Medicamento *
+                  <span class="step-num">{{ veterinarioEnSesion ? '2.' : '3.' }}</span> Medicamento *
                 </label>
                 @if (drogaSeleccionada) {
                   @if (drogaSeleccionada.unidadesDisponibles > 0) {
@@ -175,10 +170,10 @@
               }
             </div>
 
-            <!-- 4. Observaciones / Dosis e Indicaciones -->
+            <!-- Observaciones / Dosis e Indicaciones -->
             <div class="form-group">
               <label for="observaciones">
-                <span class="step-num">4.</span> Dosis e Indicaciones *
+                <span class="step-num">{{ veterinarioEnSesion ? '3.' : '4.' }}</span> Dosis e Indicaciones *
               </label>
               <textarea 
                 id="observaciones" 
@@ -283,6 +278,16 @@
               <li><span>✓</span> Registro en el expediente clínico</li>
             </ul>
           </div>
+
+          @if (veterinarioEnSesion; as vet) {
+            <div class="session-vet-banner">
+              <span class="vet-badge-icon">🩺</span>
+              <div class="vet-badge-info">
+                <span class="vet-badge-label">Médico Veterinario Tratante (Sesión Activa)</span>
+                <strong>{{ vet.nombre }} — {{ vet.especialidad || 'Medicina General' }}</strong>
+              </div>
+            </div>
+          }
         </div>
       </div>
     }

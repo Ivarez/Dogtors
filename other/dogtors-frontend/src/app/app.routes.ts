@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 import { MascotaListComponent } from './pages/mascota-list/mascota-list.component';
 import { MascotaFormComponent } from './pages/mascota-form/mascota-form.component';
@@ -11,23 +12,39 @@ import { PerfilDuenoComponent } from './pages/perfil-dueno/perfil-dueno.componen
 import { MedicamentosExcelComponent } from './pages/medicamentos-excel/medicamentos-excel.component';
 import { TratamientoFormComponent } from './pages/tratamiento-form/tratamiento-form.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
+import { AuthService } from './services/auth.service';
+
+/**
+ * Restringe el acceso a rutas exclusivas del veterinario (CRUD de mascotas, CRUD de dueños,
+ * asignación de tratamientos y catálogo de medicamentos) si el usuario en sesión es un cliente.
+ */
+export const restringirClienteGuard: CanActivateFn = () => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  if (authService.esDueno()) {
+    const idDueno = authService.usuarioActual()?.id;
+    return idDueno ? router.createUrlTree(['/perfil', idDueno]) : router.createUrlTree(['/']);
+  }
+  return true;
+};
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'perfil/:id', component: PerfilDuenoComponent },
-  { path: 'mascotas', component: MascotaListComponent },
-  { path: 'mascotas/nueva', component: MascotaFormComponent },
-  { path: 'mascotas/editar/:id', component: MascotaFormComponent },
+  { path: 'mascotas', component: MascotaListComponent, canActivate: [restringirClienteGuard] },
+  { path: 'mascotas/nueva', component: MascotaFormComponent, canActivate: [restringirClienteGuard] },
+  { path: 'mascotas/editar/:id', component: MascotaFormComponent, canActivate: [restringirClienteGuard] },
   { path: 'mascotas/:id', component: MascotaDetailComponent },
-  { path: 'duenos', component: DuenoListComponent },
-  { path: 'duenos/nuevo', component: DuenoFormComponent },
-  { path: 'duenos/editar/:id', component: DuenoFormComponent },
-  { path: 'duenos/:id', component: DuenoDetailComponent },
-  { path: 'medicamentos', component: MedicamentosExcelComponent },
+  { path: 'duenos', component: DuenoListComponent, canActivate: [restringirClienteGuard] },
+  { path: 'duenos/nuevo', component: DuenoFormComponent, canActivate: [restringirClienteGuard] },
+  { path: 'duenos/editar/:id', component: DuenoFormComponent, canActivate: [restringirClienteGuard] },
+  { path: 'duenos/:id', component: DuenoDetailComponent, canActivate: [restringirClienteGuard] },
+  { path: 'medicamentos', component: MedicamentosExcelComponent, canActivate: [restringirClienteGuard] },
   { path: 'drogas', redirectTo: 'medicamentos' },
-  { path: 'tratamientos', component: TratamientoFormComponent },
-  { path: 'tratamientos/nuevo', component: TratamientoFormComponent },
+  { path: 'tratamientos', component: TratamientoFormComponent, canActivate: [restringirClienteGuard] },
+  { path: 'tratamientos/nuevo', component: TratamientoFormComponent, canActivate: [restringirClienteGuard] },
   { path: 'error', component: ErrorPageComponent },
   { path: '**', redirectTo: '' }
 ];

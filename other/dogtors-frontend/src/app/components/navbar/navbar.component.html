@@ -6,11 +6,14 @@
     </a>
 
     <nav class="navbar-links" aria-label="Navegación principal">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
-      <a routerLink="/mascotas" routerLinkActive="active">Mascotas</a>
-      <a routerLink="/duenos" routerLinkActive="active">Dueños</a>
-      <a routerLink="/tratamientos" routerLinkActive="active">Tratamientos</a>
-      <a routerLink="/medicamentos" routerLinkActive="active">Medicamentos</a>
+      @if (authService.esDueno()) {
+        <a [routerLink]="['/perfil', authService.usuarioActual()?.id]" routerLinkActive="active">Mis Mascotas</a>
+      } @else if (authService.esVeterinario()) {
+        <a routerLink="/mascotas" routerLinkActive="active">Mascotas</a>
+        <a routerLink="/duenos" routerLinkActive="active">Dueños</a>
+        <a routerLink="/tratamientos" routerLinkActive="active">Tratamientos</a>
+        <a routerLink="/medicamentos" routerLinkActive="active">Medicamentos</a>
+      }
     </nav>
 
     <div class="navbar-actions">
@@ -18,7 +21,7 @@
         @if (usuario.rol === 'VETERINARIO') {
           <a routerLink="/mascotas" class="link-perfil">
             <span class="avatar">{{ usuario.nombre.charAt(0).toUpperCase() }}</span>
-            Hola, {{ usuario.nombre }}
+            {{ usuario.nombre }}
           </a>
         } @else {
           <a [routerLink]="['/perfil', usuario.id]" routerLinkActive="active" class="link-perfil">
@@ -28,8 +31,7 @@
         }
         <button type="button" class="btn-ghost" (click)="logout()">Salir</button>
       } @else {
-        <a routerLink="/login" routerLinkActive="active" class="link-login">Iniciar sesión</a>
-        <a routerLink="/duenos/nuevo" class="btn-cta">Crea tu cuenta</a>
+        <a routerLink="/login" routerLinkActive="active" class="btn-cta">Iniciar sesión</a>
       }
     </div>
   </div>

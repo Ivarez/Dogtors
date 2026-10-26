@@ -1,0 +1,1699 @@
+Hola a todos, bienvenidos a una nueva
+clase de desarrollo web y el día de hoy
+vamos a conocer la herramienta de
+Tailwin. Entonces voy a hablar
+rápidamente aquí un poquito a nivel de
+teoría de que es Tailwin. Entonces
+Tailwin es un framework de CSS al igual
+que Poststrap. Entonces, recuerden que
+básicamente lo que se llaman framework
+de CSS son herramientas de CDS o
+librerías que me ayudan a tener un
+código de CSS, digamos, bueno, bonito y
+barato, tener un código bastante
+elegante, que no sea tan enredado,
+estándar, que lo pueda escribir mucho
+más rápido y normalmente me ofrecen
+otras herramientas como que mi página se
+vuelva responsive sin tanto problema
+como serían los media queries que ya
+vimos en otras clases. Normalmente la
+lucha está entrewin CSS y Boostrop. Son
+los dos frameworks de CSS más usados en
+la actualidad, pero tienen bastantes
+diferencias que vamos a ver a
+continuación. También al final de la
+clase voy a hacer un pequeño resumen
+haciendo una comparativa de cómo queda
+el código cuando lo hago con Telwin o
+cuando lo hago con Boostrap que ustedes
+puedan elegir cuál prefieran. Entonces,
+vamos a hacer una rápida comparación
+entre Tailwin y Boostrap, digamos, que
+son igualmente dos filosofías apartes,
+así ambas sean, digamos, frameworks de
+CSS. Lo primero es que Telwin tiene
+clases puras. ¿A qué me refiero con
+clases puras? Las clases normalmente en
+Bootstrap están muy relacionadas a que
+hacen muchas cosas. Entonces, cuando yo
+pongo la clase de table, esta tiene,
+digamos, cinco propiedades de CSS
+imbuidas en sí. Mientras que aquí
+normalmente, y aunque no es así al 100%,
+normalmente cada clase que yo ponga en
+Tailwin está asociada, digamos, a una
+única característica de CSS.
+Por otro lado, Bootstrap, como ya lo
+pudieron haber visto en las clases
+anteriores, está directamente
+relacionado a lo que son componentes. Es
+decir, yo voy a boostrap, busco cómo
+hacer una barra de navegación, copio la
+clase y la clase me permite tener una
+barra de navegación de manera
+responsive. Esto digamos es bastante
+útil, pero normalmente todo está
+dirigido a componente. Yo busco cómo se
+hace una tabla en Booster, cómo se hace
+una barra de navegación en Boostrap,
+cómo se hace una tarjeta en Boostrap. En
+Tailwin, no. En Tailwin simplemente voy
+a tener unas clases en CSS que están
+escritas de diferente manera y me
+permiten, digamos, tener un código un
+poquito más limpio o más rápido de
+escribir. Eso no significa que no haya
+componentes en CSS, pero son componentes
+desarrollados por, digamos, otras
+páginas, otras empresas, algunos son
+pagos, mientras que en Boostrap pues
+todo está directamente imbuido, pues en
+el framework de Boostrap. No hay estilos
+por defecto, cosa muy importante de
+Tailwin. Mientras que apenas yo instalo
+Boostrapienzan a cambiar los estilos de
+mi página. Así yo no haya metido ninguna
+clase, Boostrap tiene otros estilos y
+las páginas de Boostrap se ven bastante
+parecidas entre sí, ¿no? Entonces está
+este azul Boostrap que es muy fácil de
+reconocer y los colores de Boostrap
+también son muy fáciles de reconocer.
+Entonces como que uno sabe muy
+rápidamente que una página está hecha
+por Bootrap y eso también puede llegar a
+ser que se vea un poco genérica. Ambas
+me van a permitir tener una página
+responsive, es decir, que se vea bien en
+diferentes tipos de pantalla. Esto es la
+mayor ventaja de cualquiera de los dos
+frameworks, pero aquí voy a tener pues
+componentes responsive, es decir, por
+ejemplo, la barra de navegación que sea
+chique y sea grande de acuerdo al tamaño
+de la pantalla, eso lo va a tener es en
+boostra. ¿Dónde va a tener más código?
+probablemente en Tailwin, porque
+nuevamente cada clase está asociada casi
+a una única propiedad CSS, mientras que
+Booster una única clase está asociada
+muchas propiedades, entonces como que
+con solo una parte del código estoy
+aplicando muchas cosas. Sin embargo, lo
+más popular ahorita diría yo que es
+Telwin y eso también es debido a la
+opción que tiene con muchos frameworks
+de frontend como React. Entonces, apenas
+ustedes, por ejemplo, instalan React o
+Next, les dice, ¿quieres trabajar este
+proyecto con Telbin? Nunca te va a
+preguntar quieres trabajar este proyecto
+con Boostrap. La mayoría de tutoriales
+que van a encontrar van a trabajar
+Tailwin con React y así. Entonces
+también son cosas de adopción de que la
+comunidad ha ido usando cada vez más
+tailwin en vez de Bootstrap, pero
+también vamos a ver este por qué al
+final cuando realicemos una mejor
+comparativa. Y ahora sí pasemos a la
+parte práctica para que entendamos que
+es Elwin y cómo aplicarlo a una página
+web. Perfecto. Antes de comenzar a
+desarrollar quiero mostrarles entonces
+un poquito hacia dónde vamos a ir,
+digamos, qué es lo que vamos a
+construir, que es justamente esta página
+de la izquierda. Es una página un
+poquito genérica, tipo portafolio, tipo
+página web personal. tiene su barrita de
+negación, el giro section como la parte
+principal donde muestro mi información y
+abajo tiene una segunda sección que dice
+como quién soy y la idea es aquí ir
+turnando, digamos que ingeniero
+sistemas, desarrollo web y otras cosas
+que yo tenga y pues estas imágenes
+obviamente ustedes ya lo podrían cambiar
+por algo personalizado. Es es una página
+que se ve en teoría bastante sencilla.
+Tiene una que otra complicación que ya
+vamos a ver cuáles son. Entonces, vamos
+a ver qué pasa cuando achico la página.
+Y miren que cuando la achico, eh,
+digamos funciona casi de manera
+responsive, todavía no está perfecto,
+pero todavía es por el tiempo de la
+clase que no vamos a alcanzar a ver cómo
+dejarla, digamos, al 100%. Pero miren
+que ya las cosas se apilan una encima de
+otra y igualmente aquí abajo ya las
+cosas no van a estar uno al lado del
+otro porque ya las cosas deberían
+demasiado apretadas, sino que tengo que
+hacer de cierta manera que cuando el
+tamaño de pantalla sea, digamos, small,
+las cosas se apilen una encima de otra.
+Y miren el otro cambio que hubo, que fue
+aquí con la barra de navegación. Yo les
+acabé de decir que en Tailwind, digamos,
+no hay una barra de navegación que me
+haga todo esto por arte de magia, pero
+eso no significa que no la pueda
+construir o que no la pueda usar por
+internet o que no le pueda preguntar una
+inteligencia artificial cómo hacerla. Es
+bastante sencillo. Igual tener una barra
+de navegación estilo responsive con la
+que me regala Bootstrap. Entonces, miren
+por acá y cuando ya la chico lo
+suficiente, eh, aparece este simbolito
+de menú y por aquí me aparecen los
+diferentes secciones a las que podría
+acceder y ya. Entonces, esa es la página
+que vamos a realizar el día de hoy, más
+o menos 30, 40 minutos desarrollándola y
+al final algunas conclusiones respecto a
+este framework de CSS. Vamos a empezar
+de cero. Así que voy a cerrar este que
+es el proyecto ya terminado. Ahora sí,
+empecemos con lo que es el código. Este
+va a ser, digamos, la carpetica que les
+voy a dejar pas en el repositorio. No
+tiene realmente nada. Tiene esta imagen
+de profile por si quieren que les quede
+exactamente igual o si no pueden
+descargar cualquier imagen que sea
+cuadrada y un PNG. Y en styles.cs que no
+lo vamos a volver a tocar en toda la
+clase, simplemente estoy modificando
+para que el tamaño de letra sea un
+poquito más grande por defecto en todo
+lo que va a ser mi página web. Pero
+bueno, ahora sí vamos a empezar.
+Entonces, vamos a crear lo que es
+nuestro index.
+html. Recuerden, aquí podemos aplicar
+nuestro atajo. Guardamos. Vamos a lanzar
+la página con Live Server. Esperamos
+algunos segundos y ya tenemos lo que es
+nuestra página vacía funcionando. Ahora
+comencemos con la primera parte, que es
+cómo vamos a hacer para agregar Tailwin
+a nuestro proyecto. Entonces,
+simplemente aquí busqué Tailwin en
+Google, me metí a su página principal y
+voy a ir a la parte de documentación.
+Ahí voy a subir y vamos a buscar la
+parte de instalación. Y vamos a ver que
+dependiendo del proyecto en el que esté
+manejando Tailwin, pues lo puedo agregar
+de diferentes maneras. Entonces, si
+estoy usando algo como tipo React, tengo
+que instalarlo de una forma. Pero
+ahorita que estamos trabajando sin
+ningún framework adicional, nos vamos a
+ir a la parte play CDN. Y creo que esto
+fue bastante parecido a la forma en la
+que instalamos Boostrap. Simplemente
+vamos a copiar esto que es un script y
+lo vamos a pegar. Guardamos. Volvemos
+por acá y vemos que nada ha cambiado,
+pero de esta manera ya podemos comenzar
+a usar las claves de CSS en nuestro
+proyecto. Bueno, ahora sí vamos a
+comenzar con el código. Vamos a comenzar
+rápidamente estructurando nuestra página
+con un par de etiquetas semánticas, el
+header, el main y el footer, el cual
+están en casi el 99% de páginas.
+Entonces, vamos a poner las tres y vamos
+a poner lo que es nuestro título
+principal. Este, como es el título
+principal de la página, que es como mi
+nombre, entonces lo voy a poner un H1. y
+le va a poner, "Hola, soy Sebastián
+Angarita." Vamos a guardar y vemos que
+todo está funcionando. Tal vez el título
+aparece un poco pequeño, pero ya vamos a
+arreglar eso justamente con las
+etiquetas que nos trae Tailwin. Ahora,
+¿cómo haríamos para que este texto
+apareciera un poquito más grande?
+Obviamente ahí ya tendremos que meternos
+con CSS. En este caso voy a aplicar CSS
+en línea para tener una comparativa
+directa entre las etiquetas de Tailwin y
+las clásicas de CSS. Entonces, digamos,
+si yo quiero hacer que este título
+aparezca más grande, aplico el atributo
+style y pongo font rayita size dos
+puntos y 100 px. Veamos cómo se ve.
+Listo. Y se ve gigante, que era
+justamente lo que quería. Pero, ¿cuál es
+la idea? La idea un poco de lo que es
+Tailwin es no aplicar los estilos con de
+esta forma, más bien es más, vamos a
+llegar. Creo que así va a quedar
+bastante claro. Voy a copiar y pegar. Y
+en vez de aplicar estilos en línea, que
+es como se llama cuando los aplicamos de
+esta manera, vamos a aplicar clases.
+Nuevamente Telwid no es más que una
+carpeta gigante llena de clases.
+Entonces vamos a ponerle clase igual a.
+Y en este caso, cuando yo quiera que mi
+texto sea más grande, hago text rayita
+3XL. Y ay, no se ve tan grande como
+pensaba, pero bueno, esto era lo que les
+quería mostrar. Igualmente, no es que
+esté mal, pero miren que yo puedo aquí
+modificar 4XL.
+modificar 4XL. 5XL,
+6XL y hay diferentes medidas de texto
+según el XL que yo le ponga. Entonces,
+hay un montón de clases en Telwin que
+están asociadas justamente a lo que es
+el tamaño del texto. Y vamos a hacer un
+segundo ejemplo. Entonces, digamos que
+yo quiero que mi letra esté en negrilla,
+entonces que haríamos normalmente en
+CSS. Haríamos font, rayita weight y aquí
+pondríamos bolt. Vamos a guardar. Y por
+ahí vemos mi letra en negrilla, mientras
+que si lo quiero hacer por acá, hago
+simplemente espacio, que cuando quiero
+aplicar varias clases con espacio, font
+bolt. Y miren, logré exactamente el
+mismo ejemplo, es decir, estas dos
+etiquetas más allá del tamaño, que creo
+que me quedó un poquito exagerado,
+bajéoslo aquí a 50, hacen exactamente lo
+mismo. En un lado lo estoy haciendo con
+etiquetas en línea y en el otro con
+clases. Esta clase equivale a poner la
+letra de un tamaño. Yo quería leer la
+documentación conos píxeles y este
+equivale a ponerlo en negrilla. Bueno,
+ahora sí les puede surgir tal vez la
+duda de por qué deberías escribir los
+CAS con Telwin y no con estilos en
+línea. Y realmente son diferentes
+variantes, pero básicamente TWI me va a
+permitir escribir un CSS mucho más
+rápido apenas no se acostumbra a él.
+nuevamente es una herramienta que tiene
+cierta curva de aprendizaje porque toca
+un poquito entre comillas memorizarse lo
+que son las clases, pero va a tener ser
+que tenga un código más limpio y que lo
+pueda escribir mucho más rápido. Miren
+que aquí tengo que escribir básicamente
+atributos, puntos propiedad y aquí
+simplemente escribiendo directamente lo
+que es la clase me ahorro un poquito ese
+código. Sé que ahorita no es muy claro,
+pero ya van a ver que ahorita comenzamos
+a escribir mucho más rápido lo que es el
+código. Y ahora, ¿cómo hago para saber
+cuáles son todas las clases que están
+disponibles en Tailwin? Le repito,
+Tailwin es solo una carpeta con muchas,
+muchas, muchas, muchas clases. Pues
+nada, voy a la documentación de Tailwin
+y busco. Entonces, busco por acá font
+algo y vemos que aquí está el font
+weight y además me dice qué es lo que
+traduce cada una de las clases que tiene
+Telwin. Me dice que cuando yo hago font
+medium, básicamente lo que está haciendo
+es aplicar este estilo de CSS y así con
+cada uno de los diferentes clases que
+hay acá, aquí está su equivalente en
+CSS. También podría buscar eso con el
+tamaño de fuente. Y por acá, miren, son
+un montón. Obviamente nunca les voy a
+preguntar de memoria varias de ellas,
+pero de tanto trabajarlo se van a ir
+familiarizando con ellas. Miren las que
+están acá, las de tamaño de texto, las
+que acabamos de aplicar. Tex 7XL dice
+que equivale, digamos, a un font size de
+4.5 REM, que es un tamaño dependiendo
+del tamaño de letra que tenga el usuario
+en su pantalla. Entonces, esto ya me
+ayuda un poquito a que esté responsive y
+que yo no esté, digamos, haciendo las
+cosas mal poniendo px. Entonces, él
+también me va a proteger un poquito ante
+malas prácticas de CSS de una vez con
+estas clases de por acá. Pero bueno,
+vamos a volver por acá y ahora sí vamos
+a corregir este texto para que se vea
+tal como lo dejamos en la imagen que les
+mostré ahorita del proyecto final.
+Veamos el resultado final de cómo
+debería quedar este texto. Vemos que
+aparece hola, soy y se va a carita,
+digamos, con otro estilo. Esta letra
+está un poquito más pequeña y pues
+obviamente están en diferentes colores.
+Así que voy a quitar esta versión de por
+acá para digamos ir limpiando un poquito
+el código. Y lo que normalmente hacemos
+cuando queremos aplicar un estilo a los
+textos es envolverlos en etiqueta spam
+que recuerden que es como el div, pero
+cuando tengo contenido en línea.
+Entonces, la primera parte es el spam de
+Hola, soy que le vamos a aplicar unos
+estilos y el segundo es el de Sebastián
+Angarita, que le vamos a aplicar otros
+Angarita, que le vamos a aplicar otros estilos.
+Perdemos, vamos a poner esto abajo y
+hasta ahorita pues obviamente no se ve
+nada diferente. ¿Qué otras cosas tengo
+que hacer? Tengo que hacer que digamos
+el texto esté uno encima de otro. Esto
+lo podría hacer con BR o otra forma que
+les voy a mostrar. Entonces vamos a
+comenzar por acá con el hola soy y vamos
+a cambiarle sus estilos. Entonces
+nuevamente cuando voy a cambiar los
+estilos siempre lo hago a través de
+clases y quiero un texto un poco más
+pequeño. Digamos que va a haber
+diferentes tamaños de texto. Entonces a
+este le voy a poner 5XL, mientras que al
+de abajo le voy a poner text
+6XL. Guardamos y ya vemos que tenemos un
+texto un poquito más grande que el otro.
+¿Cómo hago para que un texto quede
+encima del otro? Podría usar BR, pero
+también puedo hacer directamente
+aplicarle, digamos, que decirle que esto
+se maneje en bloque y no en línea.
+Recuerden que los textes for default son
+en línea, es decir, van uno al lado del
+otro, pero cuando yo lo pongo en bloqueo
+que vaya uno encima del otro. También
+aquí podría aplicar flex o inline block
+o otros que hayamos visto durante la
+clase. Veamos qué otras cositas podemos
+cambiar. Este texto creo que tiene que
+ir en azul. Entonces, miren lo fácil que
+es cambiar el color del texto. Text. Y
+puedo poner un color. Ay, no me
+funcionó. Eso me pasa por estar
+hablando. Text blue 100. Ah, listo. Ya
+me faltaba el color. Entonces los
+colores digamos van de el 100 al 1000
+dependiendo como de la tonalidad.
+También hay una tabla de colores
+completa por allá en Tailwin, pero
+entonces digamos que yo le pongo 200 y
+miren cómo va cambiando de color hacia
+un azul un poquito más oscuro. Vamos a
+ponerle 500 que sería este azul de acá.
+¿Y qué otra cosa nos falta? Estas dos
+textos están bastante pegados, no hay un
+espaciado entre ellos. Entonces, ¿cómo
+hago yo para aplicar un espaciado? La
+clase para aplicar espaciados.
+Normalmente en CSS lo haríamos con un
+margin. Aquí también es con margin, pero
+la clase está un poquito resumida.
+Margin M top arriba y pongo de cuánto
+quiero que sea mi margin. En este caso
+de tres. Miren que aquí yo puedo
+agrandar mi margin a 10, a 20, a 1. Si
+quisiera margin por todos los lados,
+pues dejo solo el moo
+margin en todos lados. Si quisiera
+margin abajo, bueno, que en este caso no
+se va a notar, MB margin bottom. En este
+caso vamos a dejar un margin top de
+tres. Y listo. Ahora sí creo que ya con
+eso acabamos por lo menos este H1.
+Obviamente todavía nos faltan más cosas,
+pero vamos a seguir con otra sección.
+Veamos qué más tenemos que poner. De
+abajo dice desarrollador fullstack.
+Vemos que está en otro color y con la
+letra un poquito más pequeña. Entonces
+voy a dejarlo por aquí debajo del H1.
+Voy a poner un párrafo y pongámosle lo
+de desarrollador frontend. Bueno, no
+importa el texto que esté ahorita, lo
+importante es que aprendamos del
+Entonces, vamos a poner clase. Eh, vamos
+a guardar. Vemos que por ahora, digamos,
+el texto tiene sus estilos por defecto,
+pero vamos a comenzar a aplicar
+justamente lo que aprendimos. Entonces,
+¿qué quiero que mi texto sea más grande?
+Text 3 XL. Listo. Siguiente. ¿Qué quiero
+que mi texto tenga un color gris? Text
+gray. Y pues miro la tonalidad. En este
+caso ya sé que es 300, que esto está muy
+pegado entre los dos. Entonces hago
+margin top y le pongo uno. Y ahorita se
+ve un poquito más separado, pero ven que
+ya uno le va cogiendo el tiro a las
+etiquetas y lentamente, muy lentamente
+se las va aprendiendo. Vamos a poner el
+siguiente texto, que es otro párrafo. Si
+ven es ya, digamos, el que tiene un
+poquito más de cháchara sobre mi
+descripción. Entonces, vamos a poner
+aquí ingeniero de sistemas
+especializado en desarrollo web. Vamos a
+ver que me ayude un poquito acá con
+texto un poquito basura para poder poner
+más cosas. Listo. Ahí dejé que el
+autocompletado hiciera su magia. Ahora,
+este, ¿qué tamaño tiene que ser? Digamos
+que tiene que ser más grande de lo que
+está. Y también vemos que aquí sí hay un
+espaciado bastante grande entre los dos
+textos. Entonces, vamos a ir a esta
+clase y vamos a ir solucionando problema
+por problema. Margin top T6. Listo, ya
+hay un espacio mejor. El texto es un
+poquito mayor a los anteriores, pero
+sigue siendo, digamos, de menor tamaño
+que todos los títulos que hemos puesto.
+Tex tiene exactamente el mismo color que
+el de arriba, así que vamos a copiar y
+pegar la clase. Y ahí vamos cogiéndole
+el tiro. Obviamente esto no se ve tan
+bien porque aquí tiene un fondo azul que
+más tarde iremos a poner. Pasemos ahora
+a desarrollar cada uno de estos dos
+botones. Básicamente voy a desarrollar
+uno y después voy a copiar todos los
+estilos para tener el otro. Una cosa
+mala es que cuando lo trabajamos de esta
+manera, van a ver que voy a copiar y
+pegar también bastante código. Entonces
+voy a poner por aquí un div. Estos
+serían como botones que me redirigen,
+digamos, a una página, un hiperlaance
+donde pueden descargar lo que es mi hoja
+de vida. Y vamos a poner simplemente
+sobre mi X. Guardamos. Vemos que no
+tiene ningún estilo. Y ahora sí,
+comencemos con la parte divertida, que
+es aplicar bastantes estilos. Lo primero
+vamos a ponerle un background color
+azul. Si bien tiene el background azul,
+entonces pongámosle PG de background
+blue y 500. Guardamos y ya vemos que nos
+quedó azulito el botón. Vamos a seguir.
+Quiero que el texto, digamos, esté
+blanco. Entonces, voy a poner text
+white. Perfecto. Está el texto muy
+pegado, digamos, sobre los bordes.
+Entonces, si quiero dejar un espaciado
+interior, lo que hago es el padding.
+Padding en x de 6, es decir, tanto a la
+derecha como a mi izquierda, pero
+también quiero un p vertical. Entonces,
+en este caso hago padding y de 2.
+Obviamente si yo aplico, digamos aquí P
+rayita 6, me voy a aplicar un padding de
+seis tanto arriba como abajo, pero eso
+no es lo que queremos. Entonces vamos a
+dejarlo como estaba antes en X6 y en Y2.
+¿Qué otra cosita? Vamos a ir viendo por
+acá. La letra tiene un poquito más de
+negrilla, entonces igual que hicimos
+ahorita font bol, aquí es font semivolt
+porque no quiero que esté 100% en
+negrilla, va mejorando todavía un
+poquito más. Y miren, por ejemplo, esto.
+Esto creo que no está asociado
+directamente a una clase de CSS, pero
+redondear las cosas es bastante
+sencillo. Obviamente pues tengo que
+saberme las clases, pero pues si no las
+busco. Entonces, pongo rounded full y ya
+tengo mi botón redondeado. Y lo último
+que esto sí no se los pude mostrar
+ahorita es que ahorita cuando realice
+hover cambie un poquito el color de mi
+hover cambie un poquito el color de mi botón.
+Esto. Entonces, lo que quiero es que
+haya un indicativo visual un poquito más
+sencillo de que esto es un botón y eso
+lo voy a hacer que el usuario cuando
+pase sobre acá haga un hover, cambie un
+poquito la tonalidad del azul. ¿Cómo
+hacemos eso? Normalmente el CSS lo
+usaríamos con una pseudoclase de hover y
+aquí en Tailwid nuevamente eso también
+es bastante sencillo. Ponemos hover dos
+puntos y el color de background que
+quiero que cambie cuando se realice el
+hover. Guardamos y miren, listo. Ahí ya
+quedó un poquito más explícito que tal
+vez aquí hay una interacción por
+realizar. Vamos ahora simplemente a
+copiar esto
+y vamos a poner el otro botón, descargar
+HB. Guardamos. Vemos que los dos botones
+nos quedaron bastante pegados. Entonces,
+lo que puedo poner es aquí un margin a
+la derecha. Entonces, voy a ir por aquí
+a mis clases y pongo margin right y le
+pongo de tamaño cuatro. Y listo, ya
+tenemos por lo menos una primera parte
+de cómo quiero que se vea mi página.
+Vamos a volver a nuestra imagen para ver
+cómo podemos continuar. Entonces,
+obviamente ahorita nos falta es por acá
+colocaramos este gigante del profile.
+Esto sí lo hacemos un poquito a nivel de
+planeación. Esto probablemente sea un
+contenedor flex organizado en fila,
+digamos. tiene dos columnas grandes,
+cada una ocupando el 50% y además los
+elementos están centrados cada uno
+dentro de estas columnas para que no se
+vea ni tan arriba, ni tan abajo, ni tan
+a derecha ni tan a izquierda. Pero
+básicamente tengo que tener un flex y
+ver cómo organizo esto. Entonces vamos a
+volver por acá y digamos que los dos
+grandes partes, aquí tenemos un dif,
+pero entonces todo esto tendría que ser
+básicamente un dif que vamos a centrar.
+Entonces voy a poner acá, me refiero
+toda esta parte es una sección, entonces
+la voy a meter dentro de un dif. Más
+bien voy a cortar todo esto hasta por
+bien voy a cortar todo esto hasta por acá.
+y lo vamos a organizar acá dentro.
+Obviamente no va a pasar ningún cambio.
+Vamos a guardar. Vemos que todo sigue
+igual, pero entonces aquí ya en el main
+puedo comenzar a declarar que quiero dos
+columnas bastante grandes. Entonces voy
+a llegar class.
+Acuérdense que aquí pueden poner flex,
+block, inline, etcétera, dependiendo de
+cómo quieran organizar, digamos, los
+contenedores internos. Después veamos si
+ahí ya cambió algo. Todavía no ha
+cambiado nada.
+Voy a para que vayamos viendo los
+cambios. Entonces, vamos a ir hasta por
+acá el final del div que es este de acá
+y vamos a declarar lo que es nuestra
+segunda sección que es la que va a tener
+la imagen. Va a poner solo un mensaje
+mientras tanto, solo para que veamos
+cómo se va organizando. Pongámosle hola.
+Guardemos y no lo veo por acá. No lo
+veo. A ver, vamos a recargar a ver si se
+ve. Ah, por acá quedó perdido el hola de
+la nada. Entonces vamos a subir y vamos
+a comenzar a organizar esto. Entonces
+por default ya vemos que me pone los
+contenedores internos en flex row. Igual
+si lo necesitan, pues lo pueden poner de
+manera split flex row o flex column,
+solo para que lo tengan en cuenta. ¿Qué
+otra cosa? Ahora tengo que hacer que
+cada uno de estos contenedores ocupe el
+50% del espacio y que este no se coma
+todo el espacio disponible. Entonces,
+vamos a hacer class igual a wid y voy a
+decir cuánto quiero que sea el tamaño.
+Aquí yo puedo poner wid 100, por
+ejemplo, pero como quiero que ocupe el
+50% de la pantalla le voy a poner 1/2. Y
+esta clase me tocaría ponérsela
+nuevamente aquí a la segunda sección. Y
+ya ahora sí quedó 1/2 y 1io.
+Vamos a subir y vamos agregar por acá.
+Entonces quiero básicamente poder
+centrar un poquito lo que son mis
+contenedores. Entonces, le voy a poner
+item center. Ya lo centramos
+item center. Ya lo centramos verticalmente.
+Tal vez está bastante pegado a lo que
+son mis bordes. Entonces vamos a ponerle
+que en general quiero un pine de 10 P10.
+Ya listo, se va viendo un poco mejor. Y
+cuál es la distancia que quiero entre
+los elementos que están adentro, es
+decir, entre mis dos DIP. Cuando quiero
+tener una distancia entre cada uno de
+los elementos, uso la clase gap y pongo
+cuánto es la distancia. GAP 1, gap 2,
+gap 3. Vamos a ponerle gap 10. Y ya hay
+una mayor separación entre los elementos
+internos que están dentro de mi flex.
+Voy ahora a bajar a lo que sería mi
+segunda columna. Y ahora sí vamos a
+quitar este H1 y vamos a agregar la
+imagen. Acuérdense que la imagen yo se
+las dejé ya subida o si no pues
+igualmente pueden cualquiera de
+internet y ponerla ahí. Lo ideal es que
+sea cuadrado para que no les dé
+problemas. Entonces vamos a irnos aquí
+al for de imágenes y a profile.
+Vamos a guardar y vemos que ya apareció
+la imagen. Tal vez está un poquito más
+grande de lo que planeamos. Entonces
+vamos a aquí y vamos a agregar
+unas claves que nos permitan nuevamente
+modificar el ancho y el alto. Widate
+modificar el ancho y el alto. Widate 100.
+Vemos que ya la imagen está mejor, pero
+todavía tenemos algunos problemas porque
+no está, digamos, centrada dentro de su
+dif. Entonces, quiero que esta esté tal
+vez un poquito más a la derecha. Miren
+que aquí hay un montón de espacio.
+Entonces, necesito centrar justamente la
+imagen dentro del dif. Acuérdese que
+parta todo lo que es entrar. Normalmente
+usamos flex y podemos hacer item center
+y justify center. Guardamos y ya la
+imagen quedó un poquito más centrada que
+lo que teníamos anteriormente. Vamos
+ahora a subir y vamos a poner este azul
+de fondo. Entonces vamos a ir por acá.
+Se lo voy a poner, yo creo que en
+general a todo lo que es el body para
+que no tener que estar modificando el
+color de cada sección. Y pongámosle
+igual a background. Y igual que hicimos
+ahorita, pues ustedes aquí pueden usar
+algún tipo de color, background blue
+500, por ejemplo, y se vería así, pero
+quiero que vean que también pueden meter
+colores personalizados o cualquier color
+más bien. Entonces, cuando ustedes
+quieran meter un color por hexadecimal,
+pues simplemente lo buscan en internet,
+lo que sea, ponen numeral y lo escriben.
+En mi caso, el que voy a usar por acá,
+lo tengo anotado,
+es este de acá. Y adicional quiero que
+dado que toda mi pantalla va a ser un
+digamos de estilo oscuro, el texto por
+defecto siempre sea blanco. Y ahora sí
+cada vez nos va quedando más como lo que
+teníamos por acá. Todavía nos faltan
+algunos detalles, pero vamos mejorando.
+Voy ahora entonces a realizar dos
+modificaciones más. Si ven aquí estos
+botones todavía están bastante pegados,
+entonces tien que haber un poquito más
+de espacio y en general voy a agrandar
+el tamaño de la letra para no tener que
+estar modificándolo en cada una de las
+etiquetas. Entonces vamos por acá. Estos
+dos botoncitos están acá que ya los
+habíamos envuelto en un div y ya saben
+cómo agregar un margin arriba MT. y
+pongo el número de cuánto margin quiero
+agregar, MT5. Y obviamente, igual que
+cuando estamos usando eh Bootstrap,
+pueden ustedes agregar sus CSS
+personalizados para tener igualmente sus
+estilos, ¿no?, propios y sus clases y
+todo eso. Eso no hay ningún problema,
+simplemente les recuerdo que porf lo
+agreguen después del script. Recuérdense
+que HTML o la web se le de arriba para
+abajo. Entonces, él va a cargar todas
+las clases que están por acá y después
+va a cargar las de ustedes. Este
+styles.cs CSS, por si se lo preguntan,
+aunque creo que ya se los había
+mostrado, solo trae dos líneas, que es
+aplicar un mayor tamaño de letra para
+todo lo que es mi página web y el scroll
+behavior smooth, que es ahorita que
+realicemos por acá las secciones en la
+barra de navegación, que cuando digamos
+vaya a una sección eh se vea de manera
+fluida, bonita y no como un salto así
+superfeo. Pero bueno, son simplemente
+cosas de estética. Vamos a guardar y ya
+vemos que mi letra ahora sí cambió. está
+bastante más grande. Es más, aquí ya
+puedo ir achicando la página casi a un
+100% y vemos que ya se ve bastante
+parecido a lo que tenemos por acá.
+Bueno, ya acabamos lo que fue esta
+primera sección, así que vamos a pasar a
+la segunda. Por aquí tengo un screenshot
+final de cómo queda. Tiene, digamos, un
+poquito una tonalidad de azul diferente
+en el background. Aquí tiene un
+subtítulo grande que vamos a usar la
+misma técnica del spam para cambiar el
+color de esta palabra. Y por aquí vamos
+a tener, y esto pues lo pueden repetir
+todas las veces que quieran, una imagen.
+En este caso voy a usar la misma imagen
+genérica, aunque obviamente pues aquí no
+se pueden meter una imagen de la
+universidad, de su proyecto, de lo que
+ustedes quieran de ustedes. Y la idea es
+ir tornando imagen, texto, texto,
+imagen, imagen, texto, texto, imagen. Y
+así, bueno, tener este dinamismo ahí un
+poquito sencillo de cómo se ve la página
+web. Así que vamos a pasar por acá.
+Vamos a volver. Esto como les dije, ya
+lo acabamos. Digamos que si queremos ser
+bastante juiciosos con el tema de las
+etiquetas semánticas, pues lo que vamos
+a desarrollar es una nueva sección de mi
+página. Entonces, todo esto fue una
+sección y vamos a desarrollar otra. Así
+que voy a poner por acá section y voy a
+pegar todo lo que teníamos
+anteriormente, que va hasta acá. Vamos a
+cortar y pausa a guardar. Y ya tenemos
+nuestra primera sección. Todo se
+desorganizó, no hay ningún problema. Y
+eso es porque simplemente estas clases
+las tengo que pegar acá. Listo, ya
+tenemos lo que teníamos anteriormente.
+Vamos a bajar. Y ahora sí vamos a crear
+nuestra segunda sección. Entonces, vamos
+a poner por acá sección. Y vemos que lo
+primero que tenemos es un título
+bastante grande. Este igual no es el
+título principal de la página, así que
+en teoría solo debería haber un H1.
+Vamos a poner un H2 y vamos a poner por
+aquí el texto de quién soy. Veamos cómo
+se ve. Vemos que ya aparece por acá el
+texto bastante chiquito, no se ve
+realmente muy bien. Así que vamos a
+modificar todo el texto con clases. Lo
+primero es agrandarle el tamaño.
+Entonces, ya saben que aquí pueden usar
+los diferentes tipos de XL para ponerlo
+más grande o más pequeño el texto. Lo
+segundo es que este texto va en
+negrillo. Entonces, ponemos f ball.
+Esto va mejorando. Lo tercero es que
+este texto va centrado. Entonces ponemos
+texter y mire que realmente uno le va
+cogiendo rápido el tiro a todo lo que
+son las etiquetas, ¿no? Son bastante
+dicientes por su nombre. Y lo último es
+cambiar este soy por otro color. Ya
+saben que para todo lo que son estilos
+de texto lo que hago es crear una
+etiqueta spam
+y a ese spam puedes ponerle los estilos.
+Voy a poner por acá. Vamos a cortar el
+soy, lo ponemos dentro y cambiémosle el
+color a un azul igual que hicimos en la
+parte de arriba, text blue 500. Y ya nos
+quedó perfecto. Y igual al screenshot
+que teníamos por acá. Listo, como les
+estaba diciendo, entonces esta sección
+tiene un color un poquito diferente. Esa
+es una muy buena técnica para ir
+diferenciando las secciones. Ya sabemos
+que para poner un color de fondo hacemos
+BG y si es un color personalizado,
+abrimos los corchetes cuadrados, ponemos
+el numeral y el color 1 3 1 8 2
+C. Guardamos y ya vemos que el color
+cambia un poquito respecto a lo que
+tenemos arriba. Obviamente ahorita que
+metamos contenido esto va a crecer un
+poco, pero también veo que está bastante
+pegado. Entonces, la idea es que haya
+cierto espacio, digamos, por lo menos
+visual entre las dos secciones. Así que
+vamos a poner un pading general de 16. Y
+ahora sí, listo, ya está más alejado.
+Ahora sí ya podemos continuar con esto
+que se nos va a complicar un poco, o tal
+vez no, tal vez en la parte de
+responsive es donde esto va a ser un
+poquito más difícil. Perfecto. Entonces
+vamos a pasar a generar esta parte.
+Imagen, texto y básicamente tenemos
+nuevamente dos columnas. Voy a hacerlo
+de una manera diferente a flex. Más
+adelante les explicaré el por qué, pero
+bueno, primero lo voy a generar de
+manera genérica. Entonces, vamos a ir
+por acá, vamos a crear nuestro DIF. Cada
+uno de estos va a tener un pequeño DIF y
+vamos a crear la imagen primera.
+Entonces, img, vamos a tener esto de por
+acá. Más bien lo que quiero es copiar
+este porque realmente voy a usar la
+misma imagen. Vamos a copiar y pegar.
+Pero obviamente la imagen se pareció
+bastante grande. Así que para cambiarle
+el ancho y el alto simplemente le pongo
+por acá 50. Después tengo, digamos, la
+segunda columna. Entonces para
+representarla voy a hacer otro DIF. Y
+esa segunda columna tiene otro subtítulo
+mucho más pequeño que es un H3. En este
+caso, pues ahí dice, digamos, ingeniero
+de sistemas y ya viene después grande lo
+que es el barra. Entonces, vamos a poner
+por aquí lorem para que me ayude a
+autocompletar con texto por default. Y
+ya tenemos lo que queremos. Obviamente
+esto tiene que ir al lado derecho y
+quiero que cada cosa ocupe como un 50%.
+Bueno, pasemos entonces a que esto que
+al lado derecho obviamente digamos
+podría tratar de tener una misma
+aproximación a lo que tuvimos aquí
+arriba, ¿no? Partir esto y que cada cosa
+mía un 50%. Pero lo voy a hacer con otro
+tipo de contenedor que no es el flex.
+Entonces contenedor no estoy seguro si
+lo he explicado la clase pasada, sino
+les queda un poquito de tarea para
+averiguar qué es que es el grid. Grid es
+el único que nos faltaba. Entonces está
+block in line in block flex y grid. Grid
+que me permite, me permite tener es una
+cuadrícula, una cuadrícula donde yo
+puedo definir cuántas columnas quiero o
+cuántas filas quiero. Y el grid se usa
+mucho en la parte de responsive.
+Entonces ponemos igual esto es aquí como
+si estuviera poniendo apenas el flex, o
+sea, simplemente estoy diciendo que esto
+va a funcionar con una cuadrícula. Si
+bien todavía no pasa nada, pero voy a
+decir que esa cuadrícula quiero que sea
+de dos columnas. Entonces, una columna a
+la izquierda y una columna a la derecha.
+Y así digamos me salto un poquito el
+paso de tener que definir que cada
+columna tiene que medir un 50% como
+estaba haciendo en flex. Entonces voy a
+poner grid, ¿cuántas columnas quiero? En
+este caso dos. Guardamos. Y ahora sí
+vemos. Bueno, que no de manera bastante
+perfecta que tengo dos columnas y aquí
+me estoy dando que cuenta que estoy
+haciendo una barbaridad porque esto
+tiene que ir hasta acá. Perdónenme. Ahí
+la burrada y ahora sí, ya vemos que
+entonces el primer elemento se ubica en
+la primera columna de mi cuadrícula y el
+segundo elemento se ubica en la segunda
+columna de mi cuadrícula. Aquí puedo
+poner todas las columnas que quiera.
+Entonces, si pongo cuatro, pues miren
+que cada uno está ocupando, digamos, el
+25% y no tengo que poner este un medio,
+Wi 1/4, que también es un poquito largo
+de hacer. ¿Qué más vamos a hacer? Vamos
+a, esto obviamente está bastante pegado
+al título aquí arriba. Entonces, vamos a
+poner un MT14, margin top de 14. Ya se
+está separando bastante mejor. Quiero
+que los elementos dentro de mi
+cuadrícula estén centrados. Este,
+digamos, la imagen está tirada hacia la
+izquierda. Entonces vamos a ponerle
+place items center y ya miren, tanto
+verticalmente como horizontalmente
+quedaron centrados con una única
+etiqueta y ya vamos mejorando.
+Nuevamente esta es simplemente una
+alternativa hacerlo con flex, pero
+también muchas veces es muy útil cuando
+quiero organizar así los elementos en
+tres columnas, cuatro columnas, lo que
+sea, usar grid me va a ahorrar bastante
+tiempo. Vamos a terminar entonces por
+acá los detalles. Este texto ingeniero
+de sistemas pues tiene que estar un
+poquito más grande. Entonces vamos a
+ponerle text rayita 3XL. Vamos a
+guardar. Ya vemos que está un poco
+mejor. Vamos a hacer que esté en
+mejor. Vamos a hacer que esté en negrilla.
+F ball. Perfecto. Y que tenga un poco de
+margin opening con el contenido que está
+abajo. Margin bottom 3. Y ya vemos que
+nos quedó perfecto. ¿Qué otra cosita?
+Aquí el texto, digamos, si vemos por acá
+está tirado hacia la derecha y después
+tirado hacia la izquierda, después
+tirado hacia la derecha. Entonces, vamos
+a hacer justamente eso porque aquí está
+hacia la izquierda. Entonces vamos a
+ponerla aquí en el div que es la clase
+que encapsula ambos textos. Text right.
+Y ya nos quedó bastante parecido a lo
+que tenemos en la imagen final. Y ahora
+sería duplicar y ver cómo hacemos que se
+estén intercalando. Vamos entonces,
+ahora sí, a copiar y pegar esto varias
+veces para que podamos, digamos, irlo
+intercalando y por lo menos tener ahí
+una plantilla de cómo se debería ver la
+página final. Esto lo tengo que copiar
+de acá a acá. Entonces, la imagen y el
+div. Copiamos, pegamos. Obviamente la
+primera vez que copiamos y pegamos todo
+nos queda exactamente igual, pero ya
+vamos a ver cómo hacer para que se vayan
+intercalando. Entonces vamos a ir
+mirando algunas modificaciones que
+tenemos que hacer. Cambiamos aquí el
+título rápidamente por desarrollador
+frontend. Guardemos y vamos a comparar.
+Entonces, lo primero es que el texto
+aquí está lanzado hacia la izquierda.
+Entonces, en vez de text
+left y ya vemos que ahí quedó. Y tal vez
+una solución que se les ocurre ser
+rápida es copiar, pegar esto después y
+funciona. Sí, pero aquí cuál puede
+llegar a ser un problema que si toda
+esta sección se genera de manera
+dinámica a partir de JavaScript, pues
+ustedes no pueden decir que primero se
+genere una parte, después otra o tal vez
+su código se comienza a complicar.
+Entonces, simplemente les voy a mostrar
+otra forma de hacerlo, tal vez más
+sencillo para que también uno pueda
+copiar y pegar mucho más rápido. Y es
+usar, digamos, otro atributo que existe
+únicamente cuando estoy manejando grid y
+es cambiar el orden. Entonces, voy a
+decir que este en vez de estar en la
+primera columna esté en la número dos. Y
+ya miren con ese atributo digamos no
+tuve que cambiar el orden de mi código,
+sino que agregando una clase adicional
+ya pude organizar todo de manera
+bastante sencilla. Esto también es
+bastante importante para el response
+para uno poder manejar el orden en el
+que se ven las cosas cuando estoy en
+celular, en tablet o ya en una pantalla
+grande. Ya acabamos por lo menos con lo
+que se veía inicialmente de nuestra
+página web. Vemos que en este tamaño de
+pantalla ya todo está bastante bien,
+digamos, está bastante parecido a los
+screenshots que teníamos planeados. Pero
+ahora nos queda la parte más fea de
+hacer cualquier página web o más difícil
+del frontend y un poquito larga que es
+hacer que esto sea responsive y ver como
+Tailwin nos ayuda a que esto sea
+responsive, ¿cierto? Porque Boostrap
+también regalado un montón de clases
+para que esto se fuera responsive
+rápidamente y Telwin va a tener
+exactamente lo mismo. Entonces, vas a
+ver cuál es el problema ahorita. Este es
+un tamaño de pantalla normal con un
+subnormal. se ve de esta manera que está
+bien, pero vemos que si comenzamos a
+chicar lo que es la pantalla y tal vez
+nos pasamos a un ancho de tablet o a un
+ancho de celular, pues todo quedó
+apeñuscado, todo quedó feo, entonces
+obviamente no nos sirve y justamente ahí
+entra el tema del responsive. Recuerden
+que hace response usted se puede de
+muchas maneras, entre ellas hacerlo con
+break points manualmente y con los media
+queries, pero bueno, esa es una forma un
+poco larga de hacerlo, así que vamos a
+ver cómo hacerlo en Telwin. Vamos a ver
+también de una vez cómo se tiene que ver
+esto. Entonces, por acá tengo unos
+screenshots de cómo se debería ver esto,
+digamos, un poquito ya cuando el ancho
+sea menor, digamos, tipo celular. En
+este caso, para la primera sección, lo
+que ocurre es que la imagen pasa a
+segundo, digamos, pasa a estar debajo
+del título principal y ya. Eso es
+básicamente lo que tiene que pasar. Los
+botones vemos que también van uno sobre
+el otro. Y vamos a dejar de última la
+barra de navegación. Vamos a ver cómo
+queda la segunda sección.
+Y vemos que cuando ya achico la pantalla
+en un celular, lo que se tiene que ver
+siempre ahora no es digamos derecha,
+izquierda, izquierda, derecha, sino
+siempre una cosa encima de la otra.
+Imagen, texto, imagen, texto, imagen,
+texto. Entonces cambie un poquito la
+lógica como presento mi información en
+una pantalla grande a como la voy a
+presentar en una tableta o celular.
+Vamos a arreglar justamente eso. Así que
+volvamos a nuestra pantalla y veamos
+cómo empezamos. Entonces, veamos cómo
+funciona el tema de por aquí el
+responsive en Tailwin. Entonces, lo
+primero y lo más importante explicar es
+que, digamos, al igual que Boostrap va a
+manejar lo que son los breakpoints, que
+los breakpoints son unas condiciones de
+tamaño de pantalla, ¿no? Entonces,
+básicamente voy a definir que una
+pantalla small es una que tiene menos de
+640 píxeles, una mediana que está entre
+640 y 768
+y así con cada uno de los valores. Y
+cómo vamos a manejar el responsive,
+básicamente lo que voy a hacer es decir,
+si la pantalla es pequeña, aplico esta
+clase, si es mediana aplico esta otra
+clase, si es grande, aplico esta otra
+clase y así. Entonces, vamos a ver
+justamente ese tema. Entonces vamos a
+ver, por ejemplo, el screenshot de acá,
+esta primera sección. Vemos que si las
+pantallas son medianas, grandes,
+etcétera, el contenido se tiene que
+organizar de forma horizontal. Pero ya
+cuando las pantallas son pequeñas, el
+contenido se tiene que organizar de
+forma vertical. Entonces, tengo que
+meter justamente esa condición. ¿Cómo
+hacemos eso? Para aplicar lo que es el
+responde por acá en Tailwin, lo que
+hacemos es alguno de estos
+breakpints que vivieron por acá, SM, MD,
+etcétera. Entonces, digamos, pongo MD
+para que me entiendan, dos puntos y una
+clase cualquiera. Aquí, ¿qué estoy
+diciendo? que esta clase solo se va a
+aplicar si el tamaño de mi pantalla es
+mediano o mayor. Si yo hago LG,
+esta clase solo se va a aplicar si el
+tamaño de mi pantalla es large o mayor.
+Y así con cada uno pues de los
+breakpints que ustedes vieron por acá.
+Entonces vamos a modificar esta sección
+para que nos funcione. Entonces, ¿qué es
+lo que yo quiero? Yo quiero que si mi
+tamaño de pantalla es mediano o mayor,
+se aplique el contenido en forma
+horizontal. Entonces vamos a escribir
+eso justamente acá. Entonces md dos
+puntos flex row y vemos que todo quedó
+exactamente igual. Pero, ¿qué quiero que
+pase cuando el contenido de pantalla es
+menor a mediano? Quiero que sea flex
+column. Entonces, miren lo que pasa acá.
+Ahí en este caso tengo un tamaño de
+pantalla mayor al mediano, entonces las
+cosas están organizando de manera
+horizontal, pero cuando comienzo a
+chicar la pantalla, aunque ahorita no se
+va a ver perfecto, miren que ya mi
+contenido se pone de manera vertical.
+Digamos que yo podría hacer aquí bien
+explícito. Vamos a escribir un mejor
+código. Vamos a ponerle entonces de SM
+hasta mediano. Mi contenido se va a
+poner de manera vertical y de mediano
+para arriba se va a poner de manera
+para arriba se va a poner de manera horizontal.
+Si quieren podemos hacer otra prueba
+para que esto quede un poquito más
+claro. Entonces digamos que yo puedo
+poner pues todos los breaks y todas las
+condiciones que yo quiera. Vamos a
+ponerlo nuevamente que si es large se
+ubica en formato de columna y van a ir
+viendo las variaciones. Miren, aquí es
+large se ubica en formato de columna.
+Pasa a ser medium se ubica en formato de
+row. Pasa a ser small se ubica en
+formato de columna. Listo. Creo que ahí
+quedó bastante claro. Obviamente esto no
+es lo que queremos, era solamente para
+mostrarles, pero ya logramos digamos una
+de las primeras cosas y es cambiar la
+forma en la que está organizada mi
+contenedor dependiendo del tamaño de
+pantalla. Vamos a volver a ver entonces
+cómo se está viendo nuestra pantalla
+cuando está en modo pequeño. Por acá
+veamos que se ve bastante mal. ¿Por qué
+se ve bastante mal? Vamos a ir
+analizando parte por parte. Una de las
+primeras cosas es que este W medio,
+cuando pues la pantalla es pequeña no se
+ve bien. Cuando la pantalla es pequeña,
+yo quiero que se ocupe el 100% del ancho
+y no el medio del ancho porque ya es
+demasiado poco espacio. Entonces, vamos
+a aplicar eso que acaba de decir. Y esto
+en qué se traduce, si mi pantalla es
+mediana o mayor, voy a aplicar medio
+ancho, que es lo que tenemos ahorita.
+Pero si mi pantalla es pequeña, quiero
+que el ancho sea full. Eso lo podemos
+hacer con esta clase de acá. Vamos a
+copiar esto que tenemos acá y lo vamos a
+poner nuevamente por acá. Creo que es
+Sí, con esta de por acá. Ah, claro.
+Ahora sí cambia. Cuando mi pantalla es
+está entre pequeña y mediana, ocupo todo
+el ancho y cuando estoy de mediano para
+arriba, cada sección ocupa el 50%.
+Ahí vamos lográndolo lentamente, pero
+vamos lográndolo. Bueno, vamos a seguir
+comparando qué tenemos de diferente
+frente a nuestro screenshot final.
+Entonces, si vemos por acá, bueno, todo
+está centrado, obviamente eh la imagen
+está bastante más pequeña y las letras
+también están un poquito más pequeñas.
+Entonces, vamos a aplicar esos cambios
+de tamaño. Entonces, pausa aquí al Hola,
+soy Sebastián Anarita. Ahorita está en
+Tex 5XL el Hola, Soy y en Tex 6 XL el
+Sebastián Anarita, pero quiero que estos
+tamaños solo sean para pantallas
+medianas o más. Mientras que para
+pantallas pequeñas como un celular vamos
+a disminuirle un puntico. Entonces vamos
+a poner que esto solo sea para pantallas
+medianas o más, mientras que para
+pantallas small el texto sea de 4Xl
+y para pantallas small el texto en este
+caso sea de 5XL. Vamos a guardar. Y
+miren que aquí cambió el tamaño del
+texto. Me imagino que podemos ir
+agrandando. Miren ahí fue que cambia el
+tamaño del texto a un poquito más
+pequeño. Vas a hacer exactamente lo
+mismo con la imagen porque está bastante
+grande. Entonces por aquí tenemos lo que
+es nuestra imagen. Y lo que nos tocaría
+cambiar es esta partecita de acá que es
+su ancho y su alto. Entonces vamos a
+eliminar esto y vamos a escribirlo de
+cero. Entonces quiero que si mi pantalla
+es pequeña, su el ancho y alto de la
+imagen sea de 64. Vamos a ponerle aquí
+SM H64.
+Si es mediana vamos a ponerle un poquito
+más, como 170. Vamos a ponerle W70.
+Y lo mismo con el alto. Y finalmente, si
+es grande quiero que sea de 85.
+Entonces, vamos a ponerle por acá ambos
+lados. Vamos a guardar y veamos. Miren
+esta transición de por acá.
+Ya la imagen. Uy, bueno, ahí fue alguna
+pequeña equivocación. Aquí se me fue el
+ocho, pero ya vemos que cambia el tamaño
+según miren, ahí cambió. Ahí hay un
+breakpint. Aquí está el otro breakpama
+de pantalla. Ya estamos bastante cerca
+de cumplir nuestro cometido. Vemos que
+nos falta, digamos, centrar el texto
+cuando estoy en el modo celular.
+Eso lo puedo hacer dentro de este DIF de
+por acá. Entonces voy a decir que en
+pantallas pequeñas el texto está
+centrado y en pantallas medianas para
+arriba el texto está hacia la izquierda
+y vemos que ya nos quedó bien. Listo,
+ahí se centra. ¿Y qué otra cosa nos
+falta? Tal vez en pantallas más
+pequeñas. Uy, bueno, aquí tal vez toca
+manejar otro breakpint, pero bueno, voy
+a dejarlo hasta ahí. Si ven, esta parte
+de responsive es bastante larga, pero
+aquí únicamente lo que nos faltaría es
+que un botón estuviera encima de otro.
+Entonces vamos a buscar nuestros dos
+botones que es aquí con el MT5
+y vamos a ponerle por acá. Entonces,
+flex. Quiero que cuando esté en tamaño
+pequeño mis cosas se organicen en forma
+de flex call, mientras que cuando esté
+en tamaño mediano mayor en flex row.
+Wow. Al parecer tuve ahí un pequeño
+problema, pero ya reviso. Quiero revisar
+es que sí se esté igual organizando
+bien. Eh, digamos aquí me faltaría un
+tema con el tamaño. Vamos a solucionar
+el tema de que esto esté bastante ancho.
+Entonces, simplemente le voy a decir que
+item center para que tengan el mismo
+ancho. Aquí esto no está centrado de
+manera correcta. Creo que es por este
+margin puede hacer que solo se aplique
+en pantallas medianas o mayores. Y vemos
+que tampoco se me está aplicando de
+manera bastante bien este tema de por
+acá. Ah, bueno, en este caso sería
+aplicar un margin en y de, no sé, tres
+por ahí y decir que esto solo está en
+pantallas pequeñas para que no vamos a
+tener problemas en el resto de
+pantallas. Y bueno, ya logramos nuestro
+cometido, ya nuestra página está un 5%
+más responsive, nos falta la segunda
+parte, que también esta va a ser
+bastante rápida de solucionar, donde
+tenemos que hacer que el contenido esté
+uno encima de otro y no uno al lado del
+otro. Bueno, entonces vamos a ver cuál
+es la lógica que tenemos que aplicar. Si
+bien digamos el tema es que ahorita
+tengo dos columnas, cuando estoy en
+pantallas medianas o más, pero cuando
+estoy en una pantalla pequeña, la idea
+es tener una única columna como se ve
+por acá. Entonces, vamos a ir al lugar
+donde definieron las columnas, donde
+tenemos grid calls 2 y vamos a decir que
+esta lógica solo se aplique para
+pantallas medianas o más, pero para
+pantallas pequeñas quiero que haya una
+única columna. Veamos si eso ya nos
+funciona. Entonces vamos a ir achicando
+y si bajamos ya vemos que el contenido
+se ubica en una única columna. ¿Qué nos
+falta? Vamos a ver que nos falta,
+digamos, centrar un poquito el texto y
+que esta imagen tiene que ir arriba
+cuando estoy en celular. Entces siempre
+va imagen texto, imagen texto cuando
+estoy en pantallas pequeñas. ¿Cómo vamos
+a hacer eso? Bastante sencillo.
+Simplemente voy a decir que esta
+propiedad de Order 2, que es la que está
+haciendo que mi imagen quede segundas,
+únicamente se aplique cuando estoy en
+pantallas medianas o más, pero no cuando
+estoy en celulares. Y lo mismo nos va a
+pasar acá con el texto, si va hacia la
+derecha o hacia la izquierda. Con
+pantallas medianas o mayores, esa
+propiedad si la vamos a aplicar.
+de text left y text right, pero en
+pantallas pequeñas siempre vamos a tener
+text. Pero en pantallas pequeñas siempre
+vamos a tener texter. Vamos a guardar y
+listo. Logramos nuestro cometido que era
+tener un poquito una página responsive.
+Obviamente todavía se puede perfeccionar
+bastante más, digamos, que decir que
+aquí en las pantallas medianas eh ocurre
+otra cosa o en pantallas grandes. Y lo
+único que quiero que vean ahora es que
+pasa si agarrando esto a una pantalla
+ultra ancha que como saben es la que uso
+para grabar. Como ven, miren que no se
+ve tan bien como yo esperaría. ¿Qué nos
+falta acá? Una clase que también usamos
+por allá en Boostrap que era nuestro
+container. Recuerden entonces que
+contener es esta clase un poquito mágica
+que me ayuda justamente a este problema
+de cuando mi pantalla es ultra, ya que
+el contenido no se me ha para los lados
+o al extremo, justamente la vamos a ir
+aplicando. Entonces vamos a ponerle por
+acá container, vamos a guardar y vamos a
+agrandar nuestra pantalla. Y vemos,
+bueno, aquí no se ve bastante bien, pero
+lo que ocurre ya por lo menos, es que
+esto no está lanzado al máximo hacia la
+derecha y esto no está lanzado al máximo
+hacia la izquierda. nos falta es como
+centrar esto por acá en la mitad. Para
+centrar eso, entonces voy a poner aquí
+mx auto es una forma de centrar por acá
+en Tailwin. Vamos a grindar y ya vemos
+que se ve bastante mejor a lo que
+teníamos ahorita. Ya digamos mi
+contenido sin importar qué tan ancha sea
+mi pantalla, lo máximo que va a ocupar
+de ancho es esto debido al container y
+siempre lo voy a tener centrado. Nos
+faltaría aplicar exactamente lo mismo
+por acá abajo en esta clase de por acá.
+Vamos a ver si lo logramos así rápido,
+aunque ya sé que nos va a surgir un
+problema. Entonces, vamos a bajar a la
+segunda sección. Vamos a ponerle
+container MX auto.
+Y el problema, obviamente, es que esto
+también está encerrado con el
+background. Entonces, el background
+también está quedando con el container y
+no se ve también lo que yo quisiera es
+que el background siempre fuera hasta
+los extremos, mientras que el contenido
+estuviera encerrado en la mitad.
+Entonces, lo que vamos a hacer aquí,
+cerré lo que no era. Vamos a abrir
+nuestro código, es meter todo esto
+dentro de un div.
+Veamos si nos sale la jugada. Todo lo
+que está dentro de sección. Vamos a
+meter dentro de un div. Vamos a guardar.
+Vemos que seguimos teniendo el mismo
+Vemos que seguimos teniendo el mismo contenido
+y lo que quiero que esté en modo
+container no es el background, sino su
+contenido únicamente. Guardamos y ahora
+sí logramos el cometido. Todavía
+nuevamente no está perfecto, pero está
+mucho mejor que antes. Ya para pantallas
+ultra anchas el contenido no se expande
+100% a los lados. Ya nos falta la última
+parte de esta clase, que si vemos por
+acá es crear nuestro nafbar. ¿Cuál es el
+problema del nafbar? Que queremos un
+NAFBAR que también sea responsive, es
+decir, en celulares aparezca este menú
+de hamburguesa, por aquí aparezca una
+barra lateral y en pantallas grandes sí
+se vea normal el menú. Esto lo hacíamos
+bastante sencillo cuando teníamos
+Boostrap, era básicamente copiar y pegar
+un par de clases, pero eso no existe
+aquí en Tailwin. Entonces, hay dos
+opciones. Eh, obviamente pues yo puedo,
+digamos, desarrollar ser un
+desarrollador muy pro y hacer esto a
+mano o lo que hacemos la mayoría de
+desarrolladores, que es buscar en
+internet alguien que ya lo haya hecho,
+porque no vamos a ser la primera persona
+que crea un D, porque cuando se chica se
+vuelve un menú de hamburguesa y copiar y
+pegar. Entonces, ¿qué hace uno acá? El
+problema nuevamente es que Twin no está
+dirigido a componentes, está dirigido a
+clases y lo único que hacemos es aplicar
+clases para modificar rápidamente cómo
+se ve nuestra página. Mientras que en
+Booster sí, cuando copiamos y pegamos
+una clase se generaba un componente que
+ya podía tener todos estos responses
+para dentro. Pero entonces uno que hace,
+pues básicamente uno tiene su
+repositorio de páginas donde puede
+copiar y pegar componentes. Entonces,
+les voy a mostrar la primera de por acá
+se llama Flowbite. Y todas estas son
+páginas que tienen componentes hechos en
+Telwin. Por aquí les va a aparecer cómo
+instalarlo dependiendo de qué estén
+manejando, si estás manejando, digamos,
+un HTML plano o ya estás manejando algún
+framework. Y por acá van a ver que
+aparecen todos los componentes que ellos
+han realizado. Esto tampoco crean que es
+tan gratis, entonces pueden mirar por
+aquí los precios, pero eh no sé,
+busquemos un NATBAR por acá, este de
+acá. Ellos ya me van a ofrecer lo que es
+un NAB Responsive. Y nada, esto aquí ya
+sí funcionaría exactamente igual que
+Boostrap. Copio y pego y ya todo me
+funciona después de tenerlo instalado o
+y en caso de que cobren pues pagar. Hay
+otras páginas, entonces siempre hay
+muchas alternativas, algunas gratuitas,
+otras de pago. Esta también me va a
+permitir buscar un montón de componentes
+para copiar y pegar. Esta última es
+gratuita, entonces voy a quitar esto de
+acá. Y por aquí, ¿ven? justamente.
+Entonces, se parece bastante lo que
+tenemos en boostra, es decir, son
+páginas que nos dan componentes para
+copiar y pegar y no tener que hacer esta
+tarea casi imposible de hacer un NAB
+Responsive donde esto sea chica, sea
+grande, aparece una cosa, aparece una
+barra lateral y todo eso. Entonces, ¿qué
+es lo que voy a hacer? Eh, no les voy a
+mentir, voy a terminar, voy a copiar y
+pegar el código final. Lo vamos a leer
+rápidamente. Este napar lo copié y lo
+pegué una de estas páginas de
+componentes porque normalmente hacerlo
+de cero es bastante largo y es hacerlo
+esper el tiempo cuando ya miles de
+personas han creado un napar que se
+achica y se agranta y no resuelve el
+problema. Entonces, ¿qué vamos a hacer
+para solucionar esta última parte de la
+clase? Copiar y pegar código. Nuevamente
+es lo más normal que vamos a hacer en la
+vida real, buscar una de estas páginas
+de componentes y copiar y pegar. No va a
+ser tan corto como en Bootstrap, pero
+igualmente es lo que vamos a hacer.
+Entonces, por aquí les voy a dejar el
+código que tienen que copiar y pegar.
+Entonces, lo primero es que van a copiar
+y pegar este GR de por acá. Vamos a
+hacer control C. Vamos a ir por aquí
+encima de nuestro mail y vamos a pegar.
+Vemos que ya tenemos una barrita de
+navegación bastante linda que cuando la
+chico cambia un poquito al menú de
+chico cambia un poquito al menú de hamburguesa.
+Lo segundo que van a copiar, pegar es la
+barra lateral que aparece cuando hacemos
+clic en el menú de hamburguesa. Vamos a
+pegar justamente aquí abajo el header y
+veamos si ya funciona o no funciona.
+Entonces vamos a checarnos. Voy a hacer
+clic acá y vemos que no aparece. ¿Por
+qué no aparece? Porque obviamente esto
+necesita adicional un poquito de
+JavaScript para que funcione. Digamos
+que ahí lo que está haciendo el script
+es esconder o mostrar cosas dependiendo
+de si uno ya hizo clic. Así que vamos a
+bajar al final y después del body vamos
+a pegar nuestro scriptar
+esto. Y miren que esto tan bonito ya lo
+hizo automáticamente
+Tailwin o lo hizo automáticamente el
+componente que copiamos y pegamos. Pero
+miren que es bastante código comparado
+con Boosterp, eso sí no les puedo
+mentir. Todo esto de hacer estos
+componentes bonitos normalmente come
+bastante código, pero bueno, lo logramos
+y me pareció una pérdida de tiempo
+realmente hacerlo manual explicándoles
+parte por parte porque nuevamente ya
+está hecho en algún lugar de la internet
+muchas veces este tipo de barras de
+navegación y la lógica es un poquito
+compleja. Como pueden ver por acá, para
+acabar la clase quiero que hagamos un
+poquito una reflexión de cómo fue este
+flujo de programación cuando estábamos
+trabajando por acá en Tailwin. Entonces,
+miren que varias cosas positivas.
+Primero programado más rápido. Eso
+bastante ventaja. Segundo, no tuvimos
+que estar moviéndonos de aquí para acá,
+de aquí para acá 30 veces entre CBSS,
+HTML, que eso hace también que uno
+pierda un poquito el flujo de trabajo,
+pero desventaja. Miren cómo está
+quedando mi HTML.
+¿Les parece que este HTML es código
+limpio, que es un código fácil de leer
+que cualquiera llega y entiende lo que
+está acá? Tal vez no. Entonces, ahí está
+el problema. Mi código se comenzó a
+ensuciar. Se vuelve bastante difícil de
+leer. Alguien que no entienda Telwin no
+sabe ni idea de lo que está pasando. Ya
+no entiende ni el HTML ni el CSS.
+Entonces, bueno, justamente eso era lo
+que quería hacer como un poquito la
+reflexión. pague la limpieza de código
+con escribir un código mucho más rápido.
+Y como les dije al inicio de la clase,
+para finalizar lo que quiero es hacer
+una pequeña comparativa entre Tailw y
+Boostrap que veamos las ventajas,
+desventajas, etcétera. Nuevamente todo
+eso que voy a decir es basado desde mi
+experiencia, de todos los años que he
+dictado este curso y cómo ha ido
+cambiando el código que ustedes escriben
+cuando usan booster, cuando usan telwon,
+cuando no usan ninguno, cuál es más
+organizado, cuál es más legible, cuál es
+más rápido, etcétera. Entonces vamos a
+comparar, digamos, tres formas de decir
+código con Tailwin, con Bootstrap y
+vainilla de CSS, que significa no usar
+ninguno de los dos anteriores, escribir
+un CSS puro. ¿Qué vamos a comparar?
+Vamos a comparar en total cinco
+categorías, seis más bien aquí me faltó
+una, que es primero, ¿qué tan fácil es
+hacer que mi página sea responsive? La
+curva de aprendizaje qué tan limpio
+queda mi código cuando alguien lo entra
+a leer, la popularidad y la
+personalización y adicional. Aquí
+agregué uno último que son el tema de
+los componentes. Entonces, en tanto
+hacer que mi página sea responsive,
+obviamente si uso Tailwin o si uso
+Boostrap es bastante sencillo. Si uso
+CSS usar los media queries es bastante
+largo y puede hacer que mi código se
+complique bastante. ¿Por qué le bajo un
+poquito a boostraps? Simplemente porque
+a manera personal me parece que la
+sintaxis para ser responsive en Telwin
+es más sencilla que en Bostrap, pero en
+teoría es lo mismo. Curva de
+aprendizaje. Boostrap es facilísimo.
+Ustedes llegan, lo usan, copian, pegan
+tres clases y sale. CSS obviamente
+digamos hay que aprenderlo. Es una curva
+un poquito más larga porque toca
+aprender que es una ID, que es una
+clase, que es todo esto. Y en Tailwir,
+debido a la cantidad tan amplia de
+clases, la curva de aprendizaje puede
+ser un poquito más difícil que en
+Boostrap. Limpieza de código. Aquí es
+donde entra un poquito lo controversial.
+Si ven, mi código no quedó nada limpio
+con Tailwin. Básicamente tengo un HTML
+cargado, CSS super grande con 10, 20
+clases por cada etiqueta. Mal. Eso no es
+bueno. Boostrap debido a que tenemos
+menos clases, pues queda un código un
+poquito más limpio. Y en CSS, y esto sí
+es una cosa, cuando uno no usa ni
+buustra ni Tailwin y uno, digamos
+describe sus propias clases, su código
+queda mucho más limpio y legible. ¿Sí? O
+sea, uno no está poniendo ahí 60 clases,
+sino solo una que recopila muchos
+atributos y el código queda mucho más
+limpio. Cuando yo las primeras veces no
+dictaba ni booster ni tailwin, eran las
+veces que el código estaba más legible
+de los tres. Popularidad nuevamente
+Tailwin de Viidar, que es, digamos, el
+framework de CSS por default en React es
+muy muy popular. Eso no significa que
+esté atrás, también se usa bastante. Y
+finalmente el vanila CSS pues cada vez
+estaba usando menos porque estos dos
+hacen que yo programe más rápido. Sin
+embargo, y esto es algo curioso, ustedes
+pueden buscar, hay mucha gente que dice
+que no usaría Boostrap ni Telwin por
+nada del mundo porque prefieren hacer
+CSS normal. ¿Por qué? porque es un
+código más organizado y muchas veces
+cuando yo tengo una página web compleja
+lo más importante es tener código
+limpio. Personalización
+aquí entra otro tema. Telin me permite,
+digamos, cada clase está asociado a casi
+un atributo de CSS, entonces la
+personalización es casi al 1000%. En CSS
+lo mismo. El problema es en Boostrap. En
+Bootstrap todas mis páginas o bueno, se
+van a ver bastante similares. Ya les
+dije que está este tema como del azul de
+Boostrap, de cómo se ve Bootstrap.
+Entonces uno ve una página y dice, "Ah,
+esto fue hecho con Boostrap." y como que
+ya pierde esa personalización, ese
+cariño de que sea una página única.
+Obviamente se puede personalizar
+Boostrap, pero es mucho más largo
+hacerlo y toca meterse con muchas más
+cosas. No es tan sencillo. Y finalmente,
+la última categoría que es la generación
+de componentes responsive. Entonces,
+esto sería como una subcategoría de este
+y realmente con Tiging, como ven, es un
+punto medio. Tengo que buscar en páginas
+de internet los componentes. Muchas
+páginas son de pago, entonces mal. Ahí
+hay algunas con componentes gratuitos.
+En Boostrap es el objetivo de Boostrap,
+entonces es sencillo tener componentes
+responsive y en CS sí es muy difícil,
+¿no? Toca tener media queries, toca
+tener muchos scripts, toca tener muchas
+cosas, entonces nada recomendado.
+Entonces vale la pena también es otra
+pregunta, comparar table con Boostrap.
+Entonces, si ven esta imagen de por acá
+es bastante provocativa porque estamos
+diciendo que ahí se se comparan, ¿no?
+Como que están uno versus el otro, pero
+ahí es una trampa. El otro día estaba
+viendo un video de esto y es que
+finalmente tienen diferentes objetivos.
+Bustop está dirigido a componentes,
+Telbwin está dirigido a clases.
+Entonces, tal vez no es una muy buena
+idea compararlos.
+Que cuándo vamos a usar uno y cuándo
+vamos a usar otro. ¿Qué es lo que
+queremos tener? Componentes,
+personalización máxima, un montón de
+clases o componentes prediseñados. vas a
+tener en un lado muchas clases.
+Igualmente, como ven en Bostrap siempre
+vamos a tener muchas clases, pero es que
+en Tailwin es exagerado lo que se
+ensucia nuestro código por hacer que sea
+bonito. En serio, cuando ustedes hacen
+código en Telwin, a mí me da pereza
+leerlo porque tiene muchas muchas clases
+y es un poquito complicado de leer. Yo
+sé que programan mucho más rápido, pero
+yo sé que esto también en sus trabajos
+en grupos les complica, digamos, el
+proyecto cuando usan Telwin. Y ya esas
+eran las comparaciones que quería hacer.
+¿Ya entendieron las ventajas,
+desventajas? Usen lo que quieran. Twin,
+Bootstrap, Manilas CSS, lo que ustedes
+Bootstrap, Manilas CSS, lo que ustedes quieran.

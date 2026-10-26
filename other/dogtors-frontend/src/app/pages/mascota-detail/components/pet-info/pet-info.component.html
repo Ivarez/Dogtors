@@ -69,14 +69,16 @@
       <p class="diagnosis-text">{{ mascota().enfermedad }}</p>
     </div>
 
-    <!-- Actions Row -->
-    <div class="actions-row">
-      <a [routerLink]="['/mascotas/editar', mascota().id]" class="btn-primary">
-        Editar Expediente
-      </a>
-      <button type="button" class="btn-outline" (click)="cambiarEstado()">
-        {{ mascota().activa ? 'Dar de Alta' : 'Reactivar' }}
-      </button>
-    </div>
+    <!-- Actions Row (Solo visible para Veterinario) -->
+    @if (mostrarAcciones()) {
+      <div class="actions-row">
+        <a [routerLink]="['/mascotas/editar', mascota().id]" class="btn-primary">
+          Editar Expediente
+        </a>
+        <button type="button" class="btn-outline" (click)="cambiarEstado()">
+          {{ mascota().activa ? 'Dar de Alta' : 'Reactivar' }}
+        </button>
+      </div>
+    }
   </div>
 </div>
