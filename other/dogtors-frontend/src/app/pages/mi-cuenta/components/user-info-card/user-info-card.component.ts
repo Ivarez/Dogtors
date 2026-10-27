@@ -14,3 +14,4 @@ import { UsuarioSesion } from '../../../../services/auth.service';
 export class UserInfoCardComponent {
   usuario = input<UsuarioSesion | null>(null);
 }
+

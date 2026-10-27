@@ -17,3 +17,4 @@ export class AccountActivityCardComponent {
   usuario = input<UsuarioSesion | null>(null);
   totalMascotas = input<number>(0);
 }
+

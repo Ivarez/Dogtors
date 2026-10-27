@@ -166,8 +166,8 @@
                   <td class="col-nombre">
                     <strong>{{ m.nombre }}</strong>
                   </td>
-                  <td class="col-precio">${{ m.precioCompra | number:'1.2-2' }}</td>
-                  <td class="col-precio font-semibold">${{ m.precioVenta | number:'1.2-2' }}</td>
+                  <td class="col-precio">${{ m.precioCompra | number:'1.0-0' }}</td>
+                  <td class="col-precio font-semibold">${{ m.precioVenta | number:'1.0-0' }}</td>
                   <td class="col-stock">
                     @if (m.unidadesDisponibles > 0) {
                       <span class="stock-badge in-stock">

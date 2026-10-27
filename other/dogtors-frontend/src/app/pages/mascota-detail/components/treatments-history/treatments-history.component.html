@@ -49,7 +49,7 @@
                   {{ t.drogaNombre || 'Medicamento no catalogado' }}
                 </span>
                 @if (t.drogaPrecioVenta) {
-                  <span class="drug-price">${{ t.drogaPrecioVenta | number:'1.2-2' }}</span>
+                  <span class="drug-price">${{ t.drogaPrecioVenta | number:'1.0-0' }}</span>
                 }
               </td>
               <td class="col-obs">{{ t.observaciones }}</td>

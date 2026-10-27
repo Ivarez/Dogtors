@@ -169,7 +169,7 @@
                 <option [ngValue]="null" disabled>-- Seleccione un fármaco o medicamento --</option>
                 @for (d of drogas; track d.id) {
                   <option [value]="d.id">
-                    {{ d.nombre }} — {{ d.unidadesDisponibles > 0 ? (d.unidadesDisponibles + ' disponibles | Tarifa: $' + d.precioVenta) : '[AGOTADO - 0 DISPONIBLES]' }}
+                    {{ d.nombre }} — {{ d.unidadesDisponibles > 0 ? (d.unidadesDisponibles + ' disponibles | Tarifa: $' + (d.precioVenta | number:'1.0-0')) : '[AGOTADO - 0 DISPONIBLES]' }}
                   </option>
                 }
               </select>
@@ -213,7 +213,7 @@
                 <div class="impact-details">
                   <strong>Resumen del Tratamiento</strong>
                   <p>
-                    Se descontará <strong>1 vial de {{ drogaSeleccionada.nombre }}</strong> del inventario hospitalario y se registrará en el expediente clínico de <strong>{{ mascotaSeleccionada.nombre }}</strong> con una tarifa de <strong>${{ drogaSeleccionada.precioVenta | number:'1.2-2' }}</strong>.
+                    Se descontará <strong>1 vial de {{ drogaSeleccionada.nombre }}</strong> del inventario hospitalario y se registrará en el expediente clínico de <strong>{{ mascotaSeleccionada.nombre }}</strong> con una tarifa de <strong>${{ drogaSeleccionada.precioVenta | number:'1.0-0' }}</strong>.
                   </p>
                 </div>
               </div>
