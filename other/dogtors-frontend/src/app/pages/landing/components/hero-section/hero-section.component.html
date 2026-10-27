@@ -10,6 +10,8 @@
       <div class="hero-buttons">
         @if (authService.esDueno()) {
           <a [routerLink]="['/perfil', authService.usuarioActual()?.id]" class="btn-primary">Ver Mis Mascotas &rarr;</a>
+        } @else if (authService.esAdmin()) {
+          <a routerLink="/admin/dashboard" class="btn-primary">Ir al Dashboard Administrativo &rarr;</a>
         } @else if (authService.esVeterinario()) {
           <a routerLink="/mascotas" class="btn-primary">Ingresar al Área Médica &rarr;</a>
         } @else {

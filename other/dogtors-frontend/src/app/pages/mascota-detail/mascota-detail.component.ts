@@ -41,7 +41,8 @@ export class MascotaDetailComponent implements OnInit {
         // Si el usuario en sesión es un cliente, solo puede ver sus propias mascotas
         if (this.authService.esDueno()) {
           const duenoIdSesion = this.authService.usuarioActual()?.id;
-          if (m.dueno?.id && duenoIdSesion && m.dueno.id !== duenoIdSesion) {
+          const mascotaDuenoId = m.duenoId ?? m.dueno?.id;
+          if (mascotaDuenoId && duenoIdSesion && mascotaDuenoId !== duenoIdSesion) {
             this.router.navigate(['/perfil', duenoIdSesion]);
             return of([]);
           }

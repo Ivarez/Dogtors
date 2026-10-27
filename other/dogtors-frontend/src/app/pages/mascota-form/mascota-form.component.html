@@ -8,17 +8,17 @@
       <div class="form-header">
         <div class="eyebrow">{{ isEdit ? 'MODIFICACIÓN DE EXPEDIENTE' : 'NUEVO INGRESO HOSPITALARIO' }}</div>
         <h1>{{ isEdit ? 'Editar Paciente' : 'Registro de Mascota' }}</h1>
-        <p class="subtitle">Complete los campos obligatorios del expediente clínico del paciente.</p>
+        <p class="subtitle">Complete los datos del expediente clínico del paciente.</p>
       </div>
 
       <form [formGroup]="mascotaForm" (ngSubmit)="handleSubmit()" class="form-grid">
-        <!-- Propietario — asociación con OBJETO, no con ID -->
+        <!-- Propietario -->
         <div class="form-group full-width">
           <label for="dueno">Propietario Responsable *</label>
           <select id="dueno" formControlName="dueno" [compareWith]="compararDuenos" class="form-control">
             <option [ngValue]="null" disabled>-- Seleccione un propietario --</option>
             @for (d of duenos; track d.id) {
-              <option [ngValue]="d">{{ d.nombre }} ({{ d.correo }})</option>
+              <option [ngValue]="d">{{ d.nombre }} — C.C. {{ d.cedula }} ({{ d.correo }})</option>
             }
           </select>
           @if (mascotaForm.get('dueno')?.touched && mascotaForm.get('dueno')?.invalid) {
@@ -93,18 +93,15 @@
           [isFullWidth]="true">
         </app-form-field>
 
-        <!-- Diagnóstico / Enfermedad -->
+        <!-- Diagnóstico / Enfermedad (puede quedar vacío al ingreso inicial según Enunciado) -->
         <div class="form-group full-width">
-          <label for="enfermedad">Diagnóstico Clínico / Motivo de Consulta *</label>
+          <label for="enfermedad">Diagnóstico Clínico / Motivo de Consulta (Opcional al ingreso)</label>
           <textarea
             id="enfermedad"
             formControlName="enfermedad"
             rows="3"
-            placeholder="Describa la sintomatología o el cuadro clínico de ingreso..."
+            placeholder="Describa la sintomatología o déjelo vacío mientras es valorado por el médico..."
             class="form-control textarea"></textarea>
-          @if (mascotaForm.get('enfermedad')?.touched && mascotaForm.get('enfermedad')?.invalid) {
-            <span class="error-msg">El diagnóstico clínico es obligatorio.</span>
-          }
         </div>
 
         <!-- Botones -->

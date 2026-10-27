@@ -10,15 +10,27 @@
         <a [routerLink]="['/perfil', authService.usuarioActual()?.id]" routerLinkActive="active">Mis Mascotas</a>
       } @else if (authService.esVeterinario()) {
         <a routerLink="/mascotas" routerLinkActive="active">Mascotas</a>
+        <a routerLink="/mis-pacientes" routerLinkActive="active">Mis Pacientes</a>
         <a routerLink="/duenos" routerLinkActive="active">Dueños</a>
         <a routerLink="/tratamientos" routerLinkActive="active">Tratamientos</a>
+        <a routerLink="/medicamentos" routerLinkActive="active">Medicamentos</a>
+      } @else if (authService.esAdmin()) {
+        <a routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/admin/veterinarios" routerLinkActive="active">Veterinarios</a>
+        <a routerLink="/mascotas" routerLinkActive="active">Mascotas</a>
+        <a routerLink="/duenos" routerLinkActive="active">Dueños</a>
         <a routerLink="/medicamentos" routerLinkActive="active">Medicamentos</a>
       }
     </nav>
 
     <div class="navbar-actions">
       @if (authService.usuarioActual(); as usuario) {
-        @if (usuario.rol === 'VETERINARIO') {
+        @if (usuario.rol === 'ADMIN') {
+          <a routerLink="/admin/dashboard" class="link-perfil">
+            <span class="avatar">{{ usuario.nombre.charAt(0).toUpperCase() }}</span>
+            {{ usuario.nombre }}
+          </a>
+        } @else if (usuario.rol === 'VETERINARIO') {
           <a routerLink="/mascotas" class="link-perfil">
             <span class="avatar">{{ usuario.nombre.charAt(0).toUpperCase() }}</span>
             {{ usuario.nombre }}

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controlador REST para el CRUD y autenticación de propietarios (dueños de mascotas).
+ */
 @RestController
 @RequestMapping("/duenos")
 @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
@@ -16,21 +19,24 @@ public class DuenoController {
     @Autowired
     private DuenoService duenoService;
 
-    // Listar todos los dueños
     @GetMapping
     @Operation(summary = "Listar todos los dueños")
     public List<Dueno> listarDuenos() {
         return duenoService.findAll();
     }
 
-    // Buscar dueño por ID
     @GetMapping("/{id}")
     @Operation(summary = "Obtener un dueño por su ID")
     public Dueno buscarPorId(@PathVariable("id") Long id) {
         return duenoService.findById(id);
     }
 
-    // Agregar nuevo dueño (datos recibidos en el Body)
+    @GetMapping("/cedula/{cedula}")
+    @Operation(summary = "Obtener un dueño por su número de cédula")
+    public Dueno buscarPorCedula(@PathVariable("cedula") String cedula) {
+        return duenoService.findByCedula(cedula);
+    }
+
     @PostMapping
     @Operation(summary = "Registrar un nuevo dueño")
     public Dueno agregarDueno(@RequestBody Dueno dueno) {
@@ -38,16 +44,14 @@ public class DuenoController {
         return dueno;
     }
 
-    // Actualizar dueño
     @PutMapping
     @Operation(summary = "Actualizar datos de un dueño")
     public void actualizarDueno(@RequestBody Dueno dueno) {
         duenoService.save(dueno);
     }
 
-    // Borrar dueño por ID
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar un dueño por ID")
+    @Operation(summary = "Eliminar un dueño por ID junto con sus mascotas en cascada")
     public void borrarDueno(@PathVariable("id") Long id) {
         duenoService.delete(id);
     }
@@ -58,7 +62,6 @@ public class DuenoController {
         duenoService.delete(id);
     }
 
-    // Procesar Login mediante POST con credenciales en el Body
     @PostMapping("/login")
     @Operation(summary = "Login de cliente por correo y contraseña")
     public Dueno procesarLogin(@RequestBody Dueno credenciales) {

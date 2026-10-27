@@ -1,0 +1,90 @@
+<div class="analytics-grid">
+  <!-- 9. Top 3 tratamientos con más unidades vendidas -->
+  <section class="analytics-card">
+    <div class="card-header">
+      <div>
+        <span class="eyebrow">RANKING COMERCIAL FARMACÉUTICO</span>
+        <h3>Top 3 Tratamientos con Más Unidades Vendidas</h3>
+      </div>
+      <span class="header-badge">Top 3</span>
+    </div>
+
+    @if (topTratamientos().length > 0) {
+      <div class="table-container" tabindex="0" role="region" aria-label="Top 3 tratamientos con más unidades vendidas">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>POSICIÓN</th>
+              <th>MEDICAMENTO / TRATAMIENTO</th>
+              <th class="col-num">PRECIO VENTA</th>
+              <th class="col-num">UNIDADES VENDIDAS</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of topTratamientos(); track item.id; let idx = $index) {
+              <tr>
+                <td>
+                  <span class="rank-pill" [class.rank-1]="idx === 0" [class.rank-2]="idx === 1" [class.rank-3]="idx === 2">
+                    #{{ idx + 1 }}
+                  </span>
+                </td>
+                <td class="med-name">
+                  <strong>💊 {{ item.nombre }}</strong>
+                </td>
+                <td class="col-num">
+                  ${{ item.precioVenta | number:'1.2-2' }}
+                </td>
+                <td class="col-num">
+                  <span class="qty-badge">{{ item.unidadesVendidas }} uds.</span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <div class="empty-box">
+        <p>No se registran unidades vendidas en el inventario.</p>
+      </div>
+    }
+  </section>
+
+  <!-- 2. Cantidad de tratamientos por tipo de medicamento administrado en el último mes -->
+  <section class="analytics-card">
+    <div class="card-header">
+      <div>
+        <span class="eyebrow">ACTIVIDAD CLÍNICA MENSUAL</span>
+        <h3>Tratamientos por Medicamento (Último Mes)</h3>
+      </div>
+      <span class="header-badge">{{ tratamientosPorMedicamento().length }} fármacos</span>
+    </div>
+
+    @if (tratamientosPorMedicamento().length > 0) {
+      <div class="table-container" tabindex="0" role="region" aria-label="Cantidad de tratamientos por medicamento en el último mes">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>MEDICAMENTO ADMINISTRADO</th>
+              <th class="col-num">CANTIDAD SUMINISTRADA</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of tratamientosPorMedicamento(); track item.medicamento) {
+              <tr>
+                <td class="med-name">{{ item.medicamento }}</td>
+                <td class="col-num">
+                  <strong>{{ item.cantidad }}</strong> {{ item.cantidad === 1 ? 'aplicación' : 'aplicaciones' }}
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <div class="empty-box">
+        <p>No se han registrado tratamientos durante el último mes.</p>
+      </div>
+    }
+  </section>
+</div>
+

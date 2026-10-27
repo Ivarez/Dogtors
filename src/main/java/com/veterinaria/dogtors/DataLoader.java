@@ -21,7 +21,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
+/**
+ * Inicializador de datos de prueba en la base de datos H2 al arrancar la aplicación (AC11 y AC30).
+ * Carga 50 dueños, 100 mascotas, 5 administradores, 6 veterinarios (5 activos y 1 inactivo),
+ * el inventario de medicamentos desde el archivo Excel y tratamientos iniciales.
+ */
 @Component
 @Transactional
 public class DataLoader implements CommandLineRunner {
@@ -51,7 +57,7 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) {
         Random random = new Random(42);
 
-        // ===================== 50 DUENOS =====================
+        // ===================== 50 DUEÑOS =====================
         String[] nombres = {
             "Juan Pérez", "María García", "Carlos López", "Ana Martínez", "Pedro Rodríguez",
             "Laura Sánchez", "Diego Ramírez", "Sofía Torres", "Andrés Herrera", "Camila Díaz",
@@ -66,9 +72,13 @@ public class DataLoader implements CommandLineRunner {
         };
 
         for (int i = 0; i < nombres.length; i++) {
+            String cedula = String.format("1010%06d", i + 1);
+            String celular = String.format("300555%04d", i + 1);
             Dueno dueno = new Dueno(
+                    cedula,
                     nombres[i],
                     "usuario" + (i + 1) + "@dogtors.com",
+                    celular,
                     "1234"
             );
             duenoRepository.save(dueno);
@@ -153,15 +163,39 @@ public class DataLoader implements CommandLineRunner {
         }
 
         // ===================== VETERINARIOS =====================
+        String[] fotosVets = {
+            "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400",
+            "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400",
+            "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400",
+            "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400",
+            "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400",
+            "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400"
+        };
+
         for (int i = 1; i <= 5; i++) {
             Veterinario vet = new Veterinario(
+                    String.format("8020000%d", i),
                     "Dr. Vet " + i,
                     "vet" + i + "@dogtors.com",
                     "vet123",
-                    i % 2 == 0 ? "Cirugía" : "Medicina Interna"
+                    i % 2 == 0 ? "Cirugía" : "Medicina Interna",
+                    fotosVets[i - 1],
+                    true
             );
             veterinarioRepository.save(vet);
         }
+
+        // Veterinario 6 en estado inactivo (licencia/vacaciones) para evidenciar el indicador en el Dashboard
+        Veterinario vetInactivo = new Veterinario(
+                "80200006",
+                "Dra. Elena Gómez",
+                "vet6@dogtors.com",
+                "vet123",
+                "Cardiología Veterinaria",
+                fotosVets[5],
+                false
+        );
+        veterinarioRepository.save(vetInactivo);
 
         // ===================== CARGA INICIAL DE MEDICAMENTOS DESDE EXCEL =====================
         try {
@@ -171,18 +205,32 @@ public class DataLoader implements CommandLineRunner {
         }
 
         // ===================== TRATAMIENTOS INICIALES =====================
-        List<Mascota> todasMascotas = mascotaRepository.findAll();
-        List<Veterinario> todosVets = veterinarioRepository.findAll();
+        List<Mascota> mascotasActivas = mascotaRepository.findAll().stream()
+                .filter(m -> Boolean.TRUE.equals(m.getActiva()))
+                .collect(Collectors.toList());
+        List<Veterinario> vetsActivos = veterinarioRepository.findAll().stream()
+                .filter(v -> Boolean.TRUE.equals(v.getActivo()))
+                .collect(Collectors.toList());
         List<Droga> todasDrogas = drogaRepository.findAll();
 
-        if (!todasMascotas.isEmpty() && !todosVets.isEmpty() && !todasDrogas.isEmpty()) {
+        if (!mascotasActivas.isEmpty() && !vetsActivos.isEmpty() && !todasDrogas.isEmpty()) {
             for (int i = 0; i < 20; i++) {
+                Mascota mascota = mascotasActivas.get(random.nextInt(mascotasActivas.size()));
+                Veterinario vet = vetsActivos.get(random.nextInt(vetsActivos.size()));
+                Droga droga = todasDrogas.get(random.nextInt(todasDrogas.size()));
+
+                if (droga.getUnidadesDisponibles() != null && droga.getUnidadesDisponibles() > 0) {
+                    droga.setUnidadesDisponibles(droga.getUnidadesDisponibles() - 1);
+                    droga.setUnidadesVendidas((droga.getUnidadesVendidas() != null ? droga.getUnidadesVendidas() : 0) + 1);
+                    drogaRepository.save(droga);
+                }
+
                 Tratamiento tratamiento = new Tratamiento(
-                        LocalDate.now().minusDays(random.nextInt(30)),
+                        LocalDate.now().minusDays(random.nextInt(25)),
                         "Administrar cada 8 horas por " + (random.nextInt(5) + 3) + " días.",
-                        todasMascotas.get(random.nextInt(todasMascotas.size())),
-                        todosVets.get(random.nextInt(todosVets.size())),
-                        todasDrogas.get(random.nextInt(todasDrogas.size()))
+                        mascota,
+                        vet,
+                        droga
                 );
                 tratamientoRepository.save(tratamiento);
             }

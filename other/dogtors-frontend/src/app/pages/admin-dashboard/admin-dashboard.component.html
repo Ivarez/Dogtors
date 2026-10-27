@@ -1,0 +1,47 @@
+<div class="dashboard-page">
+  <div class="container">
+    <!-- Encabezado del Portal del Administrador -->
+    <header class="page-header">
+      <div class="header-left">
+        <div class="eyebrow">PORTAL ADMINISTRATIVO &bull; TABLERO DE CONTROL</div>
+        <h1>Dashboard de la Veterinaria</h1>
+        <p class="subtitle">
+          Indicadores operativos, clínicos y financieros en tiempo real para la toma de decisiones estratégicas.
+        </p>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn-refresh" (click)="cargarDashboard()">
+          ↻ Actualizar Indicadores
+        </button>
+        <a routerLink="/admin/veterinarios" class="btn-secondary">
+          Gestionar Veterinarios
+        </a>
+        <a routerLink="/admin/veterinarios/nuevo" class="btn-primary">
+          + Registrar Veterinario
+        </a>
+      </div>
+    </header>
+
+    @if (cargando) {
+      <div class="loading-box">
+        <div class="spinner"></div>
+        <p>Calculando indicadores del hospital veterinario...</p>
+      </div>
+    } @else if (errorMsg) {
+      <div class="error-banner">
+        <span>⚠️ {{ errorMsg }}</span>
+        <button type="button" class="btn-retry" (click)="cargarDashboard()">Reintentar</button>
+      </div>
+    } @else {
+      <!-- Componente hijo 1: Tarjetas de KPIs -->
+      <app-kpi-cards [kpis]="kpis"></app-kpi-cards>
+
+      <!-- Componente hijo 2: Tablas de Top 3 tratamientos y Tratamientos por medicamento (último mes) -->
+      <app-top-treatments
+        [topTratamientos]="top3Tratamientos"
+        [tratamientosPorMedicamento]="tratamientosPorMedicamento">
+      </app-top-treatments>
+    }
+  </div>
+</div>
+

@@ -1,5 +1,6 @@
 package com.veterinaria.dogtors.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +8,10 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Entidad que representa a una mascota hospitalizada o dada de alta en la veterinaria.
+ * Todas las relaciones tienen @JsonIgnore para evitar devolver objetos anidados desde el backend.
+ */
 @Entity
 @Getter
 @Setter
@@ -31,7 +36,8 @@ public class Mascota {
     @Column(nullable = false)
     private Double peso;
 
-    @Column(nullable = false, length = 255)
+    // Puede ser vacío cuando la mascota recién ingresa mientras es atendida por un médico
+    @Column(length = 255)
     private String enfermedad;
 
     @Column(length = 500)
@@ -40,14 +46,19 @@ public class Mascota {
     @Column(nullable = false)
     private Boolean activa = true;
 
-    // Relacion ManyToOne con Dueno
+    // Relación ManyToOne con Dueno ignorada en la serialización JSON para evitar objetos anidados
     @ManyToOne
     @JoinColumn(name = "dueno_id")
     @org.hibernate.annotations.OnDelete(action = org.hibernate.annotations.OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Dueno dueno;
 
+    // Campo auxiliar plano para recibir o exponer el ID del dueño sin anidar el objeto Dueno
+    @Transient
+    private Long duenoId;
+
     @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @com.fasterxml.jackson.annotation.JsonIgnore
+    @JsonIgnore
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
     public Mascota() {
@@ -71,7 +82,6 @@ public class Mascota {
         }
     }
 
-    // Constructor con todos los parametros excepto id y relaciones
     public Mascota(String nombre, String especie, String raza, Integer edad,
                    Double peso, String enfermedad, String fotoUrl, Boolean activa) {
         this.nombre = nombre;
@@ -162,6 +172,7 @@ public class Mascota {
         this.activa = activa;
     }
 
+    @JsonIgnore
     public Dueno getDueno() {
         return dueno;
     }
@@ -170,6 +181,35 @@ public class Mascota {
         this.dueno = dueno;
     }
 
+    // Propiedades escalares planas del dueño (no devuelven ningún objeto anidado)
+    public Long getDuenoId() {
+        if (dueno != null && dueno.getId() != null) {
+            return dueno.getId();
+        }
+        return duenoId;
+    }
+
+    public void setDuenoId(Long duenoId) {
+        this.duenoId = duenoId;
+    }
+
+    public String getDuenoNombre() {
+        return dueno != null ? dueno.getNombre() : null;
+    }
+
+    public String getDuenoCedula() {
+        return dueno != null ? dueno.getCedula() : null;
+    }
+
+    public String getDuenoCorreo() {
+        return dueno != null ? dueno.getCorreo() : null;
+    }
+
+    public String getDuenoCelular() {
+        return dueno != null ? dueno.getCelular() : null;
+    }
+
+    @JsonIgnore
     public List<Tratamiento> getTratamientos() {
         return tratamientos;
     }

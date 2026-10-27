@@ -1,0 +1,155 @@
+.form-page {
+  padding: 40px 0 80px;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.back-nav {
+  margin-bottom: 24px;
+
+  .back-link {
+    color: var(--neutral);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+}
+
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--borders);
+  border-radius: 20px;
+  padding: 40px;
+
+  @media (max-width: 600px) {
+    padding: 24px 20px;
+  }
+}
+
+.form-header {
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--borders);
+  padding-bottom: 24px;
+
+  .eyebrow {
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+    font-weight: 800;
+    margin: 0 0 6px;
+  }
+
+  .subtitle {
+    color: var(--neutral);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.checkbox-row {
+  padding: 0.5rem 0;
+
+  .checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 600;
+    color: var(--dark);
+    cursor: pointer;
+
+    input[type='checkbox'] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+    }
+  }
+}
+
+.alert-error {
+  background: rgba(224, 122, 95, 0.12);
+  border: 1px solid var(--accent2);
+  color: var(--accent2);
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--borders);
+
+  .btn-cancel {
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--neutral);
+    background: transparent;
+    border: 1px solid var(--borders);
+    transition: all 0.2s;
+
+    &:hover {
+      background: #eee;
+      color: var(--dark);
+    }
+  }
+
+  .btn-submit {
+    background: var(--primary);
+    color: var(--surface);
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+
+    &:hover:not([disabled]) {
+      background: var(--secondary);
+    }
+
+    &[disabled] {
+      background: var(--borders);
+      color: var(--neutral);
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+  }
+}
+

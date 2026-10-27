@@ -1,0 +1,192 @@
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid var(--borders);
+  background: var(--surface);
+}
+
+.veterinario-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+
+  thead {
+    background: #FAFBFA;
+    border-bottom: 1px solid var(--borders);
+
+    th {
+      padding: 14px 18px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: var(--neutral);
+      text-align: left;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid var(--borders);
+      transition: background 0.15s ease;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: #F9FAF8;
+      }
+    }
+
+    td {
+      padding: 16px 18px;
+      vertical-align: middle;
+    }
+  }
+}
+
+.text-right {
+  text-align: right;
+}
+
+.vet-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .vet-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .vet-avatar-placeholder {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(31, 93, 80, 0.1);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .vet-name {
+    font-weight: 700;
+    color: var(--dark);
+    font-size: 0.95rem;
+  }
+
+  .vet-meta {
+    font-size: 0.75rem;
+    color: var(--neutral);
+  }
+}
+
+.cedula-text {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--dark);
+}
+
+.spec-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.email-text {
+  color: var(--neutral);
+}
+
+.atenciones-badge {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  &.badge-activa {
+    background: rgba(31, 93, 80, 0.12);
+    color: var(--primary);
+  }
+
+  &.badge-inactiva {
+    background: rgba(224, 122, 95, 0.12);
+    color: var(--accent2);
+  }
+}
+
+.actions-cell {
+  white-space: nowrap;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  margin-left: 6px;
+  text-decoration: none;
+
+  &.btn-edit {
+    background: rgba(233, 196, 106, 0.15);
+    color: #9c6c15;
+    border-color: rgba(233, 196, 106, 0.4);
+
+    &:hover {
+      background: var(--highlight);
+      color: var(--dark);
+    }
+  }
+
+  &.btn-toggle {
+    background: transparent;
+    color: var(--neutral);
+    border-color: var(--borders);
+
+    &:hover {
+      background: #eee;
+      color: var(--dark);
+    }
+  }
+
+  &.btn-delete {
+    background: rgba(224, 122, 95, 0.12);
+    color: #c53030;
+    border-color: rgba(224, 122, 95, 0.3);
+
+    &:hover {
+      background: #c53030;
+      color: #ffffff;
+    }
+  }
+}
+
+.empty-message {
+  text-align: center;
+  color: var(--neutral);
+  padding: 32px !important;
+  font-style: italic;
+}
+

@@ -4,14 +4,50 @@
     <div class="page-header">
       <div>
         <div class="eyebrow">PORTAL CLÍNICO VETERINARIO</div>
-        <h1>Directorio de Pacientes</h1>
-        <p class="subtitle">Monitoreo continuo de animales internados en hospitalización y registro histórico de altas.</p>
+        <h1>{{ soloMisTratadas ? 'Mis Pacientes Tratados' : 'Directorio de Pacientes' }}</h1>
+        <p class="subtitle">
+          {{ soloMisTratadas
+            ? 'Mascotas a las cuales usted ha suministrado tratamientos médicos en la clínica.'
+            : 'Monitoreo continuo de animales internados en hospitalización y registro histórico de altas.' }}
+        </p>
       </div>
       <div>
         <a routerLink="/mascotas/nueva" class="btn-primary">
           + Registrar Nuevo Ingreso
         </a>
       </div>
+    </div>
+
+    <!-- Barra de búsqueda por nombre de mascota y filtro de mascotas tratadas por el veterinario -->
+    <div class="filter-bar">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          type="search"
+          [(ngModel)]="filtroNombre"
+          placeholder="Buscar mascota por su nombre, raza o dueño..."
+          class="search-input"
+          aria-label="Buscar mascota por su nombre" />
+      </div>
+
+      @if (authService.esVeterinario()) {
+        <div class="filter-tabs" role="group" aria-label="Filtrar pacientes del veterinario">
+          <button
+            type="button"
+            class="tab-btn"
+            [class.active]="!soloMisTratadas"
+            (click)="alternarFiltroVeterinario(false)">
+            Todos los Pacientes
+          </button>
+          <button
+            type="button"
+            class="tab-btn"
+            [class.active]="soloMisTratadas"
+            (click)="alternarFiltroVeterinario(true)">
+            🩺 Tratados por Mí
+          </button>
+        </div>
+      }
     </div>
 
     @if (errorMsg) {
@@ -27,38 +63,38 @@
       </div>
     } @else {
       <!-- Active Pets Section -->
-    <section class="table-section">
-      <div class="section-title-row">
-        <h2>
-          Pacientes Hospitalizados
-          <span class="count-badge count-active">{{ mascotasActivas.length }}</span>
-        </h2>
-        <span class="section-hint">Pacientes activos con supervisión</span>
-      </div>
+      <section class="table-section">
+        <div class="section-title-row">
+          <h2>
+            Pacientes Hospitalizados
+            <span class="count-badge count-active">{{ mascotasActivas.length }}</span>
+          </h2>
+          <span class="section-hint">Pacientes activos en la veterinaria</span>
+        </div>
 
-      <app-mascota-table
-        [mascotaArray]="mascotasActivas"
-        [esActivas]="true"
-        (mascotaEstadoCambiado)="cambiarEstado($event)">
-      </app-mascota-table>
-    </section>
+        <app-mascota-table
+          [mascotaArray]="mascotasActivas"
+          [esActivas]="true"
+          (mascotaEstadoCambiado)="cambiarEstado($event)">
+        </app-mascota-table>
+      </section>
 
-    <!-- Inactive Pets Section -->
-    <section class="table-section">
-      <div class="section-title-row">
-        <h2>
-          Pacientes dados de Alta
-          <span class="count-badge count-inactive">{{ mascotasInactivas.length }}</span>
-        </h2>
-        <span class="section-hint">Histórico de pacientes inactivos</span>
-      </div>
+      <!-- Inactive Pets Section -->
+      <section class="table-section">
+        <div class="section-title-row">
+          <h2>
+            Pacientes dados de Alta
+            <span class="count-badge count-inactive">{{ mascotasInactivas.length }}</span>
+          </h2>
+          <span class="section-hint">Histórico de pacientes inactivos</span>
+        </div>
 
-      <app-mascota-table
-        [mascotaArray]="mascotasInactivas"
-        [esActivas]="false"
-        (mascotaEstadoCambiado)="cambiarEstado($event)">
-      </app-mascota-table>
-    </section>
+        <app-mascota-table
+          [mascotaArray]="mascotasInactivas"
+          [esActivas]="false"
+          (mascotaEstadoCambiado)="cambiarEstado($event)">
+        </app-mascota-table>
+      </section>
     }
   </div>
 </div>

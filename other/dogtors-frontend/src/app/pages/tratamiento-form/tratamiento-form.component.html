@@ -97,16 +97,21 @@
               <label for="mascotaId">
                 <span class="step-num">1.</span> Paciente *
               </label>
-              <select id="mascotaId" formControlName="mascotaId" class="form-control">
+              <select id="mascotaId" formControlName="mascotaId" class="form-control" [class.input-alert]="esMascotaInactiva">
                 <option [ngValue]="null" disabled>-- Seleccione el paciente --</option>
                 @for (m of mascotas; track m.id) {
-                  <option [value]="m.id">
-                    {{ m.nombre }} &bull; {{ m.especie }} ({{ m.raza }}) — {{ m.activa ? 'Hospitalizado' : 'Ambulatorio' }}
+                  <option [value]="m.id" [disabled]="!m.activa">
+                    {{ m.nombre }} &bull; {{ m.especie }} ({{ m.raza }}) — {{ m.activa ? 'Activo (En tratamiento)' : '[INACTIVO - Alta Médica]' }}
                   </option>
                 }
               </select>
               @if (tratamientoForm.get('mascotaId')?.touched && tratamientoForm.get('mascotaId')?.invalid) {
                 <span class="field-error">Debe seleccionar un paciente para el tratamiento.</span>
+              }
+              @if (esMascotaInactiva) {
+                <div class="stock-error-message">
+                  <strong>⚠️ Mascota inactiva:</strong> El paciente <em>{{ mascotaSeleccionada?.nombre }}</em> no está activo en la veterinaria. Solo se puede suministrar tratamiento a mascotas activas.
+                </div>
               }
             </div>
 
@@ -207,7 +212,7 @@
               <button 
                 type="submit" 
                 class="btn-submit"
-                [disabled]="tratamientoForm.invalid || esDrogaSinStock || guardando || errorSinDrogas">
+                [disabled]="tratamientoForm.invalid || esDrogaSinStock || esMascotaInactiva || guardando || errorSinDrogas">
                 @if (guardando) {
                   <span class="spinner-small"></span> Registrando Tratamiento...
                 } @else {
@@ -252,10 +257,10 @@
                   <span class="d-label">Diagnóstico:</span>
                   <span class="d-value d-diag">{{ mascotaSeleccionada.enfermedad }}</span>
                 </div>
-                @if (mascotaSeleccionada.dueno) {
+                @if (mascotaSeleccionada.duenoNombre || mascotaSeleccionada.dueno) {
                   <div class="detail-row">
                     <span class="d-label">Tutor / Dueño:</span>
-                    <span class="d-value">{{ mascotaSeleccionada.dueno.nombre }}</span>
+                    <span class="d-value">{{ mascotaSeleccionada.duenoNombre || mascotaSeleccionada.dueno?.nombre }}</span>
                   </div>
                 }
               </div>

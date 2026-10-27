@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive" tabindex="0" role="region" aria-label="Tabla de pacientes de la veterinaria">
   <table class="mascota-table">
     <thead>
       <tr>
@@ -31,10 +31,10 @@
             <div class="breed-text">{{ mascota.raza }}</div>
           </td>
           <td>
-            <span class="owner-name">{{ mascota.dueno?.nombre || 'Sin dueño asignado' }}</span>
+            <span class="owner-name">{{ mascota.duenoNombre || mascota.dueno?.nombre || 'Sin dueño asignado' }}</span>
           </td>
           <td>
-            <span class="disease-text">{{ mascota.enfermedad }}</span>
+            <span class="disease-text">{{ mascota.enfermedad || 'En valoración inicial' }}</span>
           </td>
           <td>
             @if (mascota.activa) {

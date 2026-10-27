@@ -81,3 +81,62 @@ Crear las clases/interfaces para todas las entidades que estaban en Springboot�
 
 Veterinaria
 Pasar CRUD de mascotas a Angular (con datos quemados)
+
+7. 
+Tener CRUD de Clientes, todavía con datos quemados
+
+8
+Tener todo el trabajo de anteriores Sprints a Angular consumiendo datos con REST de SpringBoot.
+Para la mayoría de grupos esto es pasar CRUDS que tenían de varias entidades Y Logins. 
+
+9
+Caso de uso principal
+Cargar datos de medicamento desde Excel
+Poder crear tratamiento 
+
+    Al ingresas al detalle de una mascota de debe poder ver sus tratamientos
+    En caso de que no hayan drogas disponibles no se puede asignar el tratamiento
+
+Si el usuario es de tipo cliente no debería dejar ver dueños, ni asignar tratamientos
+Inicio de sesión del veterinario
+En el caso donde ya se haya iniciado sesión, no se debería preguntar nuevamente quién es el veterinario
+
+10
+Tienen que tener todos los requisitos funcionales excepto seguridad y pruebas.
+
+A nivel de código se revisará:
+
+    En Angular tener componentes para dividir su página en componentes visuales de menor tamaño.
+    Uso de Servicio en Angular
+    Comentarios tanto en el front como en el back
+    La página se debe ver igual o mejor respecto a lo que tenían en Thymeleaf
+    En el back tener arquitectura en capas
+    No devolver objetos anidados desde el back.
+
+Requisitos funcionales por grupo (Revisar documento para mayor detalle):
+
+Veterinaria
+
+    CRUD MASCOTA
+        ACTIVAR/DESACTIVAR MASCOTAS
+    CRUD DUEÑO
+        AL ELIMINAR UN DUEÑO SE ELIMINAN SUS MASCOTAS
+    CRUD VETERINARIOS
+        SE REALIZA DESDE EL PORTAL DEL ADMIN
+        LOS VETERINARIOS SE PUEDEN TANTO ACTIVAR/DESACTIVAR COMO ELIMINAR
+        SI EL VETERINARIO ESTÁ DESACTIVADO NO SE LE PERMITE REALIZAR LOGIN
+        DEBE EXISTIR UNA BARRA DE BUSQUEDA PARA BUSCAR LOS VETERINARIOS POR CEDULA U OTRO PARAMETRO
+    CARGAR EXCEL DE MEDICAMENTOS
+    LOGIN CLIENTE
+    LOGIN VETERINARIA
+    LOGIN ADMINISTRADOS
+    DASHBOARD ADMINISTRADOS
+    ASIGNAR TRATAMIENTO DESDE VETERINARIO
+        DEBE DISMINUIR LA CANTIDAD DISPONIBLE Y AUMENTAR LA CANTIDAD VENDIDA
+        NO SE PUEDE ASIGNAR UNA DROGA SI NO HAY UNIDADES DISPONIBLES
+        SI LA MASCOTA NO ESTÁ ACTIVA EN LA VETERINARIA NO SE LE PUEDE ASINGAR TRATAMIENTO
+    PORTAL DE DUEÑO
+        VER SUS MASCOTAS Y DETALLES, INCLUYENDO LOS TRATAMIENTOS SUMINISTRADOS
+    PORTAL DE VETERINARIO
+        DEBE PODER VER/FILTRAR LAS MASCOTAS QUE HA TRATADO ANTERIORMENTE
+        SE DEBE PODER BUSCAR UNA MASCOTA POR SU NOMBRE(BARRA DE BUSQUEDA)

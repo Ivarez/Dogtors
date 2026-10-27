@@ -69,9 +69,14 @@ export class TratamientoFormComponent implements OnInit {
       }
     });
 
-    // Reaccionar al cambio de mascota
+    // Reaccionar al cambio de mascota (valida que la mascota esté activa en la veterinaria)
     this.tratamientoForm.get('mascotaId')?.valueChanges.subscribe((mascotaId) => {
       this.mascotaSeleccionada = this.mascotas.find(m => m.id === Number(mascotaId)) || null;
+      if (this.mascotaSeleccionada && !this.mascotaSeleccionada.activa) {
+        this.mensajeError = `La mascota "${this.mascotaSeleccionada.nombre}" no está activa en la veterinaria (dada de alta). No se le puede asignar tratamiento.`;
+      } else if (this.mensajeError.includes('no está activa')) {
+        this.mensajeError = '';
+      }
     });
   }
 
@@ -87,7 +92,7 @@ export class TratamientoFormComponent implements OnInit {
       next: ({ mascotas, drogas, veterinarios }) => {
         this.mascotas = mascotas;
         this.drogas = drogas;
-        this.veterinarios = veterinarios;
+        this.veterinarios = veterinarios.filter(v => v.activo !== false);
 
         // Validar si no hay drogas en el sistema
         if (!this.drogas || this.drogas.length === 0) {
@@ -107,6 +112,9 @@ export class TratamientoFormComponent implements OnInit {
           const numId = Number(qMascotaId);
           this.tratamientoForm.patchValue({ mascotaId: numId });
           this.mascotaSeleccionada = this.mascotas.find(m => m.id === numId) || null;
+          if (this.mascotaSeleccionada && !this.mascotaSeleccionada.activa) {
+            this.mensajeError = `La mascota "${this.mascotaSeleccionada.nombre}" no está activa en la veterinaria (dada de alta). No se le puede asignar tratamiento.`;
+          }
         }
 
         // Si ya hay un veterinario con sesión activa, asignarlo automáticamente sin preguntar
@@ -131,9 +139,18 @@ export class TratamientoFormComponent implements OnInit {
     return !!(this.drogaSeleccionada && (this.drogaSeleccionada.unidadesDisponibles || 0) <= 0);
   }
 
+  get esMascotaInactiva(): boolean {
+    return !!(this.mascotaSeleccionada && !this.mascotaSeleccionada.activa);
+  }
+
   handleSubmit(): void {
     if (this.tratamientoForm.invalid) {
       this.tratamientoForm.markAllAsTouched();
+      return;
+    }
+
+    if (this.esMascotaInactiva) {
+      this.mensajeError = `Operación rechazada: La mascota "${this.mascotaSeleccionada?.nombre}" no está activa en la veterinaria.`;
       return;
     }
 

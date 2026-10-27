@@ -5,6 +5,9 @@ import { DuenoService } from '../../services/dueno.service';
 import { Dueno } from '../../models/dueno.model';
 import { FormFieldComponent } from '../mascota-form/components/form-field/form-field.component';
 
+/**
+ * Formulario de creación y edición de propietarios (dueños), incluyendo cédula, nombre, correo y celular.
+ */
 @Component({
   selector: 'app-dueno-form',
   imports: [ReactiveFormsModule, RouterLink, FormFieldComponent],
@@ -22,8 +25,10 @@ export class DuenoFormComponent implements OnInit {
   errorMsg: string = '';
 
   duenoForm = new FormGroup({
+    cedula: new FormControl('', [Validators.required, Validators.minLength(5)]),
     nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
     correo: new FormControl('', [Validators.required, Validators.email]),
+    celular: new FormControl('', [Validators.required, Validators.minLength(7)]),
     password: new FormControl('', [Validators.required, Validators.minLength(4)])
   });
 
@@ -35,8 +40,10 @@ export class DuenoFormComponent implements OnInit {
       this.duenoService.obtenerDuenoPorId(this.duenoId).subscribe({
         next: (duenoExistente) => {
           this.duenoForm.patchValue({
+            cedula: duenoExistente.cedula || '',
             nombre: duenoExistente.nombre,
             correo: duenoExistente.correo,
+            celular: duenoExistente.celular || '',
             password: duenoExistente.password || ''
           });
         },
@@ -59,8 +66,10 @@ export class DuenoFormComponent implements OnInit {
     const formVal = this.duenoForm.value;
 
     const duenoData: Dueno = {
+      cedula: formVal.cedula || '',
       nombre: formVal.nombre || '',
       correo: formVal.correo || '',
+      celular: formVal.celular || '',
       password: formVal.password || ''
     };
 
@@ -72,7 +81,7 @@ export class DuenoFormComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error al actualizar dueño:', err);
-          this.errorMsg = 'Error al actualizar el propietario.';
+          this.errorMsg = err?.error?.message || 'Error al actualizar el propietario.';
           this.guardando = false;
         }
       });
@@ -84,7 +93,7 @@ export class DuenoFormComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error al registrar dueño:', err);
-          this.errorMsg = err.error?.message || 'Error al registrar el propietario en el backend.';
+          this.errorMsg = err?.error?.message || 'Error al registrar el propietario en el backend.';
           this.guardando = false;
         }
       });

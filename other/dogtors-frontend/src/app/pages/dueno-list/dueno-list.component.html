@@ -12,6 +12,19 @@
       </div>
     </div>
 
+    <!-- Barra de búsqueda por cédula, nombre o correo -->
+    <div class="search-toolbar">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          type="search"
+          [(ngModel)]="filtroBusqueda"
+          placeholder="Buscar propietario por cédula, nombre, celular o correo..."
+          class="search-input"
+          aria-label="Buscar propietario por cédula, nombre, celular o correo" />
+      </div>
+    </div>
+
     @if (errorMsg) {
       <div class="alert-error">
         <span>⚠️ {{ errorMsg }}</span>
@@ -28,16 +41,15 @@
         <div class="section-title-row">
           <h2>
             Propietarios
-            <span class="count-badge">{{ duenos.length }}</span>
+            <span class="count-badge">{{ duenosFiltrados.length }}</span>
           </h2>
         </div>
 
         <app-dueno-table
-          [duenoArray]="duenos"
+          [duenoArray]="duenosFiltrados"
           (duenoEliminado)="eliminarDueno($event)">
         </app-dueno-table>
       </section>
     }
   </div>
 </div>
-

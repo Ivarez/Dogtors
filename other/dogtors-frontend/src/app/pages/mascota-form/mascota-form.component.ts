@@ -7,6 +7,10 @@ import { Mascota } from '../../models/mascota.model';
 import { Dueno } from '../../models/dueno.model';
 import { FormFieldComponent } from './components/form-field/form-field.component';
 
+/**
+ * Formulario para crear o editar una mascota.
+ * Envía el identificador plano del dueño (duenoId) sin anidar objetos en la petición ni respuesta.
+ */
 @Component({
   selector: 'app-mascota-form',
   imports: [ReactiveFormsModule, RouterLink, FormFieldComponent],
@@ -31,18 +35,16 @@ export class MascotaFormComponent implements OnInit {
     raza: new FormControl('', [Validators.required]),
     edad: new FormControl<number | null>(null, [Validators.required, Validators.min(0), Validators.max(35)]),
     peso: new FormControl<number | null>(null, [Validators.required, Validators.min(0.1)]),
-    enfermedad: new FormControl('', [Validators.required]),
+    enfermedad: new FormControl(''),
     fotoUrl: new FormControl(''),
     dueno: new FormControl<Dueno | null>(null, [Validators.required]),
     activa: new FormControl<boolean>(true)
   });
 
   ngOnInit(): void {
-    // Cargar lista de dueños desde el backend
     this.duenoService.obtenerDuenos().subscribe({
       next: (data) => {
         this.duenos = data;
-        // Si estamos en modo edición, cargar la mascota
         const idParam = this.route.snapshot.params['id'];
         if (idParam) {
           this.mascotaId = Number(idParam);
@@ -60,17 +62,17 @@ export class MascotaFormComponent implements OnInit {
   cargarMascota(id: number): void {
     this.mascotaService.obtenerMascotaPorId(id).subscribe({
       next: (m) => {
-        // Encontrar el dueño correspondiente en la lista cargada
-        const duenoEncontrado = m.dueno ? this.duenos.find(d => d.id === m.dueno?.id) : null;
+        const idDueno = m.duenoId ?? m.dueno?.id;
+        const duenoEncontrado = idDueno ? this.duenos.find(d => d.id === idDueno) || null : null;
         this.mascotaForm.patchValue({
           nombre: m.nombre,
           especie: m.especie,
           raza: m.raza,
           edad: m.edad,
           peso: m.peso,
-          enfermedad: m.enfermedad,
+          enfermedad: m.enfermedad || '',
           fotoUrl: m.fotoUrl || '',
-          dueno: duenoEncontrado || m.dueno || null,
+          dueno: duenoEncontrado,
           activa: m.activa
         });
       },
@@ -104,7 +106,7 @@ export class MascotaFormComponent implements OnInit {
       enfermedad: formVal.enfermedad || '',
       fotoUrl: formVal.fotoUrl || undefined,
       activa: formVal.activa ?? true,
-      dueno: formVal.dueno || undefined
+      duenoId: formVal.dueno?.id
     };
 
     if (this.isEdit && this.mascotaId) {

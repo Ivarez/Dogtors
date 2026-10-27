@@ -7,11 +7,17 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repositorio JPA para la gestión de mascotas y búsquedas por dueño o nombre.
+ */
 @Repository
 public interface MascotaRepository extends JpaRepository<Mascota, Long> {
-    // JPA genera la consulta automaticamente
+
     List<Mascota> findByDueno(Dueno dueno);
 
-    // Consulta directa por ID del dueno (patrón Transcript 10)
     List<Mascota> findByDuenoId(Long duenoId);
+
+    List<Mascota> findByNombreContainingIgnoreCase(String nombre);
+
+    long countByActivaTrue();
 }

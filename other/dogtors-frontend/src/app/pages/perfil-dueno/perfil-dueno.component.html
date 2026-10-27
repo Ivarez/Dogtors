@@ -16,7 +16,7 @@
           <div class="eyebrow">PORTAL DEL PROPIETARIO · EXPEDIENTES</div>
           <h1>Hola, {{ dueno.nombre }}</h1>
           <p class="subtitle">
-            Seguimiento en tiempo real de sus compañeros bajo nuestra supervisión clínica veterinaria.
+            Cédula: {{ dueno.cedula || 'N/A' }} &bull; Correo: {{ dueno.correo }} &bull; Celular: {{ dueno.celular || 'N/A' }}
           </p>
         </div>
 

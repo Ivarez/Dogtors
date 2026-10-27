@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Dueno } from '../models/dueno.model';
 
+/**
+ * Servicio HTTP para la gestión de propietarios (dueños de mascotas).
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +19,10 @@ export class DuenoService {
 
   obtenerDuenoPorId(id: number): Observable<Dueno> {
     return this.http.get<Dueno>(`${this.apiUrl}/${id}`);
+  }
+
+  obtenerDuenoPorCedula(cedula: string): Observable<Dueno> {
+    return this.http.get<Dueno>(`${this.apiUrl}/cedula/${cedula}`);
   }
 
   agregarDueno(dueno: Dueno): Observable<Dueno> {

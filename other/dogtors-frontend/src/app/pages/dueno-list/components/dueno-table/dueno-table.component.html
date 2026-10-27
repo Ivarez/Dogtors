@@ -1,17 +1,18 @@
-<div class="table-responsive">
+<div class="table-responsive" tabindex="0" role="region" aria-label="Tabla de propietarios registrados">
   <table class="dueno-table">
     <thead>
       <tr>
-        <th>ID</th>
+        <th>CÉDULA</th>
         <th>PROPIETARIO</th>
         <th>CORREO ELECTRÓNICO</th>
+        <th>CELULAR</th>
         <th class="text-right">ACCIONES</th>
       </tr>
     </thead>
     <tbody>
       @for (dueno of duenoArray(); track dueno.id) {
         <tr>
-          <td class="id-cell">#{{ dueno.id }}</td>
+          <td class="id-cell">{{ dueno.cedula || ('#' + dueno.id) }}</td>
           <td>
             <div class="owner-cell">
               <div class="owner-avatar">{{ dueno.nombre.charAt(0) }}</div>
@@ -19,6 +20,7 @@
             </div>
           </td>
           <td class="email-text">{{ dueno.correo }}</td>
+          <td class="email-text">{{ dueno.celular || '—' }}</td>
           <td class="text-right actions-cell">
             <a [routerLink]="['/duenos', dueno.id]" class="btn-action btn-view">Ver</a>
             <a [routerLink]="['/duenos/editar', dueno.id]" class="btn-action btn-edit">Editar</a>
@@ -27,10 +29,9 @@
         </tr>
       } @empty {
         <tr>
-          <td colspan="4" class="empty-message">No hay propietarios registrados.</td>
+          <td colspan="5" class="empty-message">No hay propietarios registrados que coincidan con la búsqueda.</td>
         </tr>
       }
     </tbody>
   </table>
 </div>
-

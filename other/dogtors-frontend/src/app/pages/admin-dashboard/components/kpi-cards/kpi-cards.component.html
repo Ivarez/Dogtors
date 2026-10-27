@@ -1,0 +1,73 @@
+<!-- Tarjetas de Indicadores Operativos y Financieros de la Veterinaria (AC29) -->
+<div class="kpi-grid">
+  <!-- 1. Cantidad total de tratamientos administrados en el último mes -->
+  <article class="kpi-card highlight-teal">
+    <div class="kpi-top">
+      <span class="kpi-label">TRATAMIENTOS (ÚLTIMO MES)</span>
+      <span class="kpi-icon">💉</span>
+    </div>
+    <div class="kpi-value">{{ kpis().tratamientosUltimoMes }}</div>
+    <p class="kpi-foot">Tratamientos suministrados en los últimos 30 días</p>
+  </article>
+
+  <!-- 3 & 4. Veterinarios activos e inactivos -->
+  <article class="kpi-card">
+    <div class="kpi-top">
+      <span class="kpi-label">VETERINARIOS EN PLATAFORMA</span>
+      <span class="kpi-icon">🩺</span>
+    </div>
+    <div class="kpi-split-values">
+      <div class="split-item">
+        <span class="kpi-value text-success">{{ kpis().veterinariosActivos }}</span>
+        <span class="split-tag badge-active">Activos</span>
+      </div>
+      <div class="split-divider"></div>
+      <div class="split-item">
+        <span class="kpi-value text-muted">{{ kpis().veterinariosInactivos }}</span>
+        <span class="split-tag badge-inactive">Inactivos</span>
+      </div>
+    </div>
+    <p class="kpi-foot">Personal médico registrado en la clínica</p>
+  </article>
+
+  <!-- 5 & 6. Mascotas totales y activas (en tratamiento) -->
+  <article class="kpi-card">
+    <div class="kpi-top">
+      <span class="kpi-label">PACIENTES REGISTRADOS</span>
+      <span class="kpi-icon">🐾</span>
+    </div>
+    <div class="kpi-split-values">
+      <div class="split-item">
+        <span class="kpi-value">{{ kpis().mascotasTotales }}</span>
+        <span class="split-tag">Totales</span>
+      </div>
+      <div class="split-divider"></div>
+      <div class="split-item">
+        <span class="kpi-value text-teal">{{ kpis().mascotasActivas }}</span>
+        <span class="split-tag badge-active">En Tratamiento</span>
+      </div>
+    </div>
+    <p class="kpi-foot">Mascotas totales vs. hospitalizadas activas</p>
+  </article>
+
+  <!-- 7. Ventas totales de la veterinaria -->
+  <article class="kpi-card financial-card">
+    <div class="kpi-top">
+      <span class="kpi-label">VENTAS TOTALES</span>
+      <span class="kpi-icon">💳</span>
+    </div>
+    <div class="kpi-value currency">${{ kpis().ventasTotales | number:'1.2-2' }}</div>
+    <p class="kpi-foot">Ingresos brutos por medicamentos vendidos</p>
+  </article>
+
+  <!-- 8. Ganancias totales de la veterinaria -->
+  <article class="kpi-card financial-card profit-card">
+    <div class="kpi-top">
+      <span class="kpi-label">GANANCIAS TOTALES NETAS</span>
+      <span class="kpi-icon">📈</span>
+    </div>
+    <div class="kpi-value currency text-profit">${{ kpis().gananciasTotales | number:'1.2-2' }}</div>
+    <p class="kpi-foot">Utilidad neta (Precio Venta − Precio Compra)</p>
+  </article>
+</div>
+

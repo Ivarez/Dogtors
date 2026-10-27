@@ -1,0 +1,61 @@
+<div class="list-page">
+  <div class="container">
+    <!-- Encabezado -->
+    <div class="page-header">
+      <div>
+        <div class="eyebrow">PORTAL ADMINISTRATIVO &bull; PERSONAL MÉDICO</div>
+        <h1>Gestión de Veterinarios</h1>
+        <p class="subtitle">
+          Administre el equipo médico veterinario, consulte su número de atenciones, active/desactive cuentas o registre nuevos especialistas.
+        </p>
+      </div>
+      <div class="header-actions">
+        <a routerLink="/admin/dashboard" class="btn-outline">Ver Dashboard</a>
+        <a routerLink="/admin/veterinarios/nuevo" class="btn-primary">+ Registrar Veterinario</a>
+      </div>
+    </div>
+
+    <!-- Tarjetas de resumen -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-label">TOTAL VETERINARIOS</span>
+        <span class="stat-value">{{ totalCount }}</span>
+      </div>
+      <div class="stat-card stat-active">
+        <span class="stat-label">VETERINARIOS ACTIVOS</span>
+        <span class="stat-value">{{ activosCount }}</span>
+      </div>
+      <div class="stat-card stat-inactive">
+        <span class="stat-label">VETERINARIOS INACTIVOS</span>
+        <span class="stat-value">{{ inactivosCount }}</span>
+      </div>
+    </div>
+
+    <!-- Barra de búsqueda por cédula, nombre o especialidad -->
+    <div class="search-toolbar">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          type="search"
+          [(ngModel)]="filtroBusqueda"
+          placeholder="Buscar veterinario por cédula, nombre o especialidad..."
+          class="search-input"
+          aria-label="Buscar veterinario por cédula, nombre o especialidad" />
+        @if (filtroBusqueda) {
+          <button type="button" class="btn-clear-search" (click)="filtroBusqueda = ''">✕</button>
+        }
+      </div>
+      <span class="results-counter">
+        Mostrando {{ veterinariosFiltrados.length }} de {{ totalCount }} veterinarios
+      </span>
+    </div>
+
+    <!-- Tabla de veterinarios (componente hijo) -->
+    <app-veterinario-table
+      [veterinarios]="veterinariosFiltrados"
+      (estadoCambiado)="onEstadoCambiado($event)"
+      (veterinarioEliminado)="onVeterinarioEliminado($event)">
+    </app-veterinario-table>
+  </div>
+</div>
+

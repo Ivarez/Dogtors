@@ -11,6 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Implementación del servicio de mascotas.
+ * Las mascotas no se eliminan directamente, sino que cambian su estado entre activa e inactiva.
+ */
 @Service
 public class MascotaServiceImpl implements MascotaService {
 
@@ -26,6 +30,14 @@ public class MascotaServiceImpl implements MascotaService {
     }
 
     @Override
+    public List<Mascota> buscarPorNombre(String nombre) {
+        if (nombre == null || nombre.isBlank()) {
+            return mascotaRepository.findAll();
+        }
+        return mascotaRepository.findByNombreContainingIgnoreCase(nombre.trim());
+    }
+
+    @Override
     public Mascota buscarPorId(Long id) {
         return mascotaRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(id, "mascota"));
@@ -37,12 +49,13 @@ public class MascotaServiceImpl implements MascotaService {
         if (mascota.getActiva() == null) {
             mascota.setActiva(true);
         }
-        // Buscar el dueno y asociarlo a la mascota
+        if (mascota.getEnfermedad() == null) {
+            mascota.setEnfermedad("");
+        }
         Dueno dueno = duenoRepository.findById(duenoId)
                 .orElseThrow(() -> new NotFoundException(duenoId, "dueno"));
         mascota.setDueno(dueno);
 
-        // Mantener tratamientos existentes en caso de actualización
         if (mascota.getId() != null) {
             mascotaRepository.findById(mascota.getId()).ifPresent(existente -> {
                 mascota.setTratamientos(existente.getTratamientos());
@@ -55,7 +68,7 @@ public class MascotaServiceImpl implements MascotaService {
     @Override
     @Transactional
     public void cambiarEstado(Long id) {
-        // No eliminar mascota, solo cambiar su estado de activa/inactiva
+        // Las mascotas únicamente se activan o desactivan según si están hospitalizadas o en casa
         Mascota mascota = mascotaRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(id, "mascota"));
         mascota.setActiva(!mascota.getActiva());
@@ -68,16 +81,27 @@ public class MascotaServiceImpl implements MascotaService {
         if (mascota.getActiva() == null) {
             mascota.setActiva(true);
         }
-        if (mascota.getDueno() != null && mascota.getDueno().getId() != null) {
-            Dueno dueno = duenoRepository.findById(mascota.getDueno().getId())
-                    .orElseThrow(() -> new NotFoundException(mascota.getDueno().getId(), "dueno"));
+        if (mascota.getEnfermedad() == null) {
+            mascota.setEnfermedad("");
+        }
+
+        // Resolver dueño ya sea por el campo plano duenoId o por referencia existente
+        Long idDueno = mascota.getDuenoId();
+        if (idDueno != null) {
+            Dueno dueno = duenoRepository.findById(idDueno)
+                    .orElseThrow(() -> new NotFoundException(idDueno, "dueno"));
             mascota.setDueno(dueno);
         }
+
         if (mascota.getId() != null) {
             mascotaRepository.findById(mascota.getId()).ifPresent(existente -> {
+                if (mascota.getDueno() == null) {
+                    mascota.setDueno(existente.getDueno());
+                }
                 mascota.setTratamientos(existente.getTratamientos());
             });
         }
+
         mascotaRepository.save(mascota);
     }
 

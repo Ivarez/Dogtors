@@ -31,8 +31,13 @@
         <ul>
           @if (authService.esDueno()) {
             <li><a [routerLink]="['/perfil', authService.usuarioActual()?.id]">Mis Mascotas</a></li>
+          } @else if (authService.esAdmin()) {
+            <li><a routerLink="/admin/dashboard">Dashboard Administrativo</a></li>
+            <li><a routerLink="/admin/veterinarios">Gestión de Veterinarios</a></li>
+            <li><a routerLink="/medicamentos">Inventario de Medicamentos</a></li>
           } @else if (authService.esVeterinario()) {
             <li><a routerLink="/mascotas">Listado de Pacientes</a></li>
+            <li><a routerLink="/mis-pacientes">Mis Pacientes Tratados</a></li>
             <li><a routerLink="/duenos">Directorio de Dueños</a></li>
             <li><a routerLink="/tratamientos/nuevo">Asignar Tratamiento</a></li>
           } @else {

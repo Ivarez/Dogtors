@@ -1,5 +1,6 @@
 package com.veterinaria.dogtors.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +8,10 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Entidad que representa a un médico veterinario de la clínica.
+ * Incluye cédula, especialidad, foto, estado laboral (activo/inactivo) y conteo de atenciones.
+ */
 @Entity
 @Getter
 @Setter
@@ -15,6 +20,9 @@ public class Veterinario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true, length = 30)
+    private String cedula;
 
     @Column(nullable = false, length = 100)
     private String nombre;
@@ -25,33 +33,58 @@ public class Veterinario {
     @Column(nullable = false, length = 100)
     private String password;
 
-    @Column(length = 100)
+    @Column(nullable = false, length = 100)
     private String especialidad;
 
-    @OneToMany(mappedBy = "veterinario")
-    @com.fasterxml.jackson.annotation.JsonIgnore
+    @Column(length = 500)
+    private String fotoUrl;
+
+    @Column(nullable = false)
+    private Boolean activo = true;
+
+    @OneToMany(mappedBy = "veterinario", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
     public Veterinario() {
     }
 
-    public Veterinario(Long id, String nombre, String correo, String password, String especialidad, List<Tratamiento> tratamientos) {
+    public Veterinario(Long id, String cedula, String nombre, String correo, String password,
+                       String especialidad, String fotoUrl, Boolean activo, List<Tratamiento> tratamientos) {
         this.id = id;
+        this.cedula = cedula;
         this.nombre = nombre;
         this.correo = correo;
         this.password = password;
         this.especialidad = especialidad;
+        this.fotoUrl = fotoUrl;
+        this.activo = (activo != null) ? activo : true;
         if (tratamientos != null) {
             this.tratamientos = tratamientos;
         }
     }
 
-    // Constructor con todos los parametros excepto id y relaciones
-    public Veterinario(String nombre, String correo, String password, String especialidad) {
+    public Veterinario(String cedula, String nombre, String correo, String password,
+                       String especialidad, String fotoUrl, Boolean activo) {
+        this.cedula = cedula;
         this.nombre = nombre;
         this.correo = correo;
         this.password = password;
         this.especialidad = especialidad;
+        this.fotoUrl = fotoUrl;
+        this.activo = (activo != null) ? activo : true;
+    }
+
+    public Veterinario(String nombre, String correo, String password, String especialidad) {
+        this(
+                "8000" + Math.abs(correo != null ? correo.hashCode() % 100000 : 0),
+                nombre,
+                correo,
+                password,
+                especialidad,
+                "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400",
+                true
+        );
     }
 
     public Long getId() {
@@ -60,6 +93,14 @@ public class Veterinario {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     public String getNombre() {
@@ -94,6 +135,30 @@ public class Veterinario {
         this.especialidad = especialidad;
     }
 
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
+
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    /**
+     * Calcula el número de atenciones (tratamientos suministrados) por este veterinario.
+     */
+    public Integer getNumeroAtenciones() {
+        return tratamientos != null ? tratamientos.size() : 0;
+    }
+
+    @JsonIgnore
     public List<Tratamiento> getTratamientos() {
         return tratamientos;
     }

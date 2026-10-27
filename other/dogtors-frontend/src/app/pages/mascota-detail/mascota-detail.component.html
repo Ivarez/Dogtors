@@ -27,12 +27,12 @@
           (estadoCambiado)="cambiarEstado()">
         </app-pet-info>
 
-        <!-- Componente hijo: Historial de tratamientos -->
+        <!-- Componente hijo: Historial de tratamientos (solo permite asignar si la mascota está activa) -->
         <app-treatments-history
           [tratamientos]="mascota.tratamientos || []"
           [mascotaId]="mascota.id"
           [mascotaNombre]="mascota.nombre"
-          [permitirAsignar]="!authService.esDueno()">
+          [permitirAsignar]="!authService.esDueno() && !!mascota.activa">
         </app-treatments-history>
       </div>
     } @else {

@@ -11,12 +11,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { PerfilDuenoComponent } from './pages/perfil-dueno/perfil-dueno.component';
 import { MedicamentosExcelComponent } from './pages/medicamentos-excel/medicamentos-excel.component';
 import { TratamientoFormComponent } from './pages/tratamiento-form/tratamiento-form.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { VeterinarioListComponent } from './pages/veterinario-list/veterinario-list.component';
+import { VeterinarioFormComponent } from './pages/veterinario-form/veterinario-form.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { AuthService } from './services/auth.service';
 
 /**
- * Restringe el acceso a rutas exclusivas del veterinario (CRUD de mascotas, CRUD de dueños,
- * asignación de tratamientos y catálogo de medicamentos) si el usuario en sesión es un cliente.
+ * Restringe el acceso a rutas exclusivas del personal (veterinario / administrador)
+ * si el usuario en sesión es un cliente (DUEÑO).
  */
 export const restringirClienteGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
@@ -34,6 +37,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'perfil/:id', component: PerfilDuenoComponent },
   { path: 'mascotas', component: MascotaListComponent, canActivate: [restringirClienteGuard] },
+  { path: 'mis-pacientes', component: MascotaListComponent, canActivate: [restringirClienteGuard] },
   { path: 'mascotas/nueva', component: MascotaFormComponent, canActivate: [restringirClienteGuard] },
   { path: 'mascotas/editar/:id', component: MascotaFormComponent, canActivate: [restringirClienteGuard] },
   { path: 'mascotas/:id', component: MascotaDetailComponent },
@@ -45,6 +49,10 @@ export const routes: Routes = [
   { path: 'drogas', redirectTo: 'medicamentos' },
   { path: 'tratamientos', component: TratamientoFormComponent, canActivate: [restringirClienteGuard] },
   { path: 'tratamientos/nuevo', component: TratamientoFormComponent, canActivate: [restringirClienteGuard] },
+  { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [restringirClienteGuard] },
+  { path: 'admin/veterinarios', component: VeterinarioListComponent, canActivate: [restringirClienteGuard] },
+  { path: 'admin/veterinarios/nuevo', component: VeterinarioFormComponent, canActivate: [restringirClienteGuard] },
+  { path: 'admin/veterinarios/editar/:id', component: VeterinarioFormComponent, canActivate: [restringirClienteGuard] },
   { path: 'error', component: ErrorPageComponent },
   { path: '**', redirectTo: '' }
 ];

@@ -1,0 +1,69 @@
+<div class="table-responsive" tabindex="0" role="region" aria-label="Tabla de médicos veterinarios">
+  <table class="veterinario-table">
+    <thead>
+      <tr>
+        <th>VETERINARIO</th>
+        <th>CÉDULA</th>
+        <th>ESPECIALIDAD</th>
+        <th>CORREO INSTITUCIONAL</th>
+        <th>ATENCIONES</th>
+        <th>ESTADO</th>
+        <th class="text-right">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (v of veterinarios(); track v.id) {
+        <tr>
+          <td class="vet-cell">
+            @if (v.fotoUrl) {
+              <img [src]="v.fotoUrl" [alt]="v.nombre" class="vet-avatar" />
+            } @else {
+              <div class="vet-avatar-placeholder">🩺</div>
+            }
+            <div>
+              <div class="vet-name">{{ v.nombre }}</div>
+              <div class="vet-meta">ID #{{ v.id }}</div>
+            </div>
+          </td>
+          <td>
+            <span class="cedula-text">{{ v.cedula || 'N/A' }}</span>
+          </td>
+          <td>
+            <span class="spec-pill">{{ v.especialidad }}</span>
+          </td>
+          <td>
+            <span class="email-text">{{ v.correo }}</span>
+          </td>
+          <td>
+            <span class="atenciones-badge">{{ v.numeroAtenciones ?? 0 }} tratamientos</span>
+          </td>
+          <td>
+            @if (v.activo !== false) {
+              <span class="badge badge-activa">Activo</span>
+            } @else {
+              <span class="badge badge-inactiva">Inactivo</span>
+            }
+          </td>
+          <td class="actions-cell text-right">
+            <a [routerLink]="['/admin/veterinarios/editar', v.id]" class="btn-action btn-edit">
+              Editar
+            </a>
+            <button type="button" class="btn-action btn-toggle" (click)="cambiarEstado(v.id)">
+              {{ v.activo !== false ? 'Desactivar' : 'Activar' }}
+            </button>
+            <button type="button" class="btn-action btn-delete" (click)="eliminar(v.id)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="7" class="empty-message">
+            No se encontraron veterinarios que coincidan con la búsqueda.
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+

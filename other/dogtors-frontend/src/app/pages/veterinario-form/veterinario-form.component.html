@@ -1,0 +1,102 @@
+<div class="form-page">
+  <div class="container">
+    <div class="back-nav">
+      <a routerLink="/admin/veterinarios" class="back-link">&larr; Volver a Gestión de Veterinarios</a>
+    </div>
+
+    <div class="form-card">
+      <div class="form-header">
+        <div class="eyebrow">{{ esEdicion ? 'ACTUALIZAR ESPECIALISTA' : 'NUEVO ESPECIALISTA' }}</div>
+        <h1>{{ esEdicion ? 'Editar Veterinario' : 'Registrar Nuevo Veterinario' }}</h1>
+        <p class="subtitle">
+          Complete la información profesional y las credenciales de acceso del médico veterinario.
+        </p>
+      </div>
+
+      @if (errorMsg) {
+        <div class="alert-error full-width" aria-live="polite">
+          <span>⚠️ {{ errorMsg }}</span>
+        </div>
+      }
+
+      <form [formGroup]="veterinarioForm" (ngSubmit)="handleSubmit()" class="form-grid">
+        <!-- Cédula -->
+        <app-form-field
+          label="Cédula Profesional *"
+          fieldId="cedula"
+          [control]="$any(veterinarioForm.get('cedula'))"
+          placeholder="Ej: 80100001"
+          errorMessage="La cédula del veterinario es obligatoria.">
+        </app-form-field>
+
+        <!-- Nombre Completo -->
+        <app-form-field
+          label="Nombre Completo *"
+          fieldId="nombre"
+          [control]="$any(veterinarioForm.get('nombre'))"
+          placeholder="Ej: Dr. Vet 1"
+          errorMessage="El nombre completo es obligatorio.">
+        </app-form-field>
+
+        <!-- Especialidad -->
+        <app-form-field
+          label="Especialidad Médica *"
+          fieldId="especialidad"
+          [control]="$any(veterinarioForm.get('especialidad'))"
+          placeholder="Ej: Medicina Interna, Cirugía, Cardiología"
+          errorMessage="La especialidad es obligatoria.">
+        </app-form-field>
+
+        <!-- Correo -->
+        <app-form-field
+          label="Correo Institucional *"
+          fieldId="correo"
+          type="email"
+          [control]="$any(veterinarioForm.get('correo'))"
+          placeholder="Ej: vet1&#64;dogtors.com"
+          errorMessage="Ingrese un correo institucional válido.">
+        </app-form-field>
+
+        <!-- Contraseña -->
+        <app-form-field
+          label="Contraseña de Acceso *"
+          fieldId="password"
+          type="text"
+          [control]="$any(veterinarioForm.get('password'))"
+          placeholder="Contraseña para el portal veterinario"
+          errorMessage="La contraseña es obligatoria."
+          hint="La contraseña es visible con fines administrativos.">
+        </app-form-field>
+
+        <!-- Foto URL -->
+        <app-form-field
+          label="URL de Fotografía (Opcional)"
+          fieldId="fotoUrl"
+          type="url"
+          [control]="$any(veterinarioForm.get('fotoUrl'))"
+          placeholder="https://images.unsplash.com/..."
+          errorMessage="Ingrese una URL válida.">
+        </app-form-field>
+
+        <!-- Estado Activo -->
+        <div class="form-group full-width checkbox-row">
+          <label class="checkbox-label">
+            <input type="checkbox" formControlName="activo" />
+            <span>Veterinario activo en la plataforma (puede iniciar sesión y suministrar tratamientos)</span>
+          </label>
+        </div>
+
+        <!-- Botones -->
+        <div class="form-actions full-width">
+          <a routerLink="/admin/veterinarios" class="btn-cancel">Cancelar</a>
+          <button
+            type="submit"
+            class="btn-submit"
+            [disabled]="!veterinarioForm.valid">
+            {{ esEdicion ? 'Guardar Cambios' : 'Registrar Veterinario' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

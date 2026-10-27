@@ -53,10 +53,16 @@
     <!-- Owner Box -->
     <div class="owner-box">
       <span class="owner-box-title">PROPIETARIO RESPONSABLE</span>
-      @if (mascota().dueno) {
+      @if (mascota().duenoNombre || mascota().dueno) {
         <div class="owner-info">
-          <strong>{{ mascota().dueno?.nombre }}</strong>
-          <span class="owner-email">{{ mascota().dueno?.correo }}</span>
+          <strong>{{ mascota().duenoNombre || mascota().dueno?.nombre }}</strong>
+          @if (mascota().duenoCedula || mascota().dueno?.cedula) {
+            <span class="owner-email">C.C. {{ mascota().duenoCedula || mascota().dueno?.cedula }}</span>
+          }
+          <span class="owner-email">{{ mascota().duenoCorreo || mascota().dueno?.correo }}</span>
+          @if (mascota().duenoCelular || mascota().dueno?.celular) {
+            <span class="owner-email">Cel: {{ mascota().duenoCelular || mascota().dueno?.celular }}</span>
+          }
         </div>
       } @else {
         <p class="no-owner">Sin propietario registrado</p>

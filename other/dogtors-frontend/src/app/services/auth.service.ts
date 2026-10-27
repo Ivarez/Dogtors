@@ -1,18 +1,29 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, tap } from 'rxjs';
+import { Observable, catchError, map, tap, throwError } from 'rxjs';
 import { Dueno } from '../models/dueno.model';
 import { Veterinario } from '../models/veterinario.model';
+import { Administrador } from '../models/administrador.model';
 
+/**
+ * Interfaz que representa al usuario autenticado en el cliente (Dueño, Veterinario o Administrador).
+ */
 export interface UsuarioSesion {
   id?: number;
+  cedula?: string;
   nombre: string;
   correo: string;
+  celular?: string;
   password?: string;
   especialidad?: string;
-  rol?: 'DUENO' | 'VETERINARIO';
+  fotoUrl?: string;
+  activo?: boolean;
+  rol?: 'DUENO' | 'VETERINARIO' | 'ADMIN';
 }
 
+/**
+ * Servicio de autenticación y gestión de sesión por roles en el frontend.
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +31,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private readonly duenosLoginUrl = 'http://localhost:8080/duenos/login';
   private readonly veterinariosLoginUrl = 'http://localhost:8080/veterinarios/login';
+  private readonly administradoresLoginUrl = 'http://localhost:8080/administradores/login';
   private readonly storageKeyUsuario = 'dogtors_usuario_sesion';
   private readonly storageKeyVet = 'dogtors_veterinario_sesion';
 
@@ -64,8 +76,8 @@ export class AuthService {
   }
 
   /**
-   * Login universal: intenta autenticar primero como Veterinario y, si no coincide,
-   * intenta autenticar como Dueño/Cliente.
+   * Login universal: intenta autenticar primero como Veterinario (respetando el bloqueo si está desactivado),
+   * luego como Administrador y finalmente como Dueño/Cliente.
    */
   login(correo: string, password: string): Observable<UsuarioSesion> {
     return this.http.post<Veterinario>(this.veterinariosLoginUrl, { correo, password }).pipe(
@@ -80,17 +92,33 @@ export class AuthService {
         this.guardarSesion(usuario, vet);
       }),
       map(({ usuario }) => usuario),
-      catchError(() =>
-        this.http.post<Dueno>(this.duenosLoginUrl, { correo, password }).pipe(
-          map((dueno): UsuarioSesion => ({
-            ...dueno,
-            rol: 'DUENO'
+      catchError((errVet) => {
+        const msgVet: string = errVet?.error?.message || errVet?.error?.error || '';
+        // Si el veterinario está desactivado, propagar el error inmediatamente para impedir el login
+        if (msgVet.toLowerCase().includes('desactivado') || msgVet.toLowerCase().includes('inactivo')) {
+          return throwError(() => errVet);
+        }
+        return this.http.post<Administrador>(this.administradoresLoginUrl, { correo, password }).pipe(
+          map((admin): UsuarioSesion => ({
+            ...admin,
+            rol: 'ADMIN'
           })),
           tap(usuario => {
             this.guardarSesion(usuario, null);
-          })
-        )
-      )
+          }),
+          catchError(() =>
+            this.http.post<Dueno>(this.duenosLoginUrl, { correo, password }).pipe(
+              map((dueno): UsuarioSesion => ({
+                ...dueno,
+                rol: 'DUENO'
+              })),
+              tap(usuario => {
+                this.guardarSesion(usuario, null);
+              })
+            )
+          )
+        );
+      })
     );
   }
 
@@ -110,6 +138,10 @@ export class AuthService {
 
   estaAutenticado(): boolean {
     return this.usuarioActual() !== null;
+  }
+
+  esAdmin(): boolean {
+    return this.usuarioActual()?.rol === 'ADMIN';
   }
 
   esVeterinario(): boolean {
