@@ -1,0 +1,54 @@
+<div class="account-page">
+  <div class="container">
+    <!-- Breadcrumb / Regreso -->
+    <div class="back-nav">
+      @if (usuario?.rol === 'DUENO') {
+        <a [routerLink]="['/perfil', usuario?.id]" class="back-link">&larr; Volver a Mis Mascotas</a>
+      } @else if (usuario?.rol === 'ADMIN') {
+        <a routerLink="/admin/dashboard" class="back-link">&larr; Volver al Dashboard</a>
+      } @else {
+        <a routerLink="/mascotas" class="back-link">&larr; Volver al Directorio Clínico</a>
+      }
+    </div>
+
+    <!-- Encabezado de la página -->
+    <header class="page-header">
+      <div class="header-left">
+        <div class="eyebrow">CONFIGURACIÓN &bull; PERFIL DE USUARIO</div>
+        <h1>Mi Cuenta</h1>
+        <p class="subtitle">
+          Información personal, identificación ciudadana y detalles de su cuenta en Dogtors.
+        </p>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" class="btn-logout" (click)="logout()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Cerrar Sesión
+        </button>
+      </div>
+    </header>
+
+    @if (cargando) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Cargando información de su cuenta...</p>
+      </div>
+    } @else {
+      <div class="account-grid">
+        <!-- Tarjeta 1: Información de contacto y Cédula (Componente hijo) -->
+        <app-user-info-card [usuario]="usuario"></app-user-info-card>
+
+        <!-- Tarjeta 2: Resumen y estado (Componente hijo) -->
+        <app-account-activity-card
+          [usuario]="usuario"
+          [totalMascotas]="totalMascotas">
+        </app-account-activity-card>
+      </div>
+    }
+  </div>
+</div>

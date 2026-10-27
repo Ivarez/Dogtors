@@ -9,6 +9,7 @@ import { DuenoFormComponent } from './pages/dueno-form/dueno-form.component';
 import { DuenoDetailComponent } from './pages/dueno-detail/dueno-detail.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PerfilDuenoComponent } from './pages/perfil-dueno/perfil-dueno.component';
+import { MiCuentaComponent } from './pages/mi-cuenta/mi-cuenta.component';
 import { MedicamentosExcelComponent } from './pages/medicamentos-excel/medicamentos-excel.component';
 import { TratamientoFormComponent } from './pages/tratamiento-form/tratamiento-form.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
@@ -36,6 +37,7 @@ export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'perfil/:id', component: PerfilDuenoComponent },
+  { path: 'mi-cuenta', component: MiCuentaComponent },
   { path: 'mascotas', component: MascotaListComponent, canActivate: [restringirClienteGuard] },
   { path: 'mis-pacientes', component: MascotaListComponent, canActivate: [restringirClienteGuard] },
   { path: 'mascotas/nueva', component: MascotaFormComponent, canActivate: [restringirClienteGuard] },

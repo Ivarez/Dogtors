@@ -1,0 +1,79 @@
+<div class="user-card">
+  <div class="card-header">
+    <div class="avatar-large">
+      {{ usuario()?.nombre?.charAt(0)?.toUpperCase() || 'U' }}
+    </div>
+    <div class="header-titles">
+      <h3>{{ usuario()?.nombre }}</h3>
+      <div class="role-pill">
+        @if (usuario()?.rol === 'ADMIN') {
+          <span>Administrador del Sistema</span>
+        } @else if (usuario()?.rol === 'VETERINARIO') {
+          <span>Médico Veterinario Especialista</span>
+        } @else {
+          <span>Propietario / Cliente Registrado</span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <!-- Cédula -->
+    <div class="info-item">
+      <div class="item-label">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <circle cx="9" cy="10" r="2"/>
+          <line x1="15" y1="8" x2="17" y2="8"/>
+          <line x1="15" y1="12" x2="17" y2="12"/>
+          <line x1="7" y1="16" x2="17" y2="16"/>
+        </svg>
+        <span>Cédula de Ciudadanía</span>
+      </div>
+      <div class="item-value font-mono">
+        {{ usuario()?.cedula || 'No registrada' }}
+      </div>
+    </div>
+
+    <!-- Correo -->
+    <div class="info-item">
+      <div class="item-label">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <span>Correo Electrónico</span>
+      </div>
+      <div class="item-value">
+        {{ usuario()?.correo }}
+      </div>
+    </div>
+
+    <!-- Celular -->
+    <div class="info-item">
+      <div class="item-label">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span>Teléfono Celular</span>
+      </div>
+      <div class="item-value">
+        {{ usuario()?.celular || 'No registrado' }}
+      </div>
+    </div>
+
+    <!-- Identificador Único -->
+    <div class="info-item">
+      <div class="item-label">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="4 17 10 11 4 5"/>
+          <line x1="12" y1="19" x2="20" y2="19"/>
+        </svg>
+        <span>ID de Expediente</span>
+      </div>
+      <div class="item-value font-mono">
+        #{{ usuario()?.id }}
+      </div>
+    </div>
+  </div>
+</div>

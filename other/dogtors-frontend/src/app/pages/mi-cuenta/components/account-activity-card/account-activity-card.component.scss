@@ -1,0 +1,136 @@
+.activity-card {
+  background: var(--surface);
+  border: 1px solid var(--borders);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 14px rgba(32, 37, 34, 0.04);
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--borders);
+
+  h4 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--dark);
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  &.badge-active {
+    background: #ecfdf5;
+    color: #065f46;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+  }
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.activity-box {
+  background: #FAFBFA;
+  border: 1px solid var(--borders);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .activity-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(31, 93, 80, 0.1);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    &.icon-security {
+      background: rgba(59, 130, 246, 0.1);
+      color: #2563eb;
+    }
+  }
+
+  .activity-details {
+    flex: 1;
+
+    .detail-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--neutral);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .detail-value {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--dark);
+      font-family: 'Outfit', sans-serif;
+      margin-bottom: 2px;
+    }
+
+    .detail-desc {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--neutral);
+      line-height: 1.4;
+    }
+  }
+
+  .activity-action {
+    flex-shrink: 0;
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary);
+      color: var(--surface);
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.15s ease;
+
+      &:hover {
+        background: var(--secondary);
+      }
+    }
+  }
+}

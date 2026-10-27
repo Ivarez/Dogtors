@@ -16,23 +16,32 @@
           <div class="eyebrow">PORTAL DEL PROPIETARIO · EXPEDIENTES</div>
           <h1>Hola, {{ dueno.nombre }}</h1>
           <p class="subtitle">
-            Cédula: {{ dueno.cedula || 'N/A' }} &bull; Correo: {{ dueno.correo }} &bull; Celular: {{ dueno.celular || 'N/A' }}
+            Consulte el estado clínico, evolución médica y tratamientos administrados a sus mascotas.
           </p>
         </div>
 
-        <div class="header-stats">
-          <div class="stat-pill">
-            <span class="stat-num">{{ mascotas.length }}</span>
-            <span class="stat-lbl">Mascotas</span>
+        <div class="header-right">
+          <div class="header-stats">
+            <div class="stat-pill">
+              <span class="stat-num">{{ mascotas.length }}</span>
+              <span class="stat-lbl">Mascotas</span>
+            </div>
+            <div class="stat-pill active-pill">
+              <span class="stat-num">{{ activasCount }}</span>
+              <span class="stat-lbl">Hospitalizadas</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-num">{{ inactivasCount }}</span>
+              <span class="stat-lbl">Con Alta</span>
+            </div>
           </div>
-          <div class="stat-pill active-pill">
-            <span class="stat-num">{{ activasCount }}</span>
-            <span class="stat-lbl">Hospitalizadas</span>
-          </div>
-          <div class="stat-pill">
-            <span class="stat-num">{{ inactivasCount }}</span>
-            <span class="stat-lbl">Con Alta</span>
-          </div>
+          <a routerLink="/mi-cuenta" class="btn-account-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Ver Mi Cuenta
+          </a>
         </div>
       </div>
 

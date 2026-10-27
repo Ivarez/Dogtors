@@ -8,6 +8,7 @@
     <nav class="navbar-links" aria-label="Navegación principal">
       @if (authService.esDueno()) {
         <a [routerLink]="['/perfil', authService.usuarioActual()?.id]" routerLinkActive="active">Mis Mascotas</a>
+        <a routerLink="/mi-cuenta" routerLinkActive="active">Mi Cuenta</a>
       } @else if (authService.esVeterinario()) {
         <a routerLink="/mascotas" routerLinkActive="active">Mascotas</a>
         <a routerLink="/mis-pacientes" routerLinkActive="active">Mis Pacientes</a>
@@ -36,7 +37,7 @@
             {{ usuario.nombre }}
           </a>
         } @else {
-          <a [routerLink]="['/perfil', usuario.id]" routerLinkActive="active" class="link-perfil">
+          <a routerLink="/mi-cuenta" routerLinkActive="active" class="link-perfil">
             <span class="avatar">{{ usuario.nombre.charAt(0).toUpperCase() }}</span>
             Hola, {{ usuario.nombre.split(' ')[0] }}
           </a>
