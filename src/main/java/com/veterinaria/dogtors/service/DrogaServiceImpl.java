@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@SuppressWarnings("null")
 public class DrogaServiceImpl implements DrogaService {
 
     @Autowired
@@ -68,7 +69,7 @@ public class DrogaServiceImpl implements DrogaService {
     public void eliminar(Long id) {
         Droga droga = drogaRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Medicamento no encontrado con ID: " + id));
-        List<com.veterinaria.dogtors.entities.Tratamiento> tratamientos = tratamientoRepository.findByDrogaId(id);
+        List<com.veterinaria.dogtors.entities.Tratamiento> tratamientos = tratamientoRepository.findByDroga_Id(id);
         for (com.veterinaria.dogtors.entities.Tratamiento t : tratamientos) {
             t.setDroga(null);
             tratamientoRepository.save(t);
@@ -123,4 +124,3 @@ public class DrogaServiceImpl implements DrogaService {
         return contador;
     }
 }
-

@@ -23,6 +23,7 @@ import java.util.List;
  * descontando 1 unidad disponible y aumentando 1 unidad vendida.
  */
 @Service
+@SuppressWarnings("null")
 public class TratamientoServiceImpl implements TratamientoService {
 
     @Autowired
@@ -44,12 +45,12 @@ public class TratamientoServiceImpl implements TratamientoService {
 
     @Override
     public List<Tratamiento> buscarPorMascotaId(Long mascotaId) {
-        return tratamientoRepository.findByMascotaId(mascotaId);
+        return tratamientoRepository.findByMascota_Id(mascotaId);
     }
 
     @Override
     public List<Tratamiento> buscarPorVeterinarioId(Long veterinarioId) {
-        return tratamientoRepository.findByVeterinarioId(veterinarioId);
+        return tratamientoRepository.findByVeterinario_Id(veterinarioId);
     }
 
     @Override

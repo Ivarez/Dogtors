@@ -1,31 +1,41 @@
-.list-page {
-  padding: 2.5rem 0 4rem;
+.veterinario-list-page {
+  padding: 40px 0 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .page-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 2rem;
+  margin-bottom: 24px;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.25rem;
 
   .eyebrow {
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     color: var(--primary);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
   }
 
   h1 {
     font-size: 2rem;
-    margin-bottom: 0.3rem;
+    font-weight: 800;
+    font-family: 'Outfit', sans-serif;
+    color: var(--dark);
+    margin: 0 0 0.35rem;
   }
 
   .subtitle {
     color: var(--neutral);
     font-size: 0.95rem;
+    margin: 0;
   }
 }
 
@@ -35,11 +45,30 @@
   gap: 0.75rem;
 }
 
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: var(--surface);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: var(--secondary);
+    color: var(--surface);
+  }
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -49,11 +78,12 @@
 .stat-card {
   background: var(--surface);
   border: 1px solid var(--borders);
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 1.25rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  box-shadow: 0 2px 6px rgba(32, 37, 34, 0.03);
 
   .stat-label {
     font-size: 0.72rem;
@@ -65,7 +95,7 @@
   .stat-value {
     font-size: 2rem;
     font-weight: 800;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Outfit', sans-serif;
     color: var(--dark);
   }
 
@@ -84,13 +114,13 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .search-input-wrap {
   position: relative;
   flex: 1;
-  min-width: 260px;
+  min-width: 280px;
   max-width: 480px;
 
   .search-icon {
@@ -104,7 +134,7 @@
 
   .search-input {
     width: 100%;
-    padding: 0.7rem 2.2rem 0.7rem 2.4rem;
+    padding: 0.75rem 2.2rem 0.75rem 2.4rem;
     border-radius: 10px;
     border: 1px solid var(--borders);
     background: var(--surface);
@@ -136,4 +166,3 @@
   color: var(--neutral);
   font-weight: 500;
 }
-

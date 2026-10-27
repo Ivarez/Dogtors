@@ -2,8 +2,6 @@ package com.veterinaria.dogtors.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +10,6 @@ import java.util.List;
  * Entidad que representa al propietario (cliente) de una o varias mascotas en la clínica.
  */
 @Entity
-@Getter
-@Setter
 public class Dueno {
 
     @Id

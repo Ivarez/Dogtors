@@ -46,7 +46,7 @@
               </td>
               <td class="col-drug">
                 <span class="drug-tag">
-                  💊 {{ t.drogaNombre || 'Medicamento no catalogado' }}
+                  {{ t.drogaNombre || 'Medicamento no catalogado' }}
                 </span>
                 @if (t.drogaPrecioVenta) {
                   <span class="drug-price">${{ t.drogaPrecioVenta | number:'1.2-2' }}</span>
@@ -60,7 +60,11 @@
     </div>
   } @else {
     <div class="no-treatments">
-      <div class="empty-icon">💉</div>
+      <div class="empty-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        </svg>
+      </div>
       <h4>Sin registros de tratamientos farmacológicos</h4>
       <p>Este paciente aún no registra administración de medicamentos en su expediente clínico.</p>
       @if (permitirAsignar()) {

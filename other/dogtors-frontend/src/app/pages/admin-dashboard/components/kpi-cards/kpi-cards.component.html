@@ -1,73 +1,102 @@
-<!-- Tarjetas de Indicadores Operativos y Financieros de la Veterinaria (AC29) -->
-<div class="kpi-grid">
-  <!-- 1. Cantidad total de tratamientos administrados en el último mes -->
-  <article class="kpi-card highlight-teal">
-    <div class="kpi-top">
-      <span class="kpi-label">TRATAMIENTOS (ÚLTIMO MES)</span>
-      <span class="kpi-icon">💉</span>
-    </div>
-    <div class="kpi-value">{{ kpis().tratamientosUltimoMes }}</div>
-    <p class="kpi-foot">Tratamientos suministrados en los últimos 30 días</p>
-  </article>
-
-  <!-- 3 & 4. Veterinarios activos e inactivos -->
-  <article class="kpi-card">
-    <div class="kpi-top">
-      <span class="kpi-label">VETERINARIOS EN PLATAFORMA</span>
-      <span class="kpi-icon">🩺</span>
-    </div>
-    <div class="kpi-split-values">
-      <div class="split-item">
-        <span class="kpi-value text-success">{{ kpis().veterinariosActivos }}</span>
-        <span class="split-tag badge-active">Activos</span>
+<div class="kpi-sections">
+  <!-- Fila 1: Indicadores Operativos y Clínicos -->
+  <div class="kpi-row kpi-row-3">
+    <!-- 1. Cantidad total de tratamientos administrados en el último mes -->
+    <article class="kpi-card highlight-card">
+      <div class="kpi-header">
+        <span class="kpi-title">TRATAMIENTOS (ÚLTIMO MES)</span>
+        <div class="kpi-icon icon-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
       </div>
-      <div class="split-divider"></div>
-      <div class="split-item">
-        <span class="kpi-value text-muted">{{ kpis().veterinariosInactivos }}</span>
-        <span class="split-tag badge-inactive">Inactivos</span>
-      </div>
-    </div>
-    <p class="kpi-foot">Personal médico registrado en la clínica</p>
-  </article>
+      <div class="kpi-main-num text-primary">{{ kpis().tratamientosUltimoMes }}</div>
+      <p class="kpi-caption">Tratamientos suministrados en los últimos 30 días</p>
+    </article>
 
-  <!-- 5 & 6. Mascotas totales y activas (en tratamiento) -->
-  <article class="kpi-card">
-    <div class="kpi-top">
-      <span class="kpi-label">PACIENTES REGISTRADOS</span>
-      <span class="kpi-icon">🐾</span>
-    </div>
-    <div class="kpi-split-values">
-      <div class="split-item">
-        <span class="kpi-value">{{ kpis().mascotasTotales }}</span>
-        <span class="split-tag">Totales</span>
+    <!-- 5 & 6. Mascotas totales y activas (en tratamiento) -->
+    <article class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-title">PACIENTES</span>
+        <div class="kpi-icon icon-neutral">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
       </div>
-      <div class="split-divider"></div>
-      <div class="split-item">
-        <span class="kpi-value text-teal">{{ kpis().mascotasActivas }}</span>
-        <span class="split-tag badge-active">En Tratamiento</span>
+      <div class="kpi-split">
+        <div class="split-col">
+          <span class="split-num">{{ kpis().mascotasTotales }}</span>
+          <span class="split-lbl">Totales</span>
+        </div>
+        <div class="split-sep"></div>
+        <div class="split-col">
+          <span class="split-num text-primary">{{ kpis().mascotasActivas }}</span>
+          <span class="split-lbl text-primary">Hospitalizados</span>
+        </div>
       </div>
-    </div>
-    <p class="kpi-foot">Mascotas totales vs. hospitalizadas activas</p>
-  </article>
+      <p class="kpi-caption">Pacientes registrados en la veterinaria</p>
+    </article>
 
-  <!-- 7. Ventas totales de la veterinaria -->
-  <article class="kpi-card financial-card">
-    <div class="kpi-top">
-      <span class="kpi-label">VENTAS TOTALES</span>
-      <span class="kpi-icon">💳</span>
-    </div>
-    <div class="kpi-value currency">${{ kpis().ventasTotales | number:'1.2-2' }}</div>
-    <p class="kpi-foot">Ingresos brutos por medicamentos vendidos</p>
-  </article>
+    <!-- 3 & 4. Veterinarios activos e inactivos -->
+    <article class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-title">EQUIPO VETERINARIO</span>
+        <div class="kpi-icon icon-neutral">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <polyline points="16 11 18 13 22 9"/>
+          </svg>
+        </div>
+      </div>
+      <div class="kpi-split">
+        <div class="split-col">
+          <span class="split-num text-primary">{{ kpis().veterinariosActivos }}</span>
+          <span class="split-lbl text-primary">Activos</span>
+        </div>
+        <div class="split-sep"></div>
+        <div class="split-col">
+          <span class="split-num text-muted">{{ kpis().veterinariosInactivos }}</span>
+          <span class="split-lbl text-muted">Inactivos</span>
+        </div>
+      </div>
+      <p class="kpi-caption">Especialistas médicos en plataforma</p>
+    </article>
+  </div>
 
-  <!-- 8. Ganancias totales de la veterinaria -->
-  <article class="kpi-card financial-card profit-card">
-    <div class="kpi-top">
-      <span class="kpi-label">GANANCIAS TOTALES NETAS</span>
-      <span class="kpi-icon">📈</span>
-    </div>
-    <div class="kpi-value currency text-profit">${{ kpis().gananciasTotales | number:'1.2-2' }}</div>
-    <p class="kpi-foot">Utilidad neta (Precio Venta − Precio Compra)</p>
-  </article>
+  <!-- Fila 2: Indicadores Financieros -->
+  <div class="kpi-row kpi-row-2">
+    <!-- 7. Ventas totales de la veterinaria -->
+    <article class="kpi-card card-finance">
+      <div class="kpi-header">
+        <span class="kpi-title">VENTAS TOTALES</span>
+        <div class="kpi-icon icon-finance">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="2"/>
+            <line x1="2" y1="10" x2="22" y2="10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="kpi-main-num font-currency">${{ kpis().ventasTotales | number:'1.2-2' }}</div>
+      <p class="kpi-caption">Ingresos brutos acumulados por medicamentos</p>
+    </article>
+
+    <!-- 8. Ganancias totales de la veterinaria -->
+    <article class="kpi-card card-finance card-profit">
+      <div class="kpi-header">
+        <span class="kpi-title">GANANCIAS TOTALES NETAS</span>
+        <div class="kpi-icon icon-profit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </div>
+      </div>
+      <div class="kpi-main-num font-currency text-profit">${{ kpis().gananciasTotales | number:'1.2-2' }}</div>
+      <p class="kpi-caption">Utilidad neta (Precio de venta − Costo de adquisición)</p>
+    </article>
+  </div>
 </div>
-

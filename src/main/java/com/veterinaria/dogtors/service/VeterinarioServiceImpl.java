@@ -21,6 +21,7 @@ import java.util.Map;
  * los tratamientos suministrados, bloquear el login si está inactivo y consultar las mascotas tratadas.
  */
 @Service
+@SuppressWarnings("null")
 public class VeterinarioServiceImpl implements VeterinarioService {
 
     @Autowired
@@ -92,7 +93,7 @@ public class VeterinarioServiceImpl implements VeterinarioService {
     public void eliminar(Long id) {
         Veterinario vet = buscarPorId(id);
         // Conservar el historial de tratamientos desvinculando la llave foránea sin borrar los tratamientos
-        List<Tratamiento> tratamientosDelVet = tratamientoRepository.findByVeterinarioId(id);
+        List<Tratamiento> tratamientosDelVet = tratamientoRepository.findByVeterinario_Id(id);
         for (Tratamiento t : tratamientosDelVet) {
             t.setNombreVeterinarioRespaldo(vet.getNombre());
             t.setEspecialidadVeterinarioRespaldo(vet.getEspecialidad());
@@ -106,7 +107,7 @@ public class VeterinarioServiceImpl implements VeterinarioService {
     @Override
     public List<Mascota> obtenerMascotasTratadas(Long veterinarioId) {
         buscarPorId(veterinarioId);
-        List<Tratamiento> tratamientos = tratamientoRepository.findByVeterinarioId(veterinarioId);
+        List<Tratamiento> tratamientos = tratamientoRepository.findByVeterinario_Id(veterinarioId);
         Map<Long, Mascota> mascotasUnicas = new LinkedHashMap<>();
         for (Tratamiento t : tratamientos) {
             Mascota m = t.getMascota();

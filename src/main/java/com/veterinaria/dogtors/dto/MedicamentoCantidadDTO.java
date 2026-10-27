@@ -1,7 +1,7 @@
 package com.veterinaria.dogtors.dto;
 
 /**
- * DTO plano que representa una fila de la tabla "Medicamento - Cantidad administrada en el último mes" (AC29).
+ * DTO plano que representa una fila de la tabla "Medicamento - Cantidad administrada en el último mes".
  */
 public class MedicamentoCantidadDTO {
 

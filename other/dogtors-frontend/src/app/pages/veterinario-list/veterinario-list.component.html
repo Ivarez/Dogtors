@@ -1,17 +1,18 @@
-<div class="list-page">
+<div class="veterinario-list-page">
   <div class="container">
     <!-- Encabezado -->
     <div class="page-header">
       <div>
-        <div class="eyebrow">PORTAL ADMINISTRATIVO &bull; PERSONAL MÉDICO</div>
-        <h1>Gestión de Veterinarios</h1>
+        <div class="eyebrow">PORTAL ADMINISTRATIVO</div>
+        <h1>Equipo Veterinario</h1>
         <p class="subtitle">
-          Administre el equipo médico veterinario, consulte su número de atenciones, active/desactive cuentas o registre nuevos especialistas.
+          Administre el personal médico, consulte su actividad clínica y gestione sus accesos.
         </p>
       </div>
       <div class="header-actions">
-        <a routerLink="/admin/dashboard" class="btn-outline">Ver Dashboard</a>
-        <a routerLink="/admin/veterinarios/nuevo" class="btn-primary">+ Registrar Veterinario</a>
+        <a routerLink="/admin/veterinarios/nuevo" class="btn-primary">
+          + Registrar Veterinario
+        </a>
       </div>
     </div>
 
@@ -34,7 +35,12 @@
     <!-- Barra de búsqueda por cédula, nombre o especialidad -->
     <div class="search-toolbar">
       <div class="search-input-wrap">
-        <span class="search-icon">🔍</span>
+        <span class="search-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </span>
         <input
           type="search"
           [(ngModel)]="filtroBusqueda"
@@ -42,7 +48,7 @@
           class="search-input"
           aria-label="Buscar veterinario por cédula, nombre o especialidad" />
         @if (filtroBusqueda) {
-          <button type="button" class="btn-clear-search" (click)="filtroBusqueda = ''">✕</button>
+          <button type="button" class="btn-clear-search" (click)="filtroBusqueda = ''" aria-label="Limpiar búsqueda">✕</button>
         }
       </div>
       <span class="results-counter">
@@ -58,4 +64,3 @@
     </app-veterinario-table>
   </div>
 </div>
-

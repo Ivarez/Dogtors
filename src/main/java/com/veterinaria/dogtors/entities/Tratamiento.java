@@ -2,8 +2,6 @@ package com.veterinaria.dogtors.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -14,8 +12,6 @@ import java.time.LocalDate;
  * por si el veterinario o el medicamento son eliminados posteriormente.
  */
 @Entity
-@Getter
-@Setter
 public class Tratamiento {
 
     @Id
@@ -111,6 +107,42 @@ public class Tratamiento {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    @JsonIgnore
+    public String getNombreVeterinarioRespaldo() {
+        return nombreVeterinarioRespaldo;
+    }
+
+    public void setNombreVeterinarioRespaldo(String nombreVeterinarioRespaldo) {
+        this.nombreVeterinarioRespaldo = nombreVeterinarioRespaldo;
+    }
+
+    @JsonIgnore
+    public String getEspecialidadVeterinarioRespaldo() {
+        return especialidadVeterinarioRespaldo;
+    }
+
+    public void setEspecialidadVeterinarioRespaldo(String especialidadVeterinarioRespaldo) {
+        this.especialidadVeterinarioRespaldo = especialidadVeterinarioRespaldo;
+    }
+
+    @JsonIgnore
+    public String getNombreDrogaRespaldo() {
+        return nombreDrogaRespaldo;
+    }
+
+    public void setNombreDrogaRespaldo(String nombreDrogaRespaldo) {
+        this.nombreDrogaRespaldo = nombreDrogaRespaldo;
+    }
+
+    @JsonIgnore
+    public Double getPrecioDrogaRespaldo() {
+        return precioDrogaRespaldo;
+    }
+
+    public void setPrecioDrogaRespaldo(Double precioDrogaRespaldo) {
+        this.precioDrogaRespaldo = precioDrogaRespaldo;
     }
 
     @JsonIgnore

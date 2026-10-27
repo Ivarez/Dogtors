@@ -14,6 +14,7 @@ import java.util.List;
  * Al eliminar un dueño se eliminan en cascada todas sus mascotas asociadas.
  */
 @Service
+@SuppressWarnings("null")
 public class DuenoServiceImpl implements DuenoService {
 
     @Autowired

@@ -23,6 +23,7 @@ import java.util.Map;
  * Calcula todos los KPIs sin devolver objetos anidados.
  */
 @Service
+@SuppressWarnings("null")
 public class DashboardServiceImpl implements DashboardService {
 
     @Autowired

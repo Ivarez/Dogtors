@@ -15,7 +15,7 @@ public interface MascotaRepository extends JpaRepository<Mascota, Long> {
 
     List<Mascota> findByDueno(Dueno dueno);
 
-    List<Mascota> findByDuenoId(Long duenoId);
+    List<Mascota> findByDueno_Id(Long duenoId);
 
     List<Mascota> findByNombreContainingIgnoreCase(String nombre);
 

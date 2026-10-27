@@ -2,8 +2,6 @@ package com.veterinaria.dogtors.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +11,6 @@ import java.util.List;
  * Incluye cédula, especialidad, foto, estado laboral (activo/inactivo) y conteo de atenciones.
  */
 @Entity
-@Getter
-@Setter
 public class Veterinario {
 
     @Id

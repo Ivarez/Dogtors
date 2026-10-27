@@ -28,7 +28,13 @@
           <span class="badge-code">ERR_NO_DRUGS_AVAILABLE</span>
         </div>
         <div class="contingency-body">
-          <div class="contingency-icon">⚠️</div>
+          <div class="contingency-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
           <div class="contingency-text">
             <h3>No hay medicamentos disponibles para administrar</h3>
             <p>
@@ -51,7 +57,7 @@
     <!-- Alerta de Error Dinámico (cuando falla submit o backend) -->
     @if (mensajeError && !errorSinDrogas) {
       <div class="alert-box alert-danger">
-        <div class="alert-icon">❌</div>
+        <div class="alert-icon">!</div>
         <div class="alert-content">
           <h4>Restricción de Seguridad Farmacológica</h4>
           <p>{{ mensajeError }}</p>
@@ -83,7 +89,12 @@
         <!-- Main Form Column -->
         <div class="form-card">
           <div class="traceability-info-box">
-            <div class="info-icon">📋</div>
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+              </svg>
+            </div>
             <div class="info-text">
               <strong>Control de Inventario</strong>
               <span>Al registrar el tratamiento se asignará la fecha de hoy automáticamente y se descontará 1 unidad del medicamento en el inventario.</span>
@@ -110,7 +121,7 @@
               }
               @if (esMascotaInactiva) {
                 <div class="stock-error-message">
-                  <strong>⚠️ Mascota inactiva:</strong> El paciente <em>{{ mascotaSeleccionada?.nombre }}</em> no está activo en la veterinaria. Solo se puede suministrar tratamiento a mascotas activas.
+                  <strong>Mascota inactiva:</strong> El paciente <em>{{ mascotaSeleccionada?.nombre }}</em> no está activo en la veterinaria. Solo se puede suministrar tratamiento a mascotas activas.
                 </div>
               }
             </div>
@@ -148,7 +159,7 @@
                     </span>
                   } @else {
                     <span class="stock-pill out-stock">
-                      ⚠️ SIN STOCK (0 viales)
+                      SIN STOCK (0 viales)
                     </span>
                   }
                 }
@@ -170,7 +181,7 @@
               <!-- Error específico cuando la droga no tiene stock -->
               @if (esDrogaSinStock) {
                 <div class="stock-error-message">
-                  <strong>⚠️ Medicamento sin disponibilidad:</strong> No se puede registrar la administración de <em>{{ drogaSeleccionada?.nombre }}</em> porque cuenta con 0 unidades en el inventario. Seleccione otra droga o reabastezca con el archivo Excel.
+                  <strong>Medicamento sin disponibilidad:</strong> No se puede registrar la administración de <em>{{ drogaSeleccionada?.nombre }}</em> porque cuenta con 0 unidades en el inventario. Seleccione otra droga o reabastezca con el archivo Excel.
                 </div>
               }
             </div>
@@ -194,7 +205,11 @@
             <!-- Resumen de impacto de stock previo a confirmar -->
             @if (mascotaSeleccionada && drogaSeleccionada && !esDrogaSinStock) {
               <div class="impact-summary-card">
-                <div class="impact-icon">🛡️</div>
+                <div class="impact-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
                 <div class="impact-details">
                   <strong>Resumen del Tratamiento</strong>
                   <p>
@@ -267,7 +282,11 @@
             </div>
           } @else {
             <div class="empty-side-prompt">
-              <div class="side-icon">🐾</div>
+              <div class="side-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </div>
               <h4>Seleccione un Paciente</h4>
               <p>Elija un paciente en el paso 1 del formulario para visualizar su ficha clínica y antecedentes de ingreso.</p>
             </div>
@@ -286,7 +305,12 @@
 
           @if (veterinarioEnSesion; as vet) {
             <div class="session-vet-banner">
-              <span class="vet-badge-icon">🩺</span>
+              <span class="vet-badge-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </span>
               <div class="vet-badge-info">
                 <span class="vet-badge-label">Médico Veterinario Tratante (Sesión Activa)</span>
                 <strong>{{ vet.nombre }} — {{ vet.especialidad || 'Medicina General' }}</strong>

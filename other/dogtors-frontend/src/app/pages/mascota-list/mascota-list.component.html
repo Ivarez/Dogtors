@@ -7,52 +7,38 @@
         <h1>{{ soloMisTratadas ? 'Mis Pacientes Tratados' : 'Directorio de Pacientes' }}</h1>
         <p class="subtitle">
           {{ soloMisTratadas
-            ? 'Mascotas a las cuales usted ha suministrado tratamientos médicos en la clínica.'
-            : 'Monitoreo continuo de animales internados en hospitalización y registro histórico de altas.' }}
+            ? 'Pacientes a los cuales has administrado tratamientos médicos.'
+            : 'Pacientes hospitalizados y registro histórico de altas de la clínica.' }}
         </p>
       </div>
       <div>
         <a routerLink="/mascotas/nueva" class="btn-primary">
-          + Registrar Nuevo Ingreso
+          + Registrar Paciente
         </a>
       </div>
     </div>
 
-    <!-- Barra de búsqueda por nombre de mascota y filtro de mascotas tratadas por el veterinario -->
+    <!-- Barra de búsqueda por nombre de mascota -->
     <div class="filter-bar">
       <div class="search-input-wrap">
-        <span class="search-icon">🔍</span>
+        <span class="search-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </span>
         <input
           type="search"
           [(ngModel)]="filtroNombre"
-          placeholder="Buscar mascota por su nombre, raza o dueño..."
+          placeholder="Buscar paciente por nombre, raza o dueño..."
           class="search-input"
-          aria-label="Buscar mascota por su nombre" />
+          aria-label="Buscar paciente por su nombre" />
       </div>
-
-      @if (authService.esVeterinario()) {
-        <div class="filter-tabs" role="group" aria-label="Filtrar pacientes del veterinario">
-          <button
-            type="button"
-            class="tab-btn"
-            [class.active]="!soloMisTratadas"
-            (click)="alternarFiltroVeterinario(false)">
-            Todos los Pacientes
-          </button>
-          <button
-            type="button"
-            class="tab-btn"
-            [class.active]="soloMisTratadas"
-            (click)="alternarFiltroVeterinario(true)">
-            🩺 Tratados por Mí
-          </button>
-        </div>
-      }
     </div>
 
     @if (errorMsg) {
       <div class="alert-error">
-        <span>⚠️ {{ errorMsg }}</span>
+        <span>{{ errorMsg }}</span>
       </div>
     }
 

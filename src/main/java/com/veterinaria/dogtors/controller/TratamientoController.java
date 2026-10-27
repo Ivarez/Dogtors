@@ -50,3 +50,4 @@ public class TratamientoController {
         return tratamientoService.crearTratamiento(dto);
     }
 }
+

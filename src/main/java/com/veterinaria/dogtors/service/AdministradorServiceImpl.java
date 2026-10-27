@@ -12,6 +12,7 @@ import java.util.List;
  * Implementación del servicio de administradores.
  */
 @Service
+@SuppressWarnings("null")
 public class AdministradorServiceImpl implements AdministradorService {
 
     @Autowired

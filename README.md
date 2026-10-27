@@ -11,7 +11,7 @@ El proyecto está desarrollado bajo el framework **Spring Boot** utilizando el p
 - **Capa de Dominio (`entities`):** Contiene los modelos de datos principales (`Dueno` y `Mascota`).
 
 ## Tecnologías y Herramientas
-- **Backend:** Java 17, Spring Boot, Spring Web
+- **Backend:** Java 25, Spring Boot 3.5, Spring Web
 - **Frontend:** HTML5, Tailwind CSS, Bootstrap 5.3, Vanilla CSS
 - **Motor de plantillas:** Thymeleaf
 - **Herramienta de Construcción:** Maven
@@ -29,9 +29,14 @@ El veterinario tiene acceso sin restricciones a la gestión de datos maestros:
 
 ## Ejecución
 1. Clonar este repositorio.
-2. Abrir el proyecto en **Visual Studio Code** (asegúrate de tener instalado el *Extension Pack for Java* y *Spring Boot Dashboard*).
-3. Ir a la pestaña "Spring Boot Dashboard" y ejecutar `DogtorsApplication`.
-4. Ingresar desde tu navegador a `http://localhost:8080`.
+2. Instalar un JDK 25 y abrir el proyecto en **Visual Studio Code** (se recomienda el *Extension Pack for Java* y *Spring Boot Dashboard*).
+3. Desde la raíz del proyecto, compilar y ejecutar las pruebas con el Maven Wrapper:
+   - Windows: `.\mvnw.cmd clean test`
+   - Linux/macOS: `./mvnw clean test`
+4. Iniciar la aplicación con el Maven Wrapper:
+   - Windows: `.\mvnw.cmd spring-boot:run`
+   - Linux/macOS: `./mvnw spring-boot:run`
+5. Ingresar desde tu navegador a `http://localhost:8080`.
 
 ## Vistas y Mockups (En progreso)
 El sistema ha unificado el uso de Tailwind CSS para la mayoría de sus vistas internas, con integración de Bootstrap en tablas de datos específicas y CSS nativo en el landing page. Las vistas actuales se están ajustando para reflejar el diseño exacto de los mockups en Figma.

@@ -84,7 +84,7 @@
 
     @if (mensajeError) {
       <div class="alert-box alert-danger">
-        <div class="alert-icon">⚠️</div>
+        <div class="alert-icon">!</div>
         <div class="alert-content">
           <h4>Error en la Operación</h4>
           <p>{{ mensajeError }}</p>
@@ -132,7 +132,12 @@
         </div>
       } @else if (medicamentos.length === 0) {
         <div class="empty-inventory-state">
-          <div class="empty-icon">💊</div>
+          <div class="empty-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          </div>
           <h3>No hay medicamentos registrados en el inventario</h3>
           <p>El inventario se encuentra actualmente vacío. Utilice la sección de abajo para cargar un archivo Excel de medicamentos.</p>
           <button type="button" class="btn-action-primary" (click)="cargarDefaultServidor()">

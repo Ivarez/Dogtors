@@ -1,6 +1,8 @@
 package com.veterinaria.dogtors.errors;
 
-// Crear excepcion personalizada que hereda de RuntimeException
+/**
+ * Excepción personalizada para entidades no encontradas en el sistema.
+ */
 public class NotFoundException extends RuntimeException {
 
     public NotFoundException(String message) {

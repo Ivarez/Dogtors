@@ -16,6 +16,7 @@ import java.util.List;
  * Las mascotas no se eliminan directamente, sino que cambian su estado entre activa e inactiva.
  */
 @Service
+@SuppressWarnings("null")
 public class MascotaServiceImpl implements MascotaService {
 
     @Autowired
@@ -112,6 +113,6 @@ public class MascotaServiceImpl implements MascotaService {
 
     @Override
     public List<Mascota> buscarPorDuenoId(Long duenoId) {
-        return mascotaRepository.findByDuenoId(duenoId);
+        return mascotaRepository.findByDueno_Id(duenoId);
     }
 }

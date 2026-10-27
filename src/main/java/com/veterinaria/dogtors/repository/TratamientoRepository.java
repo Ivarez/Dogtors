@@ -13,11 +13,11 @@ import java.util.List;
 @Repository
 public interface TratamientoRepository extends JpaRepository<Tratamiento, Long> {
 
-    List<Tratamiento> findByMascotaId(Long mascotaId);
+    List<Tratamiento> findByMascota_Id(Long mascotaId);
 
-    List<Tratamiento> findByVeterinarioId(Long veterinarioId);
+    List<Tratamiento> findByVeterinario_Id(Long veterinarioId);
 
-    List<Tratamiento> findByDrogaId(Long drogaId);
+    List<Tratamiento> findByDroga_Id(Long drogaId);
 
     List<Tratamiento> findByFechaGreaterThanEqual(LocalDate fechaDesde);
 

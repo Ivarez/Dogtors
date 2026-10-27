@@ -68,3 +68,4 @@ public class DuenoController {
         return duenoService.validarLogin(credenciales.getCorreo(), credenciales.getPassword());
     }
 }
+

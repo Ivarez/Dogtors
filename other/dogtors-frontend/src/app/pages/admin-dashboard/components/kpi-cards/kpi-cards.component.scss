@@ -1,121 +1,173 @@
-.kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+.kpi-sections {
+  display: flex;
+  flex-direction: column;
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
 
+.kpi-row {
+  display: grid;
+  gap: 1.25rem;
+
+  &.kpi-row-3 {
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &.kpi-row-2 {
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
 .kpi-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 14px;
-  padding: 1.35rem 1.4rem;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  background: var(--surface);
+  border: 1px solid var(--borders);
+  border-radius: 16px;
+  padding: 1.4rem 1.6rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(32, 37, 34, 0.03);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
+    box-shadow: 0 6px 16px rgba(32, 37, 34, 0.06);
   }
 
-  &.highlight-teal {
-    border-top: 4px solid #0d9488;
+  &.highlight-card {
+    border-top: 4px solid var(--primary);
   }
 
-  &.financial-card {
-    border-top: 4px solid #0284c7;
+  &.card-finance {
+    border-top: 4px solid var(--secondary);
   }
 
-  &.profit-card {
-    border-top: 4px solid #16a34a;
+  &.card-profit {
+    border-top: 4px solid var(--primary);
   }
 }
 
-.kpi-top {
+.kpi-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
-.kpi-label {
+.kpi-title {
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #64748b;
+  letter-spacing: 0.08em;
+  color: var(--neutral);
 }
 
 .kpi-icon {
-  font-size: 1.35rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.icon-primary {
+    background: rgba(31, 93, 80, 0.1);
+    color: var(--primary);
+  }
+
+  &.icon-neutral {
+    background: #f1f5f3;
+    color: var(--secondary);
+  }
+
+  &.icon-finance {
+    background: rgba(59, 130, 246, 0.1);
+    color: #2563eb;
+  }
+
+  &.icon-profit {
+    background: rgba(16, 185, 129, 0.12);
+    color: #059669;
+  }
 }
 
-.kpi-value {
-  font-size: 2rem;
+.kpi-main-num {
+  font-size: 2.15rem;
   font-weight: 800;
-  color: #0f172a;
-  line-height: 1.15;
+  font-family: 'Outfit', sans-serif;
+  color: var(--dark);
+  line-height: 1.1;
   font-variant-numeric: tabular-nums;
 
-  &.currency {
-    font-size: 1.65rem;
+  &.text-primary {
+    color: var(--primary);
   }
 
-  &.text-success {
-    color: #0f766e;
-  }
-
-  &.text-teal {
-    color: #0d9488;
-  }
-
-  &.text-muted {
-    color: #64748b;
+  &.font-currency {
+    font-size: 1.85rem;
+    color: var(--dark);
   }
 
   &.text-profit {
-    color: #15803d;
+    color: var(--primary);
   }
 }
 
-.kpi-split-values {
+.kpi-split {
   display: flex;
   align-items: center;
-  gap: 1.15rem;
-  margin: 0.15rem 0 0.35rem;
+  gap: 1.5rem;
+  margin: 0.2rem 0;
 }
 
-.split-item {
+.split-col {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
 }
 
-.split-divider {
-  width: 1px;
-  height: 36px;
-  background: #e2e8f0;
+.split-num {
+  font-size: 1.85rem;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  color: var(--dark);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+
+  &.text-primary {
+    color: var(--primary);
+  }
+
+  &.text-muted {
+    color: var(--neutral);
+  }
 }
 
-.split-tag {
-  font-size: 0.72rem;
+.split-lbl {
+  font-size: 0.75rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--neutral);
 
-  &.badge-active {
-    color: #0f766e;
-  }
-
-  &.badge-inactive {
-    color: #64748b;
+  &.text-primary {
+    color: var(--primary);
   }
 }
 
-.kpi-foot {
-  margin: 0.65rem 0 0;
-  font-size: 0.8rem;
-  color: #64748b;
+.split-sep {
+  width: 1px;
+  height: 38px;
+  background: var(--borders);
 }
 
+.kpi-caption {
+  margin: 0.75rem 0 0;
+  font-size: 0.82rem;
+  color: var(--neutral);
+}
